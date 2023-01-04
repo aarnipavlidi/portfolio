@@ -56,9 +56,74 @@ export interface IHomeLandingPage extends Entry<IHomeLandingPageFields> {
   };
 }
 
-export type CONTENT_TYPE = "heading" | "homeLandingPage";
+export interface INavigationFields {
+  /** EntryName */
+  entryName: string;
 
-export type IEntry = IHeading | IHomeLandingPage;
+  /** NavigationLinks */
+  navigationLinks: INavigationLinks[];
+}
+
+/** Content model for "Navigation" component. This component will be shown on all pages as navbar. */
+
+export interface INavigation extends Entry<INavigationFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "navigation";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
+export interface INavigationLinksFields {
+  /** EntryName */
+  entryName: string;
+
+  /** Link Href */
+  linkHref: string;
+
+  /** Link Name */
+  linkName: string;
+}
+
+/** This content model is being used with Navigation as reference. Basically every time if you want to create or edit current website links then we would be using this model and then updating it into Navigation model. */
+
+export interface INavigationLinks extends Entry<INavigationLinksFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "navigationLinks";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
+export type CONTENT_TYPE =
+  | "heading"
+  | "homeLandingPage"
+  | "navigation"
+  | "navigationLinks";
+
+export type IEntry =
+  | IHeading
+  | IHomeLandingPage
+  | INavigation
+  | INavigationLinks;
 
 export type LOCALE_CODE = "en" | "fi";
 

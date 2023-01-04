@@ -5,6 +5,9 @@
 /.pnp
 .pnp.js
 
+# assets
+/assets/fonts/*
+
 # testing
 /coverage
 

@@ -24,7 +24,7 @@
       "1tbs"
     ],
     "callback-return": "error",
-    "camelcase": "error",
+    "camelcase": "warn",
     "comma-dangle": [
       "error",
       "always-multiline"
