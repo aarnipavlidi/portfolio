@@ -1,7 +1,6 @@
-/* eslint-disable camelcase */
 import { IHomeLandingPage } from '@/types/contentful/contentful';
 import { ContentfulBlockProps } from '@/types/propsContentful';
-import { client } from 'utils/contentful/contentful';
+import { client } from '@/utils/contentful/contentful';
 
 import ComponentBlocks from '@/components/ComponentBlocks';
 
