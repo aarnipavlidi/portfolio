@@ -1,14 +1,14 @@
-import { INavigationFields } from '@/types/contentful/contentful';
+import { NavigationNavigationLinksCollection } from '@/types/contentful/graphql';
 import Link from 'next/link';
 import classNames from 'classNames/bind';
 import styles from './Navigation.module.css';
 interface NavigationProps {
-  navigation: INavigationFields;
+  navigation: NavigationNavigationLinksCollection;
 }
 
 const Navigation: React.FC<NavigationProps> = ({ navigation }) => {
   const cx = classNames.bind(styles);
-  const getCurrentLinks = navigation.navigationLinks.map(value => value.fields);
+  const getCurrentLinks = navigation.items;
 
   return (
     <header className="container mx-auto px-5 bg-slate-100">
@@ -17,10 +17,10 @@ const Navigation: React.FC<NavigationProps> = ({ navigation }) => {
           <h1 className="font-pier-sans text-2xl">Portfolio</h1>
         </div>
         <div className="basis-1/2 flex flex-row gap-5">
-          {getCurrentLinks && getCurrentLinks.map((link, index) => {
+          {getCurrentLinks && getCurrentLinks.length > 0 && getCurrentLinks.map((link, index) => {
             return (
-              <Link key={`${link.entryName}-${index}`} href={link.linkHref} legacyBehavior>
-                <a className="font-pier-sans text-lg">{link.linkName}</a>
+              <Link key={`${link?.entryName}-${index}`} href={link?.linkHref || '/'} legacyBehavior>
+                <a className="font-pier-sans text-lg">{link?.linkName}</a>
               </Link>
             );
           })
