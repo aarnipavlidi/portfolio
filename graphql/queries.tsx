@@ -1,14 +1,16 @@
-import { Query } from '@/types/contentful/graphql';
-import apolloClient from '@/utils/apolloClient';
-import { getCurrentNavigationQuery } from './templates';
+import type { GetCurrentNavigationQuery } from '@/types/prismic/graphql/graphql';
+import { getApolloClient } from '@/utils/apolloClient';
+import { GET_CURRENT_NAVIGATION } from './templates/queries';
 
 export type navigationProps = {
-  'navigationCollection': Query['navigationCollection']
+  'allNavigations': GetCurrentNavigationQuery;
 };
 
 export const getCurrentNavigation = async () => {
-  const { data } = await apolloClient.query<navigationProps>({
-    query: getCurrentNavigationQuery,
+  const prismic = getApolloClient();
+
+  const { data } = await prismic.query<navigationProps>({
+    query: GET_CURRENT_NAVIGATION,
   });
 
   return data;

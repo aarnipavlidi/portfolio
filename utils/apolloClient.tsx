@@ -1,23 +1,30 @@
-import { ApolloClient, InMemoryCache } from '@apollo/client';
-import { ApolloLink } from 'apollo-link';
-import { HttpLink } from 'apollo-link-http';
-import { spaceContentful, accessTokenContentful, environmentContentful } from './contentful/contentful';
+import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client';
+import * as prismic from '@prismicio/client';
+import { prismicRoutes, prismicRepositoryName, prismicAccessToken } from '@/utils/prismic';
+import fragmentMatcher from '../graphql/fragment.matcher.json';
 
-const baseUrlContentful = `https://graphql.contentful.com/content/v1/spaces/${spaceContentful}/environments/${environmentContentful}`;
+let client: ApolloClient<any> | null = null;
 
-const http = new HttpLink({
-  uri: baseUrlContentful,
-  headers: {
-    Authorization: `Bearer ${accessTokenContentful}`,
-  },
+const getRepositoryEndPoint = prismic.getRepositoryEndpoint(prismicRepositoryName);
+
+const prismicClient = prismic.createClient(getRepositoryEndPoint, {
+  accessToken: prismicAccessToken,
+  routes: prismicRoutes,
 });
 
-const link = ApolloLink.from([http]);
-const cache = new InMemoryCache();
+export const getApolloClient = () => {
+  if (!client || typeof window === 'undefined') {
+    client = new ApolloClient({
+      link: new HttpLink({
+        uri: prismic.getGraphQLEndpoint(prismicRepositoryName),
+        fetch: prismicClient.graphQLFetch,
+        useGETForQueries: true,
+      }),
+      cache: new InMemoryCache({
+        possibleTypes: fragmentMatcher.possibleTypes,
+      }),
+    });
+  };
 
-const apolloClient = new ApolloClient({
-  link: (link as any),
-  cache,
-});
-
-export default apolloClient;
+  return client;
+};

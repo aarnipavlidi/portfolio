@@ -3,6 +3,7 @@
     "baseUrl": ".",
     "paths": {
       "@/components/*": ["components/*"],
+      "@/scripts/*": ["scripts/*"],
       "@/types/*": ["types/*"],
       "@/utils/*": ["utils/*"],
     },
@@ -21,6 +22,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "graphql/templates/index.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "./.slicemachine/prismicio.d.ts"],
   "exclude": ["node_modules"]
 }

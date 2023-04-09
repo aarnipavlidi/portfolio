@@ -1,2 +1,3 @@
-/types/contentful/contentful.ts
-/types/contentful/graphql.ts
+# Prismic
+/slices/index.tsx
+/types/prismic/graphql/*

@@ -1,0 +1,15 @@
+{
+  "possibleTypes": {
+    "_Document": [
+      "Home",
+      "Navigation"
+    ],
+    "_Linkable": [
+      "Home",
+      "Navigation",
+      "_ExternalLink",
+      "_FileLink",
+      "_ImageLink"
+    ]
+  }
+}

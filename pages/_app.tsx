@@ -1,17 +1,19 @@
-import type { NavigationNavigationLinksCollection } from '@/types/contentful/graphql';
 import type { navigationProps } from 'graphql/queries';
-import { ApolloProvider } from '@apollo/client';
-import apolloClient from '@/utils/apolloClient';
 import NextApp, { AppContext, AppProps } from 'next/app';
+import Link from 'next/link';
+
+import { PrismicProvider } from '@prismicio/react';
+import { PrismicPreview } from '@prismicio/next';
+import { prismicRepositoryName } from '@/utils/prismic';
 
 import Layout from '@/components/Layout';
-import Navigation from '@/components/Navigation';
+import NavigationHeader from '@/components/Navigation';
 
 import '../styles/globals.css';
 import localFont from '@next/font/local';
 
 interface CustomAppProps extends AppProps {
-  navigation: NavigationNavigationLinksCollection;
+  navigation: navigationProps['allNavigations'];
 }
 
 const fontPierSans = localFont({
@@ -37,14 +39,18 @@ const fontPierSans = localFont({
 
 const App = ({ Component, pageProps, navigation }: CustomAppProps) => {
   return (
-    <Layout fontVariable={fontPierSans.variable}>
-      <Navigation navigation={navigation} />
-      <Component {...pageProps} />
-    </Layout>
+    <PrismicProvider internalLinkComponent={(props) => <Link {...props} />}>
+      <PrismicPreview repositoryName={prismicRepositoryName}>
+        <Layout fontVariable={fontPierSans.variable}>
+          <NavigationHeader navigation={navigation} />
+          <Component {...pageProps} />
+        </Layout>
+      </PrismicPreview>
+    </PrismicProvider>
   );
 };
 
-App.getInitialProps = async (context: AppContext) => {
+App.getInitialProps = async (context: AppContext, previewData: any) => {
   const appProps = await NextApp.getInitialProps(context);
 
   const baseUrl = process.env.NEXT_PUBLIC_BASEURL;
@@ -52,7 +58,7 @@ App.getInitialProps = async (context: AppContext) => {
 
   return {
     ...appProps,
-    navigation: getNavigationData[0].navigationCollection?.items[0]?.navigationLinksCollection || {},
+    navigation: getNavigationData[0] || {},
   };
 };
 
