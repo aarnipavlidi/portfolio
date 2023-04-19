@@ -1,0 +1,28 @@
+{
+  "id": "theme_700",
+  "label": "theme_700",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "light": {
+        "type": "Group",
+        "config": {
+          "label": "light",
+          "fields": {
+            "name": {
+              "type": "Select",
+              "config": {
+                "label": "name",
+                "placeholder": "",
+                "options": [
+                  "neutral-700"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

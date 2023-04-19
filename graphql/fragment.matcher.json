@@ -2,11 +2,31 @@
   "possibleTypes": {
     "_Document": [
       "Home",
-      "Navigation"
+      "Navigation",
+      "Theme_50",
+      "Theme_100",
+      "Theme_200",
+      "Theme_300",
+      "Theme_400",
+      "Theme_500",
+      "Theme_600",
+      "Theme_700",
+      "Theme_800",
+      "Theme_900"
     ],
     "_Linkable": [
       "Home",
       "Navigation",
+      "Theme_50",
+      "Theme_100",
+      "Theme_200",
+      "Theme_300",
+      "Theme_400",
+      "Theme_500",
+      "Theme_600",
+      "Theme_700",
+      "Theme_800",
+      "Theme_900",
       "_ExternalLink",
       "_FileLink",
       "_ImageLink"

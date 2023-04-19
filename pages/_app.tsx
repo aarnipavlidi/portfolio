@@ -10,7 +10,8 @@ import Layout from '@/components/Layout';
 import NavigationHeader from '@/components/Navigation';
 
 import '../styles/globals.css';
-import localFont from '@next/font/local';
+import localFont from 'next/font/local';
+import { Caveat } from 'next/font/google';
 
 interface CustomAppProps extends AppProps {
   navigation: navigationProps['allNavigations'];
@@ -37,11 +38,16 @@ const fontPierSans = localFont({
   variable: '--font-primary',
 });
 
+const caveatFont = Caveat({
+  subsets: ['latin'],
+  variable: '--font-secondary',
+});
+
 const App = ({ Component, pageProps, navigation }: CustomAppProps) => {
   return (
     <PrismicProvider internalLinkComponent={(props) => <Link {...props} />}>
       <PrismicPreview repositoryName={prismicRepositoryName}>
-        <Layout fontVariable={fontPierSans.variable}>
+        <Layout fontVariable={`${fontPierSans.variable} ${caveatFont.variable}`}>
           <NavigationHeader navigation={navigation} />
           <Component {...pageProps} />
         </Layout>

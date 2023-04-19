@@ -34,6 +34,25 @@
             }
           }
         }
+      },
+      "color": {
+        "type": "Link",
+        "config": {
+          "label": "color",
+          "select": "document",
+          "customtypes": [
+            "theme_50",
+            "theme_100",
+            "theme_200",
+            "theme_300",
+            "theme_400",
+            "theme_500",
+            "theme_600",
+            "theme_700",
+            "theme_800",
+            "theme_900"
+          ]
+        }
       }
     }
   }

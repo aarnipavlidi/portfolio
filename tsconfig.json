@@ -3,7 +3,9 @@
     "baseUrl": ".",
     "paths": {
       "@/components/*": ["components/*"],
+      "@/fallback/*": ["fallback/*"],
       "@/scripts/*": ["scripts/*"],
+      "@/styles/*": ["styles/*"],
       "@/types/*": ["types/*"],
       "@/utils/*": ["utils/*"],
     },

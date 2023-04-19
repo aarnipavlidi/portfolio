@@ -10,6 +10,7 @@ module.exports = {
     extend: {
       fontFamily: {
         ['pier-sans']: ['var(--font-primary)', ...fontFamily.sans],
+        ['caveat']: ['var(--font-secondary)'],
       },
     },
   },

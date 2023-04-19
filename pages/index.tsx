@@ -1,4 +1,5 @@
 import type { GetServerSideProps } from 'next';
+
 interface HomeProps {
 };
 
