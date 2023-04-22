@@ -1,8 +1,8 @@
 import { Theme50FieldsFragment, Theme100FieldsFragment, Theme200FieldsFragment, Theme300FieldsFragment, Theme400FieldsFragment, Theme500FieldsFragment, Theme600FieldsFragment, Theme700FieldsFragment, Theme800FieldsFragment, Theme900FieldsFragment } from './graphql/graphql';
 
-type RouteTypes = 'home';
-type RouteIDS = 'home-entry-name';
-type RoutePaths = '/';
+type RouteTypes = 'home_landing_page' | 'projects_landing_page' | 'about_landing_page' | 'contact_landing_page';
+type RouteIDS = 'home-landing-page' | 'projects-landing-page' | 'about-landing-page' | 'contact-landing-page';
+type RoutePaths = '/' | '/projects' | '/about' | '/contact';
 
 export interface PrismicRouteProps {
   type: RouteTypes;

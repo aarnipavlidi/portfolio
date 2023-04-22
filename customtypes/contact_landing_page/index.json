@@ -1,0 +1,17 @@
+{
+  "id": "contact_landing_page",
+  "label": "contact_landing_page",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "Entry Name",
+          "placeholder": "contact-landing-page"
+        }
+      }
+    }
+  }
+}

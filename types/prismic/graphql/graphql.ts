@@ -18,26 +18,70 @@ export type Scalars = {
   Long: any;
 };
 
-export type Home = _Document & _Linkable & {
+export type About_Landing_Page = _Document & _Linkable & {
   _linkType: Maybe<Scalars['String']>;
   _meta: Meta;
 };
 
 /** A connection to a list of items. */
-export type HomeConnectionConnection = {
+export type About_Landing_PageConnectionConnection = {
   /** A list of edges. */
-  edges: Maybe<Array<Maybe<HomeConnectionEdge>>>;
+  edges: Maybe<Array<Maybe<About_Landing_PageConnectionEdge>>>;
   /** Information to aid in pagination. */
   pageInfo: PageInfo;
   totalCount: Scalars['Long'];
 };
 
 /** An edge in a connection. */
-export type HomeConnectionEdge = {
+export type About_Landing_PageConnectionEdge = {
   /** A cursor for use in pagination. */
   cursor: Scalars['String'];
   /** The item at the end of the edge. */
-  node: Home;
+  node: About_Landing_Page;
+};
+
+export type Contact_Landing_Page = _Document & _Linkable & {
+  _linkType: Maybe<Scalars['String']>;
+  _meta: Meta;
+};
+
+/** A connection to a list of items. */
+export type Contact_Landing_PageConnectionConnection = {
+  /** A list of edges. */
+  edges: Maybe<Array<Maybe<Contact_Landing_PageConnectionEdge>>>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  totalCount: Scalars['Long'];
+};
+
+/** An edge in a connection. */
+export type Contact_Landing_PageConnectionEdge = {
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String'];
+  /** The item at the end of the edge. */
+  node: Contact_Landing_Page;
+};
+
+export type Home_Landing_Page = _Document & _Linkable & {
+  _linkType: Maybe<Scalars['String']>;
+  _meta: Meta;
+};
+
+/** A connection to a list of items. */
+export type Home_Landing_PageConnectionConnection = {
+  /** A list of edges. */
+  edges: Maybe<Array<Maybe<Home_Landing_PageConnectionEdge>>>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  totalCount: Scalars['Long'];
+};
+
+/** An edge in a connection. */
+export type Home_Landing_PageConnectionEdge = {
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String'];
+  /** The item at the end of the edge. */
+  node: Home_Landing_Page;
 };
 
 export type Meta = {
@@ -101,10 +145,36 @@ export type PageInfo = {
   startCursor: Maybe<Scalars['String']>;
 };
 
+export type Projects_Landing_Page = _Document & _Linkable & {
+  _linkType: Maybe<Scalars['String']>;
+  _meta: Meta;
+};
+
+/** A connection to a list of items. */
+export type Projects_Landing_PageConnectionConnection = {
+  /** A list of edges. */
+  edges: Maybe<Array<Maybe<Projects_Landing_PageConnectionEdge>>>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  totalCount: Scalars['Long'];
+};
+
+/** An edge in a connection. */
+export type Projects_Landing_PageConnectionEdge = {
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String'];
+  /** The item at the end of the edge. */
+  node: Projects_Landing_Page;
+};
+
 export type Query = {
   _allDocuments: _DocumentConnection;
-  allHomes: HomeConnectionConnection;
+  about_landing_page: Maybe<About_Landing_Page>;
+  allAbout_landing_pages: About_Landing_PageConnectionConnection;
+  allContact_landing_pages: Contact_Landing_PageConnectionConnection;
+  allHome_landing_pages: Home_Landing_PageConnectionConnection;
   allNavigations: NavigationConnectionConnection;
+  allProjects_landing_pages: Projects_Landing_PageConnectionConnection;
   allTheme_50s: Theme_50ConnectionConnection;
   allTheme_100s: Theme_100ConnectionConnection;
   allTheme_200s: Theme_200ConnectionConnection;
@@ -115,7 +185,9 @@ export type Query = {
   allTheme_700s: Theme_700ConnectionConnection;
   allTheme_800s: Theme_800ConnectionConnection;
   allTheme_900s: Theme_900ConnectionConnection;
-  home: Maybe<Home>;
+  contact_landing_page: Maybe<Contact_Landing_Page>;
+  home_landing_page: Maybe<Home_Landing_Page>;
+  projects_landing_page: Maybe<Projects_Landing_Page>;
 };
 
 
@@ -143,7 +215,13 @@ export type Query_AllDocumentsArgs = {
 };
 
 
-export type QueryAllHomesArgs = {
+export type QueryAbout_Landing_PageArgs = {
+  lang: Scalars['String'];
+  uid: Scalars['String'];
+};
+
+
+export type QueryAllAbout_Landing_PagesArgs = {
   after: InputMaybe<Scalars['String']>;
   before: InputMaybe<Scalars['String']>;
   first: InputMaybe<Scalars['Int']>;
@@ -159,7 +237,55 @@ export type QueryAllHomesArgs = {
   lastPublicationDate_after: InputMaybe<Scalars['DateTime']>;
   lastPublicationDate_before: InputMaybe<Scalars['DateTime']>;
   similar: InputMaybe<Similar>;
-  sortBy: InputMaybe<SortHomey>;
+  sortBy: InputMaybe<SortAbout_Landing_Pagey>;
+  tags: InputMaybe<Array<Scalars['String']>>;
+  tags_in: InputMaybe<Array<Scalars['String']>>;
+  uid: InputMaybe<Scalars['String']>;
+  uid_in: InputMaybe<Array<Scalars['String']>>;
+};
+
+
+export type QueryAllContact_Landing_PagesArgs = {
+  after: InputMaybe<Scalars['String']>;
+  before: InputMaybe<Scalars['String']>;
+  first: InputMaybe<Scalars['Int']>;
+  firstPublicationDate: InputMaybe<Scalars['DateTime']>;
+  firstPublicationDate_after: InputMaybe<Scalars['DateTime']>;
+  firstPublicationDate_before: InputMaybe<Scalars['DateTime']>;
+  fulltext: InputMaybe<Scalars['String']>;
+  id: InputMaybe<Scalars['String']>;
+  id_in: InputMaybe<Array<Scalars['String']>>;
+  lang: InputMaybe<Scalars['String']>;
+  last: InputMaybe<Scalars['Int']>;
+  lastPublicationDate: InputMaybe<Scalars['DateTime']>;
+  lastPublicationDate_after: InputMaybe<Scalars['DateTime']>;
+  lastPublicationDate_before: InputMaybe<Scalars['DateTime']>;
+  similar: InputMaybe<Similar>;
+  sortBy: InputMaybe<SortContact_Landing_Pagey>;
+  tags: InputMaybe<Array<Scalars['String']>>;
+  tags_in: InputMaybe<Array<Scalars['String']>>;
+  uid: InputMaybe<Scalars['String']>;
+  uid_in: InputMaybe<Array<Scalars['String']>>;
+};
+
+
+export type QueryAllHome_Landing_PagesArgs = {
+  after: InputMaybe<Scalars['String']>;
+  before: InputMaybe<Scalars['String']>;
+  first: InputMaybe<Scalars['Int']>;
+  firstPublicationDate: InputMaybe<Scalars['DateTime']>;
+  firstPublicationDate_after: InputMaybe<Scalars['DateTime']>;
+  firstPublicationDate_before: InputMaybe<Scalars['DateTime']>;
+  fulltext: InputMaybe<Scalars['String']>;
+  id: InputMaybe<Scalars['String']>;
+  id_in: InputMaybe<Array<Scalars['String']>>;
+  lang: InputMaybe<Scalars['String']>;
+  last: InputMaybe<Scalars['Int']>;
+  lastPublicationDate: InputMaybe<Scalars['DateTime']>;
+  lastPublicationDate_after: InputMaybe<Scalars['DateTime']>;
+  lastPublicationDate_before: InputMaybe<Scalars['DateTime']>;
+  similar: InputMaybe<Similar>;
+  sortBy: InputMaybe<SortHome_Landing_Pagey>;
   tags: InputMaybe<Array<Scalars['String']>>;
   tags_in: InputMaybe<Array<Scalars['String']>>;
   uid: InputMaybe<Scalars['String']>;
@@ -189,6 +315,30 @@ export type QueryAllNavigationsArgs = {
   uid: InputMaybe<Scalars['String']>;
   uid_in: InputMaybe<Array<Scalars['String']>>;
   where: InputMaybe<WhereNavigation>;
+};
+
+
+export type QueryAllProjects_Landing_PagesArgs = {
+  after: InputMaybe<Scalars['String']>;
+  before: InputMaybe<Scalars['String']>;
+  first: InputMaybe<Scalars['Int']>;
+  firstPublicationDate: InputMaybe<Scalars['DateTime']>;
+  firstPublicationDate_after: InputMaybe<Scalars['DateTime']>;
+  firstPublicationDate_before: InputMaybe<Scalars['DateTime']>;
+  fulltext: InputMaybe<Scalars['String']>;
+  id: InputMaybe<Scalars['String']>;
+  id_in: InputMaybe<Array<Scalars['String']>>;
+  lang: InputMaybe<Scalars['String']>;
+  last: InputMaybe<Scalars['Int']>;
+  lastPublicationDate: InputMaybe<Scalars['DateTime']>;
+  lastPublicationDate_after: InputMaybe<Scalars['DateTime']>;
+  lastPublicationDate_before: InputMaybe<Scalars['DateTime']>;
+  similar: InputMaybe<Similar>;
+  sortBy: InputMaybe<SortProjects_Landing_Pagey>;
+  tags: InputMaybe<Array<Scalars['String']>>;
+  tags_in: InputMaybe<Array<Scalars['String']>>;
+  uid: InputMaybe<Scalars['String']>;
+  uid_in: InputMaybe<Array<Scalars['String']>>;
 };
 
 
@@ -442,7 +592,19 @@ export type QueryAllTheme_900sArgs = {
 };
 
 
-export type QueryHomeArgs = {
+export type QueryContact_Landing_PageArgs = {
+  lang: Scalars['String'];
+  uid: Scalars['String'];
+};
+
+
+export type QueryHome_Landing_PageArgs = {
+  lang: Scalars['String'];
+  uid: Scalars['String'];
+};
+
+
+export type QueryProjects_Landing_PageArgs = {
   lang: Scalars['String'];
   uid: Scalars['String'];
 };
@@ -458,6 +620,20 @@ export type RelatedDocument = {
   uid: Maybe<Scalars['String']>;
 };
 
+export enum SortAbout_Landing_Pagey {
+  MetaFirstPublicationDateAsc = 'meta_firstPublicationDate_ASC',
+  MetaFirstPublicationDateDesc = 'meta_firstPublicationDate_DESC',
+  MetaLastPublicationDateAsc = 'meta_lastPublicationDate_ASC',
+  MetaLastPublicationDateDesc = 'meta_lastPublicationDate_DESC'
+}
+
+export enum SortContact_Landing_Pagey {
+  MetaFirstPublicationDateAsc = 'meta_firstPublicationDate_ASC',
+  MetaFirstPublicationDateDesc = 'meta_firstPublicationDate_DESC',
+  MetaLastPublicationDateAsc = 'meta_lastPublicationDate_ASC',
+  MetaLastPublicationDateDesc = 'meta_lastPublicationDate_DESC'
+}
+
 export enum SortDocumentsBy {
   MetaFirstPublicationDateAsc = 'meta_firstPublicationDate_ASC',
   MetaFirstPublicationDateDesc = 'meta_firstPublicationDate_DESC',
@@ -465,7 +641,7 @@ export enum SortDocumentsBy {
   MetaLastPublicationDateDesc = 'meta_lastPublicationDate_DESC'
 }
 
-export enum SortHomey {
+export enum SortHome_Landing_Pagey {
   MetaFirstPublicationDateAsc = 'meta_firstPublicationDate_ASC',
   MetaFirstPublicationDateDesc = 'meta_firstPublicationDate_DESC',
   MetaLastPublicationDateAsc = 'meta_lastPublicationDate_ASC',
@@ -479,6 +655,13 @@ export enum SortNavigationy {
   MetaLastPublicationDateDesc = 'meta_lastPublicationDate_DESC',
   NavigationTitleAsc = 'navigation_title_ASC',
   NavigationTitleDesc = 'navigation_title_DESC'
+}
+
+export enum SortProjects_Landing_Pagey {
+  MetaFirstPublicationDateAsc = 'meta_firstPublicationDate_ASC',
+  MetaFirstPublicationDateDesc = 'meta_firstPublicationDate_DESC',
+  MetaLastPublicationDateAsc = 'meta_lastPublicationDate_ASC',
+  MetaLastPublicationDateDesc = 'meta_lastPublicationDate_DESC'
 }
 
 export enum SortTheme_50y {
@@ -983,9 +1166,15 @@ export type Similar = {
   max: Scalars['Int'];
 };
 
-type LinkDocumentMeta_Home_Fragment = { _meta: { id: string, uid: string | null, type: string, tags: Array<string>, lang: string, firstPublicationDate: any | null, lastPublicationDate: any | null } } & { ' $fragmentName'?: 'LinkDocumentMeta_Home_Fragment' };
+type LinkDocumentMeta_About_Landing_Page_Fragment = { _meta: { id: string, uid: string | null, type: string, tags: Array<string>, lang: string, firstPublicationDate: any | null, lastPublicationDate: any | null } } & { ' $fragmentName'?: 'LinkDocumentMeta_About_Landing_Page_Fragment' };
+
+type LinkDocumentMeta_Contact_Landing_Page_Fragment = { _meta: { id: string, uid: string | null, type: string, tags: Array<string>, lang: string, firstPublicationDate: any | null, lastPublicationDate: any | null } } & { ' $fragmentName'?: 'LinkDocumentMeta_Contact_Landing_Page_Fragment' };
+
+type LinkDocumentMeta_Home_Landing_Page_Fragment = { _meta: { id: string, uid: string | null, type: string, tags: Array<string>, lang: string, firstPublicationDate: any | null, lastPublicationDate: any | null } } & { ' $fragmentName'?: 'LinkDocumentMeta_Home_Landing_Page_Fragment' };
 
 type LinkDocumentMeta_Navigation_Fragment = { _meta: { id: string, uid: string | null, type: string, tags: Array<string>, lang: string, firstPublicationDate: any | null, lastPublicationDate: any | null } } & { ' $fragmentName'?: 'LinkDocumentMeta_Navigation_Fragment' };
+
+type LinkDocumentMeta_Projects_Landing_Page_Fragment = { _meta: { id: string, uid: string | null, type: string, tags: Array<string>, lang: string, firstPublicationDate: any | null, lastPublicationDate: any | null } } & { ' $fragmentName'?: 'LinkDocumentMeta_Projects_Landing_Page_Fragment' };
 
 type LinkDocumentMeta_Theme_50_Fragment = { _meta: { id: string, uid: string | null, type: string, tags: Array<string>, lang: string, firstPublicationDate: any | null, lastPublicationDate: any | null } } & { ' $fragmentName'?: 'LinkDocumentMeta_Theme_50_Fragment' };
 
@@ -1007,7 +1196,7 @@ type LinkDocumentMeta_Theme_800_Fragment = { _meta: { id: string, uid: string | 
 
 type LinkDocumentMeta_Theme_900_Fragment = { _meta: { id: string, uid: string | null, type: string, tags: Array<string>, lang: string, firstPublicationDate: any | null, lastPublicationDate: any | null } } & { ' $fragmentName'?: 'LinkDocumentMeta_Theme_900_Fragment' };
 
-export type LinkDocumentMetaFragment = LinkDocumentMeta_Home_Fragment | LinkDocumentMeta_Navigation_Fragment | LinkDocumentMeta_Theme_50_Fragment | LinkDocumentMeta_Theme_100_Fragment | LinkDocumentMeta_Theme_200_Fragment | LinkDocumentMeta_Theme_300_Fragment | LinkDocumentMeta_Theme_400_Fragment | LinkDocumentMeta_Theme_500_Fragment | LinkDocumentMeta_Theme_600_Fragment | LinkDocumentMeta_Theme_700_Fragment | LinkDocumentMeta_Theme_800_Fragment | LinkDocumentMeta_Theme_900_Fragment;
+export type LinkDocumentMetaFragment = LinkDocumentMeta_About_Landing_Page_Fragment | LinkDocumentMeta_Contact_Landing_Page_Fragment | LinkDocumentMeta_Home_Landing_Page_Fragment | LinkDocumentMeta_Navigation_Fragment | LinkDocumentMeta_Projects_Landing_Page_Fragment | LinkDocumentMeta_Theme_50_Fragment | LinkDocumentMeta_Theme_100_Fragment | LinkDocumentMeta_Theme_200_Fragment | LinkDocumentMeta_Theme_300_Fragment | LinkDocumentMeta_Theme_400_Fragment | LinkDocumentMeta_Theme_500_Fragment | LinkDocumentMeta_Theme_600_Fragment | LinkDocumentMeta_Theme_700_Fragment | LinkDocumentMeta_Theme_800_Fragment | LinkDocumentMeta_Theme_900_Fragment;
 
 export type Theme50FieldsFragment = { light: Array<{ name: string | null }> | null } & { ' $fragmentName'?: 'Theme50FieldsFragment' };
 
@@ -1034,10 +1223,19 @@ export type GetCurrentNavigationQueryVariables = Exact<{ [key: string]: never; }
 
 export type GetCurrentNavigationQuery = { allNavigations: { edges: Array<{ node: { navigation_title: string | null, navigation_links: Array<{ link_name: string | null, link_href: (
             { _linkType: string | null }
-            & { ' $fragmentRefs'?: { 'LinkDocumentMeta_Home_Fragment': LinkDocumentMeta_Home_Fragment } }
+            & { ' $fragmentRefs'?: { 'LinkDocumentMeta_About_Landing_Page_Fragment': LinkDocumentMeta_About_Landing_Page_Fragment } }
+          ) | (
+            { _linkType: string | null }
+            & { ' $fragmentRefs'?: { 'LinkDocumentMeta_Contact_Landing_Page_Fragment': LinkDocumentMeta_Contact_Landing_Page_Fragment } }
+          ) | (
+            { _linkType: string | null }
+            & { ' $fragmentRefs'?: { 'LinkDocumentMeta_Home_Landing_Page_Fragment': LinkDocumentMeta_Home_Landing_Page_Fragment } }
           ) | (
             { _linkType: string | null }
             & { ' $fragmentRefs'?: { 'LinkDocumentMeta_Navigation_Fragment': LinkDocumentMeta_Navigation_Fragment } }
+          ) | (
+            { _linkType: string | null }
+            & { ' $fragmentRefs'?: { 'LinkDocumentMeta_Projects_Landing_Page_Fragment': LinkDocumentMeta_Projects_Landing_Page_Fragment } }
           ) | (
             { _linkType: string | null }
             & { ' $fragmentRefs'?: { 'LinkDocumentMeta_Theme_50_Fragment': LinkDocumentMeta_Theme_50_Fragment } }
