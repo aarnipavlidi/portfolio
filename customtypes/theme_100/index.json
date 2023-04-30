@@ -19,6 +19,16 @@
                   "neutral-100"
                 ]
               }
+            },
+            "code": {
+              "type": "Select",
+              "config": {
+                "label": "code",
+                "placeholder": "",
+                "options": [
+                  "f5f5f5"
+                ]
+              }
             }
           }
         }

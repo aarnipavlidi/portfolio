@@ -19,6 +19,16 @@
                   "neutral-900"
                 ]
               }
+            },
+            "code": {
+              "type": "Select",
+              "config": {
+                "label": "code",
+                "placeholder": "",
+                "options": [
+                  "171717"
+                ]
+              }
             }
           }
         }

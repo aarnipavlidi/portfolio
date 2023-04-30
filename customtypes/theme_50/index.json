@@ -19,6 +19,16 @@
                   "neutral-50"
                 ]
               }
+            },
+            "code": {
+              "type": "Select",
+              "config": {
+                "label": "code",
+                "placeholder": "",
+                "options": [
+                  "fafafa"
+                ]
+              }
             }
           }
         }

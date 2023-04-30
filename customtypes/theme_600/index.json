@@ -19,6 +19,16 @@
                   "neutral-600"
                 ]
               }
+            },
+            "code": {
+              "type": "Select",
+              "config": {
+                "label": "code",
+                "placeholder": "",
+                "options": [
+                  "525252"
+                ]
+              }
             }
           }
         }

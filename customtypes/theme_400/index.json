@@ -19,6 +19,16 @@
                   "neutral-400"
                 ]
               }
+            },
+            "code": {
+              "type": "Select",
+              "config": {
+                "label": "code",
+                "placeholder": "",
+                "options": [
+                  "a3a3a3"
+                ]
+              }
             }
           }
         }

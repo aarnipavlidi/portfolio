@@ -19,6 +19,16 @@
                   "neutral-800"
                 ]
               }
+            },
+            "code": {
+              "type": "Select",
+              "config": {
+                "label": "code",
+                "placeholder": "",
+                "options": [
+                  "262626"
+                ]
+              }
             }
           }
         }
