@@ -22,9 +22,9 @@ const Navigation: React.FC<NavigationProps> = ({ navigation }) => {
 
   return (
     <header className="container mx-auto px-4">
-      <nav className="flex flex-row justify-between">
+      <nav className={`flex ${getNavigationData?.position ? 'flex-row' : 'flex-row-reverse'} justify-between`}>
         {
-          getNavigationData && getNavigationData.navigation_title && <>
+          getNavigationData?.navigation_title && <>
             <div className="flex flex-row py-4 items-center">
               <Icons
                 name="TerminalTag"
@@ -44,7 +44,7 @@ const Navigation: React.FC<NavigationProps> = ({ navigation }) => {
         }
         <div className="hidden md:flex flex-row py-4 items-center gap-8">
           {
-            getNavigationData && getNavigationData.navigation_links && getNavigationData.navigation_links.length > 0 && getNavigationData.navigation_links.map((link, index) => {
+            getNavigationData?.navigation_links && getNavigationData.navigation_links.length > 0 && getNavigationData.navigation_links.map((link, index) => {
 
               const getCurrentLinkData = checkLinkProperties(link.link_href) ? link.link_href : null;
               const formatLinkData = {

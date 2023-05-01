@@ -29,6 +29,7 @@ export const GET_CURRENT_NAVIGATION = gql`
     allNavigations {
       edges {
         node {
+          position
           navigation_title
           navigation_links {
             link_name
