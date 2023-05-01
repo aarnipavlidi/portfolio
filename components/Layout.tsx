@@ -1,22 +1,14 @@
-import Link from 'next/link';
-
 interface LayoutProps {
   children: React.ReactNode;
+  fontVariable?: string;
 }
 
 const Layout: React.FC<LayoutProps> = (props) => {
   return (
-    <div>
-      <header>
-        <nav>
-          <Link href="/" legacyBehavior>
-            <a>Etusivu</a>
-          </Link>
-        </nav>
-      </header>
-      <div>
+    <div className={props.fontVariable}>
+      <main>
         {props.children}
-      </div>
+      </main>
     </div>
   );
 };

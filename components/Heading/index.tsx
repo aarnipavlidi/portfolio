@@ -1,12 +1,7 @@
-import { IHeadingFields } from '@/types/contentful/contentful';
-
-const Heading: React.FC<IHeadingFields> = (props) => {
-
-  console.log('Heading props:', props);
-
+const Heading: React.FC = (props) => {
   return (
     <div>
-      <h1>{props.title}</h1>
+      <h1></h1>
     </div>
   );
 };

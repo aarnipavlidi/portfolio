@@ -1,0 +1,17 @@
+{
+  "id": "home_landing_page",
+  "label": "home_landing_page",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "Entry Name",
+          "placeholder": "home-landing-page"
+        }
+      }
+    }
+  }
+}

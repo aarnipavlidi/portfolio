@@ -1,12 +1,12 @@
 import type { GetServerSideProps } from 'next';
 
-interface HomeProps {
+interface ProjectsProps {
 };
 
-const Home: React.FC<HomeProps> = () => {
+const Projects: React.FC<ProjectsProps> = () => {
   return (
     <div className="container">
-      <div>This is Home landing page!</div>
+      <div>This is Projects landing page!</div>
     </div>
   );
 };
@@ -17,4 +17,4 @@ export const getServerSideProps: GetServerSideProps = async () => {
   };
 };
 
-export default Home;
+export default Projects;

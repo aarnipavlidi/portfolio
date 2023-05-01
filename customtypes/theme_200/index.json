@@ -1,0 +1,38 @@
+{
+  "id": "theme_200",
+  "label": "theme_200",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "light": {
+        "type": "Group",
+        "config": {
+          "label": "light",
+          "fields": {
+            "name": {
+              "type": "Select",
+              "config": {
+                "label": "name",
+                "placeholder": "",
+                "options": [
+                  "neutral-200"
+                ]
+              }
+            },
+            "code": {
+              "type": "Select",
+              "config": {
+                "label": "code",
+                "placeholder": "",
+                "options": [
+                  "e5e5e5"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -8,31 +8,42 @@
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "npm run lint -- --fix",
-    "contentful-types": "contentful-typescript-codegen --output types/contentful/contentful.ts"
+    "prismic-types": "ts-node-script --skip-project scripts/codegen.ts",
+    "slicemachine": "start-slicemachine"
   },
   "dependencies": {
+    "@apollo/client": "^3.7.10",
+    "@prismicio/client": "^6.7.3",
+    "@prismicio/helpers": "^2.3.9",
+    "@prismicio/next": "^1.0.3",
+    "@prismicio/react": "^2.5.2",
+    "@prismicio/slice-simulator-react": "^0.2.3",
     "@types/node": "18.11.12",
     "@types/react": "18.0.26",
     "@types/react-dom": "18.0.9",
-    "contentful": "^9.2.14",
-    "contentful-parsers": "^1.2.18",
+    "apollo-link": "^1.2.14",
+    "apollo-link-http": "^1.5.17",
+    "classnames": "^2.3.2",
     "eslint": "8.29.0",
     "eslint-config-next": "13.0.6",
-    "lodash.camelcase": "^4.3.0",
-    "lodash.upperfirst": "^4.3.1",
-    "next": "13.0.6",
+    "graphql": "^15.8.0",
+    "next": "^13.1.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "typescript": "4.9.4"
   },
   "devDependencies": {
-    "@types/lodash.camelcase": "^4.3.7",
-    "@types/lodash.upperfirst": "^4.3.7",
+    "@graphql-codegen/cli": "^3.2.2",
+    "@graphql-codegen/client-preset": "^3.0.0",
+    "@graphql-codegen/fragment-matcher": "^4.0.1",
+    "@prismicio/types": "^0.2.7",
+    "@types/node-fetch": "^2.6.3",
     "autoprefixer": "^10.4.13",
-    "contentful-management": "^10.22.0",
-    "contentful-typescript-codegen": "^3.3.0",
     "dotenv": "^16.0.3",
+    "node-fetch": "^2.6.7",
     "postcss": "^8.4.19",
-    "tailwindcss": "^3.2.4"
+    "slice-machine-ui": "^0.7.1",
+    "tailwindcss": "^3.3.1",
+    "ts-node": "^10.9.1"
   }
 }
