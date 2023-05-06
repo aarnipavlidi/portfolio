@@ -7,7 +7,6 @@ import { PrismicPreview } from '@prismicio/next';
 import { prismicRepositoryName } from '@/utils/prismic';
 
 import Layout from '@/components/Layout';
-import NavigationHeader from '@/components/Navigation';
 
 import '../styles/globals.css';
 import localFont from 'next/font/local';
@@ -47,8 +46,7 @@ const App = ({ Component, pageProps, navigation }: CustomAppProps) => {
   return (
     <PrismicProvider internalLinkComponent={(props) => <Link {...props} />}>
       <PrismicPreview repositoryName={prismicRepositoryName}>
-        <Layout fontVariable={`${fontPierSans.variable} ${caveatFont.variable}`}>
-          <NavigationHeader navigation={navigation} />
+        <Layout navigation={navigation} fontVariable={`${fontPierSans.variable} ${caveatFont.variable}`}>
           <Component {...pageProps} />
         </Layout>
       </PrismicPreview>
