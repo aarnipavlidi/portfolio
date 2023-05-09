@@ -9,6 +9,7 @@ module.exports = {
   safelist: [
     {
       pattern: /text-(neutral)-(50|100|200|300|400|500|600|700|800|900|950)/,
+      variants: ['md'],
     },
   ],
   theme: {
