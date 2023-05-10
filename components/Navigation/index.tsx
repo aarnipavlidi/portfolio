@@ -19,13 +19,13 @@ interface NavigationProps {
 const Navigation: React.FC<NavigationProps> = ({ navigation, mobileMenuScreen, setMobileMenuScreen }) => {
   const getNavigationData = navigation.allNavigations.edges && navigation.allNavigations.edges[0] ? navigation.allNavigations.edges[0].node : null;
 
-  const getFallBackLightColor = fallBackColors.component.navigation.element.svg.light.name;
+  const getFallBackLightColor = fallBackColors.component.navigation.element.default.light.name;
   const getCurrentLightColor = ((getNavigationData?.color as ChosenColorProps).light?.slice(0, 1)[0].name) || getFallBackLightColor;
 
   const headerContainer = classNames({
     ['w-screen mx-auto px-4 md:container bg-inherit']: true,
     [`text-${getCurrentLightColor}`]: !mobileMenuScreen,
-    [`bg-neutral-500 md:bg-inherit text-neutral-50 md:text-${getCurrentLightColor}`]: mobileMenuScreen,
+    [`bg-neutral-600 md:bg-inherit text-neutral-50 md:text-${getCurrentLightColor}`]: mobileMenuScreen,
   });
 
   const navContainer = classNames({
@@ -96,6 +96,11 @@ const Navigation: React.FC<NavigationProps> = ({ navigation, mobileMenuScreen, s
             })
           }
         </div>
+        <Icons
+          name="OverlayBlock"
+          className={`h-6 mb-6 self-end ${!mobileMenuScreen ? 'hidden' : 'md:hidden'}`}
+          color="current"
+        />
       </nav>
     </header>
   );

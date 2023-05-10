@@ -40,7 +40,7 @@ export type ChosenColorProps =
   | Theme800FieldsFragment
   | Theme900FieldsFragment;
 
-type Elements = 'svg';
+type Elements = 'default';
 type Components = 'navigation'
 
 export interface FallBackColorProps {

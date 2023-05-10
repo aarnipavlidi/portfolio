@@ -1,6 +1,6 @@
 import { SVGProps } from 'react';
 
-type CustomIconNameType = 'HamburgerMenu' | 'StackingBlock' | 'TerminalTag';
+type CustomIconNameType = 'HamburgerMenu' | 'OverlayBlock' | 'StackingBlock' | 'TerminalTag';
 type HeroIconNameType = 'bars-3' | 'x-mark';
 
 export interface CustomIconsProps extends SVGProps<SVGSVGElement> {

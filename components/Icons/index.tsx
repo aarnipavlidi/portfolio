@@ -2,6 +2,7 @@ import { CustomIconsProps, CustomIconsArrayProps } from '@/types/icons';
 
 // Custom Icons
 import HamburgerMenu from '@/components/Svg/icons/Custom/HamburgerMenu';
+import OverlayBlock from '@/components/Svg/icons/Custom/OverlayBlock';
 import StackingBlock from '@/components/Svg/icons/Custom/StackingBlock';
 import TerminalTag from '@/components/Svg/icons/Custom/TerminalTag';
 
@@ -13,6 +14,7 @@ const Icons: React.FC<CustomIconsProps> = ({ name, variant = 'solid', ...props }
 
   const IconsArray: CustomIconsArrayProps = {
     'HamburgerMenu': HamburgerMenu,
+    'OverlayBlock': OverlayBlock,
     'StackingBlock': StackingBlock,
     'TerminalTag': TerminalTag,
     'bars-3': Bars3,
