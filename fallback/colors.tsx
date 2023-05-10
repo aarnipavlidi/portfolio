@@ -7,7 +7,7 @@ const fallBackColors: FallBackColorProps = {
   component: {
     navigation: {
       element: {
-        svg: {
+        default: {
           light: {
             name: getCurrentColors.light['900'].name,
           },

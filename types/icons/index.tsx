@@ -1,13 +1,14 @@
 import { SVGProps } from 'react';
 
-type CustomIconNameType = 'StackingBlock' | 'TerminalTag';
+type CustomIconNameType = 'HamburgerMenu' | 'OverlayBlock' | 'StackingBlock' | 'TerminalTag';
 type HeroIconNameType = 'bars-3' | 'x-mark';
 
 export interface CustomIconsProps extends SVGProps<SVGSVGElement> {
   name: CustomIconNameType | HeroIconNameType;
   variant?: 'outline' | 'solid' | 'mini';
-  color: string;
+  color: 'current' | 'inherit';
   className?: string;
+  animation?: boolean;
 };
 
 export type CustomIconsArrayProps = {
