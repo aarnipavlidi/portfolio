@@ -1,12 +1,12 @@
 import type { GetServerSideProps } from 'next';
 
-interface AboutProps {
+interface RandomPageProps {
 };
 
-const About: React.FC<AboutProps> = () => {
+const RandomPage: React.FC<RandomPageProps> = () => {
   return (
     <div className="container">
-      <div>This is About landing page!</div>
+      <div>Something here...</div>
     </div>
   );
 };
@@ -17,4 +17,4 @@ export const getServerSideProps: GetServerSideProps = async () => {
   };
 };
 
-export default About;
+export default RandomPage;

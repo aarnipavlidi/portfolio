@@ -13,6 +13,8 @@ import {
   THEME_900_FIELDS,
 } from './fragments';
 
+import { HERO_SLICE_FIELDS } from './fragments/slices';
+
 export const GET_CURRENT_NAVIGATION = gql`
   ${LINK_DOCUMENT_META}
   ${THEME_50_FIELDS}
@@ -51,6 +53,21 @@ export const GET_CURRENT_NAVIGATION = gql`
             ...Theme700Fields
             ...Theme800Fields
             ...Theme900Fields
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const GET_HOME_LANDING_PAGE = gql`
+  ${HERO_SLICE_FIELDS}
+  query getHomeLandingPage {
+    allHome_landing_pages {
+      edges {
+        node {
+          slices {
+            ...HeroSliceField
           }
         }
       }

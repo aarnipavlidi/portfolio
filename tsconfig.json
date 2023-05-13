@@ -5,6 +5,7 @@
       "@/components/*": ["components/*"],
       "@/fallback/*": ["fallback/*"],
       "@/scripts/*": ["scripts/*"],
+      "@/slices/*": ["slices/*"],
       "@/styles/*": ["styles/*"],
       "@/types/*": ["types/*"],
       "@/utils/*": ["utils/*"],

@@ -33,7 +33,10 @@ async function getLatestReleaseRef() {
       skipTypename: true,
       avoidOptionals: true,
     },
-    documents: ['./graphql/templates/*.tsx'],
+    documents: [
+      './graphql/templates/*.tsx',
+      './graphql/templates/fragments/*/*.tsx',
+    ],
     generates: {
       './types/prismic/graphql/': {
         preset: 'client',

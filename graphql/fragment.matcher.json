@@ -1,11 +1,14 @@
 {
   "possibleTypes": {
+    "Home_landing_pageSlices": [
+      "Home_landing_pageSlicesHero_slice"
+    ],
+    "Home_landing_pageSlicesHero_sliceVariation": [
+      "Home_landing_pageSlicesHero_sliceDefault"
+    ],
     "_Document": [
-      "About_landing_page",
-      "Contact_landing_page",
       "Home_landing_page",
       "Navigation",
-      "Projects_landing_page",
       "Theme_50",
       "Theme_100",
       "Theme_200",
@@ -18,11 +21,8 @@
       "Theme_900"
     ],
     "_Linkable": [
-      "About_landing_page",
-      "Contact_landing_page",
       "Home_landing_page",
       "Navigation",
-      "Projects_landing_page",
       "Theme_50",
       "Theme_100",
       "Theme_200",

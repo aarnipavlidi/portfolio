@@ -35,10 +35,7 @@
       },
       "navigation_title": {
         "type": "Text",
-        "config": {
-          "label": "Navigation Title",
-          "placeholder": ""
-        }
+        "config": { "label": "Navigation Title", "placeholder": "" }
       },
       "navigation_links": {
         "type": "Group",
@@ -47,10 +44,7 @@
           "fields": {
             "link_name": {
               "type": "Text",
-              "config": {
-                "label": "Link Name",
-                "placeholder": ""
-              }
+              "config": { "label": "Link Name", "placeholder": "" }
             },
             "link_href": {
               "type": "Link",

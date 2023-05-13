@@ -1,0 +1,30 @@
+[
+  {
+    "light": {
+      "__TYPE__": "GroupContentType",
+      "value": [
+        {
+          "__TYPE__": "GroupItemContent",
+          "value": [
+            [
+              "name",
+              {
+                "__TYPE__": "FieldContent",
+                "value": "neutral-400",
+                "type": "Select"
+              }
+            ],
+            [
+              "code",
+              {
+                "__TYPE__": "FieldContent",
+                "value": "a3a3a3",
+                "type": "Select"
+              }
+            ]
+          ]
+        }
+      ]
+    }
+  }
+]

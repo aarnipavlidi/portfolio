@@ -1,16 +1,18 @@
 {
   "id": "home_landing_page",
-  "label": "home_landing_page",
+  "label": "home",
   "repeatable": false,
   "status": true,
   "json": {
     "Main": {
       "uid": {
         "type": "UID",
-        "config": {
-          "label": "Entry Name",
-          "placeholder": "home-landing-page"
-        }
+        "config": { "label": "Entry Name", "placeholder": "" }
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": { "choices": { "hero_slice": { "type": "SharedSlice" } } }
       }
     }
   }

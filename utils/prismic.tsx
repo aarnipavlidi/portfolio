@@ -6,26 +6,12 @@ import type { PrismicRouteProps } from '@/types/prismic/index';
 export const prismicRepositoryName = process.env.PRISMIC_REPOSITORY_NAME || '';
 export const prismicAccessToken = process.env.PRISMIC_ACCESS_TOKEN || '';
 
-export const prismicRoutes: PrismicRouteProps[] = [
+// TODO: PrismicRouteProps TYPE ADD BACK LATER
+export const prismicRoutes = [
   {
     type: 'home_landing_page',
     uid: 'home-landing-page',
     path: '/',
-  },
-  {
-    type: 'projects_landing_page',
-    uid: 'projects-landing-page',
-    path: '/projects',
-  },
-  {
-    type: 'about_landing_page',
-    uid: 'about-landing-page',
-    path: '/about',
-  },
-  {
-    type: 'contact_landing_page',
-    uid: 'contact-landing-page',
-    path: '/contact',
   },
 ];
 
