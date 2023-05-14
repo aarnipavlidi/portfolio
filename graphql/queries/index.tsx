@@ -1,12 +1,8 @@
-import type { GetCurrentNavigationQuery, GetHomeLandingPageQuery } from '@/types/prismic/graphql/graphql';
+import { navigationProps, landingPageProps } from '@/types/prismic';
 import { getApolloClient } from '@/utils/apolloClient';
-import { GET_CURRENT_NAVIGATION } from './templates/queries';
 
-import { GET_HOME_LANDING_PAGE } from './templates/queries';
-
-export type navigationProps = {
-  'allNavigations': GetCurrentNavigationQuery;
-};
+import { GET_CURRENT_NAVIGATION } from '@/graphql/templates/queries/app';
+import { GET_HOME_LANDING_PAGE } from '../templates/queries/page/index';
 
 export const getCurrentNavigation = async () => {
   const prismic = getApolloClient();
@@ -16,10 +12,6 @@ export const getCurrentNavigation = async () => {
   });
 
   return data;
-};
-
-export type landingPageProps = {
-  'home': GetHomeLandingPageQuery;
 };
 
 export const getHomeLandingPage = async () => {

@@ -1,7 +1,8 @@
 /* eslint-disable no-magic-numbers */
-import type { navigationProps } from 'graphql/queries';
+import { navigationProps } from '@/types/prismic';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { getCurrentNavigation } from 'graphql/queries';
+
+import { getCurrentNavigation } from '@/graphql/queries/';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<navigationProps[]>) {
 

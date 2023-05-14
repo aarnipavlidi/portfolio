@@ -722,6 +722,22 @@ interface HeroSliceSliceDefaultPrimary {
   heading: prismicT.TitleField;
 }
 /**
+ * Item in HeroSlice → Items
+ *
+ */
+export interface HeroSliceSliceDefaultItem {
+  /**
+   * aarni field in *HeroSlice → Items*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_slice.items[].aarni
+   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+   *
+   */
+  aarni: prismicT.TitleField;
+}
+/**
  * Default variation for HeroSlice Slice
  *
  * - **API ID**: `default`
@@ -732,7 +748,7 @@ interface HeroSliceSliceDefaultPrimary {
 export type HeroSliceSliceDefault = prismicT.SharedSliceVariation<
   "default",
   Simplify<HeroSliceSliceDefaultPrimary>,
-  never
+  Simplify<HeroSliceSliceDefaultItem>
 >;
 /**
  * Slice variation for *HeroSlice*
@@ -798,6 +814,7 @@ declare module "@prismicio/client" {
       Theme900Document,
       AllDocumentTypes,
       HeroSliceSliceDefaultPrimary,
+      HeroSliceSliceDefaultItem,
       HeroSliceSliceDefault,
       HeroSliceSliceVariation,
       HeroSliceSlice,

@@ -1,10 +1,10 @@
 import type { GetServerSideProps } from 'next';
-import type { landingPageProps } from 'graphql/queries';
-import type { Home_Landing_PageSlices as HomeLandingPageSlices, Home_Landing_Page as HomeLandingPage } from '@/types/prismic/graphql/graphql';
+import type { landingPageProps } from '@/types/prismic';
+import type { HomeLandingPageSlices, HomeLandingPage } from '@/types/prismic/graphql/graphql';
 import { SliceZone, SliceZoneLike } from '@prismicio/react';
-import { getHomeLandingPage } from 'graphql/queries';
 
-import { components } from '../slices';
+import { getHomeLandingPage } from '@/graphql/queries/index';
+import { components } from '@/slices/index';
 
 type HomeSliceZoneProps = SliceZoneLike<HomeLandingPageSlices & { type: string }>;
 interface HomeProps {
@@ -12,7 +12,7 @@ interface HomeProps {
 };
 
 const Home: React.FC<HomeProps> = ({ getPageData }) => {
-  const getHomeSlices = getPageData.allHome_landing_pages.edges?.[0]?.node.slices as HomeLandingPage['slices'];
+  const getHomeSlices = getPageData?.allHome_landing_pages?.edges?.[0]?.node?.slices as HomeLandingPage['slices'];
 
   return (
     <div className="container">

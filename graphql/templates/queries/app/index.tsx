@@ -1,19 +1,6 @@
 import { gql } from '@apollo/client';
-import {
-  LINK_DOCUMENT_META,
-  THEME_50_FIELDS,
-  THEME_100_FIELDS,
-  THEME_200_FIELDS,
-  THEME_300_FIELDS,
-  THEME_400_FIELDS,
-  THEME_500_FIELDS,
-  THEME_600_FIELDS,
-  THEME_700_FIELDS,
-  THEME_800_FIELDS,
-  THEME_900_FIELDS,
-} from './fragments';
-
-import { HERO_SLICE_FIELDS } from './fragments/slices';
+import { LINK_DOCUMENT_META } from '../../fragments/documents/';
+import { THEME_50_FIELDS, THEME_100_FIELDS, THEME_200_FIELDS, THEME_300_FIELDS, THEME_400_FIELDS, THEME_500_FIELDS, THEME_600_FIELDS, THEME_700_FIELDS, THEME_800_FIELDS, THEME_900_FIELDS } from '../../fragments/themes/';
 
 export const GET_CURRENT_NAVIGATION = gql`
   ${LINK_DOCUMENT_META}
@@ -53,21 +40,6 @@ export const GET_CURRENT_NAVIGATION = gql`
             ...Theme700Fields
             ...Theme800Fields
             ...Theme900Fields
-          }
-        }
-      }
-    }
-  }
-`;
-
-export const GET_HOME_LANDING_PAGE = gql`
-  ${HERO_SLICE_FIELDS}
-  query getHomeLandingPage {
-    allHome_landing_pages {
-      edges {
-        node {
-          slices {
-            ...HeroSliceField
           }
         }
       }

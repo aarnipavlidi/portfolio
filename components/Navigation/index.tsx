@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import type { ChosenColorProps } from '@/types/prismic';
-import type { navigationProps } from 'graphql/queries';
+import type { navigationProps } from '@/types/prismic';
 import { Dispatch, SetStateAction } from 'react';
 import { prismicLinkResolver, checkLinkProperties } from '@/utils/prismic';
 import * as prismicH from '@prismicio/helpers';

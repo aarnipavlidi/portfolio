@@ -20,46 +20,51 @@ export type Scalars = {
   Long: any;
 };
 
-export type Home_Landing_Page = _Document & _Linkable & {
+export type HomeLandingPage = Document & Linkable & {
   _linkType: Maybe<Scalars['String']>;
   _meta: Meta;
-  slices: Maybe<Array<Home_Landing_PageSlices>>;
+  slices: Maybe<Array<HomeLandingPageSlices>>;
 };
 
 /** A connection to a list of items. */
-export type Home_Landing_PageConnectionConnection = {
+export type HomeLandingPageConnectionConnection = {
   /** A list of edges. */
-  edges: Maybe<Array<Maybe<Home_Landing_PageConnectionEdge>>>;
+  edges: Maybe<Array<Maybe<HomeLandingPageConnectionEdge>>>;
   /** Information to aid in pagination. */
   pageInfo: PageInfo;
   totalCount: Scalars['Long'];
 };
 
 /** An edge in a connection. */
-export type Home_Landing_PageConnectionEdge = {
+export type HomeLandingPageConnectionEdge = {
   /** A cursor for use in pagination. */
   cursor: Scalars['String'];
   /** The item at the end of the edge. */
-  node: Home_Landing_Page;
+  node: HomeLandingPage;
 };
 
-export type Home_Landing_PageSlices = Home_Landing_PageSlicesHero_Slice;
+export type HomeLandingPageSlices = HomeLandingPageSlicesHeroSlice;
 
-export type Home_Landing_PageSlicesHero_Slice = {
+export type HomeLandingPageSlicesHeroSlice = {
   label: Maybe<Scalars['String']>;
   type: Maybe<Scalars['String']>;
-  variation: Maybe<Home_Landing_PageSlicesHero_SliceVariation>;
+  variation: Maybe<HomeLandingPageSlicesHeroSliceVariation>;
 };
 
-export type Home_Landing_PageSlicesHero_SliceDefault = {
-  primary: Maybe<Home_Landing_PageSlicesHero_SliceDefaultPrimary>;
+export type HomeLandingPageSlicesHeroSliceDefault = {
+  items: Maybe<Array<HomeLandingPageSlicesHeroSliceDefaultItems>>;
+  primary: Maybe<HomeLandingPageSlicesHeroSliceDefaultPrimary>;
 };
 
-export type Home_Landing_PageSlicesHero_SliceDefaultPrimary = {
+export type HomeLandingPageSlicesHeroSliceDefaultItems = {
+  aarni: Maybe<Scalars['Json']>;
+};
+
+export type HomeLandingPageSlicesHeroSliceDefaultPrimary = {
   heading: Maybe<Scalars['Json']>;
 };
 
-export type Home_Landing_PageSlicesHero_SliceVariation = Home_Landing_PageSlicesHero_SliceDefault;
+export type HomeLandingPageSlicesHeroSliceVariation = HomeLandingPageSlicesHeroSliceDefault;
 
 export type Meta = {
   /** Alternate languages the document. */
@@ -80,11 +85,11 @@ export type Meta = {
   uid: Maybe<Scalars['String']>;
 };
 
-export type Navigation = _Document & _Linkable & {
+export type Navigation = Document & Linkable & {
   _linkType: Maybe<Scalars['String']>;
   _meta: Meta;
-  color: Maybe<_Linkable>;
-  navigation_links: Maybe<Array<NavigationNavigation_Links>>;
+  color: Maybe<Linkable>;
+  navigation_links: Maybe<Array<NavigationNavigationLinks>>;
   navigation_title: Maybe<Scalars['String']>;
   position: Maybe<Scalars['Boolean']>;
 };
@@ -106,8 +111,8 @@ export type NavigationConnectionEdge = {
   node: Navigation;
 };
 
-export type NavigationNavigation_Links = {
-  link_href: Maybe<_Linkable>;
+export type NavigationNavigationLinks = {
+  link_href: Maybe<Linkable>;
   link_name: Maybe<Scalars['String']>;
 };
 
@@ -124,8 +129,8 @@ export type PageInfo = {
 };
 
 export type Query = {
-  _allDocuments: _DocumentConnection;
-  allHome_landing_pages: Home_Landing_PageConnectionConnection;
+  _allDocuments: DocumentConnection;
+  allHome_landing_pages: HomeLandingPageConnectionConnection;
   allNavigations: NavigationConnectionConnection;
   allTheme_50s: Theme_50ConnectionConnection;
   allTheme_100s: Theme_100ConnectionConnection;
@@ -137,11 +142,11 @@ export type Query = {
   allTheme_700s: Theme_700ConnectionConnection;
   allTheme_800s: Theme_800ConnectionConnection;
   allTheme_900s: Theme_900ConnectionConnection;
-  home_landing_page: Maybe<Home_Landing_Page>;
+  home_landing_page: Maybe<HomeLandingPage>;
 };
 
 
-export type Query_AllDocumentsArgs = {
+export type QueryAllDocumentsArgs = {
   after: InputMaybe<Scalars['String']>;
   before: InputMaybe<Scalars['String']>;
   first: InputMaybe<Scalars['Int']>;
@@ -165,7 +170,7 @@ export type Query_AllDocumentsArgs = {
 };
 
 
-export type QueryAllHome_Landing_PagesArgs = {
+export type QueryAllHomeLandingPagesArgs = {
   after: InputMaybe<Scalars['String']>;
   before: InputMaybe<Scalars['String']>;
   first: InputMaybe<Scalars['Int']>;
@@ -181,7 +186,7 @@ export type QueryAllHome_Landing_PagesArgs = {
   lastPublicationDate_after: InputMaybe<Scalars['DateTime']>;
   lastPublicationDate_before: InputMaybe<Scalars['DateTime']>;
   similar: InputMaybe<Similar>;
-  sortBy: InputMaybe<SortHome_Landing_Pagey>;
+  sortBy: InputMaybe<SortHomeLandingPagey>;
   tags: InputMaybe<Array<Scalars['String']>>;
   tags_in: InputMaybe<Array<Scalars['String']>>;
   uid: InputMaybe<Scalars['String']>;
@@ -464,7 +469,7 @@ export type QueryAllTheme_900sArgs = {
 };
 
 
-export type QueryHome_Landing_PageArgs = {
+export type QueryHomeLandingPageArgs = {
   lang: Scalars['String'];
   uid: Scalars['String'];
 };
@@ -487,7 +492,7 @@ export enum SortDocumentsBy {
   MetaLastPublicationDateDesc = 'meta_lastPublicationDate_DESC'
 }
 
-export enum SortHome_Landing_Pagey {
+export enum SortHomeLandingPagey {
   MetaFirstPublicationDateAsc = 'meta_firstPublicationDate_ASC',
   MetaFirstPublicationDateDesc = 'meta_firstPublicationDate_DESC',
   MetaLastPublicationDateAsc = 'meta_lastPublicationDate_ASC',
@@ -573,7 +578,7 @@ export enum SortTheme_900y {
   MetaLastPublicationDateDesc = 'meta_lastPublicationDate_DESC'
 }
 
-export type Theme_50 = _Document & _Linkable & {
+export type Theme_50 = Document & Linkable & {
   _linkType: Maybe<Scalars['String']>;
   _meta: Meta;
   light: Maybe<Array<Theme_50Light>>;
@@ -601,7 +606,7 @@ export type Theme_50Light = {
   name: Maybe<Scalars['String']>;
 };
 
-export type Theme_100 = _Document & _Linkable & {
+export type Theme_100 = Document & Linkable & {
   _linkType: Maybe<Scalars['String']>;
   _meta: Meta;
   light: Maybe<Array<Theme_100Light>>;
@@ -629,7 +634,7 @@ export type Theme_100Light = {
   name: Maybe<Scalars['String']>;
 };
 
-export type Theme_200 = _Document & _Linkable & {
+export type Theme_200 = Document & Linkable & {
   _linkType: Maybe<Scalars['String']>;
   _meta: Meta;
   light: Maybe<Array<Theme_200Light>>;
@@ -657,7 +662,7 @@ export type Theme_200Light = {
   name: Maybe<Scalars['String']>;
 };
 
-export type Theme_300 = _Document & _Linkable & {
+export type Theme_300 = Document & Linkable & {
   _linkType: Maybe<Scalars['String']>;
   _meta: Meta;
   light: Maybe<Array<Theme_300Light>>;
@@ -685,7 +690,7 @@ export type Theme_300Light = {
   name: Maybe<Scalars['String']>;
 };
 
-export type Theme_400 = _Document & _Linkable & {
+export type Theme_400 = Document & Linkable & {
   _linkType: Maybe<Scalars['String']>;
   _meta: Meta;
   light: Maybe<Array<Theme_400Light>>;
@@ -713,7 +718,7 @@ export type Theme_400Light = {
   name: Maybe<Scalars['String']>;
 };
 
-export type Theme_500 = _Document & _Linkable & {
+export type Theme_500 = Document & Linkable & {
   _linkType: Maybe<Scalars['String']>;
   _meta: Meta;
   light: Maybe<Array<Theme_500Light>>;
@@ -741,7 +746,7 @@ export type Theme_500Light = {
   name: Maybe<Scalars['String']>;
 };
 
-export type Theme_600 = _Document & _Linkable & {
+export type Theme_600 = Document & Linkable & {
   _linkType: Maybe<Scalars['String']>;
   _meta: Meta;
   light: Maybe<Array<Theme_600Light>>;
@@ -769,7 +774,7 @@ export type Theme_600Light = {
   name: Maybe<Scalars['String']>;
 };
 
-export type Theme_700 = _Document & _Linkable & {
+export type Theme_700 = Document & Linkable & {
   _linkType: Maybe<Scalars['String']>;
   _meta: Meta;
   light: Maybe<Array<Theme_700Light>>;
@@ -797,7 +802,7 @@ export type Theme_700Light = {
   name: Maybe<Scalars['String']>;
 };
 
-export type Theme_800 = _Document & _Linkable & {
+export type Theme_800 = Document & Linkable & {
   _linkType: Maybe<Scalars['String']>;
   _meta: Meta;
   light: Maybe<Array<Theme_800Light>>;
@@ -825,7 +830,7 @@ export type Theme_800Light = {
   name: Maybe<Scalars['String']>;
 };
 
-export type Theme_900 = _Document & _Linkable & {
+export type Theme_900 = Document & Linkable & {
   _linkType: Maybe<Scalars['String']>;
   _meta: Meta;
   light: Maybe<Array<Theme_900Light>>;
@@ -856,13 +861,13 @@ export type Theme_900Light = {
 export type WhereNavigation = {
   /** color */
   color: InputMaybe<Scalars['String']>;
-  navigation_links: InputMaybe<WhereNavigationNavigation_Links>;
+  navigation_links: InputMaybe<WhereNavigationNavigationLinks>;
   navigation_title: InputMaybe<Scalars['String']>;
   navigation_title_fulltext: InputMaybe<Scalars['String']>;
   position: InputMaybe<Scalars['Boolean']>;
 };
 
-export type WhereNavigationNavigation_Links = {
+export type WhereNavigationNavigationLinks = {
   /** link_href */
   link_href: InputMaybe<Scalars['String']>;
   link_name: InputMaybe<Scalars['String']>;
@@ -980,36 +985,36 @@ export type WhereTheme_900Light = {
 };
 
 /** A prismic document */
-export type _Document = {
+export type Document = {
   _meta: Meta;
 };
 
 /** A connection to a list of items. */
-export type _DocumentConnection = {
+export type DocumentConnection = {
   /** A list of edges. */
-  edges: Maybe<Array<Maybe<_DocumentEdge>>>;
+  edges: Maybe<Array<Maybe<DocumentEdge>>>;
   /** Information to aid in pagination. */
   pageInfo: PageInfo;
   totalCount: Scalars['Long'];
 };
 
 /** An edge in a connection. */
-export type _DocumentEdge = {
+export type DocumentEdge = {
   /** A cursor for use in pagination. */
   cursor: Scalars['String'];
   /** The item at the end of the edge. */
-  node: _Document;
+  node: Document;
 };
 
 /** An external link */
-export type _ExternalLink = _Linkable & {
+export type ExternalLink = Linkable & {
   _linkType: Maybe<Scalars['String']>;
   target: Maybe<Scalars['String']>;
   url: Scalars['String'];
 };
 
 /** A linked file */
-export type _FileLink = _Linkable & {
+export type FileLink = Linkable & {
   _linkType: Maybe<Scalars['String']>;
   name: Scalars['String'];
   size: Scalars['Long'];
@@ -1017,7 +1022,7 @@ export type _FileLink = _Linkable & {
 };
 
 /** A linked image */
-export type _ImageLink = _Linkable & {
+export type ImageLink = Linkable & {
   _linkType: Maybe<Scalars['String']>;
   height: Scalars['Int'];
   name: Scalars['String'];
@@ -1027,7 +1032,7 @@ export type _ImageLink = _Linkable & {
 };
 
 /** A prismic link */
-export type _Linkable = {
+export type Linkable = {
   _linkType: Maybe<Scalars['String']>;
 };
 
@@ -1036,31 +1041,38 @@ export type Similar = {
   max: Scalars['Int'];
 };
 
-type LinkDocumentMeta_Home_Landing_Page_Fragment = { _meta: { id: string, uid: string | null, type: string, tags: Array<string>, lang: string, firstPublicationDate: any | null, lastPublicationDate: any | null } } & { ' $fragmentName'?: 'LinkDocumentMeta_Home_Landing_Page_Fragment' };
+type LinkDocumentMetaHomeLandingPageFragment = { _meta: { id: string, uid: string | null, type: string, tags: Array<string>, lang: string, firstPublicationDate: any | null, lastPublicationDate: any | null } } & { ' $fragmentName'?: 'LinkDocumentMetaHomeLandingPageFragment' };
 
-type LinkDocumentMeta_Navigation_Fragment = { _meta: { id: string, uid: string | null, type: string, tags: Array<string>, lang: string, firstPublicationDate: any | null, lastPublicationDate: any | null } } & { ' $fragmentName'?: 'LinkDocumentMeta_Navigation_Fragment' };
+type LinkDocumentMetaNavigationFragment = { _meta: { id: string, uid: string | null, type: string, tags: Array<string>, lang: string, firstPublicationDate: any | null, lastPublicationDate: any | null } } & { ' $fragmentName'?: 'LinkDocumentMetaNavigationFragment' };
 
-type LinkDocumentMeta_Theme_50_Fragment = { _meta: { id: string, uid: string | null, type: string, tags: Array<string>, lang: string, firstPublicationDate: any | null, lastPublicationDate: any | null } } & { ' $fragmentName'?: 'LinkDocumentMeta_Theme_50_Fragment' };
+type LinkDocumentMetaTheme_50Fragment = { _meta: { id: string, uid: string | null, type: string, tags: Array<string>, lang: string, firstPublicationDate: any | null, lastPublicationDate: any | null } } & { ' $fragmentName'?: 'LinkDocumentMetaTheme_50Fragment' };
 
-type LinkDocumentMeta_Theme_100_Fragment = { _meta: { id: string, uid: string | null, type: string, tags: Array<string>, lang: string, firstPublicationDate: any | null, lastPublicationDate: any | null } } & { ' $fragmentName'?: 'LinkDocumentMeta_Theme_100_Fragment' };
+type LinkDocumentMetaTheme_100Fragment = { _meta: { id: string, uid: string | null, type: string, tags: Array<string>, lang: string, firstPublicationDate: any | null, lastPublicationDate: any | null } } & { ' $fragmentName'?: 'LinkDocumentMetaTheme_100Fragment' };
 
-type LinkDocumentMeta_Theme_200_Fragment = { _meta: { id: string, uid: string | null, type: string, tags: Array<string>, lang: string, firstPublicationDate: any | null, lastPublicationDate: any | null } } & { ' $fragmentName'?: 'LinkDocumentMeta_Theme_200_Fragment' };
+type LinkDocumentMetaTheme_200Fragment = { _meta: { id: string, uid: string | null, type: string, tags: Array<string>, lang: string, firstPublicationDate: any | null, lastPublicationDate: any | null } } & { ' $fragmentName'?: 'LinkDocumentMetaTheme_200Fragment' };
 
-type LinkDocumentMeta_Theme_300_Fragment = { _meta: { id: string, uid: string | null, type: string, tags: Array<string>, lang: string, firstPublicationDate: any | null, lastPublicationDate: any | null } } & { ' $fragmentName'?: 'LinkDocumentMeta_Theme_300_Fragment' };
+type LinkDocumentMetaTheme_300Fragment = { _meta: { id: string, uid: string | null, type: string, tags: Array<string>, lang: string, firstPublicationDate: any | null, lastPublicationDate: any | null } } & { ' $fragmentName'?: 'LinkDocumentMetaTheme_300Fragment' };
 
-type LinkDocumentMeta_Theme_400_Fragment = { _meta: { id: string, uid: string | null, type: string, tags: Array<string>, lang: string, firstPublicationDate: any | null, lastPublicationDate: any | null } } & { ' $fragmentName'?: 'LinkDocumentMeta_Theme_400_Fragment' };
+type LinkDocumentMetaTheme_400Fragment = { _meta: { id: string, uid: string | null, type: string, tags: Array<string>, lang: string, firstPublicationDate: any | null, lastPublicationDate: any | null } } & { ' $fragmentName'?: 'LinkDocumentMetaTheme_400Fragment' };
 
-type LinkDocumentMeta_Theme_500_Fragment = { _meta: { id: string, uid: string | null, type: string, tags: Array<string>, lang: string, firstPublicationDate: any | null, lastPublicationDate: any | null } } & { ' $fragmentName'?: 'LinkDocumentMeta_Theme_500_Fragment' };
+type LinkDocumentMetaTheme_500Fragment = { _meta: { id: string, uid: string | null, type: string, tags: Array<string>, lang: string, firstPublicationDate: any | null, lastPublicationDate: any | null } } & { ' $fragmentName'?: 'LinkDocumentMetaTheme_500Fragment' };
 
-type LinkDocumentMeta_Theme_600_Fragment = { _meta: { id: string, uid: string | null, type: string, tags: Array<string>, lang: string, firstPublicationDate: any | null, lastPublicationDate: any | null } } & { ' $fragmentName'?: 'LinkDocumentMeta_Theme_600_Fragment' };
+type LinkDocumentMetaTheme_600Fragment = { _meta: { id: string, uid: string | null, type: string, tags: Array<string>, lang: string, firstPublicationDate: any | null, lastPublicationDate: any | null } } & { ' $fragmentName'?: 'LinkDocumentMetaTheme_600Fragment' };
 
-type LinkDocumentMeta_Theme_700_Fragment = { _meta: { id: string, uid: string | null, type: string, tags: Array<string>, lang: string, firstPublicationDate: any | null, lastPublicationDate: any | null } } & { ' $fragmentName'?: 'LinkDocumentMeta_Theme_700_Fragment' };
+type LinkDocumentMetaTheme_700Fragment = { _meta: { id: string, uid: string | null, type: string, tags: Array<string>, lang: string, firstPublicationDate: any | null, lastPublicationDate: any | null } } & { ' $fragmentName'?: 'LinkDocumentMetaTheme_700Fragment' };
 
-type LinkDocumentMeta_Theme_800_Fragment = { _meta: { id: string, uid: string | null, type: string, tags: Array<string>, lang: string, firstPublicationDate: any | null, lastPublicationDate: any | null } } & { ' $fragmentName'?: 'LinkDocumentMeta_Theme_800_Fragment' };
+type LinkDocumentMetaTheme_800Fragment = { _meta: { id: string, uid: string | null, type: string, tags: Array<string>, lang: string, firstPublicationDate: any | null, lastPublicationDate: any | null } } & { ' $fragmentName'?: 'LinkDocumentMetaTheme_800Fragment' };
 
-type LinkDocumentMeta_Theme_900_Fragment = { _meta: { id: string, uid: string | null, type: string, tags: Array<string>, lang: string, firstPublicationDate: any | null, lastPublicationDate: any | null } } & { ' $fragmentName'?: 'LinkDocumentMeta_Theme_900_Fragment' };
+type LinkDocumentMetaTheme_900Fragment = { _meta: { id: string, uid: string | null, type: string, tags: Array<string>, lang: string, firstPublicationDate: any | null, lastPublicationDate: any | null } } & { ' $fragmentName'?: 'LinkDocumentMetaTheme_900Fragment' };
 
-export type LinkDocumentMetaFragment = LinkDocumentMeta_Home_Landing_Page_Fragment | LinkDocumentMeta_Navigation_Fragment | LinkDocumentMeta_Theme_50_Fragment | LinkDocumentMeta_Theme_100_Fragment | LinkDocumentMeta_Theme_200_Fragment | LinkDocumentMeta_Theme_300_Fragment | LinkDocumentMeta_Theme_400_Fragment | LinkDocumentMeta_Theme_500_Fragment | LinkDocumentMeta_Theme_600_Fragment | LinkDocumentMeta_Theme_700_Fragment | LinkDocumentMeta_Theme_800_Fragment | LinkDocumentMeta_Theme_900_Fragment;
+export type LinkDocumentMetaFragment = LinkDocumentMetaHomeLandingPageFragment | LinkDocumentMetaNavigationFragment | LinkDocumentMetaTheme_50Fragment | LinkDocumentMetaTheme_100Fragment | LinkDocumentMetaTheme_200Fragment | LinkDocumentMetaTheme_300Fragment | LinkDocumentMetaTheme_400Fragment | LinkDocumentMetaTheme_500Fragment | LinkDocumentMetaTheme_600Fragment | LinkDocumentMetaTheme_700Fragment | LinkDocumentMetaTheme_800Fragment | LinkDocumentMetaTheme_900Fragment;
+
+export type HeroSlicePrimaryFragment = { primary: { __typename: 'Home_landing_pageSlicesHero_sliceDefaultPrimary', heading: any | null } | null } & { ' $fragmentName'?: 'HeroSlicePrimaryFragment' };
+
+export type HeroSliceFieldFragment = { type: string | null, label: string | null, variation: (
+    { __typename: 'Home_landing_pageSlicesHero_sliceDefault' }
+    & { ' $fragmentRefs'?: { 'HeroSlicePrimaryFragment': HeroSlicePrimaryFragment } }
+  ) | null } & { ' $fragmentName'?: 'HeroSliceFieldFragment' };
 
 export type Theme50FieldsFragment = { light: Array<{ name: string | null, code: string | null }> | null } & { ' $fragmentName'?: 'Theme50FieldsFragment' };
 
@@ -1082,52 +1094,45 @@ export type Theme800FieldsFragment = { light: Array<{ name: string | null, code:
 
 export type Theme900FieldsFragment = { light: Array<{ name: string | null, code: string | null }> | null } & { ' $fragmentName'?: 'Theme900FieldsFragment' };
 
-export type HeroSlicePrimaryFragment = { primary: { __typename: 'Home_landing_pageSlicesHero_sliceDefaultPrimary', heading: any | null } | null } & { ' $fragmentName'?: 'HeroSlicePrimaryFragment' };
-
-export type HeroSliceFieldFragment = { type: string | null, label: string | null, variation: (
-    { __typename: 'Home_landing_pageSlicesHero_sliceDefault' }
-    & { ' $fragmentRefs'?: { 'HeroSlicePrimaryFragment': HeroSlicePrimaryFragment } }
-  ) | null } & { ' $fragmentName'?: 'HeroSliceFieldFragment' };
-
 export type GetCurrentNavigationQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetCurrentNavigationQuery = { allNavigations: { edges: Array<{ node: { position: boolean | null, navigation_title: string | null, navigation_links: Array<{ link_name: string | null, link_href: (
             { _linkType: string | null }
-            & { ' $fragmentRefs'?: { 'LinkDocumentMeta_Home_Landing_Page_Fragment': LinkDocumentMeta_Home_Landing_Page_Fragment } }
+            & { ' $fragmentRefs'?: { 'LinkDocumentMetaHomeLandingPageFragment': LinkDocumentMetaHomeLandingPageFragment } }
           ) | (
             { _linkType: string | null }
-            & { ' $fragmentRefs'?: { 'LinkDocumentMeta_Navigation_Fragment': LinkDocumentMeta_Navigation_Fragment } }
+            & { ' $fragmentRefs'?: { 'LinkDocumentMetaNavigationFragment': LinkDocumentMetaNavigationFragment } }
           ) | (
             { _linkType: string | null }
-            & { ' $fragmentRefs'?: { 'LinkDocumentMeta_Theme_50_Fragment': LinkDocumentMeta_Theme_50_Fragment } }
+            & { ' $fragmentRefs'?: { 'LinkDocumentMetaTheme_50Fragment': LinkDocumentMetaTheme_50Fragment } }
           ) | (
             { _linkType: string | null }
-            & { ' $fragmentRefs'?: { 'LinkDocumentMeta_Theme_100_Fragment': LinkDocumentMeta_Theme_100_Fragment } }
+            & { ' $fragmentRefs'?: { 'LinkDocumentMetaTheme_100Fragment': LinkDocumentMetaTheme_100Fragment } }
           ) | (
             { _linkType: string | null }
-            & { ' $fragmentRefs'?: { 'LinkDocumentMeta_Theme_200_Fragment': LinkDocumentMeta_Theme_200_Fragment } }
+            & { ' $fragmentRefs'?: { 'LinkDocumentMetaTheme_200Fragment': LinkDocumentMetaTheme_200Fragment } }
           ) | (
             { _linkType: string | null }
-            & { ' $fragmentRefs'?: { 'LinkDocumentMeta_Theme_300_Fragment': LinkDocumentMeta_Theme_300_Fragment } }
+            & { ' $fragmentRefs'?: { 'LinkDocumentMetaTheme_300Fragment': LinkDocumentMetaTheme_300Fragment } }
           ) | (
             { _linkType: string | null }
-            & { ' $fragmentRefs'?: { 'LinkDocumentMeta_Theme_400_Fragment': LinkDocumentMeta_Theme_400_Fragment } }
+            & { ' $fragmentRefs'?: { 'LinkDocumentMetaTheme_400Fragment': LinkDocumentMetaTheme_400Fragment } }
           ) | (
             { _linkType: string | null }
-            & { ' $fragmentRefs'?: { 'LinkDocumentMeta_Theme_500_Fragment': LinkDocumentMeta_Theme_500_Fragment } }
+            & { ' $fragmentRefs'?: { 'LinkDocumentMetaTheme_500Fragment': LinkDocumentMetaTheme_500Fragment } }
           ) | (
             { _linkType: string | null }
-            & { ' $fragmentRefs'?: { 'LinkDocumentMeta_Theme_600_Fragment': LinkDocumentMeta_Theme_600_Fragment } }
+            & { ' $fragmentRefs'?: { 'LinkDocumentMetaTheme_600Fragment': LinkDocumentMetaTheme_600Fragment } }
           ) | (
             { _linkType: string | null }
-            & { ' $fragmentRefs'?: { 'LinkDocumentMeta_Theme_700_Fragment': LinkDocumentMeta_Theme_700_Fragment } }
+            & { ' $fragmentRefs'?: { 'LinkDocumentMetaTheme_700Fragment': LinkDocumentMetaTheme_700Fragment } }
           ) | (
             { _linkType: string | null }
-            & { ' $fragmentRefs'?: { 'LinkDocumentMeta_Theme_800_Fragment': LinkDocumentMeta_Theme_800_Fragment } }
+            & { ' $fragmentRefs'?: { 'LinkDocumentMetaTheme_800Fragment': LinkDocumentMetaTheme_800Fragment } }
           ) | (
             { _linkType: string | null }
-            & { ' $fragmentRefs'?: { 'LinkDocumentMeta_Theme_900_Fragment': LinkDocumentMeta_Theme_900_Fragment } }
+            & { ' $fragmentRefs'?: { 'LinkDocumentMetaTheme_900Fragment': LinkDocumentMetaTheme_900Fragment } }
           ) | { _linkType: string | null } | { _linkType: string | null } | { _linkType: string | null } | null }> | null, color: { ' $fragmentRefs'?: { 'Theme50FieldsFragment': Theme50FieldsFragment } } | { ' $fragmentRefs'?: { 'Theme100FieldsFragment': Theme100FieldsFragment } } | { ' $fragmentRefs'?: { 'Theme200FieldsFragment': Theme200FieldsFragment } } | { ' $fragmentRefs'?: { 'Theme300FieldsFragment': Theme300FieldsFragment } } | { ' $fragmentRefs'?: { 'Theme400FieldsFragment': Theme400FieldsFragment } } | { ' $fragmentRefs'?: { 'Theme500FieldsFragment': Theme500FieldsFragment } } | { ' $fragmentRefs'?: { 'Theme600FieldsFragment': Theme600FieldsFragment } } | { ' $fragmentRefs'?: { 'Theme700FieldsFragment': Theme700FieldsFragment } } | { ' $fragmentRefs'?: { 'Theme800FieldsFragment': Theme800FieldsFragment } } | { ' $fragmentRefs'?: { 'Theme900FieldsFragment': Theme900FieldsFragment } } | {} | null } } | null> | null } };
 
 export type GetHomeLandingPageQueryVariables = Exact<{ [key: string]: never; }>;
@@ -1136,6 +1141,8 @@ export type GetHomeLandingPageQueryVariables = Exact<{ [key: string]: never; }>;
 export type GetHomeLandingPageQuery = { allHome_landing_pages: { edges: Array<{ node: { slices: Array<{ ' $fragmentRefs'?: { 'HeroSliceFieldFragment': HeroSliceFieldFragment } }> | null } } | null> | null } };
 
 export const LinkDocumentMetaFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"LinkDocumentMeta"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"_Document"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_meta"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uid"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"tags"}},{"kind":"Field","name":{"kind":"Name","value":"lang"}},{"kind":"Field","name":{"kind":"Name","value":"firstPublicationDate"}},{"kind":"Field","name":{"kind":"Name","value":"lastPublicationDate"}}]}}]}}]} as unknown as DocumentNode<LinkDocumentMetaFragment, unknown>;
+export const HeroSlicePrimaryFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"HeroSlicePrimary"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Home_landing_pageSlicesHero_sliceDefault"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"primary"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"heading"}}]}}]}}]} as unknown as DocumentNode<HeroSlicePrimaryFragment, unknown>;
+export const HeroSliceFieldFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"HeroSliceField"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Home_landing_pageSlicesHero_slice"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"variation"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"HeroSlicePrimary"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"HeroSlicePrimary"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Home_landing_pageSlicesHero_sliceDefault"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"primary"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"heading"}}]}}]}}]} as unknown as DocumentNode<HeroSliceFieldFragment, unknown>;
 export const Theme50FieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Theme50Fields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Theme_50"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"light"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"code"}}]}}]}}]} as unknown as DocumentNode<Theme50FieldsFragment, unknown>;
 export const Theme100FieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Theme100Fields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Theme_100"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"light"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"code"}}]}}]}}]} as unknown as DocumentNode<Theme100FieldsFragment, unknown>;
 export const Theme200FieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Theme200Fields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Theme_200"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"light"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"code"}}]}}]}}]} as unknown as DocumentNode<Theme200FieldsFragment, unknown>;
@@ -1146,7 +1153,5 @@ export const Theme600FieldsFragmentDoc = {"kind":"Document","definitions":[{"kin
 export const Theme700FieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Theme700Fields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Theme_700"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"light"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"code"}}]}}]}}]} as unknown as DocumentNode<Theme700FieldsFragment, unknown>;
 export const Theme800FieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Theme800Fields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Theme_800"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"light"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"code"}}]}}]}}]} as unknown as DocumentNode<Theme800FieldsFragment, unknown>;
 export const Theme900FieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Theme900Fields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Theme_900"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"light"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"code"}}]}}]}}]} as unknown as DocumentNode<Theme900FieldsFragment, unknown>;
-export const HeroSlicePrimaryFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"HeroSlicePrimary"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Home_landing_pageSlicesHero_sliceDefault"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"primary"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"heading"}}]}}]}}]} as unknown as DocumentNode<HeroSlicePrimaryFragment, unknown>;
-export const HeroSliceFieldFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"HeroSliceField"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Home_landing_pageSlicesHero_slice"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"variation"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"HeroSlicePrimary"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"HeroSlicePrimary"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Home_landing_pageSlicesHero_sliceDefault"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"primary"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"heading"}}]}}]}}]} as unknown as DocumentNode<HeroSliceFieldFragment, unknown>;
 export const GetCurrentNavigationDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getCurrentNavigation"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allNavigations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"position"}},{"kind":"Field","name":{"kind":"Name","value":"navigation_title"}},{"kind":"Field","name":{"kind":"Name","value":"navigation_links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"link_name"}},{"kind":"Field","name":{"kind":"Name","value":"link_href"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_linkType"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"_Document"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LinkDocumentMeta"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"color"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Theme50Fields"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"Theme100Fields"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"Theme200Fields"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"Theme300Fields"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"Theme400Fields"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"Theme500Fields"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"Theme600Fields"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"Theme700Fields"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"Theme800Fields"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"Theme900Fields"}}]}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"LinkDocumentMeta"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"_Document"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_meta"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"uid"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"tags"}},{"kind":"Field","name":{"kind":"Name","value":"lang"}},{"kind":"Field","name":{"kind":"Name","value":"firstPublicationDate"}},{"kind":"Field","name":{"kind":"Name","value":"lastPublicationDate"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Theme50Fields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Theme_50"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"light"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"code"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Theme100Fields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Theme_100"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"light"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"code"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Theme200Fields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Theme_200"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"light"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"code"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Theme300Fields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Theme_300"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"light"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"code"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Theme400Fields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Theme_400"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"light"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"code"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Theme500Fields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Theme_500"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"light"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"code"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Theme600Fields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Theme_600"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"light"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"code"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Theme700Fields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Theme_700"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"light"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"code"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Theme800Fields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Theme_800"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"light"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"code"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Theme900Fields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Theme_900"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"light"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"code"}}]}}]}}]} as unknown as DocumentNode<GetCurrentNavigationQuery, GetCurrentNavigationQueryVariables>;
 export const GetHomeLandingPageDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getHomeLandingPage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allHome_landing_pages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slices"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"HeroSliceField"}}]}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"HeroSlicePrimary"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Home_landing_pageSlicesHero_sliceDefault"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"primary"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"heading"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"HeroSliceField"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Home_landing_pageSlicesHero_slice"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"variation"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"HeroSlicePrimary"}}]}}]}}]} as unknown as DocumentNode<GetHomeLandingPageQuery, GetHomeLandingPageQueryVariables>;

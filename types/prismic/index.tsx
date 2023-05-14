@@ -1,3 +1,4 @@
+import type { GetCurrentNavigationQuery, GetHomeLandingPageQuery } from '@/types/prismic/graphql/graphql';
 import { Theme50FieldsFragment, Theme100FieldsFragment, Theme200FieldsFragment, Theme300FieldsFragment, Theme400FieldsFragment, Theme500FieldsFragment, Theme600FieldsFragment, Theme700FieldsFragment, Theme800FieldsFragment, Theme900FieldsFragment } from './graphql/graphql';
 
 type RouteTypes = 'home_landing_page' | 'projects_landing_page' | 'about_landing_page' | 'contact_landing_page';
@@ -51,4 +52,12 @@ export interface FallBackColorProps {
       }
     }
   };
+}
+
+export type navigationProps = {
+  'allNavigations': GetCurrentNavigationQuery;
+}
+
+export type landingPageProps = {
+  'home': GetHomeLandingPageQuery;
 }

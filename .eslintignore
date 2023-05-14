@@ -1,3 +1,4 @@
 # Prismic
+prismicio-types.d.ts
 /slices/index.ts
 /types/prismic/graphql/*

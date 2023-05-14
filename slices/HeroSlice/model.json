@@ -22,7 +22,17 @@
           }
         }
       },
-      "items": {}
+      "items": {
+        "aarni": {
+          "type": "StructuredText",
+          "config": {
+            "label": "aarni",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "heading2"
+          }
+        }
+      }
     }
   ]
 }

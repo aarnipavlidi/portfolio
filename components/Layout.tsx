@@ -1,4 +1,4 @@
-import type { navigationProps } from 'graphql/queries';
+import type { navigationProps } from '@/types/prismic';
 import { useState } from 'react';
 import NavigationHeader from '@/components/Navigation';
 

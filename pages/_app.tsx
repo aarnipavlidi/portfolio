@@ -1,4 +1,4 @@
-import type { navigationProps } from 'graphql/queries';
+import type { navigationProps } from '@/types/prismic';
 import NextApp, { AppContext, AppProps } from 'next/app';
 import Link from 'next/link';
 

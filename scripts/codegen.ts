@@ -32,9 +32,13 @@ async function getLatestReleaseRef() {
     config: {
       skipTypename: true,
       avoidOptionals: true,
+      namingConvention: {
+        typeNames: 'change-case-all#pascalCase',
+        transformUnderscore: true,
+      },
     },
     documents: [
-      './graphql/templates/*.tsx',
+      './graphql/templates/queries/*/*.tsx',
       './graphql/templates/fragments/*/*.tsx',
     ],
     generates: {

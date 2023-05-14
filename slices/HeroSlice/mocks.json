@@ -15,6 +15,26 @@
 				]
 			}
 		},
-		"items": []
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": [
+					[
+						"aarni",
+						{
+							"__TYPE__": "StructuredTextContent",
+							"value": [
+								{
+									"type": "heading2",
+									"content": {
+										"text": "Molecular"
+									}
+								}
+							]
+						}
+					]
+				]
+			}
+		]
 	}
 ]
