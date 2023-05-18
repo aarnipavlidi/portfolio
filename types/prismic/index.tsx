@@ -1,4 +1,5 @@
 import type { GetCurrentNavigationQuery, GetHomeLandingPageQuery } from '@/types/prismic/graphql/graphql';
+import type { RTLabelNode, RTNode, RTHeading1Node, RTHeading2Node, RTHeading3Node, RTHeading4Node, RTHeading5Node, RTHeading6Node, RTParagraphNode } from '@prismicio/types';
 import { Theme50FieldsFragment, Theme100FieldsFragment, Theme200FieldsFragment, Theme300FieldsFragment, Theme400FieldsFragment, Theme500FieldsFragment, Theme600FieldsFragment, Theme700FieldsFragment, Theme800FieldsFragment, Theme900FieldsFragment } from './graphql/graphql';
 
 type RouteTypes = 'home_landing_page' | 'projects_landing_page' | 'about_landing_page' | 'contact_landing_page';
@@ -10,6 +11,17 @@ export interface PrismicRouteProps {
   uid: RouteIDS;
   path: RoutePaths;
 }
+
+export type PrismicParagraphTags = 'paragraph' | 'span';
+export type PrismicHeadingTags = 'heading1' | 'heading2' | 'heading3' | 'heading4' | 'heading5' | 'heading6' ;
+export type PrismicTypographTags = PrismicHeadingTags | PrismicParagraphTags;
+
+export type PrismicTextOnlyProps = Extract<RTNode, RTHeading1Node | RTHeading2Node | RTHeading3Node | RTHeading4Node | RTHeading5Node | RTHeading6Node | RTParagraphNode>;
+export type PrismicTextWithLabel = PrismicTextOnlyProps & {
+  label: string | null;
+}
+
+export type PrismicTextWithSpanLabels = RTLabelNode;
 
 type ColorVariant = '50' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900' | '950';
 interface ColorVariantProps {

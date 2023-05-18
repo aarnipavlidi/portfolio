@@ -18,7 +18,8 @@
       "Theme_600",
       "Theme_700",
       "Theme_800",
-      "Theme_900"
+      "Theme_900",
+      "Theme_950"
     ],
     "_Linkable": [
       "Home_landing_page",
@@ -33,6 +34,7 @@
       "Theme_700",
       "Theme_800",
       "Theme_900",
+      "Theme_950",
       "_ExternalLink",
       "_FileLink",
       "_ImageLink"

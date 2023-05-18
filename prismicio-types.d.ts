@@ -63,6 +63,7 @@ interface NavigationDocumentData {
     | "theme_700"
     | "theme_800"
     | "theme_900"
+    | "theme_950"
   >;
   /**
    * position field in *navigation*
@@ -692,6 +693,61 @@ export type Theme900Document<Lang extends string = string> =
     "theme_900",
     Lang
   >;
+/** Content for theme_950 documents */
+interface Theme950DocumentData {
+  /**
+   * light field in *theme_950*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: theme_950.light[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/core-concepts/group
+   *
+   */
+  light: prismicT.GroupField<Simplify<Theme950DocumentDataLightItem>>;
+}
+/**
+ * Item in theme_950 → light
+ *
+ */
+export interface Theme950DocumentDataLightItem {
+  /**
+   * name field in *theme_950 → light*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: theme_950.light[].name
+   * - **Documentation**: https://prismic.io/docs/core-concepts/select
+   *
+   */
+  name: prismicT.SelectField<"neutral-950">;
+  /**
+   * code field in *theme_950 → light*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: theme_950.light[].code
+   * - **Documentation**: https://prismic.io/docs/core-concepts/select
+   *
+   */
+  code: prismicT.SelectField<"0a0a0a">;
+}
+/**
+ * theme_950 document from Prismic
+ *
+ * - **API ID**: `theme_950`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type Theme950Document<Lang extends string = string> =
+  prismicT.PrismicDocumentWithoutUID<
+    Simplify<Theme950DocumentData>,
+    "theme_950",
+    Lang
+  >;
 export type AllDocumentTypes =
   | HomeLandingPageDocument
   | NavigationDocument
@@ -704,38 +760,43 @@ export type AllDocumentTypes =
   | Theme600Document
   | Theme700Document
   | Theme800Document
-  | Theme900Document;
+  | Theme900Document
+  | Theme950Document;
 /**
  * Primary content in HeroSlice → Primary
  *
  */
 interface HeroSliceSliceDefaultPrimary {
   /**
-   * heading field in *HeroSlice → Primary*
+   * Title field in *HeroSlice → Primary*
    *
    * - **Field Type**: Title
-   * - **Placeholder**: *None*
-   * - **API ID Path**: hero_slice.primary.heading
+   * - **Placeholder**: Title for Hero, uses <h1 /> tag.
+   * - **API ID Path**: hero_slice.primary.title
    * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
    *
    */
-  heading: prismicT.TitleField;
-}
-/**
- * Item in HeroSlice → Items
- *
- */
-export interface HeroSliceSliceDefaultItem {
+  title: prismicT.TitleField;
   /**
-   * aarni field in *HeroSlice → Items*
+   * Subtitle field in *HeroSlice → Primary*
    *
-   * - **Field Type**: Title
-   * - **Placeholder**: *None*
-   * - **API ID Path**: hero_slice.items[].aarni
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Subtitle is under the Hero title.
+   * - **API ID Path**: hero_slice.primary.subtitle
    * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
    *
    */
-  aarni: prismicT.TitleField;
+  subtitle: prismicT.RichTextField;
+  /**
+   * Hero Image field in *HeroSlice → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_slice.primary.hero_image
+   * - **Documentation**: https://prismic.io/docs/core-concepts/image
+   *
+   */
+  hero_image: prismicT.ImageField<never>;
 }
 /**
  * Default variation for HeroSlice Slice
@@ -748,7 +809,7 @@ export interface HeroSliceSliceDefaultItem {
 export type HeroSliceSliceDefault = prismicT.SharedSliceVariation<
   "default",
   Simplify<HeroSliceSliceDefaultPrimary>,
-  Simplify<HeroSliceSliceDefaultItem>
+  never
 >;
 /**
  * Slice variation for *HeroSlice*
@@ -812,9 +873,11 @@ declare module "@prismicio/client" {
       Theme900DocumentData,
       Theme900DocumentDataLightItem,
       Theme900Document,
+      Theme950DocumentData,
+      Theme950DocumentDataLightItem,
+      Theme950Document,
       AllDocumentTypes,
       HeroSliceSliceDefaultPrimary,
-      HeroSliceSliceDefaultItem,
       HeroSliceSliceDefault,
       HeroSliceSliceVariation,
       HeroSliceSlice,

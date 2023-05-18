@@ -1,12 +1,16 @@
+import Typography from '@/components/Typography';
+
 interface HeroProps {
-  children: JSX.Element;
+  title: JSX.Element | string;
+  subtitle: JSX.Element | string;
 }
 
 const Hero: React.FC<HeroProps> = (props) => {
   return (
     <>
       <div className="text-2xl m-6">
-        {props.children}
+        <Typography content={props.title} />
+        <Typography content={props.subtitle} />
       </div>
     </>
   );

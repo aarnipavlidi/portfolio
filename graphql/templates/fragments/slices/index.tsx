@@ -16,7 +16,9 @@ const HERO_SLICE_PRIMARY = gql`
   fragment HeroSlicePrimary on Home_landing_pageSlicesHero_sliceDefault {
     primary {
       __typename
-      heading
+      title
+      subtitle
+      hero_image
     }
   }
 `;

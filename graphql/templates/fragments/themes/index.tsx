@@ -89,3 +89,12 @@ export const THEME_900_FIELDS = gql`
     }
   }
 `;
+
+export const THEME_950_FIELDS = gql`
+  fragment Theme950Fields on Theme_950 {
+    light {
+      name
+      code
+    }
+  }
+`;

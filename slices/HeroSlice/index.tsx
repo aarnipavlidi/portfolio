@@ -1,4 +1,4 @@
-import type { Home_Landing_PageSlicesHero_Slice as HomeLandingPageSlicesHeroSlice } from '@/types/prismic/graphql/graphql';
+import type { HomeLandingPageSlicesHeroSlice } from '@/types/prismic/graphql/graphql';
 import { SliceComponentProps, PrismicRichText } from '@prismicio/react';
 
 import Hero from '@/components/Hero';
@@ -6,18 +6,15 @@ import Hero from '@/components/Hero';
 export type HeroSliceProps = SliceComponentProps<HomeLandingPageSlicesHeroSlice & { type: string }>
 
 const HeroSlice = ({ slice }: HeroSliceProps): JSX.Element => {
-  const getHeroHeading = slice.variation?.primary?.heading;
+
+  const getHeroTitle = slice.variation?.primary?.title;
+  const getHeroSubtitle = slice.variation?.primary?.subtitle;
 
   return (
-    <Hero>
-      <div>
-        {
-          getHeroHeading && <>
-            <PrismicRichText field={getHeroHeading} />
-          </>
-        }
-      </div>
-    </Hero>
+    <Hero
+      title={typeof(getHeroTitle) === 'string' ? getHeroTitle : <PrismicRichText field={getHeroTitle} />}
+      subtitle={typeof(getHeroSubtitle) === 'string' ? getHeroSubtitle : <PrismicRichText field={getHeroSubtitle} />}
+    />
   );
 };
 
