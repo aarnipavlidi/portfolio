@@ -6,38 +6,38 @@ import type * as prismic from "@prismicio/client";
 type Simplify<T> = {
   [KeyType in keyof T]: T[KeyType];
 };
-/** Content for home documents */
-interface HomeLandingPageDocumentData {
+/** Content for page documents */
+interface LandingPageDocumentData {
   /**
-   * Slice Zone field in *home*
+   * Slice Zone field in *page*
    *
    * - **Field Type**: Slice Zone
    * - **Placeholder**: *None*
-   * - **API ID Path**: home_landing_page.slices[]
+   * - **API ID Path**: landing_page.slices[]
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/core-concepts/slices
    *
    */
-  slices: prismicT.SliceZone<HomeLandingPageDocumentDataSlicesSlice>;
+  slices: prismicT.SliceZone<LandingPageDocumentDataSlicesSlice>;
 }
 /**
- * Slice for *home → Slice Zone*
+ * Slice for *page → Slice Zone*
  *
  */
-type HomeLandingPageDocumentDataSlicesSlice = HeroSliceSlice;
+type LandingPageDocumentDataSlicesSlice = HeroSliceSlice;
 /**
- * home document from Prismic
+ * page document from Prismic
  *
- * - **API ID**: `home_landing_page`
- * - **Repeatable**: `false`
+ * - **API ID**: `landing_page`
+ * - **Repeatable**: `true`
  * - **Documentation**: https://prismic.io/docs/core-concepts/custom-types
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type HomeLandingPageDocument<Lang extends string = string> =
+export type LandingPageDocument<Lang extends string = string> =
   prismicT.PrismicDocumentWithUID<
-    Simplify<HomeLandingPageDocumentData>,
-    "home_landing_page",
+    Simplify<LandingPageDocumentData>,
+    "landing_page",
     Lang
   >;
 /** Content for navigation documents */
@@ -749,7 +749,7 @@ export type Theme950Document<Lang extends string = string> =
     Lang
   >;
 export type AllDocumentTypes =
-  | HomeLandingPageDocument
+  | LandingPageDocument
   | NavigationDocument
   | Theme100Document
   | Theme200Document
@@ -812,10 +812,39 @@ export type HeroSliceSliceDefault = prismicT.SharedSliceVariation<
   never
 >;
 /**
+ * Primary content in HeroSlice → Primary
+ *
+ */
+interface HeroSliceSliceAvatarPrimary {
+  /**
+   * Title field in *HeroSlice → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: Title for Hero, uses <h1 /> tag.
+   * - **API ID Path**: hero_slice.primary.title
+   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+   *
+   */
+  title: prismicT.TitleField;
+}
+/**
+ * Avatar variation for HeroSlice Slice
+ *
+ * - **API ID**: `avatar`
+ * - **Description**: `Default`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
+ *
+ */
+export type HeroSliceSliceAvatar = prismicT.SharedSliceVariation<
+  "avatar",
+  Simplify<HeroSliceSliceAvatarPrimary>,
+  never
+>;
+/**
  * Slice variation for *HeroSlice*
  *
  */
-type HeroSliceSliceVariation = HeroSliceSliceDefault;
+type HeroSliceSliceVariation = HeroSliceSliceDefault | HeroSliceSliceAvatar;
 /**
  * HeroSlice Shared Slice
  *
@@ -837,9 +866,9 @@ declare module "@prismicio/client" {
   }
   namespace Content {
     export type {
-      HomeLandingPageDocumentData,
-      HomeLandingPageDocumentDataSlicesSlice,
-      HomeLandingPageDocument,
+      LandingPageDocumentData,
+      LandingPageDocumentDataSlicesSlice,
+      LandingPageDocument,
       NavigationDocumentData,
       NavigationDocumentDataNavigationLinksItem,
       NavigationDocument,
@@ -879,6 +908,8 @@ declare module "@prismicio/client" {
       AllDocumentTypes,
       HeroSliceSliceDefaultPrimary,
       HeroSliceSliceDefault,
+      HeroSliceSliceAvatarPrimary,
+      HeroSliceSliceAvatar,
       HeroSliceSliceVariation,
       HeroSliceSlice,
     };

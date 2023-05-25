@@ -30,7 +30,7 @@ async function getLatestReleaseRef() {
       },
     ],
     config: {
-      skipTypename: true,
+      skipTypename: false,
       avoidOptionals: true,
       namingConvention: {
         typeNames: 'change-case-all#pascalCase',

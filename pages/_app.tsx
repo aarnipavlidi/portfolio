@@ -1,5 +1,4 @@
-import type { navigationProps } from '@/types/prismic';
-import NextApp, { AppContext, AppProps } from 'next/app';
+import type { AppProps } from 'next/app';
 import Link from 'next/link';
 
 import { PrismicProvider } from '@prismicio/react';
@@ -13,7 +12,6 @@ import localFont from 'next/font/local';
 import { Caveat } from 'next/font/google';
 
 interface CustomAppProps extends AppProps {
-  navigation: navigationProps['allNavigations'];
 }
 
 const fontPierSans = localFont({
@@ -42,28 +40,16 @@ const caveatFont = Caveat({
   variable: '--font-secondary',
 });
 
-const App = ({ Component, pageProps, navigation }: CustomAppProps) => {
+const App = ({ Component, pageProps }: CustomAppProps) => {
   return (
     <PrismicProvider internalLinkComponent={(props) => <Link {...props} />}>
       <PrismicPreview repositoryName={prismicRepositoryName}>
-        <Layout navigation={navigation} fontVariable={`${fontPierSans.variable} ${caveatFont.variable}`}>
+        <Layout fontVariable={`${fontPierSans.variable} ${caveatFont.variable}`}>
           <Component {...pageProps} />
         </Layout>
       </PrismicPreview>
     </PrismicProvider>
   );
-};
-
-App.getInitialProps = async (context: AppContext, previewData: any) => {
-  const appProps = await NextApp.getInitialProps(context);
-
-  const baseUrl = process.env.NEXT_PUBLIC_BASEURL;
-  const getNavigationData = await fetch(`${baseUrl}/api/navigation`).then((res) => res.json()) as navigationProps[];
-
-  return {
-    ...appProps,
-    navigation: getNavigationData[0] || {},
-  };
 };
 
 export default App;

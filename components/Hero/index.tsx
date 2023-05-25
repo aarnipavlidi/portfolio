@@ -1,18 +1,37 @@
+import { PrismicEditorFieldProps } from '@/types/prismic';
 import Typography from '@/components/Typography';
+import Design from '@/components/Design';
 
 interface HeroProps {
   title: JSX.Element | string;
   subtitle: JSX.Element | string;
+  image?: PrismicEditorFieldProps['image'];
 }
 
 const Hero: React.FC<HeroProps> = (props) => {
+
   return (
-    <>
-      <div className="text-2xl m-6">
-        <Typography content={props.title} />
-        <Typography content={props.subtitle} />
+    <section className="text-neutral-900">
+      <div className="flex">
+        <div className="">
+          <Typography
+            content={props.title}
+            tag="h1"
+            size="3xl"
+          />
+          <Typography
+            content={props.subtitle}
+            tag="p"
+            size="lg"
+          />
+        </div>
+        {/* <Design
+          content={props.image}
+          // position='relative'
+          // className="max-h-72 bg-pink-300"
+        /> */}
       </div>
-    </>
+    </section>
   );
 };
 

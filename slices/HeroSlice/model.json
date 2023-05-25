@@ -50,8 +50,36 @@
           "type": "Image",
           "config": {
             "label": "Hero Image",
-            "constraint": {},
+            "constraint": { "width": 350, "height": 350 },
             "thumbnails": []
+          }
+        }
+      },
+      "items": {}
+    },
+    {
+      "id": "avatar",
+      "name": "Avatar",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Title",
+            "placeholder": "Title for Hero, uses <h1 /> tag.",
+            "allowTargetBlank": false,
+            "labels": [
+              "text-left",
+              "text-center",
+              "text-right",
+              "text-justify",
+              "text-start",
+              "text-end"
+            ],
+            "single": "heading1"
           }
         }
       },

@@ -1,15 +1,13 @@
-import type { GetCurrentNavigationQuery, GetHomeLandingPageQuery } from '@/types/prismic/graphql/graphql';
-import type { RTLabelNode, RTNode, RTHeading1Node, RTHeading2Node, RTHeading3Node, RTHeading4Node, RTHeading5Node, RTHeading6Node, RTParagraphNode } from '@prismicio/types';
+import type { GetCurrentNavigationQuery, GetAllLandingPagesMetaQuery, GetCurrentLandingPageQuery, GetCurrentLandingPageQueryVariables, LandingPageSlicesHeroSliceDefault } from '@/types/prismic/graphql/graphql';
+import type { ImageFieldImage, RTLabelNode, RTNode, RTHeading1Node, RTHeading2Node, RTHeading3Node, RTHeading4Node, RTHeading5Node, RTHeading6Node, RTParagraphNode } from '@prismicio/types';
 import { Theme50FieldsFragment, Theme100FieldsFragment, Theme200FieldsFragment, Theme300FieldsFragment, Theme400FieldsFragment, Theme500FieldsFragment, Theme600FieldsFragment, Theme700FieldsFragment, Theme800FieldsFragment, Theme900FieldsFragment } from './graphql/graphql';
 
-type RouteTypes = 'home_landing_page' | 'projects_landing_page' | 'about_landing_page' | 'contact_landing_page';
-type RouteIDS = 'home-landing-page' | 'projects-landing-page' | 'about-landing-page' | 'contact-landing-page';
-type RoutePaths = '/' | '/projects' | '/about' | '/contact';
+export interface PrismicEditorFieldProps {
+  image?: ImageFieldImage | null
+}
 
-export interface PrismicRouteProps {
-  type: RouteTypes;
-  uid: RouteIDS;
-  path: RoutePaths;
+export interface PrismicHeroSliceVariants {
+  primary: LandingPageSlicesHeroSliceDefault['primary']
 }
 
 export type PrismicParagraphTags = 'paragraph' | 'span';
@@ -66,10 +64,15 @@ export interface FallBackColorProps {
   };
 }
 
-export type navigationProps = {
-  'allNavigations': GetCurrentNavigationQuery;
+export type LayoutFetchProps = {
+  navigation: GetCurrentNavigationQuery;
+}
+
+export type allLandingPagesMetaProps = {
+  query: GetAllLandingPagesMetaQuery
 }
 
 export type landingPageProps = {
-  'home': GetHomeLandingPageQuery;
+  query: GetCurrentLandingPageQuery;
+  variables: GetCurrentLandingPageQueryVariables;
 }

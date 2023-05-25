@@ -1,13 +1,14 @@
 {
   "possibleTypes": {
-    "Home_landing_pageSlices": [
-      "Home_landing_pageSlicesHero_slice"
+    "Landing_pageSlices": [
+      "Landing_pageSlicesHero_slice"
     ],
-    "Home_landing_pageSlicesHero_sliceVariation": [
-      "Home_landing_pageSlicesHero_sliceDefault"
+    "Landing_pageSlicesHero_sliceVariation": [
+      "Landing_pageSlicesHero_sliceAvatar",
+      "Landing_pageSlicesHero_sliceDefault"
     ],
     "_Document": [
-      "Home_landing_page",
+      "Landing_page",
       "Navigation",
       "Theme_50",
       "Theme_100",
@@ -22,7 +23,7 @@
       "Theme_950"
     ],
     "_Linkable": [
-      "Home_landing_page",
+      "Landing_page",
       "Navigation",
       "Theme_50",
       "Theme_100",
