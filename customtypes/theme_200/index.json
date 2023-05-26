@@ -15,9 +15,7 @@
               "config": {
                 "label": "name",
                 "placeholder": "",
-                "options": [
-                  "neutral-200"
-                ]
+                "options": ["neutral-200"]
               }
             },
             "code": {
@@ -25,9 +23,7 @@
               "config": {
                 "label": "code",
                 "placeholder": "",
-                "options": [
-                  "e5e5e5"
-                ]
+                "options": ["e5e5e5"]
               }
             }
           }

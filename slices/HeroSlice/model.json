@@ -1,0 +1,89 @@
+{
+  "id": "hero_slice",
+  "type": "SharedSlice",
+  "name": "HeroSlice",
+  "description": "HeroSlice",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Title",
+            "placeholder": "Title for Hero, uses <h1 /> tag.",
+            "allowTargetBlank": false,
+            "labels": [
+              "text-left",
+              "text-center",
+              "text-right",
+              "text-justify",
+              "text-start",
+              "text-end"
+            ],
+            "single": "heading1"
+          }
+        },
+        "subtitle": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Subtitle",
+            "placeholder": "Subtitle is under the Hero title.",
+            "allowTargetBlank": true,
+            "labels": [
+              "text-left",
+              "text-center",
+              "text-right",
+              "text-justify",
+              "text-start",
+              "text-end"
+            ],
+            "multi": "paragraph,strong,em"
+          }
+        },
+        "hero_image": {
+          "type": "Image",
+          "config": {
+            "label": "Hero Image",
+            "constraint": { "width": 350, "height": 350 },
+            "thumbnails": []
+          }
+        }
+      },
+      "items": {}
+    },
+    {
+      "id": "avatar",
+      "name": "Avatar",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Title",
+            "placeholder": "Title for Hero, uses <h1 /> tag.",
+            "allowTargetBlank": false,
+            "labels": [
+              "text-left",
+              "text-center",
+              "text-right",
+              "text-justify",
+              "text-start",
+              "text-end"
+            ],
+            "single": "heading1"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

@@ -30,10 +30,17 @@ async function getLatestReleaseRef() {
       },
     ],
     config: {
-      skipTypename: true,
+      skipTypename: false,
       avoidOptionals: true,
+      namingConvention: {
+        typeNames: 'change-case-all#pascalCase',
+        transformUnderscore: true,
+      },
     },
-    documents: ['./graphql/templates/*.tsx'],
+    documents: [
+      './graphql/templates/queries/*/*.tsx',
+      './graphql/templates/fragments/*/*.tsx',
+    ],
     generates: {
       './types/prismic/graphql/': {
         preset: 'client',

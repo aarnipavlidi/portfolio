@@ -1,28 +1,15 @@
 {
   "possibleTypes": {
-    "_Document": [
-      "About_landing_page",
-      "Contact_landing_page",
-      "Home_landing_page",
-      "Navigation",
-      "Projects_landing_page",
-      "Theme_50",
-      "Theme_100",
-      "Theme_200",
-      "Theme_300",
-      "Theme_400",
-      "Theme_500",
-      "Theme_600",
-      "Theme_700",
-      "Theme_800",
-      "Theme_900"
+    "Landing_pageSlices": [
+      "Landing_pageSlicesHero_slice"
     ],
-    "_Linkable": [
-      "About_landing_page",
-      "Contact_landing_page",
-      "Home_landing_page",
+    "Landing_pageSlicesHero_sliceVariation": [
+      "Landing_pageSlicesHero_sliceAvatar",
+      "Landing_pageSlicesHero_sliceDefault"
+    ],
+    "_Document": [
+      "Landing_page",
       "Navigation",
-      "Projects_landing_page",
       "Theme_50",
       "Theme_100",
       "Theme_200",
@@ -33,6 +20,22 @@
       "Theme_700",
       "Theme_800",
       "Theme_900",
+      "Theme_950"
+    ],
+    "_Linkable": [
+      "Landing_page",
+      "Navigation",
+      "Theme_50",
+      "Theme_100",
+      "Theme_200",
+      "Theme_300",
+      "Theme_400",
+      "Theme_500",
+      "Theme_600",
+      "Theme_700",
+      "Theme_800",
+      "Theme_900",
+      "Theme_950",
       "_ExternalLink",
       "_FileLink",
       "_ImageLink"

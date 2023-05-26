@@ -1,0 +1,48 @@
+[
+  {
+    "color": {
+      "__TYPE__": "LinkContent",
+      "value": {
+        "__TYPE__": "DocumentLink",
+        "id": "mock_document_id"
+      }
+    },
+    "position": {
+      "__TYPE__": "BooleanContent",
+      "value": true
+    },
+    "navigation_title": {
+      "__TYPE__": "FieldContent",
+      "value": "live",
+      "type": "Text"
+    },
+    "navigation_links": {
+      "__TYPE__": "GroupContentType",
+      "value": [
+        {
+          "__TYPE__": "GroupItemContent",
+          "value": [
+            [
+              "link_name",
+              {
+                "__TYPE__": "FieldContent",
+                "value": "major",
+                "type": "Text"
+              }
+            ],
+            [
+              "link_href",
+              {
+                "__TYPE__": "LinkContent",
+                "value": {
+                  "__TYPE__": "ExternalLink",
+                  "url": "http://google.com"
+                }
+              }
+            ]
+          ]
+        }
+      ]
+    }
+  }
+]

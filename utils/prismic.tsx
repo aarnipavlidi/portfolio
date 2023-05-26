@@ -1,42 +1,29 @@
 /* eslint-disable no-underscore-dangle */
 import type { FilledLinkToDocumentField } from '@prismicio/types';
+import type { Route } from '@prismicio/client';
 import type { LinkDocumentMetaFragment } from '@/types/prismic/graphql/graphql';
-import type { PrismicRouteProps } from '@/types/prismic/index';
 
 export const prismicRepositoryName = process.env.PRISMIC_REPOSITORY_NAME || '';
 export const prismicAccessToken = process.env.PRISMIC_ACCESS_TOKEN || '';
 
-export const prismicRoutes: PrismicRouteProps[] = [
+export const prismicRoutes: Route | Route[] = [
   {
-    type: 'home_landing_page',
-    uid: 'home-landing-page',
+    type: 'landing_page',
+    uid: 'home',
     path: '/',
   },
   {
-    type: 'projects_landing_page',
-    uid: 'projects-landing-page',
-    path: '/projects',
-  },
-  {
-    type: 'about_landing_page',
-    uid: 'about-landing-page',
-    path: '/about',
-  },
-  {
-    type: 'contact_landing_page',
-    uid: 'contact-landing-page',
-    path: '/contact',
+    type: 'landing_page',
+    path: '/:uid',
   },
 ];
 
 export const prismicLinkResolver = (currentLinkDocument: FilledLinkToDocumentField) => {
-  const filterCurrentRoute = prismicRoutes.find(route => route.type === currentLinkDocument.type && route.uid === currentLinkDocument.uid);
-
-  if (filterCurrentRoute) {
-    return filterCurrentRoute.path;
+  if (currentLinkDocument.uid === 'home') {
+    return '/';
   }
 
-  return null;
+  return `/${currentLinkDocument.uid}`;
 };
 
 export const checkLinkProperties = (object: any): object is { _meta: LinkDocumentMetaFragment['_meta'] } => {

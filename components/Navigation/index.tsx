@@ -1,26 +1,27 @@
 /* eslint-disable no-underscore-dangle */
+import type { FilledLinkToDocumentField } from '@prismicio/types';
 import type { ChosenColorProps } from '@/types/prismic';
-import type { navigationProps } from 'graphql/queries';
+import type { LayoutFetchProps } from '@/types/prismic';
 import { Dispatch, SetStateAction } from 'react';
 import { prismicLinkResolver, checkLinkProperties } from '@/utils/prismic';
 import * as prismicH from '@prismicio/helpers';
 import Link from 'next/link';
 
 import classNames from 'classnames';
-import Icons from '@/components/Icons';
 import fallBackColors from '@/fallback/colors';
-
+import Icons from '@/components/Icons';
+import Typography from '@/components/Typography';
 interface NavigationProps {
-  navigation: navigationProps['allNavigations'];
+  navigation?: LayoutFetchProps['navigation'];
   mobileMenuScreen: boolean;
   setMobileMenuScreen: Dispatch<SetStateAction<boolean>>;
 }
 
 const Navigation: React.FC<NavigationProps> = ({ navigation, mobileMenuScreen, setMobileMenuScreen }) => {
-  const getNavigationData = navigation.allNavigations.edges && navigation.allNavigations.edges[0] ? navigation.allNavigations.edges[0].node : null;
+  const getNavigationData = navigation?.allNavigations.edges && navigation.allNavigations.edges[0] ? navigation.allNavigations?.edges[0].node : null;
 
   const getFallBackLightColor = fallBackColors.component.navigation.element.default.light.name;
-  const getCurrentLightColor = ((getNavigationData?.color as ChosenColorProps).light?.slice(0, 1)[0].name) || getFallBackLightColor;
+  const getCurrentLightColor = ((getNavigationData?.color as ChosenColorProps)?.light?.slice(0, 1)[0].name) || getFallBackLightColor;
 
   const headerContainer = classNames({
     ['w-screen mx-auto px-4 md:container bg-inherit']: true,
@@ -43,7 +44,7 @@ const Navigation: React.FC<NavigationProps> = ({ navigation, mobileMenuScreen, s
     <header className={headerContainer}>
       <nav className={navContainer}>
         {
-          getNavigationData?.navigation_title && <>
+          getNavigationData && getNavigationData?.navigation_title && <>
             <div className="flex md:grow-0 flex-row py-4 items-center">
               <div className="flex grow md:grow-0 flex-row">
                 <Icons
@@ -51,9 +52,13 @@ const Navigation: React.FC<NavigationProps> = ({ navigation, mobileMenuScreen, s
                   className='w-3 h-3 self-start'
                   color="current"
                 />
-                <div>
-                  <h2 className="px-2 font-caveat font-normal text-3xl 2xl:text-4xl">{getNavigationData.navigation_title}</h2>
-                </div>
+                <Typography
+                  content={getNavigationData.navigation_title}
+                  tag="h2"
+                  size="3xl"
+                  family="caveat"
+                  className="px-2 2xl:text-4xl"
+                />
                 <Icons
                   name="StackingBlock"
                   className="w-4 h-2 self-end"
@@ -80,11 +85,10 @@ const Navigation: React.FC<NavigationProps> = ({ navigation, mobileMenuScreen, s
 
               const getCurrentLinkData = checkLinkProperties(link.link_href) ? link.link_href : null;
               const formatLinkData = {
-                _link_type: getCurrentLinkData?._linkType,
                 ...getCurrentLinkData?._meta,
               };
 
-              const getCurrentLinkHref = prismicH.asLink(formatLinkData as any, prismicLinkResolver);
+              const getCurrentLinkHref = prismicH.asLink(formatLinkData as FilledLinkToDocumentField, prismicLinkResolver);
 
               return (
                 <div key={`${link.link_name}-${index}`} className="uppercase md:normal-case">

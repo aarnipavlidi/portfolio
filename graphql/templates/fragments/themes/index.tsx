@@ -1,19 +1,5 @@
 import { gql } from '@apollo/client';
 
-export const LINK_DOCUMENT_META = gql`
-  fragment LinkDocumentMeta on _Document {
-    _meta {
-      id
-      uid
-      type
-      tags
-      lang
-      firstPublicationDate
-      lastPublicationDate
-    }
-  }
-`;
-
 export const THEME_50_FIELDS = gql`
   fragment Theme50Fields on Theme_50 {
     light {
@@ -97,6 +83,15 @@ export const THEME_800_FIELDS = gql`
 
 export const THEME_900_FIELDS = gql`
   fragment Theme900Fields on Theme_900 {
+    light {
+      name
+      code
+    }
+  }
+`;
+
+export const THEME_950_FIELDS = gql`
+  fragment Theme950Fields on Theme_950 {
     light {
       name
       code
