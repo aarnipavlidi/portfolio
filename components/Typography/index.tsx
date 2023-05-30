@@ -9,12 +9,11 @@ interface TypographyProps {
   className?: string;
   tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span';
   size?: 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl' | '7xl' | '8xl' | '9xl';
-  family?: 'pier-sans' | 'caveat';
   align?: 'left' | 'center' | 'right' | 'justify' | 'start' | 'end';
   content: JSX.Element | string;
 }
 
-const Typography: React.FC<TypographyProps> = ({ className, tag = 'p', size = 'base', family = 'pier-sans', align, content }) => {
+const Typography: React.FC<TypographyProps> = ({ className, tag = 'p', size = 'base', align, content }) => {
   if (typeof(content) !== 'string') {
 
     const prismicTypographOptions: PrismicTypographTags[] = ['heading1', 'heading2', 'heading3', 'heading4', 'heading5', 'heading6', 'paragraph', 'span'];
@@ -23,7 +22,7 @@ const Typography: React.FC<TypographyProps> = ({ className, tag = 'p', size = 'b
     const htmlSerializer: HTMLFunctionSerializer = (type, node, text, children, key) => {
       const getContentAlignment = (node as PrismicTextWithLabel).label;
       const typographyContainer = classNames({
-        [`text-${size} font-${family}`]: true,
+        [`text-${size}`]: true,
         [`${className}`]: className,
         [`text-${align}`]: align && !getContentAlignment,
         [`${getContentAlignment}`]: getContentAlignment,
@@ -73,7 +72,7 @@ const Typography: React.FC<TypographyProps> = ({ className, tag = 'p', size = 'b
   };
 
   const typographyStringContainer = classNames({
-    [`text-${size} font-${family}`]: true,
+    [`text-${size}`]: true,
     [`${className}`]: className,
     [`text-${align}`]: align,
   });

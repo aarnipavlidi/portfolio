@@ -18,11 +18,13 @@ const Hero: React.FC<HeroProps> = (props) => {
             content={props.title}
             tag="h1"
             size="3xl"
+            className="font-pier-sans"
           />
           <Typography
             content={props.subtitle}
             tag="p"
             size="lg"
+            className="font-pier-sans"
           />
         </div>
         {/* <Design

@@ -56,8 +56,7 @@ const Navigation: React.FC<NavigationProps> = ({ navigation, mobileMenuScreen, s
                   content={getNavigationData.navigation_title}
                   tag="h2"
                   size="3xl"
-                  family="caveat"
-                  className="px-2 2xl:text-4xl"
+                  className="px-2 font-caveat 2xl:text-4xl"
                 />
                 <Icons
                   name="StackingBlock"

@@ -22,7 +22,7 @@ module.exports = {
     extend: {
       fontFamily: {
         ['pier-sans']: ['var(--font-primary)', ...fontFamily.sans],
-        ['caveat']: ['var(--font-secondary)'],
+        ['caveat']: ['var(--font-secondary)', ...fontFamily.sans],
       },
     },
   },
