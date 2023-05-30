@@ -2,22 +2,17 @@ import { gql } from '@apollo/client';
 import { HERO_SLICE_FIELDS } from '../../fragments/slices';
 
 export const GET_ALL_LANDING_PAGES_META = gql`
-  query getAllLandingPagesMeta {
-    allLanding_pages {
+  query getAllLandingPagesMeta($getByID: [String!]) {
+    allLanding_pages(id_in: $getByID) {
       edges {
         node {
+          _linkType
           _meta {
             id
             uid
             type
             tags
             lang
-            alternateLanguages {
-              id
-              uid
-              type
-              lang
-            }
             firstPublicationDate
             lastPublicationDate
           }

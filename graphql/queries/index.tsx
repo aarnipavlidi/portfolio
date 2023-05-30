@@ -15,11 +15,24 @@ export const getCurrentNavigation = async () => {
   return { data, error, errors };
 };
 
-export const getAllLandingPagesMeta = async () => {
+export interface getAllLandingPagesMetaProps {
+  currentID: string | string[] | null;
+  latestReference?: string;
+}
+
+export const getAllLandingPagesMeta = async ({ currentID, latestReference }: getAllLandingPagesMetaProps) => {
   const prismic = getApolloClient();
 
-  const { data } = await prismic.query<allLandingPagesMetaProps['query']>({
+  const context = {
+    ...(latestReference ? { headers: { 'Prismic-ref': latestReference } } : {} ),
+  };
+
+  const { data } = await prismic.query<allLandingPagesMetaProps['query'], allLandingPagesMetaProps['variables']>({
     query: GET_ALL_LANDING_PAGES_META,
+    variables: {
+      getByID: currentID,
+    },
+    context,
   });
 
   return { data };

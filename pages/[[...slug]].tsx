@@ -2,6 +2,7 @@
 import type { GetStaticProps, GetStaticPaths } from 'next';
 import type { landingPageProps } from '@/types/prismic';
 import type { LandingPageSlices, LandingPage } from '@/types/prismic/graphql/graphql';
+import type { getAllLandingPagesMetaProps } from '@/graphql/queries';
 import { SliceZone, SliceZoneLike } from '@prismicio/react';
 import * as prismicH from '@prismicio/helpers';
 import { prismicLinkResolver } from '@/utils/prismic';
@@ -35,7 +36,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   const { data, error } = await getCurrentLandingPage(getCurrentPageSlug, getDefaultLocale);
 
-  if (!data || error) {
+  if (!data.landing_page || error) {
     return {
       notFound: true,
     };
@@ -49,7 +50,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 export const getStaticPaths = async () => {
-  const { data } = await getAllLandingPagesMeta();
+  // When building app, will get all current landing pages from Prismic.
+  const getCurrentLandingPageID: getAllLandingPagesMetaProps['currentID'] = null;
+  const { data } = await getAllLandingPagesMeta({ currentID: getCurrentLandingPageID });
 
   const getCurrentPagesData = data.allLanding_pages?.edges?.map((value) => value?.node._meta);
 
@@ -58,7 +61,7 @@ export const getStaticPaths = async () => {
 
   return {
     paths: getEachPagePath,
-    fallback: false,
+    fallback: 'blocking',
   };
 };
 
