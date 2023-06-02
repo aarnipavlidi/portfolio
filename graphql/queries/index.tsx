@@ -1,15 +1,13 @@
-import { LayoutFetchProps, allLandingPagesMetaProps, landingPageProps } from '@/types/prismic';
+import { allLandingPagesMetaProps, landingPageProps } from '@/types/prismic';
 import { getApolloClient } from '@/utils/apolloClient';
-
 import { GET_CURRENT_NAVIGATION } from '@/graphql/templates/queries/app';
 import { GET_CURRENT_LANDING_PAGE, GET_ALL_LANDING_PAGES_META } from '@/graphql/templates/queries/page';
 
 export const getCurrentNavigation = async () => {
   const prismic = getApolloClient();
 
-  const { data, error, errors } = await prismic.query<LayoutFetchProps['navigation']>({
+  const { data, error, errors } = await prismic.query({
     query: GET_CURRENT_NAVIGATION,
-    errorPolicy: 'all',
   });
 
   return { data, error, errors };

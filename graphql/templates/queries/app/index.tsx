@@ -1,20 +1,6 @@
-import { gql } from '@apollo/client';
-import { LINK_DOCUMENT_META } from '@/graphql/templates/fragments/documents';
-import { THEME_50_FIELDS, THEME_100_FIELDS, THEME_200_FIELDS, THEME_300_FIELDS, THEME_400_FIELDS, THEME_500_FIELDS, THEME_600_FIELDS, THEME_700_FIELDS, THEME_800_FIELDS, THEME_900_FIELDS, THEME_950_FIELDS } from '@/graphql/templates/fragments/themes';
+import { graphql } from '@/types/prismic/graphql/gql';
 
-export const GET_CURRENT_NAVIGATION = gql`
-  ${LINK_DOCUMENT_META}
-  ${THEME_50_FIELDS}
-  ${THEME_100_FIELDS}
-  ${THEME_200_FIELDS}
-  ${THEME_300_FIELDS}
-  ${THEME_400_FIELDS}
-  ${THEME_500_FIELDS}
-  ${THEME_600_FIELDS}
-  ${THEME_700_FIELDS}
-  ${THEME_800_FIELDS}
-  ${THEME_900_FIELDS}
-  ${THEME_950_FIELDS}
+export const GET_CURRENT_NAVIGATION = graphql(`
   query getCurrentNavigation {
     allNavigations {
       edges {
@@ -25,9 +11,8 @@ export const GET_CURRENT_NAVIGATION = gql`
             link_name
             link_href {
               _linkType
-              ...on _Document {
-                ...LinkDocumentMeta
-              }
+              __typename
+              ...LinkDocumentMeta
             }
           }
           color {
@@ -47,4 +32,4 @@ export const GET_CURRENT_NAVIGATION = gql`
       }
     }
   }
-`;
+`);
