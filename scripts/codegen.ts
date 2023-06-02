@@ -45,9 +45,11 @@ async function getLatestReleaseRef() {
       './types/prismic/graphql/': {
         preset: 'client',
         presetConfig: {
-          gqlTagName: 'gql',
+          gqlTagName: 'graphql',
+          fragmentMasking: {
+            unmaskFunctionName: 'getFragmentData',
+          },
         },
-        plugins: [],
       },
       './graphql/fragment.matcher.json': {
         plugins: ['fragment-matcher'],

@@ -1,16 +1,16 @@
 /* eslint-disable no-underscore-dangle */
-import type { FilledLinkToDocumentField } from '@prismicio/types';
 import type { ChosenColorProps } from '@/types/prismic';
 import type { LayoutFetchProps } from '@/types/prismic';
+import { getFragmentData } from '@/types/prismic/graphql';
 import { Dispatch, SetStateAction } from 'react';
-import { prismicLinkResolver, checkLinkProperties } from '@/utils/prismic';
-import * as prismicH from '@prismicio/helpers';
 import Link from 'next/link';
+import { LINK_DOCUMENT_META } from '@/graphql/templates/fragments/documents';
 
 import classNames from 'classnames';
 import fallBackColors from '@/fallback/colors';
 import Icons from '@/components/Icons';
 import Typography from '@/components/Typography';
+
 interface NavigationProps {
   navigation?: LayoutFetchProps['navigation'];
   mobileMenuScreen: boolean;
@@ -82,16 +82,15 @@ const Navigation: React.FC<NavigationProps> = ({ navigation, mobileMenuScreen, s
           {
             getNavigationData?.navigation_links && getNavigationData.navigation_links.length > 0 && getNavigationData.navigation_links.map((link, index) => {
 
-              const getCurrentLinkData = checkLinkProperties(link.link_href) ? link.link_href : null;
-              const formatLinkData = {
-                ...getCurrentLinkData?._meta,
-              };
+              const getLinkHrefFragment = link.link_href && link.link_href.__typename === 'Landing_page'
+                ? getFragmentData(LINK_DOCUMENT_META, link.link_href)
+                : null;
 
-              const getCurrentLinkHref = prismicH.asLink(formatLinkData as FilledLinkToDocumentField, prismicLinkResolver);
+              const getCurrentLinkPath = getLinkHrefFragment?._meta.uid;
 
               return (
                 <div key={`${link.link_name}-${index}`} className="uppercase md:normal-case">
-                  <Link href={getCurrentLinkHref || '/'} legacyBehavior={true}>
+                  <Link href={getCurrentLinkPath || '/'} legacyBehavior={true}>
                     <a className='font-pier-sans font-normal text-lg 2xl:text-xl'>{link.link_name}</a>
                   </Link>
                 </div>

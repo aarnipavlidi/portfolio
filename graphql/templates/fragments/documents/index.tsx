@@ -1,7 +1,8 @@
-import { gql } from '@apollo/client';
+import { graphql } from '@/types/prismic/graphql/gql';
 
-export const LINK_DOCUMENT_META = gql`
+export const LINK_DOCUMENT_META = graphql(`
   fragment LinkDocumentMeta on _Document {
+    __typename
     _meta {
       id
       uid
@@ -12,4 +13,4 @@ export const LINK_DOCUMENT_META = gql`
       lastPublicationDate
     }
   }
-`;
+`);
