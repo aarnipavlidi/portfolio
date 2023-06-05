@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { graphql } from '@/types/prismic/graphql';
 
 // REMINDER REMOVE LATER
 // "items" which can be repeated on slices needs
@@ -12,29 +12,25 @@ import { gql } from '@apollo/client';
 //    }
 //  }
 
-const HERO_SLICE_PRIMARY = gql`
+export const HERO_SLICE_PRIMARY = graphql(`
   fragment HeroSlicePrimary on Landing_pageSlicesHero_sliceDefault {
     primary {
-      __typename
       title
       subtitle
       hero_image
     }
   }
-`;
+`);
 
-const HERO_SLICE_AVATAR = gql`
+export const HERO_SLICE_AVATAR = graphql(`
   fragment HeroSliceAvatar on Landing_pageSlicesHero_sliceAvatar {
     primary {
-      __typename
       title
     }
   }
-`;
+`);
 
-export const HERO_SLICE_FIELDS = gql`
-  ${HERO_SLICE_PRIMARY}
-  ${HERO_SLICE_AVATAR}
+export const HERO_SLICE_FIELDS = graphql(`
   fragment HeroSliceField on Landing_pageSlicesHero_slice {
     type
     label
@@ -44,4 +40,26 @@ export const HERO_SLICE_FIELDS = gql`
       ...HeroSliceAvatar
     }
   }
-`;
+`);
+
+// TEST SLICES FOR DEVELOPMENT <START>
+/* export const AARNI_SLICE_TEST = graphql(`
+  fragment AarniSliceTest on Landing_pageSlicesAarni_sliceDefault {
+    primary {
+      __typename
+      title
+    }
+  }
+`);
+
+export const AARNI_SLICE_FIELDS = graphql(`
+  fragment AarniSliceField on Landing_pageSlicesAarni_slice {
+    type
+    label
+    variation {
+      __typename
+      ...AarniSliceTest
+    }
+  }
+`); */
+// TEST SLICES FOR DEVELOPMENT <END>

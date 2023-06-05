@@ -15,9 +15,7 @@
               "config": {
                 "label": "name",
                 "placeholder": "",
-                "options": [
-                  "neutral-950"
-                ]
+                "options": ["neutral-950"]
               }
             },
             "code": {
@@ -25,14 +23,13 @@
               "config": {
                 "label": "code",
                 "placeholder": "",
-                "options": [
-                  "0a0a0a"
-                ]
+                "options": ["0a0a0a"]
               }
             }
           }
         }
       }
     }
-  }
+  },
+  "format": "custom"
 }

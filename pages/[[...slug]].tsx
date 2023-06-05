@@ -1,29 +1,64 @@
 /* eslint-disable no-underscore-dangle */
-import type { GetStaticProps, GetStaticPaths } from 'next';
+import type { GetStaticProps } from 'next';
 import type { landingPageProps } from '@/types/prismic';
-import type { LandingPageSlices, LandingPage } from '@/types/prismic/graphql/graphql';
+import { getFragmentData } from '@/types/prismic/graphql';
+import type { LandingPageSlices } from '@/types/prismic/graphql/graphql';
 import type { getAllLandingPagesMetaProps } from '@/graphql/queries';
-import { SliceZone, SliceZoneLike } from '@prismicio/react';
+import { SliceZone, SliceLikeGraphQL } from '@prismicio/react';
 import * as prismicH from '@prismicio/helpers';
 import { prismicLinkResolver } from '@/utils/prismic';
+
+import { HERO_SLICE_FIELDS, HERO_SLICE_PRIMARY, HERO_SLICE_AVATAR } from '@/graphql/templates/fragments/slices';
+import { LandingPageSlicesHeroSlice } from '@/types/prismic/graphql/graphql';
 
 import { getAllLandingPagesMeta, getCurrentLandingPage } from '@/graphql/queries';
 import { components } from '@/slices/index';
 
-type HomeSliceZoneProps = SliceZoneLike<LandingPageSlices & { type: string }>;
 interface HomeProps {
-  getPageData: landingPageProps['query'];
+  getPageData: landingPageProps['query']['landing_page'];
 };
 
 const Home: React.FC<HomeProps> = ({ getPageData }) => {
 
-  const getHomeSlices = getPageData?.landing_page?.slices as LandingPage['slices'];
+  const getLandingPageSlices: LandingPageSlices[] | null = getPageData && getPageData.slices && getPageData.slices.map((item): LandingPageSlices => {
+    if (item.__typename === 'Landing_pageSlicesHero_slice') {
+      const getHeroSlices = getFragmentData(HERO_SLICE_FIELDS, item);
+
+      const getCurrentHeroVariant = getHeroSlices && getHeroSlices.variation?.__typename === 'Landing_pageSlicesHero_sliceDefault'
+        ? getFragmentData(HERO_SLICE_PRIMARY, getHeroSlices.variation)
+        : getHeroSlices.variation?.__typename === 'Landing_pageSlicesHero_sliceAvatar'
+          ? getFragmentData(HERO_SLICE_AVATAR, getHeroSlices.variation)
+          : null;
+
+      const currentSlice: LandingPageSlicesHeroSlice = {
+        __typename: getHeroSlices.__typename,
+        type: getHeroSlices.type || null,
+        label: getHeroSlices.label,
+        variation: getCurrentHeroVariant,
+      };
+
+      return currentSlice;
+    }
+
+    return {
+      type: null,
+      label: null,
+      variation: null,
+    };
+  });
+
+  const checkLandingPageSlices = getLandingPageSlices && getLandingPageSlices.filter(value => value.type).length > 0
+    ? getLandingPageSlices.filter(value => value.type)
+    : null;
 
   return (
     <div className="container">
       {
-        getHomeSlices && <>
-          <SliceZone slices={getHomeSlices as HomeSliceZoneProps} components={components} />
+        checkLandingPageSlices && <>
+          <SliceZone
+            slices={checkLandingPageSlices as readonly SliceLikeGraphQL<string>[]}
+            components={components}
+          />
         </>
       }
     </div>
@@ -44,7 +79,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   return {
     props: {
-      getPageData: data,
+      getPageData: data.landing_page,
     },
   };
 };
