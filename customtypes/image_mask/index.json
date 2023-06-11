@@ -1,0 +1,24 @@
+{
+  "id": "image_mask",
+  "label": "Image Mask",
+  "format": "custom",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "config": { "label": "Entry Name", "placeholder": "" },
+        "type": "UID"
+      },
+      "variant": {
+        "type": "Select",
+        "config": {
+          "label": "variant",
+          "placeholder": "Choose mask variant (default is \"avatar\")",
+          "options": ["avatar", "aarni"],
+          "default_value": "avatar"
+        }
+      }
+    }
+  }
+}

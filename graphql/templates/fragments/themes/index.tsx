@@ -1,4 +1,5 @@
 import { gql } from '@apollo/client';
+import { graphql } from '@/types/prismic/graphql/gql';
 
 export const THEME_50_FIELDS = gql`
   fragment Theme50Fields on Theme_50 {
@@ -98,3 +99,12 @@ export const THEME_950_FIELDS = gql`
     }
   }
 `;
+
+export const IMAGE_MASK = graphql(`
+  fragment ImageMask on Image_mask {
+    _meta {
+      uid
+    }
+    variant
+  }
+`);

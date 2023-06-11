@@ -18,6 +18,11 @@ export const HERO_SLICE_PRIMARY = graphql(`
       title
       subtitle
       hero_image
+      show_image_mask
+      image_mask {
+        __typename
+        ...ImageMask
+      }
     }
   }
 `);
@@ -43,8 +48,8 @@ export const HERO_SLICE_FIELDS = graphql(`
 `);
 
 // TEST SLICES FOR DEVELOPMENT <START>
-/* export const AARNI_SLICE_TEST = graphql(`
-  fragment AarniSliceTest on Landing_pageSlicesAarni_sliceDefault {
+export const AARNI_SLICE_PRIMARY = graphql(`
+  fragment AarniSlicePrimary on Landing_pageSlicesAarni_sliceDefault {
     primary {
       __typename
       title
@@ -58,8 +63,8 @@ export const AARNI_SLICE_FIELDS = graphql(`
     label
     variation {
       __typename
-      ...AarniSliceTest
+      ...AarniSlicePrimary
     }
   }
-`); */
+`);
 // TEST SLICES FOR DEVELOPMENT <END>

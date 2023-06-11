@@ -53,6 +53,23 @@
             "constraint": { "width": 350, "height": 350 },
             "thumbnails": []
           }
+        },
+        "show_image_mask": {
+          "type": "Boolean",
+          "config": {
+            "label": "Show Image Mask",
+            "placeholder_false": "Don't show masked image.",
+            "placeholder_true": "Show masked image.",
+            "default_value": false
+          }
+        },
+        "image_mask": {
+          "type": "Link",
+          "config": {
+            "label": "Image Mask",
+            "select": "document",
+            "customtypes": ["image_mask"]
+          }
         }
       },
       "items": {}

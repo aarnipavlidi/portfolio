@@ -9,8 +9,10 @@
 					{
 						"type": "heading1",
 						"content": {
-							"text": "Giant"
-						}
+							"text": "Hey I'm Aarni Pavlidi",
+							"spans": []
+						},
+						"direction": "ltr"
 					}
 				]
 			},
@@ -20,33 +22,46 @@
 					{
 						"type": "paragraph",
 						"content": {
-							"text": "Veniam sunt aliquip qui voluptate enim cillum irure qui incididunt aliqua nulla consequat cupidatat."
-						}
+							"text": "front-end developer, focusing on creating clean and beautiful websites.",
+							"spans": []
+						},
+						"direction": "ltr"
 					}
 				]
 			},
 			"hero_image": {
 				"origin": {
-					"id": "main",
-					"url": "https://images.unsplash.com/photo-1607582278038-6bebbd4d7b72",
-					"width": 4010,
-					"height": 4010
+					"id": "kVg2DQTAK7c",
+					"url": "https://images.unsplash.com/photo-1543610892-0b1f7e6d8ac1?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwxNnx8YXZhdGFyfGVufDB8fHx8MTY4NjMyNDMyMHww&ixlib=rb-4.0.3&q=85",
+					"width": 1856,
+					"height": 2784
 				},
-				"url": "https://images.unsplash.com/photo-1607582278038-6bebbd4d7b72?rect=0%2C0%2C4010%2C4010&w=350&h=350",
+				"url": "https://images.unsplash.com/photo-1543610892-0b1f7e6d8ac1?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwxNnx8YXZhdGFyfGVufDB8fHx8MTY4NjMyNDMyMHww&ixlib=rb-4.0.3&q=85&rect=0%2C464%2C1856%2C1856&w=350&h=350",
 				"width": 350,
 				"height": 350,
 				"edit": {
+					"background": "transparent",
 					"zoom": 1,
 					"crop": {
 						"x": 0,
-						"y": 0
-					},
-					"background": "transparent"
+						"y": 464
+					}
 				},
 				"credits": null,
-				"alt": null,
+				"alt": "Personal picture of avatar.",
 				"__TYPE__": "ImageContent",
 				"thumbnails": {}
+			},
+			"show_image_mask": {
+				"__TYPE__": "BooleanContent",
+				"value": true
+			},
+			"image_mask": {
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "DocumentLink",
+					"id": "mock_document_id"
+				}
 			}
 		},
 		"items": [

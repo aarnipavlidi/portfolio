@@ -1,41 +1,69 @@
+import type { ImageMaskFragment } from '@/types/prismic/graphql/graphql';
 import type { PrismicEditorFieldProps } from '@/types/prismic';
+import type { CSSProperties } from 'react';
+import { useId } from 'react';
 import Image from 'next/image';
 import { PrismicNextImage } from '@prismicio/next';
+import classNames from 'classnames';
 
-interface DesignProps {
-  // src: string;
-  // alt: string;
-  position?: 'static' | 'fixed' | 'absolute' | 'relative' | 'sticky';
-  className?: string;
-  content: PrismicEditorFieldProps['image']
+import Masks from '@/components/Masks';
+
+interface DesignPrismicProps {
+  content: PrismicEditorFieldProps['image'];
+  mask?: ImageMaskFragment | null;
+  showMask?: boolean | null;
 }
 
-const Design: React.FC<DesignProps> = (props) => {
+interface DesignProps extends DesignPrismicProps {
+  src?: string;
+  alt?: string;
+  variant?: 'prismic' | 'custom';
+  position?: 'static' | 'fixed' | 'absolute' | 'relative' | 'sticky';
+  wrapperClass?: string;
+  className?: string;
+}
 
-  // eslint-disable-next-line no-magic-numbers
-  const ar = `${2}:${1}`;
-  // https://example.imgix.net/path/to/image.jpg?w=100&h=100&faceindex=1&crop=face
+const Design: React.FC<DesignProps> = ({ variant = 'prismic', ...props }) => {
+  const wrapperContainer = classNames({
+    [`${props.wrapperClass}`]: props.wrapperClass,
+    [`${props.position}`]: props.position,
+  });
 
+  const imageContainer = classNames({
+    [`${props.className}`]: props.className,
+  });
 
-  // RESEARCHING
-  // using "w" or "h" it seems like not working.
-  // but using instead "width" or "height" works.
+  const generateRandomID = useId();
+  const maskContainer: CSSProperties = {
+    clipPath: `url(#${generateRandomID})`,
+  };
 
   return (
-    <picture className={`${props.position} ${props.className}`}>
-      {/* <Image
-        src={props.src}
-        alt={props.alt}
-        fill
-      /> */}
-      <PrismicNextImage
-        // field={(props.content as any)}
-        field={(props.content as any)}
-        // imgixParams={{ fit: 'crop', ar: '1:1', crop: ['faces'], mask: 'ellipse' }}
-        imgixParams={{ fit: 'crop', crop: ['faces'], ar: '1:1' }}
-        width={350}
-      />
-    </picture>
+    <>
+      <picture className={wrapperContainer} style={props.mask && props.showMask ? maskContainer : undefined}>
+        {
+          variant === 'prismic' && <PrismicNextImage
+            field={props.content}
+            className={imageContainer}
+          />
+        }
+        {
+          variant === 'custom' && (props.src && props.alt) && <Image
+            src={props.src}
+            alt={props.alt}
+            className={imageContainer}
+            fill
+          />
+        }
+        {
+          props.mask && props.showMask && <Masks
+            id={generateRandomID}
+            uid={props.mask._meta.uid}
+            variant={props.mask.variant}
+          />
+        }
+      </picture>
+    </>
   );
 };
 
