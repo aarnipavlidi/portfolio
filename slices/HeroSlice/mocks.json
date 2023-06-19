@@ -22,7 +22,7 @@
 					{
 						"type": "paragraph",
 						"content": {
-							"text": "front-end developer, focusing on creating clean and beautiful websites.",
+							"text": "passionate front-end developer, focusing on creating clean and beautiful websites.",
 							"spans": []
 						},
 						"direction": "ltr"
@@ -31,12 +31,12 @@
 			},
 			"hero_image": {
 				"origin": {
-					"id": "kVg2DQTAK7c",
-					"url": "https://images.unsplash.com/photo-1543610892-0b1f7e6d8ac1?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwxNnx8YXZhdGFyfGVufDB8fHx8MTY4NjMyNDMyMHww&ixlib=rb-4.0.3&q=85",
-					"width": 1856,
-					"height": 2784
+					"id": "iEEBWgY_6lA",
+					"url": "https://images.unsplash.com/photo-1633332755192-727a05c4013d?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHw2fHxhdmF0YXJ8ZW58MHx8fHwxNjg2NTg3NzMzfDA&ixlib=rb-4.0.3&q=85",
+					"width": 6220,
+					"height": 6220
 				},
-				"url": "https://images.unsplash.com/photo-1543610892-0b1f7e6d8ac1?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwxNnx8YXZhdGFyfGVufDB8fHx8MTY4NjMyNDMyMHww&ixlib=rb-4.0.3&q=85&rect=0%2C464%2C1856%2C1856&w=350&h=350",
+				"url": "https://images.unsplash.com/photo-1633332755192-727a05c4013d?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHw2fHxhdmF0YXJ8ZW58MHx8fHwxNjg2NTg3NzMzfDA&ixlib=rb-4.0.3&q=85&rect=0%2C0%2C6220%2C6220&w=350&h=350",
 				"width": 350,
 				"height": 350,
 				"edit": {
@@ -44,7 +44,7 @@
 					"zoom": 1,
 					"crop": {
 						"x": 0,
-						"y": 464
+						"y": 0
 					}
 				},
 				"credits": null,
@@ -57,6 +57,25 @@
 				"value": true
 			},
 			"image_mask": {
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "DocumentLink",
+					"id": "mock_document_id"
+				}
+			},
+			"button": {
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "DocumentLink",
+					"id": "mock_document_id"
+				}
+			},
+			"label": {
+				"__TYPE__": "FieldContent",
+				"value": "steel",
+				"type": "Text"
+			},
+			"href": {
 				"__TYPE__": "LinkContent",
 				"value": {
 					"__TYPE__": "DocumentLink",

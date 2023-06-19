@@ -23,6 +23,16 @@ export const HERO_SLICE_PRIMARY = graphql(`
         __typename
         ...ImageMask
       }
+      button {
+        __typename
+        ...Button
+      }
+      label
+      href {
+        _linkType
+        __typename
+        ...LinkDocumentMeta
+      }
     }
   }
 `);

@@ -5,7 +5,7 @@ import parse from 'html-react-parser';
 
 import classNames from 'classnames';
 
-interface TypographyProps {
+export interface TypographyProps {
   className?: string;
   tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span';
   size?: 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl' | '7xl' | '8xl' | '9xl';

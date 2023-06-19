@@ -6,6 +6,54 @@ import type * as prismicClient from "@prismicio/client";
 type Simplify<T> = {
   [KeyType in keyof T]: T[KeyType];
 };
+/** Content for Button documents */
+interface ButtonDocumentData {
+  /**
+   * Variant field in *Button*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: button.variant
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/core-concepts/select
+   *
+   */
+  variant: prismic.SelectField<"primary" | "secondary">;
+  /**
+   * Size field in *Button*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: button.size
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/core-concepts/select
+   *
+   */
+  size: prismic.SelectField<"xs" | "sm" | "base" | "lg" | "xl">;
+  /**
+   * Full Width field in *Button*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: button.full_width
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/core-concepts/boolean
+   *
+   */
+  full_width: prismic.BooleanField;
+}
+/**
+ * Button document from Prismic
+ *
+ * - **API ID**: `button`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ButtonDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<Simplify<ButtonDocumentData>, "button", Lang>;
 /** Content for Image Mask documents */
 interface ImageMaskDocumentData {
   /**
@@ -779,6 +827,7 @@ export type Theme950Document<Lang extends string = string> =
     Lang
   >;
 export type AllDocumentTypes =
+  | ButtonDocument
   | ImageMaskDocument
   | LandingPageDocument
   | NavigationDocument
@@ -895,6 +944,36 @@ interface HeroSliceSliceDefaultPrimary {
    *
    */
   image_mask: prismic.ContentRelationshipField<"image_mask">;
+  /**
+   * Button field in *HeroSlice → Primary*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_slice.primary.button
+   * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+   *
+   */
+  button: prismic.ContentRelationshipField<"button">;
+  /**
+   * Button Label field in *HeroSlice → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Enter label value for your button. Is visible for both button and links.
+   * - **API ID Path**: hero_slice.primary.label
+   * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+   *
+   */
+  label: prismic.KeyTextField;
+  /**
+   * Button Href field in *HeroSlice → Primary*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_slice.primary.href
+   * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+   *
+   */
+  href: prismic.ContentRelationshipField<"landing_page">;
 }
 /**
  * Default variation for HeroSlice Slice
@@ -964,6 +1043,8 @@ declare module "@prismicio/client" {
   }
   namespace Content {
     export type {
+      ButtonDocumentData,
+      ButtonDocument,
       ImageMaskDocumentData,
       ImageMaskDocument,
       LandingPageDocumentData,

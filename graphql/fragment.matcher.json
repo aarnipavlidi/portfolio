@@ -12,6 +12,7 @@
       "Landing_pageSlicesHero_sliceDefault"
     ],
     "_Document": [
+      "Button",
       "Image_mask",
       "Landing_page",
       "Navigation",
@@ -28,6 +29,7 @@
       "Theme_950"
     ],
     "_Linkable": [
+      "Button",
       "Image_mask",
       "Landing_page",
       "Navigation",

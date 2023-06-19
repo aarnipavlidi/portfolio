@@ -3,7 +3,8 @@ import { getFragmentData } from '@/types/prismic/graphql';
 import { SliceComponentProps, PrismicRichText } from '@prismicio/react';
 import Hero from '@/components/Hero';
 
-import { IMAGE_MASK } from '@/graphql/templates/fragments/themes';
+import { LINK_DOCUMENT_META } from '@/graphql/templates/fragments/documents';
+import { IMAGE_MASK, BUTTON } from '@/graphql/templates/fragments/themes';
 import { HERO_SLICE_PRIMARY, HERO_SLICE_AVATAR } from '@/graphql/templates/fragments/slices';
 
 export type HeroSliceProps = SliceComponentProps<HeroSliceFieldFragment & { type: string}>
@@ -19,6 +20,14 @@ const HeroSlice = ({ slice }: HeroSliceProps): JSX.Element => {
     ? getFragmentData(IMAGE_MASK, getPrimaryVariant.image_mask)
     : null;
 
+  const getPrimaryButton = getPrimaryVariant && getPrimaryVariant.button?.__typename === 'Button'
+    ? getFragmentData(BUTTON, getPrimaryVariant.button)
+    : null;
+
+  const getPrimaryButtonHref = getPrimaryVariant && getPrimaryVariant.href?.__typename === 'Landing_page'
+    ? getFragmentData(LINK_DOCUMENT_META, getPrimaryVariant.href)
+    : null;
+
   // FOR TESTING PURPOSE (PLAYING AROUND WITH DIFFERENT VARIANT ON SLICE)
   // WILL BE DELETED OR RENAMED LATER.
   const getSecondaryVariant = getSliceData && getSliceData.variation?.__typename === 'Landing_pageSlicesHero_sliceAvatar'
@@ -32,8 +41,11 @@ const HeroSlice = ({ slice }: HeroSliceProps): JSX.Element => {
           title={typeof(getPrimaryVariant.title) === 'string' ? getPrimaryVariant.title : <PrismicRichText field={getPrimaryVariant.title} />}
           subtitle={typeof(getPrimaryVariant.subtitle) === 'string' ? getPrimaryVariant.subtitle : <PrismicRichText field={getPrimaryVariant.subtitle} />}
           image={getPrimaryVariant.hero_image}
-          mask={getPrimaryMask}
           showMask={getPrimaryVariant.show_image_mask}
+          mask={getPrimaryMask}
+          button={getPrimaryButton}
+          buttonLabel={getPrimaryVariant.label}
+          buttonHref={getPrimaryButtonHref?._meta.uid || '/'}
         />
       }
       {

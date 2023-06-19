@@ -11,7 +11,7 @@ body {
 }
 
 body {
-  @apply bg-neutral-50;
+  @apply bg-neutral-100;
 }
 
 a {
@@ -26,15 +26,4 @@ a {
 .masks-container {
   position: absolute;
   width: 1px;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    /* color-scheme: dark; */
-  }
-  body {
-    /* color: white;
-    background: black; */
-    background-color: #f1f5f9;
-  }
 }

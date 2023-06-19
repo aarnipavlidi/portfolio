@@ -108,3 +108,14 @@ export const IMAGE_MASK = graphql(`
     variant
   }
 `);
+
+export const BUTTON = graphql(`
+  fragment Button on Button {
+    _meta {
+      uid
+    }
+    variant
+    size
+    full_width
+  }
+`);

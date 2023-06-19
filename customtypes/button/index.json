@@ -1,0 +1,40 @@
+{
+  "id": "button",
+  "label": "Button",
+  "format": "custom",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "config": { "label": "Entry Name", "placeholder": "" },
+        "type": "UID"
+      },
+      "variant": {
+        "type": "Select",
+        "config": {
+          "label": "Variant",
+          "placeholder": "",
+          "options": ["primary", "secondary"]
+        }
+      },
+      "size": {
+        "type": "Select",
+        "config": {
+          "label": "Size",
+          "placeholder": "",
+          "options": ["xs", "sm", "base", "lg", "xl"]
+        }
+      },
+      "full_width": {
+        "type": "Boolean",
+        "config": {
+          "label": "Full Width",
+          "placeholder_false": "No",
+          "placeholder_true": "Yes",
+          "default_value": false
+        }
+      }
+    }
+  }
+}

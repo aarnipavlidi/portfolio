@@ -70,6 +70,29 @@
             "select": "document",
             "customtypes": ["image_mask"]
           }
+        },
+        "button": {
+          "type": "Link",
+          "config": {
+            "label": "Button",
+            "select": "document",
+            "customtypes": ["button"]
+          }
+        },
+        "label": {
+          "type": "Text",
+          "config": {
+            "label": "Button Label",
+            "placeholder": "Enter label value for your button. Is visible for both button and links."
+          }
+        },
+        "href": {
+          "type": "Link",
+          "config": {
+            "label": "Button Href",
+            "select": "document",
+            "customtypes": ["landing_page"]
+          }
         }
       },
       "items": {}
