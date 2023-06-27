@@ -1,13 +1,20 @@
 {
   "possibleTypes": {
     "Landing_pageSlices": [
+      "Landing_pageSlicesAarni_slice",
       "Landing_pageSlicesHero_slice"
+    ],
+    "Landing_pageSlicesAarni_sliceVariation": [
+      "Landing_pageSlicesAarni_sliceDefault"
     ],
     "Landing_pageSlicesHero_sliceVariation": [
       "Landing_pageSlicesHero_sliceAvatar",
       "Landing_pageSlicesHero_sliceDefault"
     ],
     "_Document": [
+      "Button",
+      "Heroicon",
+      "Image_mask",
       "Landing_page",
       "Navigation",
       "Theme_50",
@@ -23,6 +30,9 @@
       "Theme_950"
     ],
     "_Linkable": [
+      "Button",
+      "Heroicon",
+      "Image_mask",
       "Landing_page",
       "Navigation",
       "Theme_50",

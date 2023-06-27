@@ -1,0 +1,36 @@
+{
+  "id": "heroicon",
+  "label": "heroicon",
+  "format": "custom",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "config": {
+          "label": "Entry Name",
+          "placeholder": "Name your icon, should be unique value and correspond with the variant and icon name."
+        },
+        "type": "UID"
+      },
+      "variant": {
+        "type": "Select",
+        "config": {
+          "label": "variant",
+          "placeholder": "Choose variant for the current icon. By default \"solid\" variant will be used for the icon.",
+          "options": ["solid", "outline", "mini"],
+          "default_value": "solid"
+        }
+      },
+      "name": {
+        "type": "Select",
+        "config": {
+          "label": "name",
+          "placeholder": "",
+          "options": ["arrow-small-down", "arrow-small-up"],
+          "default_value": "arrow-small-down"
+        }
+      }
+    }
+  }
+}

@@ -25,7 +25,7 @@ const Navigation: React.FC<NavigationProps> = ({ navigation, mobileMenuScreen, s
 
   const headerContainer = classNames({
     ['w-screen mx-auto px-4 md:container bg-inherit']: true,
-    [`text-${getCurrentLightColor}`]: !mobileMenuScreen,
+    [`text-${getCurrentLightColor} pb-4`]: !mobileMenuScreen,
     [`bg-neutral-600 md:bg-inherit text-neutral-50 md:text-${getCurrentLightColor}`]: mobileMenuScreen,
   });
 
@@ -86,7 +86,9 @@ const Navigation: React.FC<NavigationProps> = ({ navigation, mobileMenuScreen, s
                 ? getFragmentData(LINK_DOCUMENT_META, link.link_href)
                 : null;
 
-              const getCurrentLinkPath = getLinkHrefFragment?._meta.uid;
+              const getCurrentLinkPath = getLinkHrefFragment?._meta.uid === 'home'
+                ? '/'
+                : getLinkHrefFragment?._meta.uid;
 
               return (
                 <div key={`${link.link_name}-${index}`} className="uppercase md:normal-case">

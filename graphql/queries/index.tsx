@@ -25,7 +25,7 @@ export const getAllLandingPagesMeta = async ({ currentID, latestReference }: get
     ...(latestReference ? { headers: { 'Prismic-ref': latestReference } } : {} ),
   };
 
-  const { data } = await prismic.query<allLandingPagesMetaProps['query'], allLandingPagesMetaProps['variables']>({
+  const { data } = await prismic.query({
     query: GET_ALL_LANDING_PAGES_META,
     variables: {
       getByID: currentID,
@@ -39,7 +39,7 @@ export const getAllLandingPagesMeta = async ({ currentID, latestReference }: get
 export const getCurrentLandingPage = async (currentSlug: string | string[], currentLocale: string) => {
   const prismic = getApolloClient();
 
-  const { data, error } = await prismic.query<landingPageProps['query'], landingPageProps['variables']>({
+  const { data, error } = await prismic.query({
     query: GET_CURRENT_LANDING_PAGE,
     errorPolicy: 'all',
     variables: {

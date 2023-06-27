@@ -1,7 +1,6 @@
 import { CustomIconsProps } from '@/types/icons';
 
-const Bars3: React.FC<CustomIconsProps> = ({ variant = 'solid', color, className, ...props }) => {
-
+const ArrowSmallUp: React.FC<CustomIconsProps> = ({ variant = 'solid', color, className, ...props }) => {
   return (
     <svg
       id={props.name}
@@ -18,7 +17,7 @@ const Bars3: React.FC<CustomIconsProps> = ({ variant = 'solid', color, className
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
-            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+            d="M12 19.5v-15m0 0-6.75 6.75M12 4.5l6.75 6.75"
           />
         </>
       }
@@ -26,7 +25,7 @@ const Bars3: React.FC<CustomIconsProps> = ({ variant = 'solid', color, className
         variant === 'solid' && <>
           <path
             fillRule="evenodd"
-            d="M3 6.75A.75.75 0 0 1 3.75 6h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 6.75zM3 12a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 12zm0 5.25a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75z"
+            d="M12 20.25a.75.75 0 0 1-.75-.75V6.31l-5.47 5.47a.75.75 0 0 1-1.06-1.06l6.75-6.75a.75.75 0 0 1 1.06 0l6.75 6.75a.75.75 0 1 1-1.06 1.06l-5.47-5.47V19.5a.75.75 0 0 1-.75.75z"
             clipRule="evenodd"
           />
         </>
@@ -35,7 +34,7 @@ const Bars3: React.FC<CustomIconsProps> = ({ variant = 'solid', color, className
         variant === 'mini' && <>
           <path
             fillRule="evenodd"
-            d="M2 4.75A.75.75 0 0 1 2.75 4h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 4.75zM2 10a.75.75 0 0 1 .75-.75h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 10zm0 5.25a.75.75 0 0 1 .75-.75h14.5a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1-.75-.75z"
+            d="M10 15a.75.75 0 0 1-.75-.75V7.612L7.29 9.77a.75.75 0 0 1-1.08-1.04l3.25-3.5a.75.75 0 0 1 1.08 0l3.25 3.5a.75.75 0 1 1-1.08 1.04l-1.96-2.158v6.638A.75.75 0 0 1 10 15z"
             clipRule="evenodd"
           />
         </>
@@ -44,4 +43,4 @@ const Bars3: React.FC<CustomIconsProps> = ({ variant = 'solid', color, className
   );
 };
 
-export default Bars3;
+export default ArrowSmallUp;

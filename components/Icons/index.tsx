@@ -7,6 +7,8 @@ import StackingBlock from '@/components/Svg/icons/Custom/StackingBlock';
 import TerminalTag from '@/components/Svg/icons/Custom/TerminalTag';
 
 // Hero Icons
+import ArrowSmallDown from '@/components/Svg/icons/Hero/arrow-small-down';
+import ArrowSmallUp from '@/components/Svg/icons/Hero/arrow-small-up';
 import Bars3 from '@/components/Svg/icons/Hero/bars-3';
 import XMark from '@/components/Svg/icons/Hero/x-mark';
 
@@ -17,6 +19,8 @@ const Icons: React.FC<CustomIconsProps> = ({ name, variant = 'solid', ...props }
     'OverlayBlock': OverlayBlock,
     'StackingBlock': StackingBlock,
     'TerminalTag': TerminalTag,
+    'arrow-small-down': ArrowSmallDown,
+    'arrow-small-up': ArrowSmallUp,
     'bars-3': Bars3,
     'x-mark': XMark,
   };

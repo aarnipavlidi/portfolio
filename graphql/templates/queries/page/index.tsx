@@ -1,7 +1,6 @@
-import { gql } from '@apollo/client';
-import { HERO_SLICE_FIELDS } from '../../fragments/slices';
+import { graphql } from '@/types/prismic/graphql';
 
-export const GET_ALL_LANDING_PAGES_META = gql`
+export const GET_ALL_LANDING_PAGES_META = graphql(`
   query getAllLandingPagesMeta($getByID: [String!]) {
     allLanding_pages(id_in: $getByID) {
       edges {
@@ -20,15 +19,15 @@ export const GET_ALL_LANDING_PAGES_META = gql`
       }
     }
   }
-`;
+`);
 
-export const GET_CURRENT_LANDING_PAGE = gql`
-  ${HERO_SLICE_FIELDS}
+export const GET_CURRENT_LANDING_PAGE = graphql(`
   query getCurrentLandingPage($slug: String!, $defaultLocale: String!) {
     landing_page(uid: $slug, lang: $defaultLocale) {
       slices {
         ...HeroSliceField
+        ...AarniSliceField
       }
     }
   }
-`;
+`);

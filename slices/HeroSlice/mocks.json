@@ -9,8 +9,10 @@
 					{
 						"type": "heading1",
 						"content": {
-							"text": "Giant"
-						}
+							"text": "Hey I'm Aarni Pavlidi",
+							"spans": []
+						},
+						"direction": "ltr"
 					}
 				]
 			},
@@ -20,33 +22,68 @@
 					{
 						"type": "paragraph",
 						"content": {
-							"text": "Veniam sunt aliquip qui voluptate enim cillum irure qui incididunt aliqua nulla consequat cupidatat."
-						}
+							"text": "passionate front-end developer, focusing on creating clean and beautiful websites.",
+							"spans": []
+						},
+						"direction": "ltr"
 					}
 				]
 			},
 			"hero_image": {
 				"origin": {
-					"id": "main",
-					"url": "https://images.unsplash.com/photo-1607582278038-6bebbd4d7b72",
-					"width": 4010,
-					"height": 4010
+					"id": "iEEBWgY_6lA",
+					"url": "https://images.unsplash.com/photo-1633332755192-727a05c4013d?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHw2fHxhdmF0YXJ8ZW58MHx8fHwxNjg2NTg3NzMzfDA&ixlib=rb-4.0.3&q=85",
+					"width": 6220,
+					"height": 6220
 				},
-				"url": "https://images.unsplash.com/photo-1607582278038-6bebbd4d7b72?rect=0%2C0%2C4010%2C4010&w=350&h=350",
+				"url": "https://images.unsplash.com/photo-1633332755192-727a05c4013d?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHw2fHxhdmF0YXJ8ZW58MHx8fHwxNjg2NTg3NzMzfDA&ixlib=rb-4.0.3&q=85&rect=0%2C0%2C6220%2C6220&w=350&h=350",
 				"width": 350,
 				"height": 350,
 				"edit": {
+					"background": "transparent",
 					"zoom": 1,
 					"crop": {
 						"x": 0,
 						"y": 0
-					},
-					"background": "transparent"
+					}
 				},
 				"credits": null,
-				"alt": null,
+				"alt": "Personal picture of avatar.",
 				"__TYPE__": "ImageContent",
 				"thumbnails": {}
+			},
+			"image_mask": {
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "DocumentLink",
+					"id": "mock_document_id"
+				}
+			},
+			"button": {
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "DocumentLink",
+					"id": "mock_document_id"
+				}
+			},
+			"label": {
+				"__TYPE__": "FieldContent",
+				"value": "steel",
+				"type": "Text"
+			},
+			"href": {
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "DocumentLink",
+					"id": "mock_document_id"
+				}
+			},
+			"icon": {
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "DocumentLink",
+					"id": "mock_document_id"
+				}
 			}
 		},
 		"items": [

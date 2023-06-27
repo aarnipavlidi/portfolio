@@ -1,0 +1,45 @@
+{
+  "id": "button",
+  "label": "Button",
+  "format": "custom",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "config": {
+          "label": "Entry Name",
+          "placeholder": "Name your button, should be unique value and correspond with the variant and button size."
+        },
+        "type": "UID"
+      },
+      "variant": {
+        "type": "Select",
+        "config": {
+          "label": "Variant",
+          "placeholder": "",
+          "options": ["primary", "secondary"],
+          "default_value": "primary"
+        }
+      },
+      "size": {
+        "type": "Select",
+        "config": {
+          "label": "Size",
+          "placeholder": "",
+          "options": ["xs", "sm", "base", "lg", "xl"],
+          "default_value": "xs"
+        }
+      },
+      "full_width": {
+        "type": "Boolean",
+        "config": {
+          "label": "Full Width",
+          "placeholder_false": "No",
+          "placeholder_true": "Yes",
+          "default_value": false
+        }
+      }
+    }
+  }
+}

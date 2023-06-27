@@ -1,32 +1,33 @@
 /* eslint-disable no-underscore-dangle */
-import type { GetStaticProps, GetStaticPaths } from 'next';
+import type { GetStaticProps } from 'next';
 import type { landingPageProps } from '@/types/prismic';
 import type { LandingPageSlices, LandingPage } from '@/types/prismic/graphql/graphql';
-import type { getAllLandingPagesMetaProps } from '@/graphql/queries';
+import { getAllLandingPagesMeta, getAllLandingPagesMetaProps, getCurrentLandingPage } from '@/graphql/queries';
 import { SliceZone, SliceZoneLike } from '@prismicio/react';
 import * as prismicH from '@prismicio/helpers';
 import { prismicLinkResolver } from '@/utils/prismic';
-
-import { getAllLandingPagesMeta, getCurrentLandingPage } from '@/graphql/queries';
 import { components } from '@/slices/index';
 
-type HomeSliceZoneProps = SliceZoneLike<LandingPageSlices & { type: string }>;
+type LandingPageSliceZoneProps = SliceZoneLike<LandingPageSlices & { type: string }>;
 interface HomeProps {
-  getPageData: landingPageProps['query'];
+  getPageData: landingPageProps['query']['landing_page'];
 };
 
 const Home: React.FC<HomeProps> = ({ getPageData }) => {
 
-  const getHomeSlices = getPageData?.landing_page?.slices as LandingPage['slices'];
+  const getLandingPageSlices = (getPageData && getPageData.slices as LandingPage['slices']) as LandingPageSliceZoneProps;
 
   return (
-    <div className="container">
+    <>
       {
-        getHomeSlices && <>
-          <SliceZone slices={getHomeSlices as HomeSliceZoneProps} components={components} />
+        getLandingPageSlices && <>
+          <SliceZone
+            slices={getLandingPageSlices}
+            components={components}
+          />
         </>
       }
-    </div>
+    </>
   );
 };
 
@@ -44,7 +45,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   return {
     props: {
-      getPageData: data,
+      getPageData: data.landing_page,
     },
   };
 };
