@@ -1,4 +1,4 @@
-import type { ImageMaskFragment, ButtonFragment } from '@/types/prismic/graphql/graphql';
+import type { ImageMaskFragment, HeroIconFragment, ButtonFragment } from '@/types/prismic/graphql/graphql';
 import type { PrismicEditorFieldProps } from '@/types/prismic';
 import Typography from '@/components/Typography';
 import Design from '@/components/Design';
@@ -8,11 +8,11 @@ interface HeroProps {
   title: JSX.Element | string;
   subtitle?: JSX.Element | string;
   image?: PrismicEditorFieldProps['image'];
-  showMask?: boolean | null;
   mask?: ImageMaskFragment | null;
+  icon?: HeroIconFragment | null;
   button?: ButtonFragment | null;
   buttonLabel?: string | null;
-  buttonHref?: string;
+  buttonHref?: string | null;
 }
 
 const Hero: React.FC<HeroProps> = (props) => {
@@ -39,11 +39,10 @@ const Hero: React.FC<HeroProps> = (props) => {
           }
           {
             props.button && props.buttonLabel && <Button
+              className="mt-4"
               content={props.buttonLabel}
-              icon='bars-3'
-              variant={props.button.variant}
-              size={props.button.size}
-              fullWidth={props.button.full_width}
+              icon={props.icon}
+              button={props.button}
               href={props.buttonHref}
             />
           }
@@ -53,7 +52,6 @@ const Hero: React.FC<HeroProps> = (props) => {
             <Design
               content={props.image}
               mask={props.mask}
-              showMask={props.showMask}
               className="rounded-3xl"
             />
           </div>

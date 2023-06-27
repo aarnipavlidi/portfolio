@@ -7,7 +7,10 @@
   "json": {
     "Main": {
       "uid": {
-        "config": { "label": "Entry Name", "placeholder": "" },
+        "config": {
+          "label": "Entry Name",
+          "placeholder": "Name your button, should be unique value and correspond with the variant and button size."
+        },
         "type": "UID"
       },
       "variant": {
@@ -15,7 +18,8 @@
         "config": {
           "label": "Variant",
           "placeholder": "",
-          "options": ["primary", "secondary"]
+          "options": ["primary", "secondary"],
+          "default_value": "primary"
         }
       },
       "size": {
@@ -23,7 +27,8 @@
         "config": {
           "label": "Size",
           "placeholder": "",
-          "options": ["xs", "sm", "base", "lg", "xl"]
+          "options": ["xs", "sm", "base", "lg", "xl"],
+          "default_value": "xs"
         }
       },
       "full_width": {

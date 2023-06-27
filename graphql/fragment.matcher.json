@@ -13,6 +13,7 @@
     ],
     "_Document": [
       "Button",
+      "Heroicon",
       "Image_mask",
       "Landing_page",
       "Navigation",
@@ -30,6 +31,7 @@
     ],
     "_Linkable": [
       "Button",
+      "Heroicon",
       "Image_mask",
       "Landing_page",
       "Navigation",

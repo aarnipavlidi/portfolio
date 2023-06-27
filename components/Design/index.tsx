@@ -11,7 +11,6 @@ import Masks from '@/components/Masks';
 interface DesignPrismicProps {
   content: PrismicEditorFieldProps['image'];
   mask?: ImageMaskFragment | null;
-  showMask?: boolean | null;
 }
 
 interface DesignProps extends DesignPrismicProps {
@@ -40,7 +39,7 @@ const Design: React.FC<DesignProps> = ({ variant = 'prismic', ...props }) => {
 
   return (
     <>
-      <picture className={wrapperContainer} style={props.mask && props.showMask ? maskContainer : undefined}>
+      <picture className={wrapperContainer} style={props.mask ? maskContainer : undefined}>
         {
           variant === 'prismic' && <PrismicNextImage
             field={props.content}
@@ -56,7 +55,7 @@ const Design: React.FC<DesignProps> = ({ variant = 'prismic', ...props }) => {
           />
         }
         {
-          props.mask && props.showMask && <Masks
+          props.mask && <Masks
             id={generateRandomID}
             uid={props.mask._meta.uid}
             variant={props.mask.variant}

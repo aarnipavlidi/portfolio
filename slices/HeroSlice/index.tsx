@@ -4,7 +4,7 @@ import { SliceComponentProps, PrismicRichText } from '@prismicio/react';
 import Hero from '@/components/Hero';
 
 import { LINK_DOCUMENT_META } from '@/graphql/templates/fragments/documents';
-import { IMAGE_MASK, BUTTON } from '@/graphql/templates/fragments/themes';
+import { IMAGE_MASK, HERO_ICON, BUTTON } from '@/graphql/templates/fragments/themes';
 import { HERO_SLICE_PRIMARY, HERO_SLICE_AVATAR } from '@/graphql/templates/fragments/slices';
 
 export type HeroSliceProps = SliceComponentProps<HeroSliceFieldFragment & { type: string}>
@@ -18,6 +18,10 @@ const HeroSlice = ({ slice }: HeroSliceProps): JSX.Element => {
 
   const getPrimaryMask = getPrimaryVariant && getPrimaryVariant.image_mask?.__typename === 'Image_mask'
     ? getFragmentData(IMAGE_MASK, getPrimaryVariant.image_mask)
+    : null;
+
+  const getPrimaryIcon = getPrimaryVariant && getPrimaryVariant.icon?.__typename === 'Heroicon'
+    ? getFragmentData(HERO_ICON, getPrimaryVariant.icon)
     : null;
 
   const getPrimaryButton = getPrimaryVariant && getPrimaryVariant.button?.__typename === 'Button'
@@ -41,11 +45,11 @@ const HeroSlice = ({ slice }: HeroSliceProps): JSX.Element => {
           title={typeof(getPrimaryVariant.title) === 'string' ? getPrimaryVariant.title : <PrismicRichText field={getPrimaryVariant.title} />}
           subtitle={typeof(getPrimaryVariant.subtitle) === 'string' ? getPrimaryVariant.subtitle : <PrismicRichText field={getPrimaryVariant.subtitle} />}
           image={getPrimaryVariant.hero_image}
-          showMask={getPrimaryVariant.show_image_mask}
           mask={getPrimaryMask}
+          icon={getPrimaryIcon}
           button={getPrimaryButton}
           buttonLabel={getPrimaryVariant.label}
-          buttonHref={getPrimaryButtonHref?._meta.uid || '/'}
+          buttonHref={getPrimaryButtonHref?._meta.uid}
         />
       }
       {

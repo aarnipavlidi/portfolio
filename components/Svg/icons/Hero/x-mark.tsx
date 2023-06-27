@@ -1,6 +1,6 @@
 import { CustomIconsProps } from '@/types/icons';
 
-const XMark: React.FC<CustomIconsProps> = ({ variant = 'outline', color, className, ...props }) => {
+const XMark: React.FC<CustomIconsProps> = ({ variant = 'solid', color, className, ...props }) => {
 
   return (
     <svg

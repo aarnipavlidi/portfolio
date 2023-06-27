@@ -14,7 +14,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  */
 const documents = {
     "\n  fragment LinkDocumentMeta on _Document {\n    __typename\n    _meta {\n      id\n      uid\n      type\n      tags\n      lang\n      firstPublicationDate\n      lastPublicationDate\n    }\n  }\n": types.LinkDocumentMetaFragmentDoc,
-    "\n  fragment HeroSlicePrimary on Landing_pageSlicesHero_sliceDefault {\n    primary {\n      title\n      subtitle\n      hero_image\n      show_image_mask\n      image_mask {\n        __typename\n        ...ImageMask\n      }\n      button {\n        __typename\n        ...Button\n      }\n      label\n      href {\n        _linkType\n        __typename\n        ...LinkDocumentMeta\n      }\n    }\n  }\n": types.HeroSlicePrimaryFragmentDoc,
+    "\n  fragment HeroSlicePrimary on Landing_pageSlicesHero_sliceDefault {\n    primary {\n      title\n      subtitle\n      hero_image\n      image_mask {\n        __typename\n        ...ImageMask\n      }\n      icon {\n        __typename\n        ...HeroIcon\n      }\n      button {\n        __typename\n        ...Button\n      }\n      label\n      href {\n        _linkType\n        __typename\n        ...LinkDocumentMeta\n      }\n    }\n  }\n": types.HeroSlicePrimaryFragmentDoc,
     "\n  fragment HeroSliceAvatar on Landing_pageSlicesHero_sliceAvatar {\n    primary {\n      title\n    }\n  }\n": types.HeroSliceAvatarFragmentDoc,
     "\n  fragment HeroSliceField on Landing_pageSlicesHero_slice {\n    type\n    label\n    variation {\n      __typename\n      ...HeroSlicePrimary\n      ...HeroSliceAvatar\n    }\n  }\n": types.HeroSliceFieldFragmentDoc,
     "\n  fragment AarniSlicePrimary on Landing_pageSlicesAarni_sliceDefault {\n    primary {\n      __typename\n      title\n    }\n  }\n": types.AarniSlicePrimaryFragmentDoc,
@@ -32,6 +32,7 @@ const documents = {
     "\n  fragment Theme950Fields on Theme_950 {\n    light {\n      name\n      code\n    }\n  }\n": types.Theme950FieldsFragmentDoc,
     "\n  fragment ImageMask on Image_mask {\n    _meta {\n      uid\n    }\n    variant\n  }\n": types.ImageMaskFragmentDoc,
     "\n  fragment Button on Button {\n    _meta {\n      uid\n    }\n    variant\n    size\n    full_width\n  }\n": types.ButtonFragmentDoc,
+    "\n  fragment HeroIcon on Heroicon {\n    _meta {\n      uid\n    }\n    variant\n    name\n  }\n": types.HeroIconFragmentDoc,
     "\n  query getCurrentNavigation {\n    allNavigations {\n      edges {\n        node {\n          position\n          navigation_title\n          navigation_links {\n            link_name\n            link_href {\n              _linkType\n              __typename\n              ...LinkDocumentMeta\n            }\n          }\n          color {\n            ...Theme50Fields\n            ...Theme100Fields\n            ...Theme200Fields\n            ...Theme300Fields\n            ...Theme400Fields\n            ...Theme500Fields\n            ...Theme600Fields\n            ...Theme700Fields\n            ...Theme800Fields\n            ...Theme900Fields\n            ...Theme950Fields\n          }\n        }\n      }\n    }\n  }\n": types.GetCurrentNavigationDocument,
     "\n  query getAllLandingPagesMeta($getByID: [String!]) {\n    allLanding_pages(id_in: $getByID) {\n      edges {\n        node {\n          _linkType\n          _meta {\n            id\n            uid\n            type\n            tags\n            lang\n            firstPublicationDate\n            lastPublicationDate\n          }\n        }\n      }\n    }\n  }\n": types.GetAllLandingPagesMetaDocument,
     "\n  query getCurrentLandingPage($slug: String!, $defaultLocale: String!) {\n    landing_page(uid: $slug, lang: $defaultLocale) {\n      slices {\n        ...HeroSliceField\n        ...AarniSliceField\n      }\n    }\n  }\n": types.GetCurrentLandingPageDocument,
@@ -58,7 +59,7 @@ export function graphql(source: "\n  fragment LinkDocumentMeta on _Document {\n 
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  fragment HeroSlicePrimary on Landing_pageSlicesHero_sliceDefault {\n    primary {\n      title\n      subtitle\n      hero_image\n      show_image_mask\n      image_mask {\n        __typename\n        ...ImageMask\n      }\n      button {\n        __typename\n        ...Button\n      }\n      label\n      href {\n        _linkType\n        __typename\n        ...LinkDocumentMeta\n      }\n    }\n  }\n"): (typeof documents)["\n  fragment HeroSlicePrimary on Landing_pageSlicesHero_sliceDefault {\n    primary {\n      title\n      subtitle\n      hero_image\n      show_image_mask\n      image_mask {\n        __typename\n        ...ImageMask\n      }\n      button {\n        __typename\n        ...Button\n      }\n      label\n      href {\n        _linkType\n        __typename\n        ...LinkDocumentMeta\n      }\n    }\n  }\n"];
+export function graphql(source: "\n  fragment HeroSlicePrimary on Landing_pageSlicesHero_sliceDefault {\n    primary {\n      title\n      subtitle\n      hero_image\n      image_mask {\n        __typename\n        ...ImageMask\n      }\n      icon {\n        __typename\n        ...HeroIcon\n      }\n      button {\n        __typename\n        ...Button\n      }\n      label\n      href {\n        _linkType\n        __typename\n        ...LinkDocumentMeta\n      }\n    }\n  }\n"): (typeof documents)["\n  fragment HeroSlicePrimary on Landing_pageSlicesHero_sliceDefault {\n    primary {\n      title\n      subtitle\n      hero_image\n      image_mask {\n        __typename\n        ...ImageMask\n      }\n      icon {\n        __typename\n        ...HeroIcon\n      }\n      button {\n        __typename\n        ...Button\n      }\n      label\n      href {\n        _linkType\n        __typename\n        ...LinkDocumentMeta\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -127,6 +128,10 @@ export function graphql(source: "\n  fragment ImageMask on Image_mask {\n    _me
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n  fragment Button on Button {\n    _meta {\n      uid\n    }\n    variant\n    size\n    full_width\n  }\n"): (typeof documents)["\n  fragment Button on Button {\n    _meta {\n      uid\n    }\n    variant\n    size\n    full_width\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  fragment HeroIcon on Heroicon {\n    _meta {\n      uid\n    }\n    variant\n    name\n  }\n"): (typeof documents)["\n  fragment HeroIcon on Heroicon {\n    _meta {\n      uid\n    }\n    variant\n    name\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

@@ -52,10 +52,6 @@
 				"__TYPE__": "ImageContent",
 				"thumbnails": {}
 			},
-			"show_image_mask": {
-				"__TYPE__": "BooleanContent",
-				"value": true
-			},
 			"image_mask": {
 				"__TYPE__": "LinkContent",
 				"value": {
@@ -76,6 +72,13 @@
 				"type": "Text"
 			},
 			"href": {
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "DocumentLink",
+					"id": "mock_document_id"
+				}
+			},
+			"icon": {
 				"__TYPE__": "LinkContent",
 				"value": {
 					"__TYPE__": "DocumentLink",

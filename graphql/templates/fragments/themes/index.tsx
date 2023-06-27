@@ -119,3 +119,13 @@ export const BUTTON = graphql(`
     full_width
   }
 `);
+
+export const HERO_ICON = graphql(`
+  fragment HeroIcon on Heroicon {
+    _meta {
+      uid
+    }
+    variant
+    name
+  }
+`);

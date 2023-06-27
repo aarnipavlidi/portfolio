@@ -13,23 +13,25 @@ interface ButtonDocumentData {
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
+   * - **Default Value**: primary
    * - **API ID Path**: button.variant
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/core-concepts/select
    *
    */
-  variant: prismic.SelectField<"primary" | "secondary">;
+  variant: prismic.SelectField<"primary" | "secondary", "filled">;
   /**
    * Size field in *Button*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
+   * - **Default Value**: xs
    * - **API ID Path**: button.size
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/core-concepts/select
    *
    */
-  size: prismic.SelectField<"xs" | "sm" | "base" | "lg" | "xl">;
+  size: prismic.SelectField<"xs" | "sm" | "base" | "lg" | "xl", "filled">;
   /**
    * Full Width field in *Button*
    *
@@ -54,6 +56,48 @@ interface ButtonDocumentData {
  */
 export type ButtonDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<ButtonDocumentData>, "button", Lang>;
+/** Content for heroicon documents */
+interface HeroiconDocumentData {
+  /**
+   * variant field in *heroicon*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: Choose variant for the current icon. By default "solid" variant will be used for the icon.
+   * - **Default Value**: solid
+   * - **API ID Path**: heroicon.variant
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/core-concepts/select
+   *
+   */
+  variant: prismic.SelectField<"solid" | "outline" | "mini", "filled">;
+  /**
+   * name field in *heroicon*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: arrow-small-down
+   * - **API ID Path**: heroicon.name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/core-concepts/select
+   *
+   */
+  name: prismic.SelectField<"arrow-small-down" | "arrow-small-up", "filled">;
+}
+/**
+ * heroicon document from Prismic
+ *
+ * - **API ID**: `heroicon`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type HeroiconDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<HeroiconDocumentData>,
+    "heroicon",
+    Lang
+  >;
 /** Content for Image Mask documents */
 interface ImageMaskDocumentData {
   /**
@@ -828,6 +872,7 @@ export type Theme950Document<Lang extends string = string> =
   >;
 export type AllDocumentTypes =
   | ButtonDocument
+  | HeroiconDocument
   | ImageMaskDocument
   | LandingPageDocument
   | NavigationDocument
@@ -924,17 +969,6 @@ interface HeroSliceSliceDefaultPrimary {
    */
   hero_image: prismic.ImageField<never>;
   /**
-   * Show Image Mask field in *HeroSlice → Primary*
-   *
-   * - **Field Type**: Boolean
-   * - **Placeholder**: *None*
-   * - **Default Value**: false
-   * - **API ID Path**: hero_slice.primary.show_image_mask
-   * - **Documentation**: https://prismic.io/docs/core-concepts/boolean
-   *
-   */
-  show_image_mask: prismic.BooleanField;
-  /**
    * Image Mask field in *HeroSlice → Primary*
    *
    * - **Field Type**: Content Relationship
@@ -944,6 +978,16 @@ interface HeroSliceSliceDefaultPrimary {
    *
    */
   image_mask: prismic.ContentRelationshipField<"image_mask">;
+  /**
+   * icon field in *HeroSlice → Primary*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_slice.primary.icon
+   * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+   *
+   */
+  icon: prismic.ContentRelationshipField<"heroicon">;
   /**
    * Button field in *HeroSlice → Primary*
    *
@@ -1045,6 +1089,8 @@ declare module "@prismicio/client" {
     export type {
       ButtonDocumentData,
       ButtonDocument,
+      HeroiconDocumentData,
+      HeroiconDocument,
       ImageMaskDocumentData,
       ImageMaskDocument,
       LandingPageDocumentData,

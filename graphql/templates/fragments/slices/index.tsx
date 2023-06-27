@@ -18,10 +18,13 @@ export const HERO_SLICE_PRIMARY = graphql(`
       title
       subtitle
       hero_image
-      show_image_mask
       image_mask {
         __typename
         ...ImageMask
+      }
+      icon {
+        __typename
+        ...HeroIcon
       }
       button {
         __typename
