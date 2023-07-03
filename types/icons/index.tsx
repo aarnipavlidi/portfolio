@@ -1,11 +1,11 @@
 import type { Content } from '@prismicio/client';
 import { SVGProps } from 'react';
 
-type CustomIconNameType = 'HamburgerMenu' | 'OverlayBlock' | 'StackingBlock' | 'TerminalTag';
+type CustomIconNameType = 'GitHub' | 'HamburgerMenu' | 'OverlayBlock' | 'PrimaryFormation' | 'SquareDot' | 'StackingBlock' | 'TerminalTag';
 type HeroIconNameType = 'bars-3' | 'x-mark';
 
 export interface CustomIconsProps extends SVGProps<SVGSVGElement> {
-  name: CustomIconNameType | HeroIconNameType | Content.HeroiconDocumentData['name'];
+  name: CustomIconNameType | HeroIconNameType | Content.HeroiconDocumentData['name'] | Content.IconsListDocumentDataCollectionItem['icon'];
   variant?: Content.HeroiconDocumentData['variant'];
   color: 'current' | 'inherit';
   className?: string;

@@ -129,3 +129,15 @@ export const HERO_ICON = graphql(`
     name
   }
 `);
+
+export const ICONS_LIST = graphql(`
+  fragment IconsList on Icons_list {
+    _meta {
+      uid
+    }
+    collection {
+      name
+      icon
+    }
+  }
+`);

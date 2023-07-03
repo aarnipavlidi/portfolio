@@ -1,0 +1,36 @@
+{
+  "id": "icons_list",
+  "label": "Icons List",
+  "format": "custom",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "config": { "label": "Entry Name", "placeholder": "" },
+        "type": "UID"
+      },
+      "collection": {
+        "type": "Group",
+        "config": {
+          "label": "Collection",
+          "fields": {
+            "name": {
+              "type": "Text",
+              "config": { "label": "name", "placeholder": "" }
+            },
+            "icon": {
+              "type": "Select",
+              "config": {
+                "label": "icon",
+                "placeholder": "",
+                "options": ["tailwindcss", "graphql", "react", "nextjs"],
+                "default_value": "tailwindcss"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

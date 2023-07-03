@@ -26,7 +26,7 @@ export const GET_CURRENT_LANDING_PAGE = graphql(`
     landing_page(uid: $slug, lang: $defaultLocale) {
       slices {
         ...HeroSliceField
-        ...AarniSliceField
+        ...CardSliceField
       }
     }
   }
