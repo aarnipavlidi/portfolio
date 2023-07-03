@@ -27,7 +27,11 @@
         "config": {
           "label": "name",
           "placeholder": "",
-          "options": ["arrow-small-down", "arrow-small-up"],
+          "options": [
+            "arrow-small-down",
+            "arrow-small-up",
+            "arrow-small-right"
+          ],
           "default_value": "arrow-small-down"
         }
       }

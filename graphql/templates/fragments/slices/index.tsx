@@ -60,24 +60,40 @@ export const HERO_SLICE_FIELDS = graphql(`
   }
 `);
 
-// TEST SLICES FOR DEVELOPMENT <START>
-export const AARNI_SLICE_PRIMARY = graphql(`
-  fragment AarniSlicePrimary on Landing_pageSlicesAarni_sliceDefault {
+export const CARD_SLICE_PRIMARY = graphql(`
+  fragment CardSlicePrimary on Landing_pageSlicesCard_sliceDefault {
     primary {
-      __typename
       title
+      subtitle
+    }
+    items {
+      card_image
+      name
+      collection {
+        __typename
+        ...IconsList
+      }
+      description
+      icon {
+        __typename
+        ...HeroIcon
+      }
+      button {
+        __typename
+        ...Button
+      }
+      label
     }
   }
 `);
 
-export const AARNI_SLICE_FIELDS = graphql(`
-  fragment AarniSliceField on Landing_pageSlicesAarni_slice {
+export const CARD_SLICE_FIELDS = graphql(`
+  fragment CardSliceField on Landing_pageSlicesCard_slice {
     type
     label
     variation {
       __typename
-      ...AarniSlicePrimary
+      ...CardSlicePrimary
     }
   }
 `);
-// TEST SLICES FOR DEVELOPMENT <END>

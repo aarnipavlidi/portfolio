@@ -81,7 +81,10 @@ interface HeroiconDocumentData {
    * - **Documentation**: https://prismic.io/docs/core-concepts/select
    *
    */
-  name: prismic.SelectField<"arrow-small-down" | "arrow-small-up", "filled">;
+  name: prismic.SelectField<
+    "arrow-small-down" | "arrow-small-up" | "arrow-small-right",
+    "filled"
+  >;
 }
 /**
  * heroicon document from Prismic
@@ -96,6 +99,65 @@ export type HeroiconDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<
     Simplify<HeroiconDocumentData>,
     "heroicon",
+    Lang
+  >;
+/** Content for Icons List documents */
+interface IconsListDocumentData {
+  /**
+   * Collection field in *Icons List*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: icons_list.collection[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/core-concepts/group
+   *
+   */
+  collection: prismic.GroupField<Simplify<IconsListDocumentDataCollectionItem>>;
+}
+/**
+ * Item in Icons List → Collection
+ *
+ */
+export interface IconsListDocumentDataCollectionItem {
+  /**
+   * name field in *Icons List → Collection*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: icons_list.collection[].name
+   * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+   *
+   */
+  name: prismic.KeyTextField;
+  /**
+   * icon field in *Icons List → Collection*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: tailwindcss
+   * - **API ID Path**: icons_list.collection[].icon
+   * - **Documentation**: https://prismic.io/docs/core-concepts/select
+   *
+   */
+  icon: prismic.SelectField<
+    "tailwindcss" | "graphql" | "react" | "nextjs",
+    "filled"
+  >;
+}
+/**
+ * Icons List document from Prismic
+ *
+ * - **API ID**: `icons_list`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type IconsListDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<IconsListDocumentData>,
+    "icons_list",
     Lang
   >;
 /** Content for Image Mask documents */
@@ -146,7 +208,7 @@ interface LandingPageDocumentData {
  * Slice for *page → Slice Zone*
  *
  */
-type LandingPageDocumentDataSlicesSlice = HeroSliceSlice | AarniSliceSlice;
+type LandingPageDocumentDataSlicesSlice = HeroSliceSlice | CardSliceSlice;
 /**
  * page document from Prismic
  *
@@ -873,6 +935,7 @@ export type Theme950Document<Lang extends string = string> =
 export type AllDocumentTypes =
   | ButtonDocument
   | HeroiconDocument
+  | IconsListDocument
   | ImageMaskDocument
   | LandingPageDocument
   | NavigationDocument
@@ -888,50 +951,136 @@ export type AllDocumentTypes =
   | Theme900Document
   | Theme950Document;
 /**
- * Primary content in AarniSlice → Primary
+ * Primary content in CardSlice → Primary
  *
  */
-interface AarniSliceSliceDefaultPrimary {
+interface CardSliceSliceDefaultPrimary {
   /**
-   * Title field in *AarniSlice → Primary*
+   * title field in *CardSlice → Primary*
    *
    * - **Field Type**: Title
    * - **Placeholder**: *None*
-   * - **API ID Path**: aarni_slice.primary.title
+   * - **API ID Path**: card_slice.primary.title
    * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
    *
    */
   title: prismic.TitleField;
+  /**
+   * subtitle field in *CardSlice → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: card_slice.primary.subtitle
+   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+   *
+   */
+  subtitle: prismic.RichTextField;
 }
 /**
- * Default variation for AarniSlice Slice
+ * Item in CardSlice → Items
+ *
+ */
+export interface CardSliceSliceDefaultItem {
+  /**
+   * Card Image field in *CardSlice → Items*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: card_slice.items[].card_image
+   * - **Documentation**: https://prismic.io/docs/core-concepts/image
+   *
+   */
+  card_image: prismic.ImageField<never>;
+  /**
+   * Name field in *CardSlice → Items*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: Enter name for current card item.
+   * - **API ID Path**: card_slice.items[].name
+   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+   *
+   */
+  name: prismic.TitleField;
+  /**
+   * Collection field in *CardSlice → Items*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: card_slice.items[].collection
+   * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+   *
+   */
+  collection: prismic.ContentRelationshipField<"icons_list">;
+  /**
+   * Description field in *CardSlice → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Enter description for current card item.
+   * - **API ID Path**: card_slice.items[].description
+   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+   *
+   */
+  description: prismic.RichTextField;
+  /**
+   * Icon field in *CardSlice → Items*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: card_slice.items[].icon
+   * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+   *
+   */
+  icon: prismic.ContentRelationshipField<"heroicon">;
+  /**
+   * Button field in *CardSlice → Items*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: card_slice.items[].button
+   * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+   *
+   */
+  button: prismic.ContentRelationshipField<"button">;
+  /**
+   * Button Label field in *CardSlice → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: card_slice.items[].label
+   * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+   *
+   */
+  label: prismic.KeyTextField;
+}
+/**
+ * Default variation for CardSlice Slice
  *
  * - **API ID**: `default`
  * - **Description**: `Default`
  * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
  *
  */
-export type AarniSliceSliceDefault = prismic.SharedSliceVariation<
+export type CardSliceSliceDefault = prismic.SharedSliceVariation<
   "default",
-  Simplify<AarniSliceSliceDefaultPrimary>,
-  never
+  Simplify<CardSliceSliceDefaultPrimary>,
+  Simplify<CardSliceSliceDefaultItem>
 >;
 /**
- * Slice variation for *AarniSlice*
+ * Slice variation for *CardSlice*
  *
  */
-type AarniSliceSliceVariation = AarniSliceSliceDefault;
+type CardSliceSliceVariation = CardSliceSliceDefault;
 /**
- * AarniSlice Shared Slice
+ * CardSlice Shared Slice
  *
- * - **API ID**: `aarni_slice`
- * - **Description**: `AarniSlice`
+ * - **API ID**: `card_slice`
+ * - **Description**: `CardSlice`
  * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
  *
  */
-export type AarniSliceSlice = prismic.SharedSlice<
-  "aarni_slice",
-  AarniSliceSliceVariation
+export type CardSliceSlice = prismic.SharedSlice<
+  "card_slice",
+  CardSliceSliceVariation
 >;
 /**
  * Primary content in HeroSlice → Primary
@@ -1091,6 +1240,9 @@ declare module "@prismicio/client" {
       ButtonDocument,
       HeroiconDocumentData,
       HeroiconDocument,
+      IconsListDocumentData,
+      IconsListDocumentDataCollectionItem,
+      IconsListDocument,
       ImageMaskDocumentData,
       ImageMaskDocument,
       LandingPageDocumentData,
@@ -1133,10 +1285,11 @@ declare module "@prismicio/client" {
       Theme950DocumentDataLightItem,
       Theme950Document,
       AllDocumentTypes,
-      AarniSliceSliceDefaultPrimary,
-      AarniSliceSliceDefault,
-      AarniSliceSliceVariation,
-      AarniSliceSlice,
+      CardSliceSliceDefaultPrimary,
+      CardSliceSliceDefaultItem,
+      CardSliceSliceDefault,
+      CardSliceSliceVariation,
+      CardSliceSlice,
       HeroSliceSliceDefaultPrimary,
       HeroSliceSliceDefault,
       HeroSliceSliceAvatarPrimary,

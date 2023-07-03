@@ -16,7 +16,7 @@
         "config": {
           "choices": {
             "hero_slice": { "type": "SharedSlice" },
-            "aarni_slice": { "type": "SharedSlice" }
+            "card_slice": { "type": "SharedSlice" }
           }
         }
       }

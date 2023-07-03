@@ -1,5 +1,6 @@
 import type Content from 'prismicio-types';
 import type { HeroSlicePrimaryFragment, HeroSliceAvatarFragment, HeroSliceFieldFragment } from '@/types/prismic/graphql/graphql';
+import type { CardSlicePrimaryFragment, CardSliceFieldFragment } from '@/types/prismic/graphql/graphql';
 import { SliceSimulator } from '@slicemachine/adapter-next/simulator';
 import { SliceZone, SliceZoneLike } from '@prismicio/react';
 import { components } from '@/slices/index';
@@ -16,6 +17,33 @@ const SlicePreviewPage: React.FC = () => {
           const [getSlicesData] = slices;
 
           const getLandingPageSlice = getSlicesData as Content.LandingPageDocumentDataSlicesSlice;
+
+          if (getLandingPageSlice && getLandingPageSlice.slice_type === 'card_slice') {
+
+            const getPrimaryVariantFragment: CardSlicePrimaryFragment = {
+              __typename: 'Landing_pageSlicesCard_sliceDefault',
+              primary: getLandingPageSlice.primary as CardSlicePrimaryFragment['primary'],
+              items: getLandingPageSlice.items as unknown as CardSlicePrimaryFragment['items'],
+            };
+
+            const getCurrentVariantFragment = getLandingPageSlice.variation === 'default'
+              ? getPrimaryVariantFragment
+              : null;
+
+            const formatSliceWithGraphQL: CardSliceFieldFragment = {
+              __typename: 'Landing_pageSlicesCard_slice',
+              label: getLandingPageSlice.slice_label,
+              type: getLandingPageSlice.slice_type,
+              variation: {
+                __typename: 'Landing_pageSlicesCard_sliceDefault',
+                ...getCurrentVariantFragment,
+              },
+            };
+
+            return (
+              <SliceZone slices={[formatSliceWithGraphQL] as LandingPageSliceZoneProps} components={components} />
+            );
+          }
 
           if (getLandingPageSlice && getLandingPageSlice.slice_type === 'hero_slice') {
 
