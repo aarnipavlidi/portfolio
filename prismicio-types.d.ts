@@ -3,10 +3,11 @@
 import type * as prismic from "@prismicio/types";
 import type * as prismicClient from "@prismicio/client";
 
-type Simplify<T> = {
-  [KeyType in keyof T]: T[KeyType];
-};
-/** Content for Button documents */
+type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
+
+/**
+ * Content for Button documents
+ */
 interface ButtonDocumentData {
   /**
    * Variant field in *Button*
@@ -16,10 +17,10 @@ interface ButtonDocumentData {
    * - **Default Value**: primary
    * - **API ID Path**: button.variant
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/core-concepts/select
-   *
+   * - **Documentation**: https://prismic.io/docs/field#select
    */
   variant: prismic.SelectField<"primary" | "secondary", "filled">;
+
   /**
    * Size field in *Button*
    *
@@ -28,10 +29,10 @@ interface ButtonDocumentData {
    * - **Default Value**: xs
    * - **API ID Path**: button.size
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/core-concepts/select
-   *
+   * - **Documentation**: https://prismic.io/docs/field#select
    */
   size: prismic.SelectField<"xs" | "sm" | "base" | "lg" | "xl", "filled">;
+
   /**
    * Full Width field in *Button*
    *
@@ -40,23 +41,26 @@ interface ButtonDocumentData {
    * - **Default Value**: false
    * - **API ID Path**: button.full_width
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/core-concepts/boolean
-   *
+   * - **Documentation**: https://prismic.io/docs/field#boolean
    */
   full_width: prismic.BooleanField;
 }
+
 /**
  * Button document from Prismic
  *
  * - **API ID**: `button`
  * - **Repeatable**: `true`
- * - **Documentation**: https://prismic.io/docs/core-concepts/custom-types
+ * - **Documentation**: https://prismic.io/docs/custom-types
  *
  * @typeParam Lang - Language API ID of the document.
  */
 export type ButtonDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<ButtonDocumentData>, "button", Lang>;
-/** Content for heroicon documents */
+
+/**
+ * Content for heroicon documents
+ */
 interface HeroiconDocumentData {
   /**
    * variant field in *heroicon*
@@ -66,10 +70,10 @@ interface HeroiconDocumentData {
    * - **Default Value**: solid
    * - **API ID Path**: heroicon.variant
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/core-concepts/select
-   *
+   * - **Documentation**: https://prismic.io/docs/field#select
    */
   variant: prismic.SelectField<"solid" | "outline" | "mini", "filled">;
+
   /**
    * name field in *heroicon*
    *
@@ -78,20 +82,20 @@ interface HeroiconDocumentData {
    * - **Default Value**: arrow-small-down
    * - **API ID Path**: heroicon.name
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/core-concepts/select
-   *
+   * - **Documentation**: https://prismic.io/docs/field#select
    */
   name: prismic.SelectField<
     "arrow-small-down" | "arrow-small-up" | "arrow-small-right",
     "filled"
   >;
 }
+
 /**
  * heroicon document from Prismic
  *
  * - **API ID**: `heroicon`
  * - **Repeatable**: `true`
- * - **Documentation**: https://prismic.io/docs/core-concepts/custom-types
+ * - **Documentation**: https://prismic.io/docs/custom-types
  *
  * @typeParam Lang - Language API ID of the document.
  */
@@ -101,23 +105,9 @@ export type HeroiconDocument<Lang extends string = string> =
     "heroicon",
     Lang
   >;
-/** Content for Icons List documents */
-interface IconsListDocumentData {
-  /**
-   * Collection field in *Icons List*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: icons_list.collection[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/core-concepts/group
-   *
-   */
-  collection: prismic.GroupField<Simplify<IconsListDocumentDataCollectionItem>>;
-}
+
 /**
- * Item in Icons List → Collection
- *
+ * Item in *Icons List → Collection*
  */
 export interface IconsListDocumentDataCollectionItem {
   /**
@@ -126,10 +116,10 @@ export interface IconsListDocumentDataCollectionItem {
    * - **Field Type**: Text
    * - **Placeholder**: *None*
    * - **API ID Path**: icons_list.collection[].name
-   * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
-   *
+   * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   name: prismic.KeyTextField;
+
   /**
    * icon field in *Icons List → Collection*
    *
@@ -137,20 +127,36 @@ export interface IconsListDocumentDataCollectionItem {
    * - **Placeholder**: *None*
    * - **Default Value**: tailwindcss
    * - **API ID Path**: icons_list.collection[].icon
-   * - **Documentation**: https://prismic.io/docs/core-concepts/select
-   *
+   * - **Documentation**: https://prismic.io/docs/field#select
    */
   icon: prismic.SelectField<
     "tailwindcss" | "graphql" | "react" | "nextjs",
     "filled"
   >;
 }
+
+/**
+ * Content for Icons List documents
+ */
+interface IconsListDocumentData {
+  /**
+   * Collection field in *Icons List*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: icons_list.collection[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  collection: prismic.GroupField<Simplify<IconsListDocumentDataCollectionItem>>;
+}
+
 /**
  * Icons List document from Prismic
  *
  * - **API ID**: `icons_list`
  * - **Repeatable**: `true`
- * - **Documentation**: https://prismic.io/docs/core-concepts/custom-types
+ * - **Documentation**: https://prismic.io/docs/custom-types
  *
  * @typeParam Lang - Language API ID of the document.
  */
@@ -160,7 +166,10 @@ export type IconsListDocument<Lang extends string = string> =
     "icons_list",
     Lang
   >;
-/** Content for Image Mask documents */
+
+/**
+ * Content for Image Mask documents
+ */
 interface ImageMaskDocumentData {
   /**
    * variant field in *Image Mask*
@@ -170,17 +179,17 @@ interface ImageMaskDocumentData {
    * - **Default Value**: avatar
    * - **API ID Path**: image_mask.variant
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/core-concepts/select
-   *
+   * - **Documentation**: https://prismic.io/docs/field#select
    */
-  variant: prismic.SelectField<"avatar" | "aarni", "filled">;
+  variant: prismic.SelectField<"avatar" | "fullWidth", "filled">;
 }
+
 /**
  * Image Mask document from Prismic
  *
  * - **API ID**: `image_mask`
  * - **Repeatable**: `true`
- * - **Documentation**: https://prismic.io/docs/core-concepts/custom-types
+ * - **Documentation**: https://prismic.io/docs/custom-types
  *
  * @typeParam Lang - Language API ID of the document.
  */
@@ -190,7 +199,12 @@ export type ImageMaskDocument<Lang extends string = string> =
     "image_mask",
     Lang
   >;
-/** Content for page documents */
+
+type LandingPageDocumentDataSlicesSlice = HeroSliceSlice | CardSliceSlice;
+
+/**
+ * Content for page documents
+ */
 interface LandingPageDocumentData {
   /**
    * Slice Zone field in *page*
@@ -199,22 +213,17 @@ interface LandingPageDocumentData {
    * - **Placeholder**: *None*
    * - **API ID Path**: landing_page.slices[]
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/core-concepts/slices
-   *
+   * - **Documentation**: https://prismic.io/docs/field#slices
    */
   slices: prismic.SliceZone<LandingPageDocumentDataSlicesSlice>;
 }
-/**
- * Slice for *page → Slice Zone*
- *
- */
-type LandingPageDocumentDataSlicesSlice = HeroSliceSlice | CardSliceSlice;
+
 /**
  * page document from Prismic
  *
  * - **API ID**: `landing_page`
  * - **Repeatable**: `true`
- * - **Documentation**: https://prismic.io/docs/core-concepts/custom-types
+ * - **Documentation**: https://prismic.io/docs/custom-types
  *
  * @typeParam Lang - Language API ID of the document.
  */
@@ -224,7 +233,35 @@ export type LandingPageDocument<Lang extends string = string> =
     "landing_page",
     Lang
   >;
-/** Content for navigation documents */
+
+/**
+ * Item in *navigation → Navigation Links*
+ */
+export interface NavigationDocumentDataNavigationLinksItem {
+  /**
+   * Link Name field in *navigation → Navigation Links*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation.navigation_links[].link_name
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  link_name: prismic.KeyTextField;
+
+  /**
+   * Link Href field in *navigation → Navigation Links*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation.navigation_links[].link_href
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link_href: prismic.LinkField;
+}
+
+/**
+ * Content for navigation documents
+ */
 interface NavigationDocumentData {
   /**
    * color field in *navigation*
@@ -233,8 +270,7 @@ interface NavigationDocumentData {
    * - **Placeholder**: *None*
    * - **API ID Path**: navigation.color
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
-   *
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   color: prismic.ContentRelationshipField<
     | "theme_50"
@@ -249,6 +285,7 @@ interface NavigationDocumentData {
     | "theme_900"
     | "theme_950"
   >;
+
   /**
    * position field in *navigation*
    *
@@ -257,10 +294,10 @@ interface NavigationDocumentData {
    * - **Default Value**: true
    * - **API ID Path**: navigation.position
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/core-concepts/boolean
-   *
+   * - **Documentation**: https://prismic.io/docs/field#boolean
    */
   position: prismic.BooleanField;
+
   /**
    * Navigation Title field in *navigation*
    *
@@ -268,10 +305,10 @@ interface NavigationDocumentData {
    * - **Placeholder**: *None*
    * - **API ID Path**: navigation.navigation_title
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
-   *
+   * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   navigation_title: prismic.KeyTextField;
+
   /**
    * Navigation Links field in *navigation*
    *
@@ -279,45 +316,19 @@ interface NavigationDocumentData {
    * - **Placeholder**: *None*
    * - **API ID Path**: navigation.navigation_links[]
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/core-concepts/group
-   *
+   * - **Documentation**: https://prismic.io/docs/field#group
    */
   navigation_links: prismic.GroupField<
     Simplify<NavigationDocumentDataNavigationLinksItem>
   >;
 }
-/**
- * Item in navigation → Navigation Links
- *
- */
-export interface NavigationDocumentDataNavigationLinksItem {
-  /**
-   * Link Name field in *navigation → Navigation Links*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: navigation.navigation_links[].link_name
-   * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
-   *
-   */
-  link_name: prismic.KeyTextField;
-  /**
-   * Link Href field in *navigation → Navigation Links*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: navigation.navigation_links[].link_href
-   * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
-   *
-   */
-  link_href: prismic.LinkField;
-}
+
 /**
  * navigation document from Prismic
  *
  * - **API ID**: `navigation`
  * - **Repeatable**: `false`
- * - **Documentation**: https://prismic.io/docs/core-concepts/custom-types
+ * - **Documentation**: https://prismic.io/docs/custom-types
  *
  * @typeParam Lang - Language API ID of the document.
  */
@@ -327,23 +338,9 @@ export type NavigationDocument<Lang extends string = string> =
     "navigation",
     Lang
   >;
-/** Content for theme_100 documents */
-interface Theme100DocumentData {
-  /**
-   * light field in *theme_100*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: theme_100.light[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/core-concepts/group
-   *
-   */
-  light: prismic.GroupField<Simplify<Theme100DocumentDataLightItem>>;
-}
+
 /**
- * Item in theme_100 → light
- *
+ * Item in *theme_100 → light*
  */
 export interface Theme100DocumentDataLightItem {
   /**
@@ -352,27 +349,43 @@ export interface Theme100DocumentDataLightItem {
    * - **Field Type**: Select
    * - **Placeholder**: *None*
    * - **API ID Path**: theme_100.light[].name
-   * - **Documentation**: https://prismic.io/docs/core-concepts/select
-   *
+   * - **Documentation**: https://prismic.io/docs/field#select
    */
   name: prismic.SelectField<"neutral-100">;
+
   /**
    * code field in *theme_100 → light*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
    * - **API ID Path**: theme_100.light[].code
-   * - **Documentation**: https://prismic.io/docs/core-concepts/select
-   *
+   * - **Documentation**: https://prismic.io/docs/field#select
    */
   code: prismic.SelectField<"f5f5f5">;
 }
+
+/**
+ * Content for theme_100 documents
+ */
+interface Theme100DocumentData {
+  /**
+   * light field in *theme_100*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: theme_100.light[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  light: prismic.GroupField<Simplify<Theme100DocumentDataLightItem>>;
+}
+
 /**
  * theme_100 document from Prismic
  *
  * - **API ID**: `theme_100`
  * - **Repeatable**: `false`
- * - **Documentation**: https://prismic.io/docs/core-concepts/custom-types
+ * - **Documentation**: https://prismic.io/docs/custom-types
  *
  * @typeParam Lang - Language API ID of the document.
  */
@@ -382,23 +395,9 @@ export type Theme100Document<Lang extends string = string> =
     "theme_100",
     Lang
   >;
-/** Content for theme_200 documents */
-interface Theme200DocumentData {
-  /**
-   * light field in *theme_200*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: theme_200.light[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/core-concepts/group
-   *
-   */
-  light: prismic.GroupField<Simplify<Theme200DocumentDataLightItem>>;
-}
+
 /**
- * Item in theme_200 → light
- *
+ * Item in *theme_200 → light*
  */
 export interface Theme200DocumentDataLightItem {
   /**
@@ -407,27 +406,43 @@ export interface Theme200DocumentDataLightItem {
    * - **Field Type**: Select
    * - **Placeholder**: *None*
    * - **API ID Path**: theme_200.light[].name
-   * - **Documentation**: https://prismic.io/docs/core-concepts/select
-   *
+   * - **Documentation**: https://prismic.io/docs/field#select
    */
   name: prismic.SelectField<"neutral-200">;
+
   /**
    * code field in *theme_200 → light*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
    * - **API ID Path**: theme_200.light[].code
-   * - **Documentation**: https://prismic.io/docs/core-concepts/select
-   *
+   * - **Documentation**: https://prismic.io/docs/field#select
    */
   code: prismic.SelectField<"e5e5e5">;
 }
+
+/**
+ * Content for theme_200 documents
+ */
+interface Theme200DocumentData {
+  /**
+   * light field in *theme_200*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: theme_200.light[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  light: prismic.GroupField<Simplify<Theme200DocumentDataLightItem>>;
+}
+
 /**
  * theme_200 document from Prismic
  *
  * - **API ID**: `theme_200`
  * - **Repeatable**: `false`
- * - **Documentation**: https://prismic.io/docs/core-concepts/custom-types
+ * - **Documentation**: https://prismic.io/docs/custom-types
  *
  * @typeParam Lang - Language API ID of the document.
  */
@@ -437,23 +452,9 @@ export type Theme200Document<Lang extends string = string> =
     "theme_200",
     Lang
   >;
-/** Content for theme_300 documents */
-interface Theme300DocumentData {
-  /**
-   * light field in *theme_300*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: theme_300.light[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/core-concepts/group
-   *
-   */
-  light: prismic.GroupField<Simplify<Theme300DocumentDataLightItem>>;
-}
+
 /**
- * Item in theme_300 → light
- *
+ * Item in *theme_300 → light*
  */
 export interface Theme300DocumentDataLightItem {
   /**
@@ -462,27 +463,43 @@ export interface Theme300DocumentDataLightItem {
    * - **Field Type**: Select
    * - **Placeholder**: *None*
    * - **API ID Path**: theme_300.light[].name
-   * - **Documentation**: https://prismic.io/docs/core-concepts/select
-   *
+   * - **Documentation**: https://prismic.io/docs/field#select
    */
   name: prismic.SelectField<"neutral-300">;
+
   /**
    * code field in *theme_300 → light*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
    * - **API ID Path**: theme_300.light[].code
-   * - **Documentation**: https://prismic.io/docs/core-concepts/select
-   *
+   * - **Documentation**: https://prismic.io/docs/field#select
    */
   code: prismic.SelectField<"d4d4d4">;
 }
+
+/**
+ * Content for theme_300 documents
+ */
+interface Theme300DocumentData {
+  /**
+   * light field in *theme_300*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: theme_300.light[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  light: prismic.GroupField<Simplify<Theme300DocumentDataLightItem>>;
+}
+
 /**
  * theme_300 document from Prismic
  *
  * - **API ID**: `theme_300`
  * - **Repeatable**: `false`
- * - **Documentation**: https://prismic.io/docs/core-concepts/custom-types
+ * - **Documentation**: https://prismic.io/docs/custom-types
  *
  * @typeParam Lang - Language API ID of the document.
  */
@@ -492,23 +509,9 @@ export type Theme300Document<Lang extends string = string> =
     "theme_300",
     Lang
   >;
-/** Content for theme_400 documents */
-interface Theme400DocumentData {
-  /**
-   * light field in *theme_400*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: theme_400.light[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/core-concepts/group
-   *
-   */
-  light: prismic.GroupField<Simplify<Theme400DocumentDataLightItem>>;
-}
+
 /**
- * Item in theme_400 → light
- *
+ * Item in *theme_400 → light*
  */
 export interface Theme400DocumentDataLightItem {
   /**
@@ -517,27 +520,43 @@ export interface Theme400DocumentDataLightItem {
    * - **Field Type**: Select
    * - **Placeholder**: *None*
    * - **API ID Path**: theme_400.light[].name
-   * - **Documentation**: https://prismic.io/docs/core-concepts/select
-   *
+   * - **Documentation**: https://prismic.io/docs/field#select
    */
   name: prismic.SelectField<"neutral-400">;
+
   /**
    * code field in *theme_400 → light*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
    * - **API ID Path**: theme_400.light[].code
-   * - **Documentation**: https://prismic.io/docs/core-concepts/select
-   *
+   * - **Documentation**: https://prismic.io/docs/field#select
    */
   code: prismic.SelectField<"a3a3a3">;
 }
+
+/**
+ * Content for theme_400 documents
+ */
+interface Theme400DocumentData {
+  /**
+   * light field in *theme_400*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: theme_400.light[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  light: prismic.GroupField<Simplify<Theme400DocumentDataLightItem>>;
+}
+
 /**
  * theme_400 document from Prismic
  *
  * - **API ID**: `theme_400`
  * - **Repeatable**: `false`
- * - **Documentation**: https://prismic.io/docs/core-concepts/custom-types
+ * - **Documentation**: https://prismic.io/docs/custom-types
  *
  * @typeParam Lang - Language API ID of the document.
  */
@@ -547,23 +566,9 @@ export type Theme400Document<Lang extends string = string> =
     "theme_400",
     Lang
   >;
-/** Content for theme_50 documents */
-interface Theme50DocumentData {
-  /**
-   * light field in *theme_50*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: theme_50.light[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/core-concepts/group
-   *
-   */
-  light: prismic.GroupField<Simplify<Theme50DocumentDataLightItem>>;
-}
+
 /**
- * Item in theme_50 → light
- *
+ * Item in *theme_50 → light*
  */
 export interface Theme50DocumentDataLightItem {
   /**
@@ -572,27 +577,43 @@ export interface Theme50DocumentDataLightItem {
    * - **Field Type**: Select
    * - **Placeholder**: *None*
    * - **API ID Path**: theme_50.light[].name
-   * - **Documentation**: https://prismic.io/docs/core-concepts/select
-   *
+   * - **Documentation**: https://prismic.io/docs/field#select
    */
   name: prismic.SelectField<"neutral-50">;
+
   /**
    * code field in *theme_50 → light*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
    * - **API ID Path**: theme_50.light[].code
-   * - **Documentation**: https://prismic.io/docs/core-concepts/select
-   *
+   * - **Documentation**: https://prismic.io/docs/field#select
    */
   code: prismic.SelectField<"fafafa">;
 }
+
+/**
+ * Content for theme_50 documents
+ */
+interface Theme50DocumentData {
+  /**
+   * light field in *theme_50*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: theme_50.light[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  light: prismic.GroupField<Simplify<Theme50DocumentDataLightItem>>;
+}
+
 /**
  * theme_50 document from Prismic
  *
  * - **API ID**: `theme_50`
  * - **Repeatable**: `false`
- * - **Documentation**: https://prismic.io/docs/core-concepts/custom-types
+ * - **Documentation**: https://prismic.io/docs/custom-types
  *
  * @typeParam Lang - Language API ID of the document.
  */
@@ -602,23 +623,9 @@ export type Theme50Document<Lang extends string = string> =
     "theme_50",
     Lang
   >;
-/** Content for theme_500 documents */
-interface Theme500DocumentData {
-  /**
-   * light field in *theme_500*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: theme_500.light[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/core-concepts/group
-   *
-   */
-  light: prismic.GroupField<Simplify<Theme500DocumentDataLightItem>>;
-}
+
 /**
- * Item in theme_500 → light
- *
+ * Item in *theme_500 → light*
  */
 export interface Theme500DocumentDataLightItem {
   /**
@@ -627,27 +634,43 @@ export interface Theme500DocumentDataLightItem {
    * - **Field Type**: Select
    * - **Placeholder**: *None*
    * - **API ID Path**: theme_500.light[].name
-   * - **Documentation**: https://prismic.io/docs/core-concepts/select
-   *
+   * - **Documentation**: https://prismic.io/docs/field#select
    */
   name: prismic.SelectField<"neutral-500">;
+
   /**
    * code field in *theme_500 → light*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
    * - **API ID Path**: theme_500.light[].code
-   * - **Documentation**: https://prismic.io/docs/core-concepts/select
-   *
+   * - **Documentation**: https://prismic.io/docs/field#select
    */
   code: prismic.SelectField<"737373">;
 }
+
+/**
+ * Content for theme_500 documents
+ */
+interface Theme500DocumentData {
+  /**
+   * light field in *theme_500*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: theme_500.light[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  light: prismic.GroupField<Simplify<Theme500DocumentDataLightItem>>;
+}
+
 /**
  * theme_500 document from Prismic
  *
  * - **API ID**: `theme_500`
  * - **Repeatable**: `false`
- * - **Documentation**: https://prismic.io/docs/core-concepts/custom-types
+ * - **Documentation**: https://prismic.io/docs/custom-types
  *
  * @typeParam Lang - Language API ID of the document.
  */
@@ -657,23 +680,9 @@ export type Theme500Document<Lang extends string = string> =
     "theme_500",
     Lang
   >;
-/** Content for theme_600 documents */
-interface Theme600DocumentData {
-  /**
-   * light field in *theme_600*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: theme_600.light[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/core-concepts/group
-   *
-   */
-  light: prismic.GroupField<Simplify<Theme600DocumentDataLightItem>>;
-}
+
 /**
- * Item in theme_600 → light
- *
+ * Item in *theme_600 → light*
  */
 export interface Theme600DocumentDataLightItem {
   /**
@@ -682,27 +691,43 @@ export interface Theme600DocumentDataLightItem {
    * - **Field Type**: Select
    * - **Placeholder**: *None*
    * - **API ID Path**: theme_600.light[].name
-   * - **Documentation**: https://prismic.io/docs/core-concepts/select
-   *
+   * - **Documentation**: https://prismic.io/docs/field#select
    */
   name: prismic.SelectField<"neutral-600">;
+
   /**
    * code field in *theme_600 → light*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
    * - **API ID Path**: theme_600.light[].code
-   * - **Documentation**: https://prismic.io/docs/core-concepts/select
-   *
+   * - **Documentation**: https://prismic.io/docs/field#select
    */
   code: prismic.SelectField<"525252">;
 }
+
+/**
+ * Content for theme_600 documents
+ */
+interface Theme600DocumentData {
+  /**
+   * light field in *theme_600*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: theme_600.light[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  light: prismic.GroupField<Simplify<Theme600DocumentDataLightItem>>;
+}
+
 /**
  * theme_600 document from Prismic
  *
  * - **API ID**: `theme_600`
  * - **Repeatable**: `false`
- * - **Documentation**: https://prismic.io/docs/core-concepts/custom-types
+ * - **Documentation**: https://prismic.io/docs/custom-types
  *
  * @typeParam Lang - Language API ID of the document.
  */
@@ -712,23 +737,9 @@ export type Theme600Document<Lang extends string = string> =
     "theme_600",
     Lang
   >;
-/** Content for theme_700 documents */
-interface Theme700DocumentData {
-  /**
-   * light field in *theme_700*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: theme_700.light[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/core-concepts/group
-   *
-   */
-  light: prismic.GroupField<Simplify<Theme700DocumentDataLightItem>>;
-}
+
 /**
- * Item in theme_700 → light
- *
+ * Item in *theme_700 → light*
  */
 export interface Theme700DocumentDataLightItem {
   /**
@@ -737,27 +748,43 @@ export interface Theme700DocumentDataLightItem {
    * - **Field Type**: Select
    * - **Placeholder**: *None*
    * - **API ID Path**: theme_700.light[].name
-   * - **Documentation**: https://prismic.io/docs/core-concepts/select
-   *
+   * - **Documentation**: https://prismic.io/docs/field#select
    */
   name: prismic.SelectField<"neutral-700">;
+
   /**
    * code field in *theme_700 → light*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
    * - **API ID Path**: theme_700.light[].code
-   * - **Documentation**: https://prismic.io/docs/core-concepts/select
-   *
+   * - **Documentation**: https://prismic.io/docs/field#select
    */
   code: prismic.SelectField<"404040">;
 }
+
+/**
+ * Content for theme_700 documents
+ */
+interface Theme700DocumentData {
+  /**
+   * light field in *theme_700*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: theme_700.light[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  light: prismic.GroupField<Simplify<Theme700DocumentDataLightItem>>;
+}
+
 /**
  * theme_700 document from Prismic
  *
  * - **API ID**: `theme_700`
  * - **Repeatable**: `false`
- * - **Documentation**: https://prismic.io/docs/core-concepts/custom-types
+ * - **Documentation**: https://prismic.io/docs/custom-types
  *
  * @typeParam Lang - Language API ID of the document.
  */
@@ -767,23 +794,9 @@ export type Theme700Document<Lang extends string = string> =
     "theme_700",
     Lang
   >;
-/** Content for theme_800 documents */
-interface Theme800DocumentData {
-  /**
-   * light field in *theme_800*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: theme_800.light[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/core-concepts/group
-   *
-   */
-  light: prismic.GroupField<Simplify<Theme800DocumentDataLightItem>>;
-}
+
 /**
- * Item in theme_800 → light
- *
+ * Item in *theme_800 → light*
  */
 export interface Theme800DocumentDataLightItem {
   /**
@@ -792,27 +805,43 @@ export interface Theme800DocumentDataLightItem {
    * - **Field Type**: Select
    * - **Placeholder**: *None*
    * - **API ID Path**: theme_800.light[].name
-   * - **Documentation**: https://prismic.io/docs/core-concepts/select
-   *
+   * - **Documentation**: https://prismic.io/docs/field#select
    */
   name: prismic.SelectField<"neutral-800">;
+
   /**
    * code field in *theme_800 → light*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
    * - **API ID Path**: theme_800.light[].code
-   * - **Documentation**: https://prismic.io/docs/core-concepts/select
-   *
+   * - **Documentation**: https://prismic.io/docs/field#select
    */
   code: prismic.SelectField<"262626">;
 }
+
+/**
+ * Content for theme_800 documents
+ */
+interface Theme800DocumentData {
+  /**
+   * light field in *theme_800*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: theme_800.light[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  light: prismic.GroupField<Simplify<Theme800DocumentDataLightItem>>;
+}
+
 /**
  * theme_800 document from Prismic
  *
  * - **API ID**: `theme_800`
  * - **Repeatable**: `false`
- * - **Documentation**: https://prismic.io/docs/core-concepts/custom-types
+ * - **Documentation**: https://prismic.io/docs/custom-types
  *
  * @typeParam Lang - Language API ID of the document.
  */
@@ -822,23 +851,9 @@ export type Theme800Document<Lang extends string = string> =
     "theme_800",
     Lang
   >;
-/** Content for theme_900 documents */
-interface Theme900DocumentData {
-  /**
-   * light field in *theme_900*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: theme_900.light[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/core-concepts/group
-   *
-   */
-  light: prismic.GroupField<Simplify<Theme900DocumentDataLightItem>>;
-}
+
 /**
- * Item in theme_900 → light
- *
+ * Item in *theme_900 → light*
  */
 export interface Theme900DocumentDataLightItem {
   /**
@@ -847,27 +862,43 @@ export interface Theme900DocumentDataLightItem {
    * - **Field Type**: Select
    * - **Placeholder**: *None*
    * - **API ID Path**: theme_900.light[].name
-   * - **Documentation**: https://prismic.io/docs/core-concepts/select
-   *
+   * - **Documentation**: https://prismic.io/docs/field#select
    */
   name: prismic.SelectField<"neutral-900">;
+
   /**
    * code field in *theme_900 → light*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
    * - **API ID Path**: theme_900.light[].code
-   * - **Documentation**: https://prismic.io/docs/core-concepts/select
-   *
+   * - **Documentation**: https://prismic.io/docs/field#select
    */
   code: prismic.SelectField<"171717">;
 }
+
+/**
+ * Content for theme_900 documents
+ */
+interface Theme900DocumentData {
+  /**
+   * light field in *theme_900*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: theme_900.light[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  light: prismic.GroupField<Simplify<Theme900DocumentDataLightItem>>;
+}
+
 /**
  * theme_900 document from Prismic
  *
  * - **API ID**: `theme_900`
  * - **Repeatable**: `false`
- * - **Documentation**: https://prismic.io/docs/core-concepts/custom-types
+ * - **Documentation**: https://prismic.io/docs/custom-types
  *
  * @typeParam Lang - Language API ID of the document.
  */
@@ -877,23 +908,9 @@ export type Theme900Document<Lang extends string = string> =
     "theme_900",
     Lang
   >;
-/** Content for theme_950 documents */
-interface Theme950DocumentData {
-  /**
-   * light field in *theme_950*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: theme_950.light[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/core-concepts/group
-   *
-   */
-  light: prismic.GroupField<Simplify<Theme950DocumentDataLightItem>>;
-}
+
 /**
- * Item in theme_950 → light
- *
+ * Item in *theme_950 → light*
  */
 export interface Theme950DocumentDataLightItem {
   /**
@@ -902,27 +919,43 @@ export interface Theme950DocumentDataLightItem {
    * - **Field Type**: Select
    * - **Placeholder**: *None*
    * - **API ID Path**: theme_950.light[].name
-   * - **Documentation**: https://prismic.io/docs/core-concepts/select
-   *
+   * - **Documentation**: https://prismic.io/docs/field#select
    */
   name: prismic.SelectField<"neutral-950">;
+
   /**
    * code field in *theme_950 → light*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
    * - **API ID Path**: theme_950.light[].code
-   * - **Documentation**: https://prismic.io/docs/core-concepts/select
-   *
+   * - **Documentation**: https://prismic.io/docs/field#select
    */
   code: prismic.SelectField<"0a0a0a">;
 }
+
+/**
+ * Content for theme_950 documents
+ */
+interface Theme950DocumentData {
+  /**
+   * light field in *theme_950*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: theme_950.light[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  light: prismic.GroupField<Simplify<Theme950DocumentDataLightItem>>;
+}
+
 /**
  * theme_950 document from Prismic
  *
  * - **API ID**: `theme_950`
  * - **Repeatable**: `false`
- * - **Documentation**: https://prismic.io/docs/core-concepts/custom-types
+ * - **Documentation**: https://prismic.io/docs/custom-types
  *
  * @typeParam Lang - Language API ID of the document.
  */
@@ -932,6 +965,7 @@ export type Theme950Document<Lang extends string = string> =
     "theme_950",
     Lang
   >;
+
 export type AllDocumentTypes =
   | ButtonDocument
   | HeroiconDocument
@@ -950,35 +984,34 @@ export type AllDocumentTypes =
   | Theme800Document
   | Theme900Document
   | Theme950Document;
+
 /**
- * Primary content in CardSlice → Primary
- *
+ * Primary content in *CardSlice → Primary*
  */
-interface CardSliceSliceDefaultPrimary {
+export interface CardSliceSliceDefaultPrimary {
   /**
    * title field in *CardSlice → Primary*
    *
    * - **Field Type**: Title
    * - **Placeholder**: *None*
    * - **API ID Path**: card_slice.primary.title
-   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
-   *
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   title: prismic.TitleField;
+
   /**
    * subtitle field in *CardSlice → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
    * - **API ID Path**: card_slice.primary.subtitle
-   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
-   *
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   subtitle: prismic.RichTextField;
 }
+
 /**
- * Item in CardSlice → Items
- *
+ * Primary content in *CardSlice → Items*
  */
 export interface CardSliceSliceDefaultItem {
   /**
@@ -987,246 +1020,274 @@ export interface CardSliceSliceDefaultItem {
    * - **Field Type**: Image
    * - **Placeholder**: *None*
    * - **API ID Path**: card_slice.items[].card_image
-   * - **Documentation**: https://prismic.io/docs/core-concepts/image
-   *
+   * - **Documentation**: https://prismic.io/docs/field#image
    */
   card_image: prismic.ImageField<never>;
+
   /**
    * Name field in *CardSlice → Items*
    *
    * - **Field Type**: Title
    * - **Placeholder**: Enter name for current card item.
    * - **API ID Path**: card_slice.items[].name
-   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
-   *
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   name: prismic.TitleField;
+
   /**
    * Collection field in *CardSlice → Items*
    *
    * - **Field Type**: Content Relationship
    * - **Placeholder**: *None*
    * - **API ID Path**: card_slice.items[].collection
-   * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
-   *
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   collection: prismic.ContentRelationshipField<"icons_list">;
+
   /**
    * Description field in *CardSlice → Items*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: Enter description for current card item.
    * - **API ID Path**: card_slice.items[].description
-   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
-   *
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   description: prismic.RichTextField;
+
   /**
    * Icon field in *CardSlice → Items*
    *
    * - **Field Type**: Content Relationship
    * - **Placeholder**: *None*
    * - **API ID Path**: card_slice.items[].icon
-   * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
-   *
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   icon: prismic.ContentRelationshipField<"heroicon">;
+
   /**
    * Button field in *CardSlice → Items*
    *
    * - **Field Type**: Content Relationship
    * - **Placeholder**: *None*
    * - **API ID Path**: card_slice.items[].button
-   * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
-   *
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   button: prismic.ContentRelationshipField<"button">;
+
   /**
    * Button Label field in *CardSlice → Items*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
    * - **API ID Path**: card_slice.items[].label
-   * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
-   *
+   * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   label: prismic.KeyTextField;
 }
+
 /**
  * Default variation for CardSlice Slice
  *
  * - **API ID**: `default`
- * - **Description**: `Default`
- * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
- *
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
  */
 export type CardSliceSliceDefault = prismic.SharedSliceVariation<
   "default",
   Simplify<CardSliceSliceDefaultPrimary>,
   Simplify<CardSliceSliceDefaultItem>
 >;
+
 /**
  * Slice variation for *CardSlice*
- *
  */
 type CardSliceSliceVariation = CardSliceSliceDefault;
+
 /**
  * CardSlice Shared Slice
  *
  * - **API ID**: `card_slice`
- * - **Description**: `CardSlice`
- * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
- *
+ * - **Description**: CardSlice
+ * - **Documentation**: https://prismic.io/docs/slice
  */
 export type CardSliceSlice = prismic.SharedSlice<
   "card_slice",
   CardSliceSliceVariation
 >;
+
 /**
- * Primary content in HeroSlice → Primary
- *
+ * Primary content in *HeroSlice → Primary*
  */
-interface HeroSliceSliceDefaultPrimary {
+export interface HeroSliceSliceDefaultPrimary {
   /**
    * Title field in *HeroSlice → Primary*
    *
    * - **Field Type**: Title
    * - **Placeholder**: Title for Hero, uses <h1 /> tag.
    * - **API ID Path**: hero_slice.primary.title
-   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
-   *
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   title: prismic.TitleField;
+
   /**
    * Subtitle field in *HeroSlice → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: Subtitle is under the Hero title.
    * - **API ID Path**: hero_slice.primary.subtitle
-   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
-   *
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   subtitle: prismic.RichTextField;
+
   /**
    * Hero Image field in *HeroSlice → Primary*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
    * - **API ID Path**: hero_slice.primary.hero_image
-   * - **Documentation**: https://prismic.io/docs/core-concepts/image
-   *
+   * - **Documentation**: https://prismic.io/docs/field#image
    */
   hero_image: prismic.ImageField<never>;
+
   /**
    * Image Mask field in *HeroSlice → Primary*
    *
    * - **Field Type**: Content Relationship
    * - **Placeholder**: *None*
    * - **API ID Path**: hero_slice.primary.image_mask
-   * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
-   *
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   image_mask: prismic.ContentRelationshipField<"image_mask">;
+
   /**
    * icon field in *HeroSlice → Primary*
    *
    * - **Field Type**: Content Relationship
    * - **Placeholder**: *None*
    * - **API ID Path**: hero_slice.primary.icon
-   * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
-   *
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   icon: prismic.ContentRelationshipField<"heroicon">;
+
   /**
    * Button field in *HeroSlice → Primary*
    *
    * - **Field Type**: Content Relationship
    * - **Placeholder**: *None*
    * - **API ID Path**: hero_slice.primary.button
-   * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
-   *
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   button: prismic.ContentRelationshipField<"button">;
+
   /**
    * Button Label field in *HeroSlice → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: Enter label value for your button. Is visible for both button and links.
    * - **API ID Path**: hero_slice.primary.label
-   * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
-   *
+   * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   label: prismic.KeyTextField;
+
   /**
    * Button Href field in *HeroSlice → Primary*
    *
    * - **Field Type**: Content Relationship
    * - **Placeholder**: *None*
    * - **API ID Path**: hero_slice.primary.href
-   * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
-   *
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   href: prismic.ContentRelationshipField<"landing_page">;
 }
+
 /**
  * Default variation for HeroSlice Slice
  *
  * - **API ID**: `default`
- * - **Description**: `Default`
- * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
- *
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
  */
 export type HeroSliceSliceDefault = prismic.SharedSliceVariation<
   "default",
   Simplify<HeroSliceSliceDefaultPrimary>,
   never
 >;
+
 /**
- * Primary content in HeroSlice → Primary
- *
+ * Primary content in *HeroSlice → Primary*
  */
-interface HeroSliceSliceAvatarPrimary {
+export interface HeroSliceSliceFullWidthPrimary {
   /**
    * Title field in *HeroSlice → Primary*
    *
    * - **Field Type**: Title
    * - **Placeholder**: Title for Hero, uses <h1 /> tag.
    * - **API ID Path**: hero_slice.primary.title
-   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
-   *
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   title: prismic.TitleField;
+
+  /**
+   * Subtitle field in *HeroSlice → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Subtitle is under the Hero title.
+   * - **API ID Path**: hero_slice.primary.subtitle
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  subtitle: prismic.RichTextField;
+
+  /**
+   * Hero Image field in *HeroSlice → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_slice.primary.hero_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  hero_image: prismic.ImageField<never>;
+
+  /**
+   * Image Mask field in *HeroSlice → Primary*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_slice.primary.image_mask
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  image_mask: prismic.ContentRelationshipField<"image_mask">;
 }
+
 /**
- * Avatar variation for HeroSlice Slice
+ * Full Width variation for HeroSlice Slice
  *
- * - **API ID**: `avatar`
- * - **Description**: `Default`
- * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
- *
+ * - **API ID**: `fullWidth`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
  */
-export type HeroSliceSliceAvatar = prismic.SharedSliceVariation<
-  "avatar",
-  Simplify<HeroSliceSliceAvatarPrimary>,
+export type HeroSliceSliceFullWidth = prismic.SharedSliceVariation<
+  "fullWidth",
+  Simplify<HeroSliceSliceFullWidthPrimary>,
   never
 >;
+
 /**
  * Slice variation for *HeroSlice*
- *
  */
-type HeroSliceSliceVariation = HeroSliceSliceDefault | HeroSliceSliceAvatar;
+type HeroSliceSliceVariation = HeroSliceSliceDefault | HeroSliceSliceFullWidth;
+
 /**
  * HeroSlice Shared Slice
  *
  * - **API ID**: `hero_slice`
- * - **Description**: `HeroSlice`
- * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
- *
+ * - **Description**: HeroSlice
+ * - **Documentation**: https://prismic.io/docs/slice
  */
 export type HeroSliceSlice = prismic.SharedSlice<
   "hero_slice",
   HeroSliceSliceVariation
 >;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -1234,68 +1295,51 @@ declare module "@prismicio/client" {
       options?: prismicClient.ClientConfig
     ): prismicClient.Client<AllDocumentTypes>;
   }
+
   namespace Content {
     export type {
-      ButtonDocumentData,
       ButtonDocument,
-      HeroiconDocumentData,
+      ButtonDocumentData,
       HeroiconDocument,
-      IconsListDocumentData,
-      IconsListDocumentDataCollectionItem,
+      HeroiconDocumentData,
       IconsListDocument,
-      ImageMaskDocumentData,
+      IconsListDocumentData,
       ImageMaskDocument,
-      LandingPageDocumentData,
-      LandingPageDocumentDataSlicesSlice,
+      ImageMaskDocumentData,
       LandingPageDocument,
-      NavigationDocumentData,
-      NavigationDocumentDataNavigationLinksItem,
+      LandingPageDocumentData,
       NavigationDocument,
-      Theme100DocumentData,
-      Theme100DocumentDataLightItem,
+      NavigationDocumentData,
       Theme100Document,
-      Theme200DocumentData,
-      Theme200DocumentDataLightItem,
+      Theme100DocumentData,
       Theme200Document,
-      Theme300DocumentData,
-      Theme300DocumentDataLightItem,
+      Theme200DocumentData,
       Theme300Document,
-      Theme400DocumentData,
-      Theme400DocumentDataLightItem,
+      Theme300DocumentData,
       Theme400Document,
-      Theme50DocumentData,
-      Theme50DocumentDataLightItem,
+      Theme400DocumentData,
       Theme50Document,
-      Theme500DocumentData,
-      Theme500DocumentDataLightItem,
+      Theme50DocumentData,
       Theme500Document,
-      Theme600DocumentData,
-      Theme600DocumentDataLightItem,
+      Theme500DocumentData,
       Theme600Document,
-      Theme700DocumentData,
-      Theme700DocumentDataLightItem,
+      Theme600DocumentData,
       Theme700Document,
-      Theme800DocumentData,
-      Theme800DocumentDataLightItem,
+      Theme700DocumentData,
       Theme800Document,
-      Theme900DocumentData,
-      Theme900DocumentDataLightItem,
+      Theme800DocumentData,
       Theme900Document,
-      Theme950DocumentData,
-      Theme950DocumentDataLightItem,
+      Theme900DocumentData,
       Theme950Document,
+      Theme950DocumentData,
       AllDocumentTypes,
-      CardSliceSliceDefaultPrimary,
-      CardSliceSliceDefaultItem,
-      CardSliceSliceDefault,
-      CardSliceSliceVariation,
       CardSliceSlice,
-      HeroSliceSliceDefaultPrimary,
-      HeroSliceSliceDefault,
-      HeroSliceSliceAvatarPrimary,
-      HeroSliceSliceAvatar,
-      HeroSliceSliceVariation,
+      CardSliceSliceVariation,
+      CardSliceSliceDefault,
       HeroSliceSlice,
+      HeroSliceSliceVariation,
+      HeroSliceSliceDefault,
+      HeroSliceSliceFullWidth,
     };
   }
 }

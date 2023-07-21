@@ -1,4 +1,5 @@
 import type { Content } from '@prismicio/client';
+import type { CardSliceSliceDefaultItem } from 'prismicio-types';
 import type { PrismicEditorFieldProps } from '@/types/prismic';
 import type { ButtonFragment, HeroIconFragment, IconsListFragment } from '@/types/prismic/graphql/graphql';
 import { PrismicRichText } from '@prismicio/react';
@@ -10,12 +11,12 @@ import IconsList from '@/components/IconsList';
 
 interface CardItemProps {
   card_image: PrismicEditorFieldProps['image'];
-  name: Content.CardSliceSliceDefaultItem['name'];
+  name: CardSliceSliceDefaultItem['name'];
   collection?: IconsListFragment | null;
-  description: Content.CardSliceSliceDefaultItem['description'];
+  description: CardSliceSliceDefaultItem['description'];
   icon?: HeroIconFragment | null;
   button: ButtonFragment | null;
-  label: Content.CardSliceSliceDefaultItem['label'];
+  label: CardSliceSliceDefaultItem['label'];
 }
 
 const CardItem: React.FC<CardItemProps> = (props) => {

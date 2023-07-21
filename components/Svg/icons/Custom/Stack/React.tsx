@@ -1,6 +1,6 @@
 import { CustomIconsProps } from '@/types/icons';
 
-const React: React.FC<CustomIconsProps> = ({ variant = 'solid', color, className, ...props }) => {
+const ReactIcon: React.FC<CustomIconsProps> = ({ variant = 'solid', color, className, ...props }) => {
   return (
     <svg
       id={props.name}
@@ -22,4 +22,4 @@ const React: React.FC<CustomIconsProps> = ({ variant = 'solid', color, className
   );
 };
 
-export default React;
+export default ReactIcon;

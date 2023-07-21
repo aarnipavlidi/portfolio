@@ -1,5 +1,5 @@
 import type { CardSlicePrimaryFragment } from '@/types/prismic/graphql/graphql';
-import type { Content } from '@prismicio/client';
+import type { CardSliceSliceDefaultPrimary } from 'prismicio-types';
 import { Fragment } from 'react';
 import { PrismicRichText } from '@prismicio/react';
 import { getFragmentData } from '@/types/prismic/graphql';
@@ -11,14 +11,16 @@ import CardItem from '@/components/Card/item';
 import CustomDivide from '@/components/CustomDivide';
 
 interface CardProps {
-  title: Content.CardSliceSliceDefaultPrimary['title'];
-  subtitle?: Content.CardSliceSliceDefaultPrimary['subtitle'];
+  title: CardSliceSliceDefaultPrimary['title'];
+  subtitle?: CardSliceSliceDefaultPrimary['subtitle'];
   items: CardSlicePrimaryFragment['items'];
 }
 
 const Card: React.FC<CardProps> = (props) => {
 
-  const validateCardTitle = props.title && props.title.map(value => value.text.length !== 0).some(value => value !== false);
+  const validateCardTitle = props.title && props.title
+    .map(value => value.text.length !== 0)
+    .some(value => value !== false);
 
   return (
     <section className="text-neutral-900 py-8">

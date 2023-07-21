@@ -27,3 +27,9 @@ a {
   position: absolute;
   width: 1px;
 }
+
+@media (prefers-color-scheme: dark) {
+  body {
+    @apply bg-neutral-950;
+  }
+}

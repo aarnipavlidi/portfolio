@@ -1,9 +1,9 @@
-import type { Content } from '@prismicio/client';
+import type { IconsListDocumentDataCollectionItem } from 'prismicio-types';
 import Icons from '@/components/Icons';
 
 interface CollectionProps {
-  name: Content.IconsListDocumentDataCollectionItem['name'];
-  icon: Content.IconsListDocumentDataCollectionItem['icon'];
+  name: IconsListDocumentDataCollectionItem['name'];
+  icon: IconsListDocumentDataCollectionItem['icon'];
 }
 
 interface IconsListProps {

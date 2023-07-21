@@ -1,17 +1,5 @@
 import { graphql } from '@/types/prismic/graphql';
 
-// REMINDER REMOVE LATER
-// "items" which can be repeated on slices needs
-// to be added after the "primary" so e.g
-//  {
-//    primary {
-//      heading
-//    }
-//    items {
-//      valueHere
-//    }
-//  }
-
 export const HERO_SLICE_PRIMARY = graphql(`
   fragment HeroSlicePrimary on Landing_pageSlicesHero_sliceDefault {
     primary {
@@ -40,12 +28,18 @@ export const HERO_SLICE_PRIMARY = graphql(`
   }
 `);
 
-export const HERO_SLICE_AVATAR = graphql(`
-  fragment HeroSliceAvatar on Landing_pageSlicesHero_sliceAvatar {
-    primary {
+export const HERO_SLICE_FULL_WIDTH = graphql(`
+   fragment HeroSliceFullWidth on Landing_pageSlicesHero_sliceFullwidth {
+    fullWidth: primary {
       title
+      subtitle
+      hero_image
+      image_mask {
+        __typename
+        ...ImageMask
+      }
     }
-  }
+   }
 `);
 
 export const HERO_SLICE_FIELDS = graphql(`
@@ -55,7 +49,7 @@ export const HERO_SLICE_FIELDS = graphql(`
     variation {
       __typename
       ...HeroSlicePrimary
-      ...HeroSliceAvatar
+      ...HeroSliceFullWidth
     }
   }
 `);

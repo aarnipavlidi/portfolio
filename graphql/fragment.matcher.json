@@ -8,8 +8,8 @@
       "Landing_pageSlicesCard_sliceDefault"
     ],
     "Landing_pageSlicesHero_sliceVariation": [
-      "Landing_pageSlicesHero_sliceAvatar",
-      "Landing_pageSlicesHero_sliceDefault"
+      "Landing_pageSlicesHero_sliceDefault",
+      "Landing_pageSlicesHero_sliceFullwidth"
     ],
     "_Document": [
       "Button",

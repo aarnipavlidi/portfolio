@@ -97,8 +97,8 @@
       "items": {}
     },
     {
-      "id": "avatar",
-      "name": "Avatar",
+      "id": "fullWidth",
+      "name": "Full Width",
       "docURL": "...",
       "version": "initial",
       "description": "Default",
@@ -109,16 +109,33 @@
           "config": {
             "label": "Title",
             "placeholder": "Title for Hero, uses <h1 /> tag.",
-            "allowTargetBlank": false,
-            "labels": [
-              "text-left",
-              "text-center",
-              "text-right",
-              "text-justify",
-              "text-start",
-              "text-end"
-            ],
+            "allowTargetBlank": true,
             "single": "heading1"
+          }
+        },
+        "subtitle": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Subtitle",
+            "placeholder": "Subtitle is under the Hero title.",
+            "allowTargetBlank": true,
+            "single": "paragraph,strong,em"
+          }
+        },
+        "hero_image": {
+          "type": "Image",
+          "config": {
+            "label": "Hero Image",
+            "constraint": { "width": null, "height": null },
+            "thumbnails": []
+          }
+        },
+        "image_mask": {
+          "type": "Link",
+          "config": {
+            "label": "Image Mask",
+            "select": "document",
+            "customtypes": ["image_mask"]
           }
         }
       },
