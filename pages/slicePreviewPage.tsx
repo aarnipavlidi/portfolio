@@ -1,5 +1,5 @@
 import type Content from 'prismicio-types';
-import type { HeroSlicePrimaryFragment, HeroSliceAvatarFragment, HeroSliceFieldFragment } from '@/types/prismic/graphql/graphql';
+import type { HeroSlicePrimaryFragment, HeroSliceFullWidthFragment, HeroSliceFieldFragment } from '@/types/prismic/graphql/graphql';
 import type { CardSlicePrimaryFragment, CardSliceFieldFragment } from '@/types/prismic/graphql/graphql';
 import { SliceSimulator } from '@slicemachine/adapter-next/simulator';
 import { SliceZone, SliceZoneLike } from '@prismicio/react';
@@ -57,20 +57,18 @@ const SlicePreviewPage: React.FC = () => {
             // screenshots if needed.
             const getPrimaryVariantFragment: HeroSlicePrimaryFragment = {
               __typename: 'Landing_pageSlicesHero_sliceDefault',
-              primary: getLandingPageSlice.primary as HeroSlicePrimaryFragment['primary'],
+              primary: getLandingPageSlice.primary as unknown as HeroSlicePrimaryFragment['primary'],
             };
 
-            // FOR TESTING PURPOSE (PLAYING AROUND WITH DIFFERENT VARIANT ON SLICE)
-            // WILL BE DELETED OR RENAMED LATER.
-            const getSecondaryVariantFragment: HeroSliceAvatarFragment = {
-              __typename: 'Landing_pageSlicesHero_sliceAvatar',
-              primary: getLandingPageSlice.primary as HeroSliceAvatarFragment['primary'],
+            const getFullWidthVariantFragment: HeroSliceFullWidthFragment = {
+              __typename: 'Landing_pageSlicesHero_sliceFullwidth',
+              fullWidth: getLandingPageSlice.primary as unknown as HeroSliceFullWidthFragment['fullWidth'],
             };
 
             const getCurrentVariantFragment = getLandingPageSlice.variation === 'default'
               ? getPrimaryVariantFragment
-              : getLandingPageSlice.variation === 'avatar'
-                ? getSecondaryVariantFragment
+              : getLandingPageSlice.variation === 'fullWidth'
+                ? getFullWidthVariantFragment
                 : null;
 
             const formatSliceWithGraphQL: HeroSliceFieldFragment = {
@@ -84,7 +82,10 @@ const SlicePreviewPage: React.FC = () => {
                 // here is because, "HeroSliceFieldFragment" type is expecting that this
                 // key will have string value (generated via codegen), so I can't use null
                 // or undefined value on it sadly :(
-                __typename: 'Landing_pageSlicesHero_sliceDefault',
+                // __typename: 'Landing_pageSlicesHero_sliceDefault',
+                __typename: getCurrentVariantFragment?.__typename === 'Landing_pageSlicesHero_sliceDefault'
+                  ? 'Landing_pageSlicesHero_sliceDefault'
+                  : 'Landing_pageSlicesHero_sliceFullwidth',
                 ...getCurrentVariantFragment,
               },
             };
