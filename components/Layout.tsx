@@ -1,7 +1,9 @@
 import type { LayoutFetchProps } from '@/types/prismic';
 import useSWR, { Fetcher } from 'swr';
 import { useState } from 'react';
+
 import NavigationHeader from '@/components/Navigation';
+import NavigationFooter from '@/components/Footer';
 
 interface LayoutProps {
   fontVariable?: string;
@@ -38,17 +40,23 @@ const Layout: React.FC<LayoutProps> = (props) => {
   }
 
   const getNavigationData = data && data[0].navigation;
+  const getFooterData = data && data[0].footer;
 
   return (
-    <div className={props.fontVariable}>
+    <div className={`${props.fontVariable} flex flex-col min-h-screen`}>
       <NavigationHeader
         navigation={getNavigationData}
         mobileMenuScreen={mobileMenuScreen}
         setMobileMenuScreen={setMobileMenuScreen}
       />
-      <main className={mobileMenuScreen ? 'hidden' : 'w-screen mx-auto px-4 md:container'}>
+      <main className={mobileMenuScreen ? 'hidden' : 'w-screen mx-auto grow px-4 md:container'}>
         {props.children}
       </main>
+      <NavigationFooter
+        navigation={getNavigationData}
+        content={getFooterData}
+        mobileMenuScreen={mobileMenuScreen}
+      />
     </div>
   );
 };

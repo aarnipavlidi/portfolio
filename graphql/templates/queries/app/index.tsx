@@ -33,3 +33,22 @@ export const GET_CURRENT_NAVIGATION = graphql(`
     }
   }
 `);
+
+export const GET_CURRENT_FOOTER = graphql(`
+  query getCurrentFooter {
+    allFooters {
+      edges {
+        node {
+          slogan
+          slogan_keys {
+            word
+          }
+          social_icons {
+            __typename
+            ...IconsList
+          }
+        }
+      }
+    }
+  }
+`);

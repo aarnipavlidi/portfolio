@@ -1,4 +1,3 @@
-import type { Content } from '@prismicio/client';
 import type { CardSliceSliceDefaultItem } from 'prismicio-types';
 import type { PrismicEditorFieldProps } from '@/types/prismic';
 import type { ButtonFragment, HeroIconFragment, IconsListFragment } from '@/types/prismic/graphql/graphql';
@@ -43,7 +42,7 @@ const CardItem: React.FC<CardItemProps> = (props) => {
                     />
                     {
                       props.collection && props.collection.collection && <IconsList
-                        collection={props.collection.collection as Content.IconsListDocumentData['collection']}
+                        collection={props.collection.collection}
                         wrapperClass='flex gap-2'
                         className="w-4"
                       />

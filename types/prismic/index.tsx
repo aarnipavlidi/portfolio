@@ -1,5 +1,5 @@
 // Navigation
-import type { GetCurrentNavigationQuery } from '@/types/prismic/graphql/graphql';
+import type { GetCurrentNavigationQuery, GetCurrentFooterQuery } from '@/types/prismic/graphql/graphql';
 // Landing Pages
 import { GetAllLandingPagesMetaQuery, GetAllLandingPagesMetaQueryVariables, GetCurrentLandingPageQuery, GetCurrentLandingPageQueryVariables, LandingPageSlicesHeroSliceDefault } from '@/types/prismic/graphql/graphql';
 // Theme related
@@ -70,6 +70,7 @@ export interface FallBackColorProps {
 
 export type LayoutFetchProps = {
   navigation: GetCurrentNavigationQuery;
+  footer: GetCurrentFooterQuery;
 }
 
 export type allLandingPagesMetaProps = {

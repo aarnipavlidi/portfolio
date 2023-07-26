@@ -24,8 +24,25 @@
               "config": {
                 "label": "icon",
                 "placeholder": "",
-                "options": ["tailwindcss", "graphql", "react", "nextjs"],
+                "options": [
+                  "tailwindcss",
+                  "graphql",
+                  "react",
+                  "nextjs",
+                  "GitHub",
+                  "LinkedIn",
+                  "Twitter"
+                ],
                 "default_value": "tailwindcss"
+              }
+            },
+            "href": {
+              "type": "Link",
+              "config": {
+                "label": "href",
+                "placeholder": "Optional value for current icon. Can be used for example with social icons, where you want to redirect user into LinkedIn etc.",
+                "allowTargetBlank": true,
+                "select": null
               }
             }
           }

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import classNames from 'classnames';
 
 interface CustomLinkProps {
+  key?: string | null;
   legacyBehavior?: boolean;
   href: string;
   className?: string;
@@ -20,7 +21,7 @@ const CustomLink: React.FC<CustomLinkProps> = ({ legacyBehavior = false, size = 
   });
 
   return (
-    <Link href={props.href} legacyBehavior={legacyBehavior} className={linkContainer}>
+    <Link key={props.key} href={props.href} legacyBehavior={legacyBehavior} className={linkContainer}>
       {props.content}
     </Link>
   );

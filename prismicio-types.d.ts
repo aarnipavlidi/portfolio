@@ -59,6 +59,75 @@ export type ButtonDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<ButtonDocumentData>, "button", Lang>;
 
 /**
+ * Item in *Footer → Slogan Keys*
+ */
+export interface FooterDocumentDataSloganKeysItem {
+  /**
+   * word field in *Footer → Slogan Keys*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Use "key" words, which is part of the slogan on same row.
+   * - **API ID Path**: footer.slogan_keys[].word
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  word: prismic.RichTextField;
+}
+
+/**
+ * Content for Footer documents
+ */
+interface FooterDocumentData {
+  /**
+   * Slogan field in *Footer*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Add your current slogan into footer. WIll be shown on right side, with same row as the "key" words.
+   * - **API ID Path**: footer.slogan
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  slogan: prismic.RichTextField;
+
+  /**
+   * Slogan Keys field in *Footer*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.slogan_keys[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  slogan_keys: prismic.GroupField<Simplify<FooterDocumentDataSloganKeysItem>>;
+
+  /**
+   * Social Icons field in *Footer*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.social_icons
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  social_icons: prismic.ContentRelationshipField<"icons_list">;
+}
+
+/**
+ * Footer document from Prismic
+ *
+ * - **API ID**: `footer`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type FooterDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<FooterDocumentData>,
+    "footer",
+    Lang
+  >;
+
+/**
  * Content for heroicon documents
  */
 interface HeroiconDocumentData {
@@ -130,9 +199,25 @@ export interface IconsListDocumentDataCollectionItem {
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   icon: prismic.SelectField<
-    "tailwindcss" | "graphql" | "react" | "nextjs",
+    | "tailwindcss"
+    | "graphql"
+    | "react"
+    | "nextjs"
+    | "GitHub"
+    | "LinkedIn"
+    | "Twitter",
     "filled"
   >;
+
+  /**
+   * href field in *Icons List → Collection*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: Optional value for current icon. Can be used for example with social icons, where you want to redirect user into LinkedIn etc.
+   * - **API ID Path**: icons_list.collection[].href
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  href: prismic.LinkField;
 }
 
 /**
@@ -968,6 +1053,7 @@ export type Theme950Document<Lang extends string = string> =
 
 export type AllDocumentTypes =
   | ButtonDocument
+  | FooterDocument
   | HeroiconDocument
   | IconsListDocument
   | ImageMaskDocument
@@ -1300,6 +1386,8 @@ declare module "@prismicio/client" {
     export type {
       ButtonDocument,
       ButtonDocumentData,
+      FooterDocument,
+      FooterDocumentData,
       HeroiconDocument,
       HeroiconDocumentData,
       IconsListDocument,
