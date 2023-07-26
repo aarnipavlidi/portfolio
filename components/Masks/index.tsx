@@ -22,10 +22,15 @@ const Masks: React.FC<CustomMasksProps> = ({ id, variant, ...props }) => {
             />
           }
           {
-            getMaskVariant === 'aarni' && <path
-              d="M1 0H0v1h1V0ZM.12.08H.08v.04h.04V.08ZM.16.2V.12H.2V.2H.16ZM.12.16h.04V.2H.12V.16Zm.64.6H.72V.8h.04V.76ZM.8.8h.04v.04H.8V.8H.76V.76H.8V.8ZM.72.72H.68v.04h.04V.72ZM.8.68h.04v.04H.8V.68Z"
-              clipRule="evenodd"
-            />
+            getMaskVariant === 'fullWidth' && <>
+              <path
+                d="M.316 0H.93v.057h.035v.057H1V1H.613V.943H.596V.886H.56V.829H.542v.057H.524v.057H.506V1H0V0h.191v.057h.036v.057h.018V.057H.28V0h.018v.114H.28v.057h.018V.114h.018V0ZM.018.057h.018v.057H.018V.057Zm.036.057H.07V.23H.036V.17h.018V.114Zm.928.6H.964v.057h.018V.714ZM.911.771h.018V.83H.91V.77Zm.053.115H.93V.829h.035v.057Zm0 0h.018v.057H.964V.886ZM.614.057H.63v.057H.613V.057ZM.63.114h.036v.057H.631V.114Z"
+                clipRule="evenodd"
+              />
+              <path
+                d="M.245 0H.227v.057h.018V0ZM.542.886H.56v.057h.036V1H.542V.886ZM.964.057V0H1v.057H.964Z"
+              />
+            </>
           }
         </clipPath>
       </defs>

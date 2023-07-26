@@ -15,7 +15,7 @@
         "config": {
           "label": "variant",
           "placeholder": "Choose mask variant (default is \"avatar\")",
-          "options": ["avatar", "aarni"],
+          "options": ["avatar", "fullWidth"],
           "default_value": "avatar"
         }
       }

@@ -2,16 +2,18 @@
 import type { LayoutFetchProps } from '@/types/prismic';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { getCurrentNavigation } from '@/graphql/queries/';
+import { getCurrentNavigation, getCurrentFooter } from '@/graphql/queries/';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<LayoutFetchProps[] | (string | string[])>) {
-  const [navigationResponse] = await Promise.all([
+  const [navigationResponse, footerResponse] = await Promise.all([
     getCurrentNavigation(),
+    getCurrentFooter(),
   ]);
 
-  if (navigationResponse.error) {
-    const getErrorMessage = navigationResponse.error.message;
-    const formatErrorMessage = `During navigation query following error happened: ${getErrorMessage}.`;
+  if (navigationResponse.error || footerResponse.error) {
+    const getErrorMessage = (navigationResponse || footerResponse).error?.message;
+
+    const formatErrorMessage = `During api navigation query following error happened: ${getErrorMessage}.`;
 
     res.status(500).json(formatErrorMessage);
 
@@ -30,5 +32,24 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     return;
   }
 
-  return res.status(200).json([{ navigation: navigationResponse.data }]);
+  if (footerResponse.errors) {
+    const formatErrors = footerResponse.errors.map(value => {
+      const getEachErrorPath = value.path?.join(', ') || '';
+
+      return `${value.message}${getEachErrorPath}.`;
+    });
+
+    res.status(500).json(formatErrors);
+
+    return;
+  }
+
+  return res.status(200).json(
+    [
+      {
+        navigation: navigationResponse.data,
+        footer: footerResponse.data,
+      },
+    ]
+  );
 };

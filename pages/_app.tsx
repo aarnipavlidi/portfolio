@@ -37,6 +37,7 @@ const fontPierSans = localFont({
 
 const caveatFont = Caveat({
   subsets: ['latin'],
+  style: 'normal',
   variable: '--font-secondary',
 });
 

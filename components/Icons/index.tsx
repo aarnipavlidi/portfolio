@@ -1,13 +1,18 @@
 import { CustomIconsProps, CustomIconsArrayProps } from '@/types/icons';
 
 // Custom Icons
-import GitHub from '@/components/Svg/icons/Custom/GitHub';
+import FooterBlock from '@/components/Svg/icons/Custom/FooterBlock';
 import HamburgerMenu from '@/components/Svg/icons/Custom/HamburgerMenu';
 import OverlayBlock from '@/components/Svg/icons/Custom/OverlayBlock';
 import PrimaryFormation from '@/components/Svg/icons/Custom/PrimaryFormation';
 import SquareDot from '@/components/Svg/icons/Custom/SquareDot';
 import StackingBlock from '@/components/Svg/icons/Custom/StackingBlock';
 import TerminalTag from '@/components/Svg/icons/Custom/TerminalTag';
+
+// Custom Social Icons
+import GitHub from '@/components/Svg/icons/Custom/Social/GitHub';
+import LinkedIn from '@/components/Svg/icons/Custom/Social/LinkedIn';
+import Twitter from '@/components/Svg/icons/Custom/Social/Twitter';
 
 // Custom Stack Icons
 import GraphQL from '@/components/Svg/icons/Custom/Stack/GraphQL';
@@ -30,6 +35,9 @@ const Icons: React.FC<CustomIconsProps> = ({ name, variant = 'solid', ...props }
     'react': React,
     'nextjs': NextJS,
     'GitHub': GitHub,
+    'LinkedIn': LinkedIn,
+    'Twitter': Twitter,
+    'FooterBlock': FooterBlock,
     'HamburgerMenu': HamburgerMenu,
     'OverlayBlock': OverlayBlock,
     'PrimaryFormation': PrimaryFormation,

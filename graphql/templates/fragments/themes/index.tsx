@@ -138,6 +138,9 @@ export const ICONS_LIST = graphql(`
     collection {
       name
       icon
+      href {
+        ...ExternalLinkMeta
+      }
     }
   }
 `);

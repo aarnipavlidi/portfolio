@@ -2,8 +2,7 @@ import type { ImageMaskFragment } from '@/types/prismic/graphql/graphql';
 import type { PrismicEditorFieldProps } from '@/types/prismic';
 import type { CSSProperties } from 'react';
 import { useId } from 'react';
-import Image from 'next/image';
-import { PrismicNextImage } from '@prismicio/next';
+import { PrismicNextImage, PrismicNextImageProps } from '@prismicio/next';
 import classNames from 'classnames';
 
 import Masks from '@/components/Masks';
@@ -11,12 +10,11 @@ import Masks from '@/components/Masks';
 interface DesignPrismicProps {
   content: PrismicEditorFieldProps['image'];
   mask?: ImageMaskFragment | null;
+  params?: PrismicNextImageProps['imgixParams'];
 }
 
 interface DesignProps extends DesignPrismicProps {
-  src?: string;
-  alt?: string;
-  variant?: 'prismic' | 'custom';
+  variant?: 'prismic';
   position?: 'static' | 'fixed' | 'absolute' | 'relative' | 'sticky';
   wrapperClass?: string;
   className?: string;
@@ -44,14 +42,7 @@ const Design: React.FC<DesignProps> = ({ variant = 'prismic', ...props }) => {
           variant === 'prismic' && <PrismicNextImage
             field={props.content}
             className={imageContainer}
-          />
-        }
-        {
-          variant === 'custom' && (props.src && props.alt) && <Image
-            src={props.src}
-            alt={props.alt}
-            className={imageContainer}
-            fill
+            imgixParams={props.params}
           />
         }
         {

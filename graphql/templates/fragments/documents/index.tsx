@@ -14,3 +14,12 @@ export const LINK_DOCUMENT_META = graphql(`
     }
   }
 `);
+
+export const EXTERNAL_LINK_META = graphql(`
+  fragment ExternalLinkMeta on _ExternalLink {
+    __typename
+    _linkType
+    url
+    target
+  }
+`);

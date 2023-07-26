@@ -1,60 +1,63 @@
 import type { HeroSliceFieldFragment } from '@/types/prismic/graphql/graphql';
 import { getFragmentData } from '@/types/prismic/graphql';
-import { SliceComponentProps, PrismicRichText } from '@prismicio/react';
+import { SliceComponentProps } from '@prismicio/react';
 import Hero from '@/components/Hero';
 
 import { LINK_DOCUMENT_META } from '@/graphql/templates/fragments/documents';
 import { IMAGE_MASK, HERO_ICON, BUTTON } from '@/graphql/templates/fragments/themes';
-import { HERO_SLICE_PRIMARY, HERO_SLICE_AVATAR } from '@/graphql/templates/fragments/slices';
+import { HERO_SLICE_PRIMARY, HERO_SLICE_FULL_WIDTH } from '@/graphql/templates/fragments/slices';
 
 export type HeroSliceProps = SliceComponentProps<HeroSliceFieldFragment & { type: string}>
 
 const HeroSlice = ({ slice }: HeroSliceProps): JSX.Element => {
   const getSliceData = slice;
 
-  const getPrimaryVariant = getSliceData && getSliceData.variation?.__typename === 'Landing_pageSlicesHero_sliceDefault'
-    ? getFragmentData(HERO_SLICE_PRIMARY, getSliceData.variation).primary
+  const getCurrentVariant = getSliceData && getSliceData.variation?.__typename === 'Landing_pageSlicesHero_sliceDefault'
+    ? getFragmentData(HERO_SLICE_PRIMARY, getSliceData.variation)
+    : getSliceData && getSliceData.variation?.__typename === 'Landing_pageSlicesHero_sliceFullwidth'
+      ? getFragmentData(HERO_SLICE_FULL_WIDTH, getSliceData.variation)
+      : null;
+
+  const getBothVariantMask = getCurrentVariant && getCurrentVariant.__typename === 'Landing_pageSlicesHero_sliceDefault' && getCurrentVariant.primary?.image_mask?.__typename === 'Image_mask'
+    ? getFragmentData(IMAGE_MASK, getCurrentVariant.primary.image_mask)
+    : getCurrentVariant && getCurrentVariant.__typename === 'Landing_pageSlicesHero_sliceFullwidth' && getCurrentVariant.fullWidth?.image_mask?.__typename === 'Image_mask'
+      ? getFragmentData(IMAGE_MASK, getCurrentVariant.fullWidth.image_mask)
+      : null;
+
+  const getPrimaryOnlyIcon = getCurrentVariant && getCurrentVariant.__typename === 'Landing_pageSlicesHero_sliceDefault' && getCurrentVariant.primary?.icon?.__typename === 'Heroicon'
+    ? getFragmentData(HERO_ICON, getCurrentVariant.primary.icon)
     : null;
 
-  const getPrimaryMask = getPrimaryVariant && getPrimaryVariant.image_mask?.__typename === 'Image_mask'
-    ? getFragmentData(IMAGE_MASK, getPrimaryVariant.image_mask)
+  const getPrimaryOnlyButton = getCurrentVariant && getCurrentVariant.__typename === 'Landing_pageSlicesHero_sliceDefault' && getCurrentVariant.primary?.button?.__typename === 'Button'
+    ? getFragmentData(BUTTON, getCurrentVariant.primary.button)
     : null;
 
-  const getPrimaryIcon = getPrimaryVariant && getPrimaryVariant.icon?.__typename === 'Heroicon'
-    ? getFragmentData(HERO_ICON, getPrimaryVariant.icon)
-    : null;
-
-  const getPrimaryButton = getPrimaryVariant && getPrimaryVariant.button?.__typename === 'Button'
-    ? getFragmentData(BUTTON, getPrimaryVariant.button)
-    : null;
-
-  const getPrimaryButtonHref = getPrimaryVariant && getPrimaryVariant.href?.__typename === 'Landing_page'
-    ? getFragmentData(LINK_DOCUMENT_META, getPrimaryVariant.href)
-    : null;
-
-  // FOR TESTING PURPOSE (PLAYING AROUND WITH DIFFERENT VARIANT ON SLICE)
-  // WILL BE DELETED OR RENAMED LATER.
-  const getSecondaryVariant = getSliceData && getSliceData.variation?.__typename === 'Landing_pageSlicesHero_sliceAvatar'
-    ? getFragmentData(HERO_SLICE_AVATAR, getSliceData.variation).primary
+  const getPrimaryOnlyButtonHref = getCurrentVariant && getCurrentVariant.__typename === 'Landing_pageSlicesHero_sliceDefault' && getCurrentVariant.primary?.href?.__typename === 'Landing_page'
+    ? getFragmentData(LINK_DOCUMENT_META, getCurrentVariant.primary.href)
     : null;
 
   return (
     <>
       {
-        getPrimaryVariant && <Hero
-          title={typeof(getPrimaryVariant.title) === 'string' ? getPrimaryVariant.title : <PrismicRichText field={getPrimaryVariant.title} />}
-          subtitle={typeof(getPrimaryVariant.subtitle) === 'string' ? getPrimaryVariant.subtitle : <PrismicRichText field={getPrimaryVariant.subtitle} />}
-          image={getPrimaryVariant.hero_image}
-          mask={getPrimaryMask}
-          icon={getPrimaryIcon}
-          button={getPrimaryButton}
-          buttonLabel={getPrimaryVariant.label}
-          buttonHref={getPrimaryButtonHref?._meta.uid}
+        getCurrentVariant && getCurrentVariant.__typename === 'Landing_pageSlicesHero_sliceDefault' && getCurrentVariant.primary && <Hero
+          variant="primary"
+          title={getCurrentVariant.primary.title}
+          subtitle={getCurrentVariant.primary.subtitle}
+          image={getCurrentVariant.primary.hero_image}
+          mask={getBothVariantMask}
+          icon={getPrimaryOnlyIcon}
+          button={getPrimaryOnlyButton}
+          buttonLabel={getCurrentVariant.primary.label}
+          buttonHref={getPrimaryOnlyButtonHref?._meta.uid}
         />
       }
       {
-        getSecondaryVariant && <Hero
-          title={typeof(getSecondaryVariant.title) === 'string' ? getSecondaryVariant.title : <PrismicRichText field={getSecondaryVariant.title} />}
+        getCurrentVariant && getCurrentVariant.__typename === 'Landing_pageSlicesHero_sliceFullwidth' && getCurrentVariant.fullWidth && <Hero
+          variant="fullWidth"
+          title={getCurrentVariant.fullWidth.title}
+          subtitle={getCurrentVariant.fullWidth.subtitle}
+          image={getCurrentVariant.fullWidth.hero_image}
+          mask={getBothVariantMask}
         />
       }
     </>

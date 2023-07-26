@@ -1,3 +1,4 @@
+import type { Content } from '@prismicio/client';
 import { SVGProps } from 'react';
 
 export interface CustomMasksProps extends SVGProps<SVGSVGElement> {
@@ -6,4 +7,4 @@ export interface CustomMasksProps extends SVGProps<SVGSVGElement> {
   variant: string | null;
 };
 
-export type CustomMaskVariantType = 'avatar' | 'aarni';
+export type CustomMaskVariantType = Content.ImageMaskDocumentData['variant'];

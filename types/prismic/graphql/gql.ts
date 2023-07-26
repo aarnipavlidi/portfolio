@@ -14,9 +14,10 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  */
 const documents = {
     "\n  fragment LinkDocumentMeta on _Document {\n    __typename\n    _meta {\n      id\n      uid\n      type\n      tags\n      lang\n      firstPublicationDate\n      lastPublicationDate\n    }\n  }\n": types.LinkDocumentMetaFragmentDoc,
+    "\n  fragment ExternalLinkMeta on _ExternalLink {\n    __typename\n    _linkType\n    url\n    target\n  }\n": types.ExternalLinkMetaFragmentDoc,
     "\n  fragment HeroSlicePrimary on Landing_pageSlicesHero_sliceDefault {\n    primary {\n      title\n      subtitle\n      hero_image\n      image_mask {\n        __typename\n        ...ImageMask\n      }\n      icon {\n        __typename\n        ...HeroIcon\n      }\n      button {\n        __typename\n        ...Button\n      }\n      label\n      href {\n        _linkType\n        __typename\n        ...LinkDocumentMeta\n      }\n    }\n  }\n": types.HeroSlicePrimaryFragmentDoc,
-    "\n  fragment HeroSliceAvatar on Landing_pageSlicesHero_sliceAvatar {\n    primary {\n      title\n    }\n  }\n": types.HeroSliceAvatarFragmentDoc,
-    "\n  fragment HeroSliceField on Landing_pageSlicesHero_slice {\n    type\n    label\n    variation {\n      __typename\n      ...HeroSlicePrimary\n      ...HeroSliceAvatar\n    }\n  }\n": types.HeroSliceFieldFragmentDoc,
+    "\n   fragment HeroSliceFullWidth on Landing_pageSlicesHero_sliceFullwidth {\n    fullWidth: primary {\n      title\n      subtitle\n      hero_image\n      image_mask {\n        __typename\n        ...ImageMask\n      }\n    }\n   }\n": types.HeroSliceFullWidthFragmentDoc,
+    "\n  fragment HeroSliceField on Landing_pageSlicesHero_slice {\n    type\n    label\n    variation {\n      __typename\n      ...HeroSlicePrimary\n      ...HeroSliceFullWidth\n    }\n  }\n": types.HeroSliceFieldFragmentDoc,
     "\n  fragment CardSlicePrimary on Landing_pageSlicesCard_sliceDefault {\n    primary {\n      title\n      subtitle\n    }\n    items {\n      card_image\n      name\n      collection {\n        __typename\n        ...IconsList\n      }\n      description\n      icon {\n        __typename\n        ...HeroIcon\n      }\n      button {\n        __typename\n        ...Button\n      }\n      label\n    }\n  }\n": types.CardSlicePrimaryFragmentDoc,
     "\n  fragment CardSliceField on Landing_pageSlicesCard_slice {\n    type\n    label\n    variation {\n      __typename\n      ...CardSlicePrimary\n    }\n  }\n": types.CardSliceFieldFragmentDoc,
     "\n  fragment Theme50Fields on Theme_50 {\n    light {\n      name\n      code\n    }\n  }\n": types.Theme50FieldsFragmentDoc,
@@ -33,8 +34,9 @@ const documents = {
     "\n  fragment ImageMask on Image_mask {\n    _meta {\n      uid\n    }\n    variant\n  }\n": types.ImageMaskFragmentDoc,
     "\n  fragment Button on Button {\n    _meta {\n      uid\n    }\n    variant\n    size\n    full_width\n  }\n": types.ButtonFragmentDoc,
     "\n  fragment HeroIcon on Heroicon {\n    _meta {\n      uid\n    }\n    variant\n    name\n  }\n": types.HeroIconFragmentDoc,
-    "\n  fragment IconsList on Icons_list {\n    _meta {\n      uid\n    }\n    collection {\n      name\n      icon\n    }\n  }\n": types.IconsListFragmentDoc,
+    "\n  fragment IconsList on Icons_list {\n    _meta {\n      uid\n    }\n    collection {\n      name\n      icon\n      href {\n        ...ExternalLinkMeta\n      }\n    }\n  }\n": types.IconsListFragmentDoc,
     "\n  query getCurrentNavigation {\n    allNavigations {\n      edges {\n        node {\n          position\n          navigation_title\n          navigation_links {\n            link_name\n            link_href {\n              _linkType\n              __typename\n              ...LinkDocumentMeta\n            }\n          }\n          color {\n            ...Theme50Fields\n            ...Theme100Fields\n            ...Theme200Fields\n            ...Theme300Fields\n            ...Theme400Fields\n            ...Theme500Fields\n            ...Theme600Fields\n            ...Theme700Fields\n            ...Theme800Fields\n            ...Theme900Fields\n            ...Theme950Fields\n          }\n        }\n      }\n    }\n  }\n": types.GetCurrentNavigationDocument,
+    "\n  query getCurrentFooter {\n    allFooters {\n      edges {\n        node {\n          slogan\n          slogan_keys {\n            word\n          }\n          social_icons {\n            __typename\n            ...IconsList\n          }\n        }\n      }\n    }\n  }\n": types.GetCurrentFooterDocument,
     "\n  query getAllLandingPagesMeta($getByID: [String!]) {\n    allLanding_pages(id_in: $getByID) {\n      edges {\n        node {\n          _linkType\n          _meta {\n            id\n            uid\n            type\n            tags\n            lang\n            firstPublicationDate\n            lastPublicationDate\n          }\n        }\n      }\n    }\n  }\n": types.GetAllLandingPagesMetaDocument,
     "\n  query getCurrentLandingPage($slug: String!, $defaultLocale: String!) {\n    landing_page(uid: $slug, lang: $defaultLocale) {\n      slices {\n        ...HeroSliceField\n        ...CardSliceField\n      }\n    }\n  }\n": types.GetCurrentLandingPageDocument,
 };
@@ -60,15 +62,19 @@ export function graphql(source: "\n  fragment LinkDocumentMeta on _Document {\n 
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function graphql(source: "\n  fragment ExternalLinkMeta on _ExternalLink {\n    __typename\n    _linkType\n    url\n    target\n  }\n"): (typeof documents)["\n  fragment ExternalLinkMeta on _ExternalLink {\n    __typename\n    _linkType\n    url\n    target\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function graphql(source: "\n  fragment HeroSlicePrimary on Landing_pageSlicesHero_sliceDefault {\n    primary {\n      title\n      subtitle\n      hero_image\n      image_mask {\n        __typename\n        ...ImageMask\n      }\n      icon {\n        __typename\n        ...HeroIcon\n      }\n      button {\n        __typename\n        ...Button\n      }\n      label\n      href {\n        _linkType\n        __typename\n        ...LinkDocumentMeta\n      }\n    }\n  }\n"): (typeof documents)["\n  fragment HeroSlicePrimary on Landing_pageSlicesHero_sliceDefault {\n    primary {\n      title\n      subtitle\n      hero_image\n      image_mask {\n        __typename\n        ...ImageMask\n      }\n      icon {\n        __typename\n        ...HeroIcon\n      }\n      button {\n        __typename\n        ...Button\n      }\n      label\n      href {\n        _linkType\n        __typename\n        ...LinkDocumentMeta\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  fragment HeroSliceAvatar on Landing_pageSlicesHero_sliceAvatar {\n    primary {\n      title\n    }\n  }\n"): (typeof documents)["\n  fragment HeroSliceAvatar on Landing_pageSlicesHero_sliceAvatar {\n    primary {\n      title\n    }\n  }\n"];
+export function graphql(source: "\n   fragment HeroSliceFullWidth on Landing_pageSlicesHero_sliceFullwidth {\n    fullWidth: primary {\n      title\n      subtitle\n      hero_image\n      image_mask {\n        __typename\n        ...ImageMask\n      }\n    }\n   }\n"): (typeof documents)["\n   fragment HeroSliceFullWidth on Landing_pageSlicesHero_sliceFullwidth {\n    fullWidth: primary {\n      title\n      subtitle\n      hero_image\n      image_mask {\n        __typename\n        ...ImageMask\n      }\n    }\n   }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  fragment HeroSliceField on Landing_pageSlicesHero_slice {\n    type\n    label\n    variation {\n      __typename\n      ...HeroSlicePrimary\n      ...HeroSliceAvatar\n    }\n  }\n"): (typeof documents)["\n  fragment HeroSliceField on Landing_pageSlicesHero_slice {\n    type\n    label\n    variation {\n      __typename\n      ...HeroSlicePrimary\n      ...HeroSliceAvatar\n    }\n  }\n"];
+export function graphql(source: "\n  fragment HeroSliceField on Landing_pageSlicesHero_slice {\n    type\n    label\n    variation {\n      __typename\n      ...HeroSlicePrimary\n      ...HeroSliceFullWidth\n    }\n  }\n"): (typeof documents)["\n  fragment HeroSliceField on Landing_pageSlicesHero_slice {\n    type\n    label\n    variation {\n      __typename\n      ...HeroSlicePrimary\n      ...HeroSliceFullWidth\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -136,11 +142,15 @@ export function graphql(source: "\n  fragment HeroIcon on Heroicon {\n    _meta 
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  fragment IconsList on Icons_list {\n    _meta {\n      uid\n    }\n    collection {\n      name\n      icon\n    }\n  }\n"): (typeof documents)["\n  fragment IconsList on Icons_list {\n    _meta {\n      uid\n    }\n    collection {\n      name\n      icon\n    }\n  }\n"];
+export function graphql(source: "\n  fragment IconsList on Icons_list {\n    _meta {\n      uid\n    }\n    collection {\n      name\n      icon\n      href {\n        ...ExternalLinkMeta\n      }\n    }\n  }\n"): (typeof documents)["\n  fragment IconsList on Icons_list {\n    _meta {\n      uid\n    }\n    collection {\n      name\n      icon\n      href {\n        ...ExternalLinkMeta\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n  query getCurrentNavigation {\n    allNavigations {\n      edges {\n        node {\n          position\n          navigation_title\n          navigation_links {\n            link_name\n            link_href {\n              _linkType\n              __typename\n              ...LinkDocumentMeta\n            }\n          }\n          color {\n            ...Theme50Fields\n            ...Theme100Fields\n            ...Theme200Fields\n            ...Theme300Fields\n            ...Theme400Fields\n            ...Theme500Fields\n            ...Theme600Fields\n            ...Theme700Fields\n            ...Theme800Fields\n            ...Theme900Fields\n            ...Theme950Fields\n          }\n        }\n      }\n    }\n  }\n"): (typeof documents)["\n  query getCurrentNavigation {\n    allNavigations {\n      edges {\n        node {\n          position\n          navigation_title\n          navigation_links {\n            link_name\n            link_href {\n              _linkType\n              __typename\n              ...LinkDocumentMeta\n            }\n          }\n          color {\n            ...Theme50Fields\n            ...Theme100Fields\n            ...Theme200Fields\n            ...Theme300Fields\n            ...Theme400Fields\n            ...Theme500Fields\n            ...Theme600Fields\n            ...Theme700Fields\n            ...Theme800Fields\n            ...Theme900Fields\n            ...Theme950Fields\n          }\n        }\n      }\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query getCurrentFooter {\n    allFooters {\n      edges {\n        node {\n          slogan\n          slogan_keys {\n            word\n          }\n          social_icons {\n            __typename\n            ...IconsList\n          }\n        }\n      }\n    }\n  }\n"): (typeof documents)["\n  query getCurrentFooter {\n    allFooters {\n      edges {\n        node {\n          slogan\n          slogan_keys {\n            word\n          }\n          social_icons {\n            __typename\n            ...IconsList\n          }\n        }\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

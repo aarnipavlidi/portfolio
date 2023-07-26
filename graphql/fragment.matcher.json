@@ -8,11 +8,12 @@
       "Landing_pageSlicesCard_sliceDefault"
     ],
     "Landing_pageSlicesHero_sliceVariation": [
-      "Landing_pageSlicesHero_sliceAvatar",
-      "Landing_pageSlicesHero_sliceDefault"
+      "Landing_pageSlicesHero_sliceDefault",
+      "Landing_pageSlicesHero_sliceFullwidth"
     ],
     "_Document": [
       "Button",
+      "Footer",
       "Heroicon",
       "Icons_list",
       "Image_mask",
@@ -32,6 +33,7 @@
     ],
     "_Linkable": [
       "Button",
+      "Footer",
       "Heroicon",
       "Icons_list",
       "Image_mask",
