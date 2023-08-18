@@ -2,7 +2,8 @@
 import type { GetStaticProps } from 'next';
 import type { landingPageProps } from '@/types/prismic';
 import type { LandingPageSlices, LandingPage } from '@/types/prismic/graphql/graphql';
-import { getAllLandingPagesMeta, getAllLandingPagesMetaProps, getCurrentLandingPage } from '@/graphql/queries';
+import type { getAllPagesMetaProps } from '@/graphql/queries';
+import { getAllLandingPagesMeta, getCurrentLandingPage } from '@/graphql/queries';
 import { SliceZone, SliceZoneLike } from '@prismicio/react';
 import * as prismicH from '@prismicio/helpers';
 import { prismicLinkResolver } from '@/utils/prismic';
@@ -13,7 +14,7 @@ interface HomeProps {
   getPageData: landingPageProps['query']['landing_page'];
 };
 
-const Home: React.FC<HomeProps> = ({ getPageData }) => {
+const LandingPageSlug: React.FC<HomeProps> = ({ getPageData }) => {
 
   const getLandingPageSlices = (getPageData && getPageData.slices as LandingPage['slices']) as LandingPageSliceZoneProps;
 
@@ -52,18 +53,18 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 export const getStaticPaths = async () => {
   // When building app, will get all current landing pages from Prismic.
-  const getCurrentLandingPageID: getAllLandingPagesMetaProps['currentID'] = null;
-  const { data } = await getAllLandingPagesMeta({ currentID: getCurrentLandingPageID });
+  const getCurrentLandingPageID: getAllPagesMetaProps['currentID'] = null;
+  const getLandingPagesMeta = await getAllLandingPagesMeta({ currentID: getCurrentLandingPageID });
 
-  const getCurrentPagesData = data.allLanding_pages?.edges?.map((value) => value?.node._meta);
+  const getCurrentPagesData = getLandingPagesMeta.data.allLanding_pages?.edges?.map((value) => value?.node._meta);
 
   // TODO CHECK RIGHT TYPE FOR "getMeta" variable.
-  const getEachPagePath = getCurrentPagesData?.map((getMeta) => prismicH.asLink(getMeta as any, prismicLinkResolver));
+  const getEachLandingPageMeta = getCurrentPagesData?.map((getMeta) => prismicH.asLink(getMeta as any, prismicLinkResolver));
 
   return {
-    paths: getEachPagePath,
+    paths: getEachLandingPageMeta,
     fallback: 'blocking',
   };
 };
 
-export default Home;
+export default LandingPageSlug;

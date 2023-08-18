@@ -4,5 +4,6 @@ import dynamic from 'next/dynamic';
 export const components = {
   hero_slice: dynamic(() => import('./HeroSlice')),
   card_slice: dynamic(() => import('./CardSlice')),
+  content_block_slice: dynamic(() => import('./ContentBlockSlice')),
   // Add more slices here as needed
 };

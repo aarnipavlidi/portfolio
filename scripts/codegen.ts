@@ -39,7 +39,7 @@ async function getLatestReleaseRef() {
     },
     documents: [
       './graphql/templates/queries/*/*.tsx',
-      './graphql/templates/fragments/*/*.tsx',
+      './graphql/templates/fragments/**/*.tsx',
     ],
     generates: {
       './types/prismic/graphql/': {

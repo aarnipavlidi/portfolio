@@ -16,11 +16,22 @@ export const prismicRoutes: Route | Route[] = [
     type: 'landing_page',
     path: '/:uid',
   },
+  {
+    type: 'project_post',
+    resolvers: {
+      project: 'project',
+    },
+    path: '/project/:uid',
+  },
 ];
 
 export const prismicLinkResolver = (currentLinkDocument: FilledLinkToDocumentField) => {
   if (currentLinkDocument.uid === 'home') {
     return '/';
+  }
+
+  if (currentLinkDocument.type === 'project_post') {
+    return `/project/${currentLinkDocument.uid}`;
   }
 
   return `/${currentLinkDocument.uid}`;

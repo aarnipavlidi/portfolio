@@ -23,7 +23,7 @@ const Card: React.FC<CardProps> = (props) => {
     .some(value => value !== false);
 
   return (
-    <section className="text-neutral-900 py-8">
+    <section className="text-neutral-900 dark:text-neutral-200 py-8">
       {
         props.title && validateCardTitle && <div className='flex'>
           <Icons

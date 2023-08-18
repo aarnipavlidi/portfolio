@@ -424,6 +424,74 @@ export type NavigationDocument<Lang extends string = string> =
     Lang
   >;
 
+type ProjectPostDocumentDataSlicesSlice =
+  | ContentBlockSliceSlice
+  | HeroSliceSlice;
+
+/**
+ * Content for Project Post documents
+ */
+interface ProjectPostDocumentData {
+  /**
+   * Slice Zone field in *Project Post*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project_post.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<ProjectPostDocumentDataSlicesSlice>
+  /**
+   * Meta Description field in *Project Post*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: project_post.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Project Post*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project_post.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+
+  /**
+   * Meta Title field in *Project Post*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: project_post.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField;
+}
+
+/**
+ * Project Post document from Prismic
+ *
+ * - **API ID**: `project_post`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ProjectPostDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<ProjectPostDocumentData>,
+    "project_post",
+    Lang
+  >;
+
 /**
  * Item in *theme_100 → light*
  */
@@ -1059,6 +1127,7 @@ export type AllDocumentTypes =
   | ImageMaskDocument
   | LandingPageDocument
   | NavigationDocument
+  | ProjectPostDocument
   | Theme100Document
   | Theme200Document
   | Theme300Document
@@ -1169,6 +1238,16 @@ export interface CardSliceSliceDefaultItem {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   label: prismic.KeyTextField;
+
+  /**
+   * Button Href field in *CardSlice → Items*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: card_slice.items[].href
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  href: prismic.ContentRelationshipField;
 }
 
 /**
@@ -1199,6 +1278,61 @@ type CardSliceSliceVariation = CardSliceSliceDefault;
 export type CardSliceSlice = prismic.SharedSlice<
   "card_slice",
   CardSliceSliceVariation
+>;
+
+/**
+ * Primary content in *ContentBlockSlice → Primary*
+ */
+export interface ContentBlockSliceSliceDefaultPrimary {
+  /**
+   * title field in *ContentBlockSlice → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_block_slice.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.TitleField;
+
+  /**
+   * subtitle field in *ContentBlockSlice → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_block_slice.primary.subtitle
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  subtitle: prismic.RichTextField;
+}
+
+/**
+ * Default variation for ContentBlockSlice Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ContentBlockSliceSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ContentBlockSliceSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ContentBlockSlice*
+ */
+type ContentBlockSliceSliceVariation = ContentBlockSliceSliceDefault;
+
+/**
+ * ContentBlockSlice Shared Slice
+ *
+ * - **API ID**: `content_block_slice`
+ * - **Description**: ContentBlockSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ContentBlockSliceSlice = prismic.SharedSlice<
+  "content_block_slice",
+  ContentBlockSliceSliceVariation
 >;
 
 /**
@@ -1398,6 +1532,8 @@ declare module "@prismicio/client" {
       LandingPageDocumentData,
       NavigationDocument,
       NavigationDocumentData,
+      ProjectPostDocument,
+      ProjectPostDocumentData,
       Theme100Document,
       Theme100DocumentData,
       Theme200Document,
@@ -1424,6 +1560,9 @@ declare module "@prismicio/client" {
       CardSliceSlice,
       CardSliceSliceVariation,
       CardSliceSliceDefault,
+      ContentBlockSliceSlice,
+      ContentBlockSliceSliceVariation,
+      ContentBlockSliceSliceDefault,
       HeroSliceSlice,
       HeroSliceSliceVariation,
       HeroSliceSliceDefault,

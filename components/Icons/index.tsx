@@ -1,5 +1,8 @@
 import { CustomIconsProps, CustomIconsArrayProps } from '@/types/icons';
 
+// Custom Isometric Icons
+import SquareMetric from '@/components/Svg/icons/Custom/Isometric/SquareMetric';
+
 // Custom Icons
 import FooterBlock from '@/components/Svg/icons/Custom/FooterBlock';
 import HamburgerMenu from '@/components/Svg/icons/Custom/HamburgerMenu';
@@ -30,6 +33,7 @@ import XMark from '@/components/Svg/icons/Hero/x-mark';
 const Icons: React.FC<CustomIconsProps> = ({ name, variant = 'solid', ...props }) => {
 
   const IconsArray: CustomIconsArrayProps = {
+    'SquareMetric': SquareMetric,
     'graphql': GraphQL,
     'tailwindcss': Tailwindcss,
     'react': React,

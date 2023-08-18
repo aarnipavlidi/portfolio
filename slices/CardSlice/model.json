@@ -85,6 +85,10 @@
         "label": {
           "type": "Text",
           "config": { "label": "Button Label", "placeholder": "" }
+        },
+        "href": {
+          "type": "Link",
+          "config": { "label": "Button Href", "select": "document" }
         }
       }
     }
