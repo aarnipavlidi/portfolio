@@ -42,6 +42,7 @@ const CardItem: React.FC<CardItemProps> = (props) => {
                     />
                     {
                       props.collection && props.collection.collection && <IconsList
+                        showIcons={props.collection.show_icons || undefined}
                         collection={props.collection.collection}
                         wrapperClass='flex gap-2'
                         className="w-4"

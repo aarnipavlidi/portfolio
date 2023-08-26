@@ -86,13 +86,13 @@ const Navigation: React.FC<NavigationProps> = ({ navigation, mobileMenuScreen, s
                 ? getFragmentData(LINK_DOCUMENT_META, link.link_href)
                 : null;
 
-              const getCurrentLinkPath = getLinkHrefFragment?._meta.uid === 'home'
-                ? '/'
+              const getCurrentLinkPath = getLinkHrefFragment && getLinkHrefFragment?._meta.uid === 'home'
+                ? ''
                 : getLinkHrefFragment?._meta.uid;
 
               return (
                 <div key={`${link.link_name}-${index}`} className="uppercase md:normal-case">
-                  <Link href={getCurrentLinkPath || '/'} legacyBehavior={true}>
+                  <Link legacyBehavior={true} href={`/${getCurrentLinkPath}`}>
                     <a className='font-pier-sans font-normal text-lg 2xl:text-xl'>{link.link_name}</a>
                   </Link>
                 </div>

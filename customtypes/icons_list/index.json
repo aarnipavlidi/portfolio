@@ -10,6 +10,15 @@
         "config": { "label": "Entry Name", "placeholder": "" },
         "type": "UID"
       },
+      "show_icons": {
+        "type": "Boolean",
+        "config": {
+          "label": "Show Icons",
+          "placeholder_false": "Hide icons and show names instead.",
+          "placeholder_true": "Show icons only and hide names (default).",
+          "default_value": true
+        }
+      },
       "collection": {
         "type": "Group",
         "config": {

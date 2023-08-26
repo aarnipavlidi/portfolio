@@ -3,6 +3,7 @@ import { getFragmentData } from '@/types/prismic/graphql';
 import { SliceComponentProps } from '@prismicio/react';
 import ContentBlock from '@/components/ContentBlock';
 import { PROJECT_CONTENT_BLOCK_SLICE_PRIMARY } from '@/graphql/templates/fragments/slices/project';
+import { ICONS_LIST, IMAGE_GALLERY } from '@/graphql/templates/fragments/themes';
 
 export type ContentBlockSliceProps = SliceComponentProps<ProjectContentBlockSliceFieldFragment & { type: string}>;
 
@@ -13,6 +14,18 @@ const ContentBlockSlice = ({ slice }: ContentBlockSliceProps): JSX.Element => {
     ? getFragmentData(PROJECT_CONTENT_BLOCK_SLICE_PRIMARY, getSliceData.variation)
     : null;
 
+  const getHashtags = getCurrentVariant && getCurrentVariant.primary?.hashtag?.__typename === 'Icons_list'
+    ? getFragmentData(ICONS_LIST, getCurrentVariant.primary.hashtag)
+    : null;
+
+  const getStacks = getCurrentVariant && getCurrentVariant.primary?.stack?.__typename === 'Icons_list'
+    ? getFragmentData(ICONS_LIST, getCurrentVariant.primary.stack)
+    : null;
+
+  const getImages = getCurrentVariant && getCurrentVariant.primary?.images?.__typename === 'Image_gallery'
+    ? getFragmentData(IMAGE_GALLERY, getCurrentVariant.primary.images)
+    : null;
+
   return (
     <>
       {
@@ -20,6 +33,10 @@ const ContentBlockSlice = ({ slice }: ContentBlockSliceProps): JSX.Element => {
           variant="primary"
           title={getCurrentVariant.primary?.title}
           subtitle={getCurrentVariant.primary?.subtitle}
+          content={getCurrentVariant.primary?.content}
+          hashtag={getHashtags}
+          stack={getStacks}
+          images={getImages}
         />
       }
     </>

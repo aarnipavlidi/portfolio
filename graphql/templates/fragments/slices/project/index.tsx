@@ -61,6 +61,19 @@ export const PROJECT_CONTENT_BLOCK_SLICE_PRIMARY = graphql(`
     primary {
       title
       subtitle
+      hashtag {
+        __typename
+        ...IconsList
+      }
+      stack {
+        __typename
+        ...IconsList
+      }
+      content
+      images {
+        __typename
+        ...ImageGallery
+      }
     }
    }
 `);

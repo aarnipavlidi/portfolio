@@ -225,6 +225,18 @@ export interface IconsListDocumentDataCollectionItem {
  */
 interface IconsListDocumentData {
   /**
+   * Show Icons field in *Icons List*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: true
+   * - **API ID Path**: icons_list.show_icons
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  show_icons: prismic.BooleanField;
+
+  /**
    * Collection field in *Icons List*
    *
    * - **Field Type**: Group
@@ -249,6 +261,53 @@ export type IconsListDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<
     Simplify<IconsListDocumentData>,
     "icons_list",
+    Lang
+  >;
+
+/**
+ * Item in *Image Gallery → Gallery*
+ */
+export interface ImageGalleryDocumentDataGalleryItem {
+  /**
+   * image field in *Image Gallery → Gallery*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: image_gallery.gallery[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * Content for Image Gallery documents
+ */
+interface ImageGalleryDocumentData {
+  /**
+   * Gallery field in *Image Gallery*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: image_gallery.gallery[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  gallery: prismic.GroupField<Simplify<ImageGalleryDocumentDataGalleryItem>>;
+}
+
+/**
+ * Image Gallery document from Prismic
+ *
+ * - **API ID**: `image_gallery`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ImageGalleryDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<ImageGalleryDocumentData>,
+    "image_gallery",
     Lang
   >;
 
@@ -288,11 +347,11 @@ export type ImageMaskDocument<Lang extends string = string> =
 type LandingPageDocumentDataSlicesSlice = HeroSliceSlice | CardSliceSlice;
 
 /**
- * Content for page documents
+ * Content for Landing Page documents
  */
 interface LandingPageDocumentData {
   /**
-   * Slice Zone field in *page*
+   * Slice Zone field in *Landing Page*
    *
    * - **Field Type**: Slice Zone
    * - **Placeholder**: *None*
@@ -304,7 +363,7 @@ interface LandingPageDocumentData {
 }
 
 /**
- * page document from Prismic
+ * Landing Page document from Prismic
  *
  * - **API ID**: `landing_page`
  * - **Repeatable**: `true`
@@ -1124,6 +1183,7 @@ export type AllDocumentTypes =
   | FooterDocument
   | HeroiconDocument
   | IconsListDocument
+  | ImageGalleryDocument
   | ImageMaskDocument
   | LandingPageDocument
   | NavigationDocument
@@ -1303,6 +1363,46 @@ export interface ContentBlockSliceSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   subtitle: prismic.RichTextField;
+
+  /**
+   * Hashtag field in *ContentBlockSlice → Primary*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_block_slice.primary.hashtag
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  hashtag: prismic.ContentRelationshipField<"icons_list">;
+
+  /**
+   * Stack field in *ContentBlockSlice → Primary*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_block_slice.primary.stack
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  stack: prismic.ContentRelationshipField<"icons_list">;
+
+  /**
+   * Content field in *ContentBlockSlice → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_block_slice.primary.content
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  content: prismic.RichTextField;
+
+  /**
+   * Images field in *ContentBlockSlice → Primary*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_block_slice.primary.images
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  images: prismic.ContentRelationshipField<"image_gallery">;
 }
 
 /**
@@ -1526,6 +1626,8 @@ declare module "@prismicio/client" {
       HeroiconDocumentData,
       IconsListDocument,
       IconsListDocumentData,
+      ImageGalleryDocument,
+      ImageGalleryDocumentData,
       ImageMaskDocument,
       ImageMaskDocumentData,
       LandingPageDocument,
