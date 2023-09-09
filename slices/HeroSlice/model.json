@@ -140,6 +140,42 @@
         }
       },
       "items": {}
+    },
+    {
+      "id": "goBack",
+      "name": "Go Back",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Title",
+            "placeholder": "Title for Hero, uses <h1 /> tag.",
+            "allowTargetBlank": true,
+            "single": "heading1"
+          }
+        },
+        "hero_image": {
+          "type": "Image",
+          "config": {
+            "label": "Hero Image",
+            "constraint": { "width": null, "height": null },
+            "thumbnails": []
+          }
+        },
+        "image_mask": {
+          "type": "Link",
+          "config": {
+            "label": "Image Mask",
+            "select": "document",
+            "customtypes": ["image_mask"]
+          }
+        }
+      },
+      "items": {}
     }
   ]
 }

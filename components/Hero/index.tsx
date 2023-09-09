@@ -1,18 +1,20 @@
 import type { ImageMaskFragment, HeroIconFragment, ButtonFragment } from '@/types/prismic/graphql/graphql';
 import type { PrismicEditorFieldProps } from '@/types/prismic';
-import type { HeroSliceSliceDefaultPrimary, HeroSliceSliceFullWidthPrimary } from 'prismicio-types';
+import type { TitleField, RichTextField } from '@prismicio/types';
 import type { PrismicNextImageProps } from '@prismicio/next';
+import { useRouter } from 'next/router';
 import { PrismicRichText } from '@prismicio/react';
 import classNames from 'classnames';
 
 import Typography from '@/components/Typography';
 import Design from '@/components/Design';
 import Button from '@/components/Button';
+import Icons from '@/components/Icons';
 
 interface HeroProps {
-  variant: 'primary' | 'fullWidth'
-  title?: HeroSliceSliceDefaultPrimary['title'] | HeroSliceSliceFullWidthPrimary['title'];
-  subtitle?: HeroSliceSliceDefaultPrimary['subtitle'] | HeroSliceSliceFullWidthPrimary['subtitle'];
+  variant: 'primary' | 'fullWidth' | 'goBack'
+  title?: TitleField;
+  subtitle?: RichTextField;
   image?: PrismicEditorFieldProps['image'];
   mask?: ImageMaskFragment | null;
   icon?: HeroIconFragment | null;
@@ -22,8 +24,9 @@ interface HeroProps {
 }
 
 const Hero: React.FC<HeroProps> = (props) => {
+  const router = useRouter();
 
-  const fullWidthImageParams: PrismicNextImageProps['imgixParams'] = props.variant === 'fullWidth'
+  const fullWidthImageParams: PrismicNextImageProps['imgixParams'] = props.variant === 'fullWidth' || props.variant === 'goBack'
     ? { ar: '1600:500', fit: 'crop', crop: ['top'] }
     : undefined;
 
@@ -35,6 +38,18 @@ const Hero: React.FC<HeroProps> = (props) => {
 
   const heroPrimaryContainer = classNames({
     'flex flex-col-reverse justify-between md:flex-row': props.variant === 'primary',
+  });
+
+  const heroContentWrapper = classNames({
+    'flex': true,
+    'max-w-prose flex-col pt-8 md:pt-0 md:pr-4': props.variant === 'primary',
+    'flex-row items-center pb-8 gap-2 justify-end': props.variant === 'goBack',
+  });
+
+  const heroContentTitle = classNames({
+    'font-pier-sans': true,
+    'mb-2 2xl:text-5xl': props.variant === 'primary',
+    'uppercase 2xl:text-2xl': props.variant === 'goBack',
   });
 
   const heroFullWidthContainer = classNames({
@@ -56,34 +71,46 @@ const Hero: React.FC<HeroProps> = (props) => {
   return (
     <>
       {
-        props.image && <section className="text-neutral-900 py-4">
+        props.image && <section className="text-neutral-900 dark:text-neutral-200 py-4">
           <div className={heroPrimaryContainer}>
             {
-              props.variant === 'primary' && validateHeroTitle && <div className="max-w-prose flex flex-col pt-8 md:pt-0 md:pr-4">
+              (props.variant === 'primary' || props.variant === 'goBack') && validateHeroTitle && <div className={heroContentWrapper}>
                 {
                   validateHeroTitle && <Typography
                     content={<PrismicRichText field={props.title} />}
-                    tag="h1"
-                    size="4xl"
-                    className="font-pier-sans mb-2 2xl:text-5xl"
+                    tag={props.variant === 'primary' ? 'h1' : 'h3'}
+                    size={props.variant === 'primary' ? '4xl' : 'xl'}
+                    className={heroContentTitle}
                   />
                 }
                 {
-                  validateHeroSubtitle && <Typography
-                    content={<PrismicRichText field={props.subtitle} />}
-                    tag="p"
-                    size="lg"
-                    className="font-pier-sans 2xl:text-xl"
+                  props.variant === 'goBack' && <Icons
+                    name="arrow-small-right"
+                    color="current"
+                    className="w-8 cursor-pointer"
+                    onClick={() => router.back()}
                   />
                 }
                 {
-                  props.button && props.buttonLabel && <Button
-                    className="mt-4"
-                    content={props.buttonLabel}
-                    icon={props.icon}
-                    button={props.button}
-                    href={props.buttonHref}
-                  />
+                  props.variant === 'primary' && <>
+                    {
+                      validateHeroSubtitle && <Typography
+                        content={<PrismicRichText field={props.subtitle} />}
+                        tag="p"
+                        size="lg"
+                        className="font-pier-sans 2xl:text-xl"
+                      />
+                    }
+                    {
+                      props.button && props.buttonLabel && <Button
+                        className="mt-4"
+                        content={props.buttonLabel}
+                        icon={props.icon}
+                        button={props.button}
+                        href={props.buttonHref}
+                      />
+                    }
+                  </>
                 }
               </div>
             }

@@ -1590,9 +1590,60 @@ export type HeroSliceSliceFullWidth = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *HeroSlice → Primary*
+ */
+export interface HeroSliceSliceGoBackPrimary {
+  /**
+   * Title field in *HeroSlice → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: Title for Hero, uses <h1 /> tag.
+   * - **API ID Path**: hero_slice.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.TitleField;
+
+  /**
+   * Hero Image field in *HeroSlice → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_slice.primary.hero_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  hero_image: prismic.ImageField<never>;
+
+  /**
+   * Image Mask field in *HeroSlice → Primary*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_slice.primary.image_mask
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  image_mask: prismic.ContentRelationshipField<"image_mask">;
+}
+
+/**
+ * Go Back variation for HeroSlice Slice
+ *
+ * - **API ID**: `goBack`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type HeroSliceSliceGoBack = prismic.SharedSliceVariation<
+  "goBack",
+  Simplify<HeroSliceSliceGoBackPrimary>,
+  never
+>;
+
+/**
  * Slice variation for *HeroSlice*
  */
-type HeroSliceSliceVariation = HeroSliceSliceDefault | HeroSliceSliceFullWidth;
+type HeroSliceSliceVariation =
+  | HeroSliceSliceDefault
+  | HeroSliceSliceFullWidth
+  | HeroSliceSliceGoBack;
 
 /**
  * HeroSlice Shared Slice
@@ -1667,6 +1718,7 @@ declare module "@prismicio/client" {
       HeroSliceSliceVariation,
       HeroSliceSliceDefault,
       HeroSliceSliceFullWidth,
+      HeroSliceSliceGoBack,
     };
   }
 }
