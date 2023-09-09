@@ -105,7 +105,8 @@ const Footer: React.FC<FooterProps> = (props) => {
                     key={`${link.link_name}-${index}`}
                     content={link.link_name}
                     href={getCurrentLinkPath || '/'}
-                    className="text-xl lowercase"
+                    size="lg"
+                    className="lowercase 2xl:text-xl"
                   />
                 );
               }
@@ -117,6 +118,7 @@ const Footer: React.FC<FooterProps> = (props) => {
         </div>
         {
           getSocialIcons && getSocialIcons.collection && getSocialIcons.collection.length > 0 && <IconsList
+            showIcons={getSocialIcons.show_icons || undefined}
             collection={getSocialIcons.collection}
             color='current'
             wrapperClass='flex gap-10 self-center text-neutral-100 dark:text-neutral-900'

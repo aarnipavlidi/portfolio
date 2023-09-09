@@ -11,14 +11,27 @@
       "Landing_pageSlicesHero_sliceDefault",
       "Landing_pageSlicesHero_sliceFullwidth"
     ],
+    "ProjectSlices": [
+      "ProjectSlicesContent_block_slice",
+      "ProjectSlicesHero_slice"
+    ],
+    "ProjectSlicesContent_block_sliceVariation": [
+      "ProjectSlicesContent_block_sliceDefault"
+    ],
+    "ProjectSlicesHero_sliceVariation": [
+      "ProjectSlicesHero_sliceDefault",
+      "ProjectSlicesHero_sliceFullwidth"
+    ],
     "_Document": [
       "Button",
       "Footer",
       "Heroicon",
       "Icons_list",
+      "Image_gallery",
       "Image_mask",
       "Landing_page",
       "Navigation",
+      "Project",
       "Theme_50",
       "Theme_100",
       "Theme_200",
@@ -36,9 +49,11 @@
       "Footer",
       "Heroicon",
       "Icons_list",
+      "Image_gallery",
       "Image_mask",
       "Landing_page",
       "Navigation",
+      "Project",
       "Theme_50",
       "Theme_100",
       "Theme_200",

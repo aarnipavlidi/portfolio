@@ -4,6 +4,9 @@ import { Fragment } from 'react';
 import { PrismicRichText } from '@prismicio/react';
 import { getFragmentData } from '@/types/prismic/graphql';
 import { BUTTON, ICONS_LIST, HERO_ICON } from '@/graphql/templates/fragments/themes';
+import { LINK_DOCUMENT_META } from '@/graphql/templates/fragments/documents';
+
+import type { CardSliceSliceDefaultItem } from 'prismicio-types';
 
 import Icons from '@/components/Icons';
 import Typography from '@/components/Typography';
@@ -23,7 +26,7 @@ const Card: React.FC<CardProps> = (props) => {
     .some(value => value !== false);
 
   return (
-    <section className="text-neutral-900 py-8">
+    <section className="text-neutral-900 dark:text-neutral-200 py-8">
       {
         props.title && validateCardTitle && <div className='flex'>
           <Icons
@@ -42,8 +45,8 @@ const Card: React.FC<CardProps> = (props) => {
               props.subtitle && <Typography
                 content={<PrismicRichText field={props.subtitle} />}
                 tag="p"
-                size="base"
-                className="font-pier-sans px-4 lowercase 2xl:text-lg"
+                size="lg"
+                className="font-pier-sans px-4 lowercase 2xl:text-xl"
               />
             }
           </div>
@@ -60,6 +63,10 @@ const Card: React.FC<CardProps> = (props) => {
 
           const getCardButton = value && value.button?.__typename === 'Button'
             ? getFragmentData(BUTTON, value.button)
+            : null;
+
+          const getCardButtonHref = value && value.href?.__typename === 'Project'
+            ? getFragmentData(LINK_DOCUMENT_META, value.href)
             : null;
 
           const getCardCollection = value && value.collection?.__typename === 'Icons_list'
@@ -81,6 +88,7 @@ const Card: React.FC<CardProps> = (props) => {
                   icon={getCardButtonIcon}
                   button={getCardButton}
                   label={value.label}
+                  href={getCardButtonHref}
                 />
               </Fragment>
             );
@@ -96,6 +104,7 @@ const Card: React.FC<CardProps> = (props) => {
                 icon={getCardButtonIcon}
                 button={getCardButton}
                 label={value.label}
+                href={getCardButtonHref}
               />
               <CustomDivide
                 wrapperClass="pt-8 flex gap-2 justify-center"

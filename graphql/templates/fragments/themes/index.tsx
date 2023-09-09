@@ -100,6 +100,17 @@ export const THEME_950_FIELDS = gql`
   }
 `;
 
+export const IMAGE_GALLERY = graphql(`
+  fragment ImageGallery on Image_gallery {
+    _meta {
+      uid
+    }
+    gallery {
+      image
+    }
+  }
+`);
+
 export const IMAGE_MASK = graphql(`
   fragment ImageMask on Image_mask {
     _meta {
@@ -135,6 +146,7 @@ export const ICONS_LIST = graphql(`
     _meta {
       uid
     }
+    show_icons
     collection {
       name
       icon

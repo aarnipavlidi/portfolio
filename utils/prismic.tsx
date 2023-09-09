@@ -16,6 +16,13 @@ export const prismicRoutes: Route | Route[] = [
     type: 'landing_page',
     path: '/:uid',
   },
+  {
+    type: 'project',
+    resolvers: {
+      project: 'project',
+    },
+    path: '/project/:uid',
+  },
 ];
 
 export const prismicLinkResolver = (currentLinkDocument: FilledLinkToDocumentField) => {
@@ -23,9 +30,21 @@ export const prismicLinkResolver = (currentLinkDocument: FilledLinkToDocumentFie
     return '/';
   }
 
+  if (currentLinkDocument.type === 'project') {
+    return `/project/${currentLinkDocument.uid}`;
+  }
+
   return `/${currentLinkDocument.uid}`;
 };
 
 export const checkLinkProperties = (object: any): object is { _meta: LinkDocumentMetaFragment['_meta'] } => {
   return object && object._linkType && object._meta !== undefined;
+};
+
+export const prismicDynamicHrefResolver = (currentHrefDocument: LinkDocumentMetaFragment) => {
+  if (currentHrefDocument._meta.type === 'project') {
+    return `/project/${currentHrefDocument._meta.uid}`;
+  }
+
+  return `/${currentHrefDocument._meta.uid}`;
 };

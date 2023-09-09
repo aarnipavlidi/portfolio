@@ -1,9 +1,9 @@
 {
   "id": "landing_page",
-  "label": "page",
+  "label": "Landing Page",
   "repeatable": true,
   "status": true,
-  "format": "custom",
+  "format": "page",
   "json": {
     "Main": {
       "uid": {

@@ -77,6 +77,11 @@ export const CARD_SLICE_PRIMARY = graphql(`
         ...Button
       }
       label
+      href {
+        _linkType
+        __typename
+        ...LinkDocumentMeta
+      }
     }
   }
 `);
