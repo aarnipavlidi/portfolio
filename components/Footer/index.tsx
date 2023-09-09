@@ -105,7 +105,8 @@ const Footer: React.FC<FooterProps> = (props) => {
                     key={`${link.link_name}-${index}`}
                     content={link.link_name}
                     href={getCurrentLinkPath || '/'}
-                    className="text-xl lowercase"
+                    size="lg"
+                    className="lowercase 2xl:text-xl"
                   />
                 );
               }

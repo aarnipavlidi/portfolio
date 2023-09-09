@@ -88,7 +88,11 @@
         },
         "href": {
           "type": "Link",
-          "config": { "label": "Button Href", "select": "document" }
+          "config": {
+            "label": "Button Href",
+            "select": "document",
+            "customtypes": ["project"]
+          }
         }
       }
     }

@@ -1,7 +1,9 @@
 import type { CardSliceSliceDefaultItem } from 'prismicio-types';
 import type { PrismicEditorFieldProps } from '@/types/prismic';
-import type { ButtonFragment, HeroIconFragment, IconsListFragment } from '@/types/prismic/graphql/graphql';
+import type { ButtonFragment, HeroIconFragment, IconsListFragment, LinkDocumentMetaFragment } from '@/types/prismic/graphql/graphql';
 import { PrismicRichText } from '@prismicio/react';
+import { prismicDynamicHrefResolver } from '@/utils/prismic';
+import { useRouter } from 'next/router';
 
 import Design from '@/components/Design';
 import Typography from '@/components/Typography';
@@ -16,9 +18,15 @@ interface CardItemProps {
   icon?: HeroIconFragment | null;
   button: ButtonFragment | null;
   label: CardSliceSliceDefaultItem['label'];
+  href?: LinkDocumentMetaFragment | null;
 }
 
 const CardItem: React.FC<CardItemProps> = (props) => {
+  const router = useRouter();
+  const getCardButtonHref = props.href
+    ? prismicDynamicHrefResolver(props.href)
+    : null;
+
   return (
     <>
       {
@@ -66,6 +74,7 @@ const CardItem: React.FC<CardItemProps> = (props) => {
                     content={props.label}
                     icon={props.icon}
                     button={props.button}
+                    onClick={getCardButtonHref ? () => router.push(getCardButtonHref) : undefined}
                   />
                 </div>
               }

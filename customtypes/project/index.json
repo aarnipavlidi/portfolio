@@ -1,15 +1,12 @@
 {
-  "id": "project_post",
-  "label": "Project Post",
+  "id": "project",
+  "label": "Project",
   "format": "page",
   "repeatable": true,
   "status": true,
   "json": {
     "Main": {
-      "uid": {
-        "config": { "label": "Entry Name", "placeholder": "" },
-        "type": "UID"
-      },
+      "uid": { "config": { "label": "UID" }, "type": "UID" },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",

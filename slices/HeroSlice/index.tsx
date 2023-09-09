@@ -17,34 +17,34 @@ const HeroSlice = ({ slice }: HeroSliceProps): JSX.Element => {
     ? getFragmentData(HERO_SLICE_PRIMARY, getSliceData.variation)
     : getSliceData && getSliceData.variation?.__typename === 'Landing_pageSlicesHero_sliceFullwidth'
       ? getFragmentData(HERO_SLICE_FULL_WIDTH, getSliceData.variation)
-      : getSliceData && getSliceData.variation?.__typename === 'Project_postSlicesHero_sliceDefault'
+      : getSliceData && getSliceData.variation?.__typename === 'ProjectSlicesHero_sliceDefault'
         ? getFragmentData(PROJECT_HERO_SLICE_PRIMARY, getSliceData.variation)
-        : getSliceData && getSliceData.variation?.__typename === 'Project_postSlicesHero_sliceFullwidth'
+        : getSliceData && getSliceData.variation?.__typename === 'ProjectSlicesHero_sliceFullwidth'
           ? getFragmentData(PROJECT_HERO_SLICE_FULL_WIDTH, getSliceData.variation)
           : null;
 
-  const getBothVariantMask = getCurrentVariant && (getCurrentVariant.__typename === 'Landing_pageSlicesHero_sliceDefault' || getCurrentVariant.__typename === 'Project_postSlicesHero_sliceDefault') && getCurrentVariant.primary?.image_mask?.__typename === 'Image_mask'
+  const getBothVariantMask = getCurrentVariant && (getCurrentVariant.__typename === 'Landing_pageSlicesHero_sliceDefault' || getCurrentVariant.__typename === 'ProjectSlicesHero_sliceDefault') && getCurrentVariant.primary?.image_mask?.__typename === 'Image_mask'
     ? getFragmentData(IMAGE_MASK, getCurrentVariant.primary.image_mask)
-    : getCurrentVariant && (getCurrentVariant.__typename === 'Landing_pageSlicesHero_sliceFullwidth' || getCurrentVariant.__typename === 'Project_postSlicesHero_sliceFullwidth') && getCurrentVariant.fullWidth?.image_mask?.__typename === 'Image_mask'
+    : getCurrentVariant && (getCurrentVariant.__typename === 'Landing_pageSlicesHero_sliceFullwidth' || getCurrentVariant.__typename === 'ProjectSlicesHero_sliceFullwidth') && getCurrentVariant.fullWidth?.image_mask?.__typename === 'Image_mask'
       ? getFragmentData(IMAGE_MASK, getCurrentVariant.fullWidth.image_mask)
       : null;
 
-  const getPrimaryOnlyIcon = getCurrentVariant && (getCurrentVariant.__typename === 'Landing_pageSlicesHero_sliceDefault' || getCurrentVariant.__typename === 'Project_postSlicesHero_sliceDefault') && getCurrentVariant.primary?.icon?.__typename === 'Heroicon'
+  const getPrimaryOnlyIcon = getCurrentVariant && (getCurrentVariant.__typename === 'Landing_pageSlicesHero_sliceDefault' || getCurrentVariant.__typename === 'ProjectSlicesHero_sliceDefault') && getCurrentVariant.primary?.icon?.__typename === 'Heroicon'
     ? getFragmentData(HERO_ICON, getCurrentVariant.primary.icon)
     : null;
 
-  const getPrimaryOnlyButton = getCurrentVariant && (getCurrentVariant.__typename === 'Landing_pageSlicesHero_sliceDefault' || getCurrentVariant.__typename === 'Project_postSlicesHero_sliceDefault') && getCurrentVariant.primary?.button?.__typename === 'Button'
+  const getPrimaryOnlyButton = getCurrentVariant && (getCurrentVariant.__typename === 'Landing_pageSlicesHero_sliceDefault' || getCurrentVariant.__typename === 'ProjectSlicesHero_sliceDefault') && getCurrentVariant.primary?.button?.__typename === 'Button'
     ? getFragmentData(BUTTON, getCurrentVariant.primary.button)
     : null;
 
-  const getPrimaryOnlyButtonHref = getCurrentVariant && (getCurrentVariant.__typename === 'Landing_pageSlicesHero_sliceDefault' || getCurrentVariant.__typename === 'Project_postSlicesHero_sliceDefault') && getCurrentVariant.primary?.href?.__typename === 'Landing_page'
+  const getPrimaryOnlyButtonHref = getCurrentVariant && (getCurrentVariant.__typename === 'Landing_pageSlicesHero_sliceDefault' || getCurrentVariant.__typename === 'ProjectSlicesHero_sliceDefault') && getCurrentVariant.primary?.href?.__typename === 'Landing_page'
     ? getFragmentData(LINK_DOCUMENT_META, getCurrentVariant.primary.href)
     : null;
 
   return (
     <>
       {
-        getCurrentVariant && (getCurrentVariant.__typename === 'Landing_pageSlicesHero_sliceDefault' || getCurrentVariant.__typename === 'Project_postSlicesHero_sliceDefault') && getCurrentVariant.primary && <Hero
+        getCurrentVariant && (getCurrentVariant.__typename === 'Landing_pageSlicesHero_sliceDefault' || getCurrentVariant.__typename === 'ProjectSlicesHero_sliceDefault') && getCurrentVariant.primary && <Hero
           variant="primary"
           title={getCurrentVariant.primary.title}
           subtitle={getCurrentVariant.primary.subtitle}
@@ -57,7 +57,7 @@ const HeroSlice = ({ slice }: HeroSliceProps): JSX.Element => {
         />
       }
       {
-        getCurrentVariant && (getCurrentVariant.__typename === 'Landing_pageSlicesHero_sliceFullwidth' || getCurrentVariant.__typename === 'Project_postSlicesHero_sliceFullwidth') && getCurrentVariant.fullWidth && <Hero
+        getCurrentVariant && (getCurrentVariant.__typename === 'Landing_pageSlicesHero_sliceFullwidth' || getCurrentVariant.__typename === 'ProjectSlicesHero_sliceFullwidth') && getCurrentVariant.fullWidth && <Hero
           variant="fullWidth"
           title={getCurrentVariant.fullWidth.title}
           subtitle={getCurrentVariant.fullWidth.subtitle}

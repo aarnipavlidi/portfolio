@@ -1,6 +1,6 @@
 import { getApolloClient } from '@/utils/apolloClient';
 import { GET_CURRENT_NAVIGATION, GET_CURRENT_FOOTER } from '@/graphql/templates/queries/app';
-import { GET_CURRENT_LANDING_PAGE, GET_ALL_LANDING_PAGES_META, GET_CURRENT_PROJECT_POST, GET_ALL_PROJECT_POSTS_META } from '@/graphql/templates/queries/page';
+import { GET_CURRENT_LANDING_PAGE, GET_ALL_LANDING_PAGES_META, GET_CURRENT_PROJECT, GET_ALL_PROJECTS_META } from '@/graphql/templates/queries/page';
 
 export const getCurrentNavigation = async () => {
   const prismic = getApolloClient();
@@ -45,7 +45,7 @@ export const getAllLandingPagesMeta = async ({ currentID, latestReference }: get
   return { data };
 };
 
-export const getAllProjectPostsMeta = async ({ currentID, latestReference }: getAllPagesMetaProps) => {
+export const getAllProjectsMeta = async ({ currentID, latestReference }: getAllPagesMetaProps) => {
   const prismic = getApolloClient();
 
   const context = {
@@ -53,7 +53,7 @@ export const getAllProjectPostsMeta = async ({ currentID, latestReference }: get
   };
 
   const { data } = await prismic.query({
-    query: GET_ALL_PROJECT_POSTS_META,
+    query: GET_ALL_PROJECTS_META,
     variables: {
       getByID: currentID,
     },
@@ -78,11 +78,11 @@ export const getCurrentLandingPage = async (currentSlug: string | string[], curr
   return { data, error };
 };
 
-export const getCurrentProjectPost = async (currentSlug: string | string[], currentLocale: string) => {
+export const getCurrentProject = async (currentSlug: string | string[], currentLocale: string) => {
   const prismic = getApolloClient();
 
   const { data, error } = await prismic.query({
-    query: GET_CURRENT_PROJECT_POST,
+    query: GET_CURRENT_PROJECT,
     errorPolicy: 'all',
     variables: {
       slug: typeof(currentSlug) === 'string' ? currentSlug : currentSlug[0],

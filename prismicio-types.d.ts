@@ -483,52 +483,50 @@ export type NavigationDocument<Lang extends string = string> =
     Lang
   >;
 
-type ProjectPostDocumentDataSlicesSlice =
-  | ContentBlockSliceSlice
-  | HeroSliceSlice;
+type ProjectDocumentDataSlicesSlice = ContentBlockSliceSlice | HeroSliceSlice;
 
 /**
- * Content for Project Post documents
+ * Content for Project documents
  */
-interface ProjectPostDocumentData {
+interface ProjectDocumentData {
   /**
-   * Slice Zone field in *Project Post*
+   * Slice Zone field in *Project*
    *
    * - **Field Type**: Slice Zone
    * - **Placeholder**: *None*
-   * - **API ID Path**: project_post.slices[]
+   * - **API ID Path**: project.slices[]
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<ProjectPostDocumentDataSlicesSlice>
+  slices: prismic.SliceZone<ProjectDocumentDataSlicesSlice>
   /**
-   * Meta Description field in *Project Post*
+   * Meta Description field in *Project*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A brief summary of the page
-   * - **API ID Path**: project_post.meta_description
+   * - **API ID Path**: project.meta_description
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */;
   meta_description: prismic.KeyTextField;
 
   /**
-   * Meta Image field in *Project Post*
+   * Meta Image field in *Project*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: project_post.meta_image
+   * - **API ID Path**: project.meta_image
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   meta_image: prismic.ImageField<never>;
 
   /**
-   * Meta Title field in *Project Post*
+   * Meta Title field in *Project*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A title of the page used for social media and search engines
-   * - **API ID Path**: project_post.meta_title
+   * - **API ID Path**: project.meta_title
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
@@ -536,18 +534,18 @@ interface ProjectPostDocumentData {
 }
 
 /**
- * Project Post document from Prismic
+ * Project document from Prismic
  *
- * - **API ID**: `project_post`
+ * - **API ID**: `project`
  * - **Repeatable**: `true`
  * - **Documentation**: https://prismic.io/docs/custom-types
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type ProjectPostDocument<Lang extends string = string> =
+export type ProjectDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<
-    Simplify<ProjectPostDocumentData>,
-    "project_post",
+    Simplify<ProjectDocumentData>,
+    "project",
     Lang
   >;
 
@@ -1187,7 +1185,7 @@ export type AllDocumentTypes =
   | ImageMaskDocument
   | LandingPageDocument
   | NavigationDocument
-  | ProjectPostDocument
+  | ProjectDocument
   | Theme100Document
   | Theme200Document
   | Theme300Document
@@ -1307,7 +1305,7 @@ export interface CardSliceSliceDefaultItem {
    * - **API ID Path**: card_slice.items[].href
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  href: prismic.ContentRelationshipField;
+  href: prismic.ContentRelationshipField<"project">;
 }
 
 /**
@@ -1634,8 +1632,8 @@ declare module "@prismicio/client" {
       LandingPageDocumentData,
       NavigationDocument,
       NavigationDocumentData,
-      ProjectPostDocument,
-      ProjectPostDocumentData,
+      ProjectDocument,
+      ProjectDocumentData,
       Theme100Document,
       Theme100DocumentData,
       Theme200Document,

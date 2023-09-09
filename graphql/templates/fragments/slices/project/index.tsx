@@ -2,7 +2,7 @@ import { graphql } from '@/types/prismic/graphql';
 
 // HERO SLICE
 export const PROJECT_HERO_SLICE_PRIMARY = graphql(`
-  fragment ProjectHeroSlicePrimary on Project_postSlicesHero_sliceDefault {
+  fragment ProjectHeroSlicePrimary on ProjectSlicesHero_sliceDefault {
     primary {
       title
       subtitle
@@ -30,7 +30,7 @@ export const PROJECT_HERO_SLICE_PRIMARY = graphql(`
 `);
 
 export const PROJECT_HERO_SLICE_FULL_WIDTH = graphql(`
-  fragment ProjectHeroSliceFullWidth on Project_postSlicesHero_sliceFullwidth {
+  fragment ProjectHeroSliceFullWidth on ProjectSlicesHero_sliceFullwidth {
     fullWidth: primary {
       title
       subtitle
@@ -44,7 +44,7 @@ export const PROJECT_HERO_SLICE_FULL_WIDTH = graphql(`
 `);
 
 export const PROJECT_HERO_SLICE_FIELDS = graphql(`
-  fragment ProjectHeroSliceField on Project_postSlicesHero_slice {
+  fragment ProjectHeroSliceField on ProjectSlicesHero_slice {
     type
     label
     variation {
@@ -57,7 +57,7 @@ export const PROJECT_HERO_SLICE_FIELDS = graphql(`
 
 // CONTENT BLOCK SLICE
 export const PROJECT_CONTENT_BLOCK_SLICE_PRIMARY = graphql(`
-  fragment ProjectContentBlockSlicePrimary on Project_postSlicesContent_block_sliceDefault {
+  fragment ProjectContentBlockSlicePrimary on ProjectSlicesContent_block_sliceDefault {
     primary {
       title
       subtitle
@@ -79,7 +79,7 @@ export const PROJECT_CONTENT_BLOCK_SLICE_PRIMARY = graphql(`
 `);
 
 export const PROJECT_CONTENT_BLOCK_SLICE_FIELDS = graphql(`
-  fragment ProjectContentBlockSliceField on Project_postSlicesContent_block_slice {
+  fragment ProjectContentBlockSliceField on ProjectSlicesContent_block_slice {
     type
     label
     variation {

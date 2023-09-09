@@ -18,7 +18,7 @@ export interface IconsListProps {
   color?: 'current' | 'inherit';
 }
 
-const IconsList: React.FC<IconsListProps> = ({ color = 'current', iconNameSize = 'xs', ...props }) => {
+const IconsList: React.FC<IconsListProps> = ({ color = 'current', iconNameSize = 'base', ...props }) => {
   return (
     <>
       {

@@ -29,7 +29,7 @@ const DesignGallery: React.FC<DesignGalleryProps> = ({ variant = 'mini-grid', ..
                     className="aspect-square w-full transition-transform duration-500 ease-in-out hover:scale-110"
                     params={props.params}
                   />
-                  <div className="absolute bg-neutral-900 inset-2 -z-10 -right-2 -bottom-2 rounded-lg shadow-lg shadow-neutral-300" />
+                  <div className="absolute bg-neutral-900 dark:bg-neutral-500 inset-2 -z-10 -right-2 -bottom-2 rounded-lg" />
                 </div>
               </div>
             </Fragment>

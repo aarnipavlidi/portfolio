@@ -21,9 +21,9 @@ export const GET_ALL_LANDING_PAGES_META = graphql(`
   }
 `);
 
-export const GET_ALL_PROJECT_POSTS_META = graphql(`
-  query getAllProjectPagesMeta($getByID: [String!]) {
-    allProject_posts(id_in: $getByID) {
+export const GET_ALL_PROJECTS_META = graphql(`
+  query getAllProjectsMeta($getByID: [String!]) {
+    allProjects(id_in: $getByID) {
       edges {
         node {
           _linkType
@@ -53,9 +53,9 @@ export const GET_CURRENT_LANDING_PAGE = graphql(`
   }
 `);
 
-export const GET_CURRENT_PROJECT_POST = graphql(`
-  query getCurrentProjectPost($slug: String!, $defaultLocale: String!) {
-    project_post(uid: $slug, lang: $defaultLocale) {
+export const GET_CURRENT_PROJECT = graphql(`
+  query getCurrentProject($slug: String!, $defaultLocale: String!) {
+    project(uid: $slug, lang: $defaultLocale) {
       slices {
         ...ProjectHeroSliceField
         ...ProjectContentBlockSliceField

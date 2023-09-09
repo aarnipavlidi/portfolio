@@ -64,7 +64,7 @@ const Hero: React.FC<HeroProps> = (props) => {
                   validateHeroTitle && <Typography
                     content={<PrismicRichText field={props.title} />}
                     tag="h1"
-                    size="3xl"
+                    size="4xl"
                     className="font-pier-sans mb-2 2xl:text-5xl"
                   />
                 }
@@ -73,7 +73,7 @@ const Hero: React.FC<HeroProps> = (props) => {
                     content={<PrismicRichText field={props.subtitle} />}
                     tag="p"
                     size="lg"
-                    className="font-pier-sans 2xl:text-2xl"
+                    className="font-pier-sans 2xl:text-xl"
                   />
                 }
                 {

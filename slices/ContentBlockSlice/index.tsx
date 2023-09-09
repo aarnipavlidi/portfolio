@@ -10,7 +10,7 @@ export type ContentBlockSliceProps = SliceComponentProps<ProjectContentBlockSlic
 const ContentBlockSlice = ({ slice }: ContentBlockSliceProps): JSX.Element => {
   const getSliceData = slice;
 
-  const getCurrentVariant = getSliceData && getSliceData.variation?.__typename === 'Project_postSlicesContent_block_sliceDefault'
+  const getCurrentVariant = getSliceData && getSliceData.variation?.__typename === 'ProjectSlicesContent_block_sliceDefault'
     ? getFragmentData(PROJECT_CONTENT_BLOCK_SLICE_PRIMARY, getSliceData.variation)
     : null;
 
@@ -29,7 +29,7 @@ const ContentBlockSlice = ({ slice }: ContentBlockSliceProps): JSX.Element => {
   return (
     <>
       {
-        getCurrentVariant && getCurrentVariant.__typename === 'Project_postSlicesContent_block_sliceDefault' && <ContentBlock
+        getCurrentVariant && getCurrentVariant.__typename === 'ProjectSlicesContent_block_sliceDefault' && <ContentBlock
           variant="primary"
           title={getCurrentVariant.primary?.title}
           subtitle={getCurrentVariant.primary?.subtitle}

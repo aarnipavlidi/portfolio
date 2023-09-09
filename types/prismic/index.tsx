@@ -3,7 +3,7 @@ import type { GetCurrentNavigationQuery, GetCurrentFooterQuery } from '@/types/p
 // Landing Pages
 import { GetAllLandingPagesMetaQuery, GetAllLandingPagesMetaQueryVariables, GetCurrentLandingPageQuery, GetCurrentLandingPageQueryVariables, LandingPageSlicesHeroSliceDefault } from '@/types/prismic/graphql/graphql';
 // Project Pages
-import { GetCurrentProjectPostQuery, GetCurrentProjectPostQueryVariables } from '@/types/prismic/graphql/graphql';
+import { GetCurrentProjectQuery, GetCurrentProjectQueryVariables } from '@/types/prismic/graphql/graphql';
 // Theme related
 import { Theme50FieldsFragment, Theme100FieldsFragment, Theme200FieldsFragment, Theme300FieldsFragment, Theme400FieldsFragment, Theme500FieldsFragment, Theme600FieldsFragment, Theme700FieldsFragment, Theme800FieldsFragment, Theme900FieldsFragment } from './graphql/graphql';
 import type { ImageFieldImage, RTLabelNode, RTNode, RTHeading1Node, RTHeading2Node, RTHeading3Node, RTHeading4Node, RTHeading5Node, RTHeading6Node, RTParagraphNode } from '@prismicio/types';
@@ -85,7 +85,7 @@ export type landingPageProps = {
   variables: GetCurrentLandingPageQueryVariables;
 }
 
-export type projectPostProps = {
-  query: GetCurrentProjectPostQuery;
-  variables: GetCurrentProjectPostQueryVariables;
+export type projectPageProps = {
+  query: GetCurrentProjectQuery;
+  variables: GetCurrentProjectQueryVariables;
 };
