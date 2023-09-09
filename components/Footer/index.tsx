@@ -95,8 +95,8 @@ const Footer: React.FC<FooterProps> = (props) => {
                 ? getFragmentData(LINK_DOCUMENT_META, link.link_href)
                 : null;
 
-              const getCurrentLinkPath = getLinkHrefFragment?._meta.uid === 'home'
-                ? '/'
+              const getCurrentLinkPath = getLinkHrefFragment && getLinkHrefFragment?._meta.uid === 'home'
+                ? ''
                 : getLinkHrefFragment?._meta.uid;
 
               if (link.link_name) {
@@ -104,7 +104,7 @@ const Footer: React.FC<FooterProps> = (props) => {
                   <CustomLink
                     key={`${link.link_name}-${index}`}
                     content={link.link_name}
-                    href={getCurrentLinkPath || '/'}
+                    href={`/${getCurrentLinkPath}`}
                     size="lg"
                     className="lowercase 2xl:text-xl"
                   />

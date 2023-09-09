@@ -6,7 +6,7 @@ import Hero from '@/components/Hero';
 import { LINK_DOCUMENT_META } from '@/graphql/templates/fragments/documents';
 import { IMAGE_MASK, HERO_ICON, BUTTON } from '@/graphql/templates/fragments/themes';
 import { HERO_SLICE_PRIMARY, HERO_SLICE_FULL_WIDTH } from '@/graphql/templates/fragments/slices';
-import { PROJECT_HERO_SLICE_FULL_WIDTH, PROJECT_HERO_SLICE_PRIMARY } from '@/graphql/templates/fragments/slices/project';
+import { PROJECT_HERO_SLICE_FULL_WIDTH, PROJECT_HERO_SLICE_GO_BACK, PROJECT_HERO_SLICE_PRIMARY } from '@/graphql/templates/fragments/slices/project';
 
 export type HeroSliceProps = SliceComponentProps<HeroSliceFieldFragment & { type: string } | ProjectHeroSliceFieldFragment & { type: string }>
 
@@ -21,13 +21,17 @@ const HeroSlice = ({ slice }: HeroSliceProps): JSX.Element => {
         ? getFragmentData(PROJECT_HERO_SLICE_PRIMARY, getSliceData.variation)
         : getSliceData && getSliceData.variation?.__typename === 'ProjectSlicesHero_sliceFullwidth'
           ? getFragmentData(PROJECT_HERO_SLICE_FULL_WIDTH, getSliceData.variation)
-          : null;
+          : getSliceData && getSliceData.variation?.__typename === 'ProjectSlicesHero_sliceGoback'
+            ? getFragmentData(PROJECT_HERO_SLICE_GO_BACK, getSliceData.variation)
+            : null;
 
   const getBothVariantMask = getCurrentVariant && (getCurrentVariant.__typename === 'Landing_pageSlicesHero_sliceDefault' || getCurrentVariant.__typename === 'ProjectSlicesHero_sliceDefault') && getCurrentVariant.primary?.image_mask?.__typename === 'Image_mask'
     ? getFragmentData(IMAGE_MASK, getCurrentVariant.primary.image_mask)
     : getCurrentVariant && (getCurrentVariant.__typename === 'Landing_pageSlicesHero_sliceFullwidth' || getCurrentVariant.__typename === 'ProjectSlicesHero_sliceFullwidth') && getCurrentVariant.fullWidth?.image_mask?.__typename === 'Image_mask'
       ? getFragmentData(IMAGE_MASK, getCurrentVariant.fullWidth.image_mask)
-      : null;
+      : getCurrentVariant && (getCurrentVariant.__typename === 'ProjectSlicesHero_sliceGoback') && getCurrentVariant.goBack?.image_mask?.__typename === 'Image_mask'
+        ? getFragmentData(IMAGE_MASK, getCurrentVariant.goBack.image_mask)
+        : null;
 
   const getPrimaryOnlyIcon = getCurrentVariant && (getCurrentVariant.__typename === 'Landing_pageSlicesHero_sliceDefault' || getCurrentVariant.__typename === 'ProjectSlicesHero_sliceDefault') && getCurrentVariant.primary?.icon?.__typename === 'Heroicon'
     ? getFragmentData(HERO_ICON, getCurrentVariant.primary.icon)
@@ -62,6 +66,14 @@ const HeroSlice = ({ slice }: HeroSliceProps): JSX.Element => {
           title={getCurrentVariant.fullWidth.title}
           subtitle={getCurrentVariant.fullWidth.subtitle}
           image={getCurrentVariant.fullWidth.hero_image}
+          mask={getBothVariantMask}
+        />
+      }
+      {
+        getCurrentVariant && (getCurrentVariant.__typename === 'ProjectSlicesHero_sliceGoback') && getCurrentVariant.goBack && <Hero
+          variant='goBack'
+          title={getCurrentVariant.goBack.title}
+          image={getCurrentVariant.goBack.hero_image}
           mask={getBothVariantMask}
         />
       }

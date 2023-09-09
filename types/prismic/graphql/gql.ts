@@ -22,7 +22,8 @@ const documents = {
     "\n  fragment CardSliceField on Landing_pageSlicesCard_slice {\n    type\n    label\n    variation {\n      __typename\n      ...CardSlicePrimary\n    }\n  }\n": types.CardSliceFieldFragmentDoc,
     "\n  fragment ProjectHeroSlicePrimary on ProjectSlicesHero_sliceDefault {\n    primary {\n      title\n      subtitle\n      hero_image\n      image_mask {\n        __typename\n        ...ImageMask\n      }\n      icon {\n        __typename\n        ...HeroIcon\n      }\n      button {\n        __typename\n        ...Button\n      }\n      label\n      href {\n        _linkType\n        __typename\n        ...LinkDocumentMeta\n      }\n    }\n  }\n": types.ProjectHeroSlicePrimaryFragmentDoc,
     "\n  fragment ProjectHeroSliceFullWidth on ProjectSlicesHero_sliceFullwidth {\n    fullWidth: primary {\n      title\n      subtitle\n      hero_image\n      image_mask {\n        __typename\n        ...ImageMask\n      }\n    }\n   }\n": types.ProjectHeroSliceFullWidthFragmentDoc,
-    "\n  fragment ProjectHeroSliceField on ProjectSlicesHero_slice {\n    type\n    label\n    variation {\n      __typename\n      ...ProjectHeroSlicePrimary\n      ...ProjectHeroSliceFullWidth\n    }\n  }\n": types.ProjectHeroSliceFieldFragmentDoc,
+    "\n   fragment ProjectHeroSliceGoBack on ProjectSlicesHero_sliceGoback {\n    goBack: primary {\n      title\n      hero_image\n      image_mask {\n        __typename\n        ...ImageMask\n      }\n    }\n   }\n": types.ProjectHeroSliceGoBackFragmentDoc,
+    "\n  fragment ProjectHeroSliceField on ProjectSlicesHero_slice {\n    type\n    label\n    variation {\n      __typename\n      ...ProjectHeroSlicePrimary\n      ...ProjectHeroSliceFullWidth\n      ...ProjectHeroSliceGoBack\n    }\n  }\n": types.ProjectHeroSliceFieldFragmentDoc,
     "\n  fragment ProjectContentBlockSlicePrimary on ProjectSlicesContent_block_sliceDefault {\n    primary {\n      title\n      subtitle\n      hashtag {\n        __typename\n        ...IconsList\n      }\n      stack {\n        __typename\n        ...IconsList\n      }\n      content\n      images {\n        __typename\n        ...ImageGallery\n      }\n    }\n   }\n": types.ProjectContentBlockSlicePrimaryFragmentDoc,
     "\n  fragment ProjectContentBlockSliceField on ProjectSlicesContent_block_slice {\n    type\n    label\n    variation {\n      __typename\n      ...ProjectContentBlockSlicePrimary\n    }\n  }\n": types.ProjectContentBlockSliceFieldFragmentDoc,
     "\n  fragment Theme50Fields on Theme_50 {\n    light {\n      name\n      code\n    }\n  }\n": types.Theme50FieldsFragmentDoc,
@@ -102,7 +103,11 @@ export function graphql(source: "\n  fragment ProjectHeroSliceFullWidth on Proje
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  fragment ProjectHeroSliceField on ProjectSlicesHero_slice {\n    type\n    label\n    variation {\n      __typename\n      ...ProjectHeroSlicePrimary\n      ...ProjectHeroSliceFullWidth\n    }\n  }\n"): (typeof documents)["\n  fragment ProjectHeroSliceField on ProjectSlicesHero_slice {\n    type\n    label\n    variation {\n      __typename\n      ...ProjectHeroSlicePrimary\n      ...ProjectHeroSliceFullWidth\n    }\n  }\n"];
+export function graphql(source: "\n   fragment ProjectHeroSliceGoBack on ProjectSlicesHero_sliceGoback {\n    goBack: primary {\n      title\n      hero_image\n      image_mask {\n        __typename\n        ...ImageMask\n      }\n    }\n   }\n"): (typeof documents)["\n   fragment ProjectHeroSliceGoBack on ProjectSlicesHero_sliceGoback {\n    goBack: primary {\n      title\n      hero_image\n      image_mask {\n        __typename\n        ...ImageMask\n      }\n    }\n   }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  fragment ProjectHeroSliceField on ProjectSlicesHero_slice {\n    type\n    label\n    variation {\n      __typename\n      ...ProjectHeroSlicePrimary\n      ...ProjectHeroSliceFullWidth\n      ...ProjectHeroSliceGoBack\n    }\n  }\n"): (typeof documents)["\n  fragment ProjectHeroSliceField on ProjectSlicesHero_slice {\n    type\n    label\n    variation {\n      __typename\n      ...ProjectHeroSlicePrimary\n      ...ProjectHeroSliceFullWidth\n      ...ProjectHeroSliceGoBack\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

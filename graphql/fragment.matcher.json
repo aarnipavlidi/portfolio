@@ -9,7 +9,8 @@
     ],
     "Landing_pageSlicesHero_sliceVariation": [
       "Landing_pageSlicesHero_sliceDefault",
-      "Landing_pageSlicesHero_sliceFullwidth"
+      "Landing_pageSlicesHero_sliceFullwidth",
+      "Landing_pageSlicesHero_sliceGoback"
     ],
     "ProjectSlices": [
       "ProjectSlicesContent_block_slice",
@@ -20,7 +21,8 @@
     ],
     "ProjectSlicesHero_sliceVariation": [
       "ProjectSlicesHero_sliceDefault",
-      "ProjectSlicesHero_sliceFullwidth"
+      "ProjectSlicesHero_sliceFullwidth",
+      "ProjectSlicesHero_sliceGoback"
     ],
     "_Document": [
       "Button",

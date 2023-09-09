@@ -43,6 +43,7 @@ const Design: React.FC<DesignProps> = ({ variant = 'prismic', ...props }) => {
             field={props.content}
             className={imageContainer}
             imgixParams={props.params}
+            sizes="100vw"
           />
         }
         {

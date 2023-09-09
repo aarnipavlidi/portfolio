@@ -43,6 +43,19 @@ export const PROJECT_HERO_SLICE_FULL_WIDTH = graphql(`
    }
 `);
 
+export const PROJECT_HERO_SLICE_GO_BACK = graphql(`
+   fragment ProjectHeroSliceGoBack on ProjectSlicesHero_sliceGoback {
+    goBack: primary {
+      title
+      hero_image
+      image_mask {
+        __typename
+        ...ImageMask
+      }
+    }
+   }
+`);
+
 export const PROJECT_HERO_SLICE_FIELDS = graphql(`
   fragment ProjectHeroSliceField on ProjectSlicesHero_slice {
     type
@@ -51,6 +64,7 @@ export const PROJECT_HERO_SLICE_FIELDS = graphql(`
       __typename
       ...ProjectHeroSlicePrimary
       ...ProjectHeroSliceFullWidth
+      ...ProjectHeroSliceGoBack
     }
   }
 `);
