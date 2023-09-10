@@ -27,6 +27,7 @@ import Tailwindcss from '@/components/Svg/icons/Custom/Stack/Tailwindcss';
 import ArrowSmallDown from '@/components/Svg/icons/Hero/arrow-small-down';
 import ArrowSmallRight from '@/components/Svg/icons/Hero/arrow-small-right';
 import ArrowSmallUp from '@/components/Svg/icons/Hero/arrow-small-up';
+import ArrowUpRight from '@/components/Svg/icons/Hero/arrow-up-right';
 import Bars3 from '@/components/Svg/icons/Hero/bars-3';
 import XMark from '@/components/Svg/icons/Hero/x-mark';
 
@@ -51,6 +52,7 @@ const Icons: React.FC<CustomIconsProps> = ({ name, variant = 'solid', ...props }
     'arrow-small-down': ArrowSmallDown,
     'arrow-small-right': ArrowSmallRight,
     'arrow-small-up': ArrowSmallUp,
+    'arrow-up-right': ArrowUpRight,
     'bars-3': Bars3,
     'x-mark': XMark,
   };

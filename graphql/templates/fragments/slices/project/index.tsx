@@ -102,3 +102,33 @@ export const PROJECT_CONTENT_BLOCK_SLICE_FIELDS = graphql(`
     }
   }
 `);
+
+
+// STATS BLOCK SLICE
+export const PROJECT_STATS_BLOCK_SLICE_PRIMARY = graphql(`
+  fragment ProjectStatsBlockSlicePrimary on ProjectSlicesStats_block_sliceDefault {
+    items {
+      name
+      href {
+        __typename
+        ...ExternalLinkMeta
+      }
+      icon {
+        __typename
+        ...HeroIcon
+      }
+      value
+    }
+  }
+`);
+
+export const PROJECT_STATS_BLOCK_SLICE_FIELDS = graphql(`
+  fragment ProjectStatsBlockSliceField on ProjectSlicesStats_block_slice {
+    type
+    label
+    variation {
+      __typename
+      ...ProjectStatsBlockSlicePrimary
+    }
+  }
+`);

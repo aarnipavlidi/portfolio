@@ -13,7 +13,8 @@
         "config": {
           "choices": {
             "content_block_slice": { "type": "SharedSlice" },
-            "hero_slice": { "type": "SharedSlice" }
+            "hero_slice": { "type": "SharedSlice" },
+            "stats_block_slice": { "type": "SharedSlice" }
           }
         }
       }

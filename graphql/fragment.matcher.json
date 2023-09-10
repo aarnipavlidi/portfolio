@@ -14,7 +14,8 @@
     ],
     "ProjectSlices": [
       "ProjectSlicesContent_block_slice",
-      "ProjectSlicesHero_slice"
+      "ProjectSlicesHero_slice",
+      "ProjectSlicesStats_block_slice"
     ],
     "ProjectSlicesContent_block_sliceVariation": [
       "ProjectSlicesContent_block_sliceDefault"
@@ -23,6 +24,9 @@
       "ProjectSlicesHero_sliceDefault",
       "ProjectSlicesHero_sliceFullwidth",
       "ProjectSlicesHero_sliceGoback"
+    ],
+    "ProjectSlicesStats_block_sliceVariation": [
+      "ProjectSlicesStats_block_sliceDefault"
     ],
     "_Document": [
       "Button",

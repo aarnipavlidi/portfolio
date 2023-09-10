@@ -30,7 +30,8 @@
           "options": [
             "arrow-small-down",
             "arrow-small-up",
-            "arrow-small-right"
+            "arrow-small-right",
+            "arrow-up-right"
           ],
           "default_value": "arrow-small-down"
         }
