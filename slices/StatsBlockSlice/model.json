@@ -1,0 +1,44 @@
+{
+  "id": "stats_block_slice",
+  "type": "SharedSlice",
+  "name": "StatsBlockSlice",
+  "description": "StatsBlockSlice",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {},
+      "items": {
+        "value": {
+          "type": "Text",
+          "config": { "label": "value", "placeholder": "" }
+        },
+        "icon": {
+          "type": "Link",
+          "config": {
+            "label": "icon",
+            "select": "document",
+            "customtypes": ["heroicon"]
+          }
+        },
+        "href": {
+          "type": "Link",
+          "config": {
+            "label": "href",
+            "placeholder": "For href to work, both this and icon has to be filled so that user will be redirected.",
+            "allowTargetBlank": true,
+            "select": null
+          }
+        },
+        "name": {
+          "type": "Text",
+          "config": { "label": "name", "placeholder": "" }
+        }
+      }
+    }
+  ]
+}

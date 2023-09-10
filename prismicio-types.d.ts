@@ -154,7 +154,10 @@ interface HeroiconDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   name: prismic.SelectField<
-    "arrow-small-down" | "arrow-small-up" | "arrow-small-right",
+    | "arrow-small-down"
+    | "arrow-small-up"
+    | "arrow-small-right"
+    | "arrow-up-right",
     "filled"
   >;
 }
@@ -483,7 +486,10 @@ export type NavigationDocument<Lang extends string = string> =
     Lang
   >;
 
-type ProjectDocumentDataSlicesSlice = ContentBlockSliceSlice | HeroSliceSlice;
+type ProjectDocumentDataSlicesSlice =
+  | ContentBlockSliceSlice
+  | HeroSliceSlice
+  | StatsBlockSliceSlice;
 
 /**
  * Content for Project documents
@@ -1657,6 +1663,81 @@ export type HeroSliceSlice = prismic.SharedSlice<
   HeroSliceSliceVariation
 >;
 
+/**
+ * Primary content in *StatsBlockSlice → Items*
+ */
+export interface StatsBlockSliceSliceDefaultItem {
+  /**
+   * value field in *StatsBlockSlice → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: stats_block_slice.items[].value
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  value: prismic.KeyTextField;
+
+  /**
+   * icon field in *StatsBlockSlice → Items*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: stats_block_slice.items[].icon
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  icon: prismic.ContentRelationshipField<"heroicon">;
+
+  /**
+   * href field in *StatsBlockSlice → Items*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: For href to work, both this and icon has to be filled so that user will be redirected.
+   * - **API ID Path**: stats_block_slice.items[].href
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  href: prismic.LinkField;
+
+  /**
+   * name field in *StatsBlockSlice → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: stats_block_slice.items[].name
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  name: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for StatsBlockSlice Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type StatsBlockSliceSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Record<string, never>,
+  Simplify<StatsBlockSliceSliceDefaultItem>
+>;
+
+/**
+ * Slice variation for *StatsBlockSlice*
+ */
+type StatsBlockSliceSliceVariation = StatsBlockSliceSliceDefault;
+
+/**
+ * StatsBlockSlice Shared Slice
+ *
+ * - **API ID**: `stats_block_slice`
+ * - **Description**: StatsBlockSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type StatsBlockSliceSlice = prismic.SharedSlice<
+  "stats_block_slice",
+  StatsBlockSliceSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -1719,6 +1800,9 @@ declare module "@prismicio/client" {
       HeroSliceSliceDefault,
       HeroSliceSliceFullWidth,
       HeroSliceSliceGoBack,
+      StatsBlockSliceSlice,
+      StatsBlockSliceSliceVariation,
+      StatsBlockSliceSliceDefault,
     };
   }
 }

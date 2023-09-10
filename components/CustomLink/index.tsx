@@ -1,4 +1,5 @@
 import type { TypographyProps } from '@/components/Typography';
+import type { HTMLAttributeAnchorTarget } from 'react';
 import Link from 'next/link';
 import classNames from 'classnames';
 
@@ -6,6 +7,7 @@ interface CustomLinkProps {
   key?: string | null;
   legacyBehavior?: boolean;
   href: string;
+  target?: HTMLAttributeAnchorTarget;
   className?: string;
   content: string;
   size?: TypographyProps['size']
@@ -21,7 +23,7 @@ const CustomLink: React.FC<CustomLinkProps> = ({ legacyBehavior = false, size = 
   });
 
   return (
-    <Link key={props.key} href={props.href} legacyBehavior={legacyBehavior} className={linkContainer}>
+    <Link key={props.key} href={props.href} legacyBehavior={legacyBehavior} className={linkContainer} target={props.target}>
       {props.content}
     </Link>
   );

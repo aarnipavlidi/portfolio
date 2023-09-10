@@ -59,6 +59,7 @@ export const GET_CURRENT_PROJECT = graphql(`
       slices {
         ...ProjectHeroSliceField
         ...ProjectContentBlockSliceField
+        ...ProjectStatsBlockSliceField
       }
     }
   }

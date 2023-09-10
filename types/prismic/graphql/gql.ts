@@ -26,6 +26,8 @@ const documents = {
     "\n  fragment ProjectHeroSliceField on ProjectSlicesHero_slice {\n    type\n    label\n    variation {\n      __typename\n      ...ProjectHeroSlicePrimary\n      ...ProjectHeroSliceFullWidth\n      ...ProjectHeroSliceGoBack\n    }\n  }\n": types.ProjectHeroSliceFieldFragmentDoc,
     "\n  fragment ProjectContentBlockSlicePrimary on ProjectSlicesContent_block_sliceDefault {\n    primary {\n      title\n      subtitle\n      hashtag {\n        __typename\n        ...IconsList\n      }\n      stack {\n        __typename\n        ...IconsList\n      }\n      content\n      images {\n        __typename\n        ...ImageGallery\n      }\n    }\n   }\n": types.ProjectContentBlockSlicePrimaryFragmentDoc,
     "\n  fragment ProjectContentBlockSliceField on ProjectSlicesContent_block_slice {\n    type\n    label\n    variation {\n      __typename\n      ...ProjectContentBlockSlicePrimary\n    }\n  }\n": types.ProjectContentBlockSliceFieldFragmentDoc,
+    "\n  fragment ProjectStatsBlockSlicePrimary on ProjectSlicesStats_block_sliceDefault {\n    items {\n      name\n      href {\n        __typename\n        ...ExternalLinkMeta\n      }\n      icon {\n        __typename\n        ...HeroIcon\n      }\n      value\n    }\n  }\n": types.ProjectStatsBlockSlicePrimaryFragmentDoc,
+    "\n  fragment ProjectStatsBlockSliceField on ProjectSlicesStats_block_slice {\n    type\n    label\n    variation {\n      __typename\n      ...ProjectStatsBlockSlicePrimary\n    }\n  }\n": types.ProjectStatsBlockSliceFieldFragmentDoc,
     "\n  fragment Theme50Fields on Theme_50 {\n    light {\n      name\n      code\n    }\n  }\n": types.Theme50FieldsFragmentDoc,
     "\n  fragment Theme100Fields on Theme_100 {\n    light {\n      name\n      code\n    }\n  }\n": types.Theme100FieldsFragmentDoc,
     "\n  fragment Theme200Fields on Theme_200 {\n    light {\n      name\n      code\n    }\n  }\n": types.Theme200FieldsFragmentDoc,
@@ -47,7 +49,7 @@ const documents = {
     "\n  query getAllLandingPagesMeta($getByID: [String!]) {\n    allLanding_pages(id_in: $getByID) {\n      edges {\n        node {\n          _linkType\n          _meta {\n            id\n            uid\n            type\n            tags\n            lang\n            firstPublicationDate\n            lastPublicationDate\n          }\n        }\n      }\n    }\n  }\n": types.GetAllLandingPagesMetaDocument,
     "\n  query getAllProjectsMeta($getByID: [String!]) {\n    allProjects(id_in: $getByID) {\n      edges {\n        node {\n          _linkType\n          _meta {\n            id\n            uid\n            type\n            tags\n            lang\n            firstPublicationDate\n            lastPublicationDate\n          }\n        }\n      }\n    }\n  }\n": types.GetAllProjectsMetaDocument,
     "\n  query getCurrentLandingPage($slug: String!, $defaultLocale: String!) {\n    landing_page(uid: $slug, lang: $defaultLocale) {\n      slices {\n        ...HeroSliceField\n        ...CardSliceField\n      }\n    }\n  }\n": types.GetCurrentLandingPageDocument,
-    "\n  query getCurrentProject($slug: String!, $defaultLocale: String!) {\n    project(uid: $slug, lang: $defaultLocale) {\n      slices {\n        ...ProjectHeroSliceField\n        ...ProjectContentBlockSliceField\n      }\n    }\n  }\n": types.GetCurrentProjectDocument,
+    "\n  query getCurrentProject($slug: String!, $defaultLocale: String!) {\n    project(uid: $slug, lang: $defaultLocale) {\n      slices {\n        ...ProjectHeroSliceField\n        ...ProjectContentBlockSliceField\n        ...ProjectStatsBlockSliceField\n      }\n    }\n  }\n": types.GetCurrentProjectDocument,
 };
 
 /**
@@ -116,6 +118,14 @@ export function graphql(source: "\n  fragment ProjectContentBlockSlicePrimary on
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n  fragment ProjectContentBlockSliceField on ProjectSlicesContent_block_slice {\n    type\n    label\n    variation {\n      __typename\n      ...ProjectContentBlockSlicePrimary\n    }\n  }\n"): (typeof documents)["\n  fragment ProjectContentBlockSliceField on ProjectSlicesContent_block_slice {\n    type\n    label\n    variation {\n      __typename\n      ...ProjectContentBlockSlicePrimary\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  fragment ProjectStatsBlockSlicePrimary on ProjectSlicesStats_block_sliceDefault {\n    items {\n      name\n      href {\n        __typename\n        ...ExternalLinkMeta\n      }\n      icon {\n        __typename\n        ...HeroIcon\n      }\n      value\n    }\n  }\n"): (typeof documents)["\n  fragment ProjectStatsBlockSlicePrimary on ProjectSlicesStats_block_sliceDefault {\n    items {\n      name\n      href {\n        __typename\n        ...ExternalLinkMeta\n      }\n      icon {\n        __typename\n        ...HeroIcon\n      }\n      value\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  fragment ProjectStatsBlockSliceField on ProjectSlicesStats_block_slice {\n    type\n    label\n    variation {\n      __typename\n      ...ProjectStatsBlockSlicePrimary\n    }\n  }\n"): (typeof documents)["\n  fragment ProjectStatsBlockSliceField on ProjectSlicesStats_block_slice {\n    type\n    label\n    variation {\n      __typename\n      ...ProjectStatsBlockSlicePrimary\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -203,7 +213,7 @@ export function graphql(source: "\n  query getCurrentLandingPage($slug: String!,
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  query getCurrentProject($slug: String!, $defaultLocale: String!) {\n    project(uid: $slug, lang: $defaultLocale) {\n      slices {\n        ...ProjectHeroSliceField\n        ...ProjectContentBlockSliceField\n      }\n    }\n  }\n"): (typeof documents)["\n  query getCurrentProject($slug: String!, $defaultLocale: String!) {\n    project(uid: $slug, lang: $defaultLocale) {\n      slices {\n        ...ProjectHeroSliceField\n        ...ProjectContentBlockSliceField\n      }\n    }\n  }\n"];
+export function graphql(source: "\n  query getCurrentProject($slug: String!, $defaultLocale: String!) {\n    project(uid: $slug, lang: $defaultLocale) {\n      slices {\n        ...ProjectHeroSliceField\n        ...ProjectContentBlockSliceField\n        ...ProjectStatsBlockSliceField\n      }\n    }\n  }\n"): (typeof documents)["\n  query getCurrentProject($slug: String!, $defaultLocale: String!) {\n    project(uid: $slug, lang: $defaultLocale) {\n      slices {\n        ...ProjectHeroSliceField\n        ...ProjectContentBlockSliceField\n        ...ProjectStatsBlockSliceField\n      }\n    }\n  }\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};
