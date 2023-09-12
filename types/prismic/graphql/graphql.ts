@@ -5,28 +5,30 @@ export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
+export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: string;
-  String: string;
-  Boolean: boolean;
-  Int: number;
-  Float: number;
+  ID: { input: string; output: string; }
+  String: { input: string; output: string; }
+  Boolean: { input: boolean; output: boolean; }
+  Int: { input: number; output: number; }
+  Float: { input: number; output: number; }
   /** DateTime */
-  DateTime: any;
+  DateTime: { input: any; output: any; }
   /** Raw JSON value */
-  Json: any;
+  Json: { input: any; output: any; }
   /** The `Long` scalar type represents non-fractional signed whole numeric values. Long can represent values between -(2^63) and 2^63 - 1. */
-  Long: any;
+  Long: { input: any; output: any; }
 };
 
 export type Button = Document & Linkable & {
   __typename?: 'Button';
-  _linkType: Maybe<Scalars['String']>;
+  _linkType: Maybe<Scalars['String']['output']>;
   _meta: Meta;
-  full_width: Maybe<Scalars['Boolean']>;
-  size: Maybe<Scalars['String']>;
-  variant: Maybe<Scalars['String']>;
+  full_width: Maybe<Scalars['Boolean']['output']>;
+  size: Maybe<Scalars['String']['output']>;
+  variant: Maybe<Scalars['String']['output']>;
 };
 
 /** A connection to a list of items. */
@@ -36,23 +38,23 @@ export type ButtonConnectionConnection = {
   edges: Maybe<Array<Maybe<ButtonConnectionEdge>>>;
   /** Information to aid in pagination. */
   pageInfo: PageInfo;
-  totalCount: Scalars['Long'];
+  totalCount: Scalars['Long']['output'];
 };
 
 /** An edge in a connection. */
 export type ButtonConnectionEdge = {
   __typename?: 'ButtonConnectionEdge';
   /** A cursor for use in pagination. */
-  cursor: Scalars['String'];
+  cursor: Scalars['String']['output'];
   /** The item at the end of the edge. */
   node: Button;
 };
 
 export type Footer = Document & Linkable & {
   __typename?: 'Footer';
-  _linkType: Maybe<Scalars['String']>;
+  _linkType: Maybe<Scalars['String']['output']>;
   _meta: Meta;
-  slogan: Maybe<Scalars['Json']>;
+  slogan: Maybe<Scalars['Json']['output']>;
   slogan_keys: Maybe<Array<FooterSloganKeys>>;
   social_icons: Maybe<Linkable>;
 };
@@ -64,29 +66,29 @@ export type FooterConnectionConnection = {
   edges: Maybe<Array<Maybe<FooterConnectionEdge>>>;
   /** Information to aid in pagination. */
   pageInfo: PageInfo;
-  totalCount: Scalars['Long'];
+  totalCount: Scalars['Long']['output'];
 };
 
 /** An edge in a connection. */
 export type FooterConnectionEdge = {
   __typename?: 'FooterConnectionEdge';
   /** A cursor for use in pagination. */
-  cursor: Scalars['String'];
+  cursor: Scalars['String']['output'];
   /** The item at the end of the edge. */
   node: Footer;
 };
 
 export type FooterSloganKeys = {
   __typename?: 'FooterSlogan_keys';
-  word: Maybe<Scalars['Json']>;
+  word: Maybe<Scalars['Json']['output']>;
 };
 
 export type Heroicon = Document & Linkable & {
   __typename?: 'Heroicon';
-  _linkType: Maybe<Scalars['String']>;
+  _linkType: Maybe<Scalars['String']['output']>;
   _meta: Meta;
-  name: Maybe<Scalars['String']>;
-  variant: Maybe<Scalars['String']>;
+  name: Maybe<Scalars['String']['output']>;
+  variant: Maybe<Scalars['String']['output']>;
 };
 
 /** A connection to a list of items. */
@@ -96,31 +98,31 @@ export type HeroiconConnectionConnection = {
   edges: Maybe<Array<Maybe<HeroiconConnectionEdge>>>;
   /** Information to aid in pagination. */
   pageInfo: PageInfo;
-  totalCount: Scalars['Long'];
+  totalCount: Scalars['Long']['output'];
 };
 
 /** An edge in a connection. */
 export type HeroiconConnectionEdge = {
   __typename?: 'HeroiconConnectionEdge';
   /** A cursor for use in pagination. */
-  cursor: Scalars['String'];
+  cursor: Scalars['String']['output'];
   /** The item at the end of the edge. */
   node: Heroicon;
 };
 
 export type IconsList = Document & Linkable & {
   __typename?: 'Icons_list';
-  _linkType: Maybe<Scalars['String']>;
+  _linkType: Maybe<Scalars['String']['output']>;
   _meta: Meta;
   collection: Maybe<Array<IconsListCollection>>;
-  show_icons: Maybe<Scalars['Boolean']>;
+  show_icons: Maybe<Scalars['Boolean']['output']>;
 };
 
 export type IconsListCollection = {
   __typename?: 'Icons_listCollection';
   href: Maybe<Linkable>;
-  icon: Maybe<Scalars['String']>;
-  name: Maybe<Scalars['String']>;
+  icon: Maybe<Scalars['String']['output']>;
+  name: Maybe<Scalars['String']['output']>;
 };
 
 /** A connection to a list of items. */
@@ -130,21 +132,21 @@ export type IconsListConnectionConnection = {
   edges: Maybe<Array<Maybe<IconsListConnectionEdge>>>;
   /** Information to aid in pagination. */
   pageInfo: PageInfo;
-  totalCount: Scalars['Long'];
+  totalCount: Scalars['Long']['output'];
 };
 
 /** An edge in a connection. */
 export type IconsListConnectionEdge = {
   __typename?: 'Icons_listConnectionEdge';
   /** A cursor for use in pagination. */
-  cursor: Scalars['String'];
+  cursor: Scalars['String']['output'];
   /** The item at the end of the edge. */
   node: IconsList;
 };
 
 export type ImageGallery = Document & Linkable & {
   __typename?: 'Image_gallery';
-  _linkType: Maybe<Scalars['String']>;
+  _linkType: Maybe<Scalars['String']['output']>;
   _meta: Meta;
   gallery: Maybe<Array<ImageGalleryGallery>>;
 };
@@ -156,28 +158,28 @@ export type ImageGalleryConnectionConnection = {
   edges: Maybe<Array<Maybe<ImageGalleryConnectionEdge>>>;
   /** Information to aid in pagination. */
   pageInfo: PageInfo;
-  totalCount: Scalars['Long'];
+  totalCount: Scalars['Long']['output'];
 };
 
 /** An edge in a connection. */
 export type ImageGalleryConnectionEdge = {
   __typename?: 'Image_galleryConnectionEdge';
   /** A cursor for use in pagination. */
-  cursor: Scalars['String'];
+  cursor: Scalars['String']['output'];
   /** The item at the end of the edge. */
   node: ImageGallery;
 };
 
 export type ImageGalleryGallery = {
   __typename?: 'Image_galleryGallery';
-  image: Maybe<Scalars['Json']>;
+  image: Maybe<Scalars['Json']['output']>;
 };
 
 export type ImageMask = Document & Linkable & {
   __typename?: 'Image_mask';
-  _linkType: Maybe<Scalars['String']>;
+  _linkType: Maybe<Scalars['String']['output']>;
   _meta: Meta;
-  variant: Maybe<Scalars['String']>;
+  variant: Maybe<Scalars['String']['output']>;
 };
 
 /** A connection to a list of items. */
@@ -187,21 +189,21 @@ export type ImageMaskConnectionConnection = {
   edges: Maybe<Array<Maybe<ImageMaskConnectionEdge>>>;
   /** Information to aid in pagination. */
   pageInfo: PageInfo;
-  totalCount: Scalars['Long'];
+  totalCount: Scalars['Long']['output'];
 };
 
 /** An edge in a connection. */
 export type ImageMaskConnectionEdge = {
   __typename?: 'Image_maskConnectionEdge';
   /** A cursor for use in pagination. */
-  cursor: Scalars['String'];
+  cursor: Scalars['String']['output'];
   /** The item at the end of the edge. */
   node: ImageMask;
 };
 
 export type LandingPage = Document & Linkable & {
   __typename?: 'Landing_page';
-  _linkType: Maybe<Scalars['String']>;
+  _linkType: Maybe<Scalars['String']['output']>;
   _meta: Meta;
   slices: Maybe<Array<LandingPageSlices>>;
 };
@@ -213,14 +215,14 @@ export type LandingPageConnectionConnection = {
   edges: Maybe<Array<Maybe<LandingPageConnectionEdge>>>;
   /** Information to aid in pagination. */
   pageInfo: PageInfo;
-  totalCount: Scalars['Long'];
+  totalCount: Scalars['Long']['output'];
 };
 
 /** An edge in a connection. */
 export type LandingPageConnectionEdge = {
   __typename?: 'Landing_pageConnectionEdge';
   /** A cursor for use in pagination. */
-  cursor: Scalars['String'];
+  cursor: Scalars['String']['output'];
   /** The item at the end of the edge. */
   node: LandingPage;
 };
@@ -229,8 +231,8 @@ export type LandingPageSlices = LandingPageSlicesCardSlice | LandingPageSlicesHe
 
 export type LandingPageSlicesCardSlice = {
   __typename?: 'Landing_pageSlicesCard_slice';
-  label: Maybe<Scalars['String']>;
-  type: Maybe<Scalars['String']>;
+  label: Maybe<Scalars['String']['output']>;
+  type: Maybe<Scalars['String']['output']>;
   variation: Maybe<LandingPageSlicesCardSliceVariation>;
 };
 
@@ -243,27 +245,27 @@ export type LandingPageSlicesCardSliceDefault = {
 export type LandingPageSlicesCardSliceDefaultItems = {
   __typename?: 'Landing_pageSlicesCard_sliceDefaultItems';
   button: Maybe<Linkable>;
-  card_image: Maybe<Scalars['Json']>;
+  card_image: Maybe<Scalars['Json']['output']>;
   collection: Maybe<Linkable>;
-  description: Maybe<Scalars['Json']>;
+  description: Maybe<Scalars['Json']['output']>;
   href: Maybe<Linkable>;
   icon: Maybe<Linkable>;
-  label: Maybe<Scalars['String']>;
-  name: Maybe<Scalars['Json']>;
+  label: Maybe<Scalars['String']['output']>;
+  name: Maybe<Scalars['Json']['output']>;
 };
 
 export type LandingPageSlicesCardSliceDefaultPrimary = {
   __typename?: 'Landing_pageSlicesCard_sliceDefaultPrimary';
-  subtitle: Maybe<Scalars['Json']>;
-  title: Maybe<Scalars['Json']>;
+  subtitle: Maybe<Scalars['Json']['output']>;
+  title: Maybe<Scalars['Json']['output']>;
 };
 
 export type LandingPageSlicesCardSliceVariation = LandingPageSlicesCardSliceDefault;
 
 export type LandingPageSlicesHeroSlice = {
   __typename?: 'Landing_pageSlicesHero_slice';
-  label: Maybe<Scalars['String']>;
-  type: Maybe<Scalars['String']>;
+  label: Maybe<Scalars['String']['output']>;
+  type: Maybe<Scalars['String']['output']>;
   variation: Maybe<LandingPageSlicesHeroSliceVariation>;
 };
 
@@ -275,13 +277,13 @@ export type LandingPageSlicesHeroSliceDefault = {
 export type LandingPageSlicesHeroSliceDefaultPrimary = {
   __typename?: 'Landing_pageSlicesHero_sliceDefaultPrimary';
   button: Maybe<Linkable>;
-  hero_image: Maybe<Scalars['Json']>;
+  hero_image: Maybe<Scalars['Json']['output']>;
   href: Maybe<Linkable>;
   icon: Maybe<Linkable>;
   image_mask: Maybe<Linkable>;
-  label: Maybe<Scalars['String']>;
-  subtitle: Maybe<Scalars['Json']>;
-  title: Maybe<Scalars['Json']>;
+  label: Maybe<Scalars['String']['output']>;
+  subtitle: Maybe<Scalars['Json']['output']>;
+  title: Maybe<Scalars['Json']['output']>;
 };
 
 export type LandingPageSlicesHeroSliceFullwidth = {
@@ -291,10 +293,10 @@ export type LandingPageSlicesHeroSliceFullwidth = {
 
 export type LandingPageSlicesHeroSliceFullwidthPrimary = {
   __typename?: 'Landing_pageSlicesHero_sliceFullwidthPrimary';
-  hero_image: Maybe<Scalars['Json']>;
+  hero_image: Maybe<Scalars['Json']['output']>;
   image_mask: Maybe<Linkable>;
-  subtitle: Maybe<Scalars['Json']>;
-  title: Maybe<Scalars['Json']>;
+  subtitle: Maybe<Scalars['Json']['output']>;
+  title: Maybe<Scalars['Json']['output']>;
 };
 
 export type LandingPageSlicesHeroSliceGoback = {
@@ -304,9 +306,9 @@ export type LandingPageSlicesHeroSliceGoback = {
 
 export type LandingPageSlicesHeroSliceGobackPrimary = {
   __typename?: 'Landing_pageSlicesHero_sliceGobackPrimary';
-  hero_image: Maybe<Scalars['Json']>;
+  hero_image: Maybe<Scalars['Json']['output']>;
   image_mask: Maybe<Linkable>;
-  title: Maybe<Scalars['Json']>;
+  title: Maybe<Scalars['Json']['output']>;
 };
 
 export type LandingPageSlicesHeroSliceVariation = LandingPageSlicesHeroSliceDefault | LandingPageSlicesHeroSliceFullwidth | LandingPageSlicesHeroSliceGoback;
@@ -316,29 +318,29 @@ export type Meta = {
   /** Alternate languages the document. */
   alternateLanguages: Array<RelatedDocument>;
   /** The first publication date of the document. */
-  firstPublicationDate: Maybe<Scalars['DateTime']>;
+  firstPublicationDate: Maybe<Scalars['DateTime']['output']>;
   /** The id of the document. */
-  id: Scalars['String'];
+  id: Scalars['String']['output'];
   /** The language of the document. */
-  lang: Scalars['String'];
+  lang: Scalars['String']['output'];
   /** The last publication date of the document. */
-  lastPublicationDate: Maybe<Scalars['DateTime']>;
+  lastPublicationDate: Maybe<Scalars['DateTime']['output']>;
   /** The tags of the document. */
-  tags: Array<Scalars['String']>;
+  tags: Array<Scalars['String']['output']>;
   /** The type of the document. */
-  type: Scalars['String'];
+  type: Scalars['String']['output'];
   /** The uid of the document. */
-  uid: Maybe<Scalars['String']>;
+  uid: Maybe<Scalars['String']['output']>;
 };
 
 export type Navigation = Document & Linkable & {
   __typename?: 'Navigation';
-  _linkType: Maybe<Scalars['String']>;
+  _linkType: Maybe<Scalars['String']['output']>;
   _meta: Meta;
   color: Maybe<Linkable>;
   navigation_links: Maybe<Array<NavigationNavigationLinks>>;
-  navigation_title: Maybe<Scalars['String']>;
-  position: Maybe<Scalars['Boolean']>;
+  navigation_title: Maybe<Scalars['String']['output']>;
+  position: Maybe<Scalars['Boolean']['output']>;
 };
 
 /** A connection to a list of items. */
@@ -348,14 +350,14 @@ export type NavigationConnectionConnection = {
   edges: Maybe<Array<Maybe<NavigationConnectionEdge>>>;
   /** Information to aid in pagination. */
   pageInfo: PageInfo;
-  totalCount: Scalars['Long'];
+  totalCount: Scalars['Long']['output'];
 };
 
 /** An edge in a connection. */
 export type NavigationConnectionEdge = {
   __typename?: 'NavigationConnectionEdge';
   /** A cursor for use in pagination. */
-  cursor: Scalars['String'];
+  cursor: Scalars['String']['output'];
   /** The item at the end of the edge. */
   node: Navigation;
 };
@@ -363,29 +365,29 @@ export type NavigationConnectionEdge = {
 export type NavigationNavigationLinks = {
   __typename?: 'NavigationNavigation_links';
   link_href: Maybe<Linkable>;
-  link_name: Maybe<Scalars['String']>;
+  link_name: Maybe<Scalars['String']['output']>;
 };
 
 /** Information about pagination in a connection. */
 export type PageInfo = {
   __typename?: 'PageInfo';
   /** When paginating forwards, the cursor to continue. */
-  endCursor: Maybe<Scalars['String']>;
+  endCursor: Maybe<Scalars['String']['output']>;
   /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean'];
+  hasNextPage: Scalars['Boolean']['output'];
   /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean']['output'];
   /** When paginating backwards, the cursor to continue. */
-  startCursor: Maybe<Scalars['String']>;
+  startCursor: Maybe<Scalars['String']['output']>;
 };
 
 export type Project = Document & Linkable & {
   __typename?: 'Project';
-  _linkType: Maybe<Scalars['String']>;
+  _linkType: Maybe<Scalars['String']['output']>;
   _meta: Meta;
-  meta_description: Maybe<Scalars['String']>;
-  meta_image: Maybe<Scalars['Json']>;
-  meta_title: Maybe<Scalars['String']>;
+  meta_description: Maybe<Scalars['String']['output']>;
+  meta_image: Maybe<Scalars['Json']['output']>;
+  meta_title: Maybe<Scalars['String']['output']>;
   slices: Maybe<Array<ProjectSlices>>;
 };
 
@@ -396,14 +398,14 @@ export type ProjectConnectionConnection = {
   edges: Maybe<Array<Maybe<ProjectConnectionEdge>>>;
   /** Information to aid in pagination. */
   pageInfo: PageInfo;
-  totalCount: Scalars['Long'];
+  totalCount: Scalars['Long']['output'];
 };
 
 /** An edge in a connection. */
 export type ProjectConnectionEdge = {
   __typename?: 'ProjectConnectionEdge';
   /** A cursor for use in pagination. */
-  cursor: Scalars['String'];
+  cursor: Scalars['String']['output'];
   /** The item at the end of the edge. */
   node: Project;
 };
@@ -412,8 +414,8 @@ export type ProjectSlices = ProjectSlicesContentBlockSlice | ProjectSlicesHeroSl
 
 export type ProjectSlicesContentBlockSlice = {
   __typename?: 'ProjectSlicesContent_block_slice';
-  label: Maybe<Scalars['String']>;
-  type: Maybe<Scalars['String']>;
+  label: Maybe<Scalars['String']['output']>;
+  type: Maybe<Scalars['String']['output']>;
   variation: Maybe<ProjectSlicesContentBlockSliceVariation>;
 };
 
@@ -424,20 +426,20 @@ export type ProjectSlicesContentBlockSliceDefault = {
 
 export type ProjectSlicesContentBlockSliceDefaultPrimary = {
   __typename?: 'ProjectSlicesContent_block_sliceDefaultPrimary';
-  content: Maybe<Scalars['Json']>;
+  content: Maybe<Scalars['Json']['output']>;
   hashtag: Maybe<Linkable>;
   images: Maybe<Linkable>;
   stack: Maybe<Linkable>;
-  subtitle: Maybe<Scalars['Json']>;
-  title: Maybe<Scalars['Json']>;
+  subtitle: Maybe<Scalars['Json']['output']>;
+  title: Maybe<Scalars['Json']['output']>;
 };
 
 export type ProjectSlicesContentBlockSliceVariation = ProjectSlicesContentBlockSliceDefault;
 
 export type ProjectSlicesHeroSlice = {
   __typename?: 'ProjectSlicesHero_slice';
-  label: Maybe<Scalars['String']>;
-  type: Maybe<Scalars['String']>;
+  label: Maybe<Scalars['String']['output']>;
+  type: Maybe<Scalars['String']['output']>;
   variation: Maybe<ProjectSlicesHeroSliceVariation>;
 };
 
@@ -449,13 +451,13 @@ export type ProjectSlicesHeroSliceDefault = {
 export type ProjectSlicesHeroSliceDefaultPrimary = {
   __typename?: 'ProjectSlicesHero_sliceDefaultPrimary';
   button: Maybe<Linkable>;
-  hero_image: Maybe<Scalars['Json']>;
+  hero_image: Maybe<Scalars['Json']['output']>;
   href: Maybe<Linkable>;
   icon: Maybe<Linkable>;
   image_mask: Maybe<Linkable>;
-  label: Maybe<Scalars['String']>;
-  subtitle: Maybe<Scalars['Json']>;
-  title: Maybe<Scalars['Json']>;
+  label: Maybe<Scalars['String']['output']>;
+  subtitle: Maybe<Scalars['Json']['output']>;
+  title: Maybe<Scalars['Json']['output']>;
 };
 
 export type ProjectSlicesHeroSliceFullwidth = {
@@ -465,10 +467,10 @@ export type ProjectSlicesHeroSliceFullwidth = {
 
 export type ProjectSlicesHeroSliceFullwidthPrimary = {
   __typename?: 'ProjectSlicesHero_sliceFullwidthPrimary';
-  hero_image: Maybe<Scalars['Json']>;
+  hero_image: Maybe<Scalars['Json']['output']>;
   image_mask: Maybe<Linkable>;
-  subtitle: Maybe<Scalars['Json']>;
-  title: Maybe<Scalars['Json']>;
+  subtitle: Maybe<Scalars['Json']['output']>;
+  title: Maybe<Scalars['Json']['output']>;
 };
 
 export type ProjectSlicesHeroSliceGoback = {
@@ -478,17 +480,17 @@ export type ProjectSlicesHeroSliceGoback = {
 
 export type ProjectSlicesHeroSliceGobackPrimary = {
   __typename?: 'ProjectSlicesHero_sliceGobackPrimary';
-  hero_image: Maybe<Scalars['Json']>;
+  hero_image: Maybe<Scalars['Json']['output']>;
   image_mask: Maybe<Linkable>;
-  title: Maybe<Scalars['Json']>;
+  title: Maybe<Scalars['Json']['output']>;
 };
 
 export type ProjectSlicesHeroSliceVariation = ProjectSlicesHeroSliceDefault | ProjectSlicesHeroSliceFullwidth | ProjectSlicesHeroSliceGoback;
 
 export type ProjectSlicesStatsBlockSlice = {
   __typename?: 'ProjectSlicesStats_block_slice';
-  label: Maybe<Scalars['String']>;
-  type: Maybe<Scalars['String']>;
+  label: Maybe<Scalars['String']['output']>;
+  type: Maybe<Scalars['String']['output']>;
   variation: Maybe<ProjectSlicesStatsBlockSliceVariation>;
 };
 
@@ -501,8 +503,8 @@ export type ProjectSlicesStatsBlockSliceDefaultItems = {
   __typename?: 'ProjectSlicesStats_block_sliceDefaultItems';
   href: Maybe<Linkable>;
   icon: Maybe<Linkable>;
-  name: Maybe<Scalars['String']>;
-  value: Maybe<Scalars['String']>;
+  name: Maybe<Scalars['String']['output']>;
+  value: Maybe<Scalars['String']['output']>;
 };
 
 export type ProjectSlicesStatsBlockSliceVariation = ProjectSlicesStatsBlockSliceDefault;
@@ -541,578 +543,578 @@ export type Query = {
 
 
 export type QueryAllDocumentsArgs = {
-  after: InputMaybe<Scalars['String']>;
-  before: InputMaybe<Scalars['String']>;
-  first: InputMaybe<Scalars['Int']>;
-  firstPublicationDate: InputMaybe<Scalars['DateTime']>;
-  firstPublicationDate_after: InputMaybe<Scalars['DateTime']>;
-  firstPublicationDate_before: InputMaybe<Scalars['DateTime']>;
-  fulltext: InputMaybe<Scalars['String']>;
-  id: InputMaybe<Scalars['String']>;
-  id_in: InputMaybe<Array<Scalars['String']>>;
-  lang: InputMaybe<Scalars['String']>;
-  last: InputMaybe<Scalars['Int']>;
-  lastPublicationDate: InputMaybe<Scalars['DateTime']>;
-  lastPublicationDate_after: InputMaybe<Scalars['DateTime']>;
-  lastPublicationDate_before: InputMaybe<Scalars['DateTime']>;
+  after: InputMaybe<Scalars['String']['input']>;
+  before: InputMaybe<Scalars['String']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  firstPublicationDate: InputMaybe<Scalars['DateTime']['input']>;
+  firstPublicationDate_after: InputMaybe<Scalars['DateTime']['input']>;
+  firstPublicationDate_before: InputMaybe<Scalars['DateTime']['input']>;
+  fulltext: InputMaybe<Scalars['String']['input']>;
+  id: InputMaybe<Scalars['String']['input']>;
+  id_in: InputMaybe<Array<Scalars['String']['input']>>;
+  lang: InputMaybe<Scalars['String']['input']>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  lastPublicationDate: InputMaybe<Scalars['DateTime']['input']>;
+  lastPublicationDate_after: InputMaybe<Scalars['DateTime']['input']>;
+  lastPublicationDate_before: InputMaybe<Scalars['DateTime']['input']>;
   similar: InputMaybe<Similar>;
   sortBy: InputMaybe<SortDocumentsBy>;
-  tags: InputMaybe<Array<Scalars['String']>>;
-  tags_in: InputMaybe<Array<Scalars['String']>>;
-  type: InputMaybe<Scalars['String']>;
-  type_in: InputMaybe<Array<Scalars['String']>>;
+  tags: InputMaybe<Array<Scalars['String']['input']>>;
+  tags_in: InputMaybe<Array<Scalars['String']['input']>>;
+  type: InputMaybe<Scalars['String']['input']>;
+  type_in: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 
 export type QueryAllButtonsArgs = {
-  after: InputMaybe<Scalars['String']>;
-  before: InputMaybe<Scalars['String']>;
-  first: InputMaybe<Scalars['Int']>;
-  firstPublicationDate: InputMaybe<Scalars['DateTime']>;
-  firstPublicationDate_after: InputMaybe<Scalars['DateTime']>;
-  firstPublicationDate_before: InputMaybe<Scalars['DateTime']>;
-  fulltext: InputMaybe<Scalars['String']>;
-  id: InputMaybe<Scalars['String']>;
-  id_in: InputMaybe<Array<Scalars['String']>>;
-  lang: InputMaybe<Scalars['String']>;
-  last: InputMaybe<Scalars['Int']>;
-  lastPublicationDate: InputMaybe<Scalars['DateTime']>;
-  lastPublicationDate_after: InputMaybe<Scalars['DateTime']>;
-  lastPublicationDate_before: InputMaybe<Scalars['DateTime']>;
+  after: InputMaybe<Scalars['String']['input']>;
+  before: InputMaybe<Scalars['String']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  firstPublicationDate: InputMaybe<Scalars['DateTime']['input']>;
+  firstPublicationDate_after: InputMaybe<Scalars['DateTime']['input']>;
+  firstPublicationDate_before: InputMaybe<Scalars['DateTime']['input']>;
+  fulltext: InputMaybe<Scalars['String']['input']>;
+  id: InputMaybe<Scalars['String']['input']>;
+  id_in: InputMaybe<Array<Scalars['String']['input']>>;
+  lang: InputMaybe<Scalars['String']['input']>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  lastPublicationDate: InputMaybe<Scalars['DateTime']['input']>;
+  lastPublicationDate_after: InputMaybe<Scalars['DateTime']['input']>;
+  lastPublicationDate_before: InputMaybe<Scalars['DateTime']['input']>;
   similar: InputMaybe<Similar>;
   sortBy: InputMaybe<SortButtony>;
-  tags: InputMaybe<Array<Scalars['String']>>;
-  tags_in: InputMaybe<Array<Scalars['String']>>;
-  uid: InputMaybe<Scalars['String']>;
-  uid_in: InputMaybe<Array<Scalars['String']>>;
+  tags: InputMaybe<Array<Scalars['String']['input']>>;
+  tags_in: InputMaybe<Array<Scalars['String']['input']>>;
+  uid: InputMaybe<Scalars['String']['input']>;
+  uid_in: InputMaybe<Array<Scalars['String']['input']>>;
   where: InputMaybe<WhereButton>;
 };
 
 
 export type QueryAllFootersArgs = {
-  after: InputMaybe<Scalars['String']>;
-  before: InputMaybe<Scalars['String']>;
-  first: InputMaybe<Scalars['Int']>;
-  firstPublicationDate: InputMaybe<Scalars['DateTime']>;
-  firstPublicationDate_after: InputMaybe<Scalars['DateTime']>;
-  firstPublicationDate_before: InputMaybe<Scalars['DateTime']>;
-  fulltext: InputMaybe<Scalars['String']>;
-  id: InputMaybe<Scalars['String']>;
-  id_in: InputMaybe<Array<Scalars['String']>>;
-  lang: InputMaybe<Scalars['String']>;
-  last: InputMaybe<Scalars['Int']>;
-  lastPublicationDate: InputMaybe<Scalars['DateTime']>;
-  lastPublicationDate_after: InputMaybe<Scalars['DateTime']>;
-  lastPublicationDate_before: InputMaybe<Scalars['DateTime']>;
+  after: InputMaybe<Scalars['String']['input']>;
+  before: InputMaybe<Scalars['String']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  firstPublicationDate: InputMaybe<Scalars['DateTime']['input']>;
+  firstPublicationDate_after: InputMaybe<Scalars['DateTime']['input']>;
+  firstPublicationDate_before: InputMaybe<Scalars['DateTime']['input']>;
+  fulltext: InputMaybe<Scalars['String']['input']>;
+  id: InputMaybe<Scalars['String']['input']>;
+  id_in: InputMaybe<Array<Scalars['String']['input']>>;
+  lang: InputMaybe<Scalars['String']['input']>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  lastPublicationDate: InputMaybe<Scalars['DateTime']['input']>;
+  lastPublicationDate_after: InputMaybe<Scalars['DateTime']['input']>;
+  lastPublicationDate_before: InputMaybe<Scalars['DateTime']['input']>;
   similar: InputMaybe<Similar>;
   sortBy: InputMaybe<SortFootery>;
-  tags: InputMaybe<Array<Scalars['String']>>;
-  tags_in: InputMaybe<Array<Scalars['String']>>;
-  uid: InputMaybe<Scalars['String']>;
-  uid_in: InputMaybe<Array<Scalars['String']>>;
+  tags: InputMaybe<Array<Scalars['String']['input']>>;
+  tags_in: InputMaybe<Array<Scalars['String']['input']>>;
+  uid: InputMaybe<Scalars['String']['input']>;
+  uid_in: InputMaybe<Array<Scalars['String']['input']>>;
   where: InputMaybe<WhereFooter>;
 };
 
 
 export type QueryAllHeroiconsArgs = {
-  after: InputMaybe<Scalars['String']>;
-  before: InputMaybe<Scalars['String']>;
-  first: InputMaybe<Scalars['Int']>;
-  firstPublicationDate: InputMaybe<Scalars['DateTime']>;
-  firstPublicationDate_after: InputMaybe<Scalars['DateTime']>;
-  firstPublicationDate_before: InputMaybe<Scalars['DateTime']>;
-  fulltext: InputMaybe<Scalars['String']>;
-  id: InputMaybe<Scalars['String']>;
-  id_in: InputMaybe<Array<Scalars['String']>>;
-  lang: InputMaybe<Scalars['String']>;
-  last: InputMaybe<Scalars['Int']>;
-  lastPublicationDate: InputMaybe<Scalars['DateTime']>;
-  lastPublicationDate_after: InputMaybe<Scalars['DateTime']>;
-  lastPublicationDate_before: InputMaybe<Scalars['DateTime']>;
+  after: InputMaybe<Scalars['String']['input']>;
+  before: InputMaybe<Scalars['String']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  firstPublicationDate: InputMaybe<Scalars['DateTime']['input']>;
+  firstPublicationDate_after: InputMaybe<Scalars['DateTime']['input']>;
+  firstPublicationDate_before: InputMaybe<Scalars['DateTime']['input']>;
+  fulltext: InputMaybe<Scalars['String']['input']>;
+  id: InputMaybe<Scalars['String']['input']>;
+  id_in: InputMaybe<Array<Scalars['String']['input']>>;
+  lang: InputMaybe<Scalars['String']['input']>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  lastPublicationDate: InputMaybe<Scalars['DateTime']['input']>;
+  lastPublicationDate_after: InputMaybe<Scalars['DateTime']['input']>;
+  lastPublicationDate_before: InputMaybe<Scalars['DateTime']['input']>;
   similar: InputMaybe<Similar>;
   sortBy: InputMaybe<SortHeroicony>;
-  tags: InputMaybe<Array<Scalars['String']>>;
-  tags_in: InputMaybe<Array<Scalars['String']>>;
-  uid: InputMaybe<Scalars['String']>;
-  uid_in: InputMaybe<Array<Scalars['String']>>;
+  tags: InputMaybe<Array<Scalars['String']['input']>>;
+  tags_in: InputMaybe<Array<Scalars['String']['input']>>;
+  uid: InputMaybe<Scalars['String']['input']>;
+  uid_in: InputMaybe<Array<Scalars['String']['input']>>;
   where: InputMaybe<WhereHeroicon>;
 };
 
 
 export type QueryAllIconsListsArgs = {
-  after: InputMaybe<Scalars['String']>;
-  before: InputMaybe<Scalars['String']>;
-  first: InputMaybe<Scalars['Int']>;
-  firstPublicationDate: InputMaybe<Scalars['DateTime']>;
-  firstPublicationDate_after: InputMaybe<Scalars['DateTime']>;
-  firstPublicationDate_before: InputMaybe<Scalars['DateTime']>;
-  fulltext: InputMaybe<Scalars['String']>;
-  id: InputMaybe<Scalars['String']>;
-  id_in: InputMaybe<Array<Scalars['String']>>;
-  lang: InputMaybe<Scalars['String']>;
-  last: InputMaybe<Scalars['Int']>;
-  lastPublicationDate: InputMaybe<Scalars['DateTime']>;
-  lastPublicationDate_after: InputMaybe<Scalars['DateTime']>;
-  lastPublicationDate_before: InputMaybe<Scalars['DateTime']>;
+  after: InputMaybe<Scalars['String']['input']>;
+  before: InputMaybe<Scalars['String']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  firstPublicationDate: InputMaybe<Scalars['DateTime']['input']>;
+  firstPublicationDate_after: InputMaybe<Scalars['DateTime']['input']>;
+  firstPublicationDate_before: InputMaybe<Scalars['DateTime']['input']>;
+  fulltext: InputMaybe<Scalars['String']['input']>;
+  id: InputMaybe<Scalars['String']['input']>;
+  id_in: InputMaybe<Array<Scalars['String']['input']>>;
+  lang: InputMaybe<Scalars['String']['input']>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  lastPublicationDate: InputMaybe<Scalars['DateTime']['input']>;
+  lastPublicationDate_after: InputMaybe<Scalars['DateTime']['input']>;
+  lastPublicationDate_before: InputMaybe<Scalars['DateTime']['input']>;
   similar: InputMaybe<Similar>;
   sortBy: InputMaybe<SortIconsListy>;
-  tags: InputMaybe<Array<Scalars['String']>>;
-  tags_in: InputMaybe<Array<Scalars['String']>>;
-  uid: InputMaybe<Scalars['String']>;
-  uid_in: InputMaybe<Array<Scalars['String']>>;
+  tags: InputMaybe<Array<Scalars['String']['input']>>;
+  tags_in: InputMaybe<Array<Scalars['String']['input']>>;
+  uid: InputMaybe<Scalars['String']['input']>;
+  uid_in: InputMaybe<Array<Scalars['String']['input']>>;
   where: InputMaybe<WhereIconsList>;
 };
 
 
 export type QueryAllImageGallerysArgs = {
-  after: InputMaybe<Scalars['String']>;
-  before: InputMaybe<Scalars['String']>;
-  first: InputMaybe<Scalars['Int']>;
-  firstPublicationDate: InputMaybe<Scalars['DateTime']>;
-  firstPublicationDate_after: InputMaybe<Scalars['DateTime']>;
-  firstPublicationDate_before: InputMaybe<Scalars['DateTime']>;
-  fulltext: InputMaybe<Scalars['String']>;
-  id: InputMaybe<Scalars['String']>;
-  id_in: InputMaybe<Array<Scalars['String']>>;
-  lang: InputMaybe<Scalars['String']>;
-  last: InputMaybe<Scalars['Int']>;
-  lastPublicationDate: InputMaybe<Scalars['DateTime']>;
-  lastPublicationDate_after: InputMaybe<Scalars['DateTime']>;
-  lastPublicationDate_before: InputMaybe<Scalars['DateTime']>;
+  after: InputMaybe<Scalars['String']['input']>;
+  before: InputMaybe<Scalars['String']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  firstPublicationDate: InputMaybe<Scalars['DateTime']['input']>;
+  firstPublicationDate_after: InputMaybe<Scalars['DateTime']['input']>;
+  firstPublicationDate_before: InputMaybe<Scalars['DateTime']['input']>;
+  fulltext: InputMaybe<Scalars['String']['input']>;
+  id: InputMaybe<Scalars['String']['input']>;
+  id_in: InputMaybe<Array<Scalars['String']['input']>>;
+  lang: InputMaybe<Scalars['String']['input']>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  lastPublicationDate: InputMaybe<Scalars['DateTime']['input']>;
+  lastPublicationDate_after: InputMaybe<Scalars['DateTime']['input']>;
+  lastPublicationDate_before: InputMaybe<Scalars['DateTime']['input']>;
   similar: InputMaybe<Similar>;
   sortBy: InputMaybe<SortImageGalleryy>;
-  tags: InputMaybe<Array<Scalars['String']>>;
-  tags_in: InputMaybe<Array<Scalars['String']>>;
-  uid: InputMaybe<Scalars['String']>;
-  uid_in: InputMaybe<Array<Scalars['String']>>;
+  tags: InputMaybe<Array<Scalars['String']['input']>>;
+  tags_in: InputMaybe<Array<Scalars['String']['input']>>;
+  uid: InputMaybe<Scalars['String']['input']>;
+  uid_in: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 
 export type QueryAllImageMasksArgs = {
-  after: InputMaybe<Scalars['String']>;
-  before: InputMaybe<Scalars['String']>;
-  first: InputMaybe<Scalars['Int']>;
-  firstPublicationDate: InputMaybe<Scalars['DateTime']>;
-  firstPublicationDate_after: InputMaybe<Scalars['DateTime']>;
-  firstPublicationDate_before: InputMaybe<Scalars['DateTime']>;
-  fulltext: InputMaybe<Scalars['String']>;
-  id: InputMaybe<Scalars['String']>;
-  id_in: InputMaybe<Array<Scalars['String']>>;
-  lang: InputMaybe<Scalars['String']>;
-  last: InputMaybe<Scalars['Int']>;
-  lastPublicationDate: InputMaybe<Scalars['DateTime']>;
-  lastPublicationDate_after: InputMaybe<Scalars['DateTime']>;
-  lastPublicationDate_before: InputMaybe<Scalars['DateTime']>;
+  after: InputMaybe<Scalars['String']['input']>;
+  before: InputMaybe<Scalars['String']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  firstPublicationDate: InputMaybe<Scalars['DateTime']['input']>;
+  firstPublicationDate_after: InputMaybe<Scalars['DateTime']['input']>;
+  firstPublicationDate_before: InputMaybe<Scalars['DateTime']['input']>;
+  fulltext: InputMaybe<Scalars['String']['input']>;
+  id: InputMaybe<Scalars['String']['input']>;
+  id_in: InputMaybe<Array<Scalars['String']['input']>>;
+  lang: InputMaybe<Scalars['String']['input']>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  lastPublicationDate: InputMaybe<Scalars['DateTime']['input']>;
+  lastPublicationDate_after: InputMaybe<Scalars['DateTime']['input']>;
+  lastPublicationDate_before: InputMaybe<Scalars['DateTime']['input']>;
   similar: InputMaybe<Similar>;
   sortBy: InputMaybe<SortImageMasky>;
-  tags: InputMaybe<Array<Scalars['String']>>;
-  tags_in: InputMaybe<Array<Scalars['String']>>;
-  uid: InputMaybe<Scalars['String']>;
-  uid_in: InputMaybe<Array<Scalars['String']>>;
+  tags: InputMaybe<Array<Scalars['String']['input']>>;
+  tags_in: InputMaybe<Array<Scalars['String']['input']>>;
+  uid: InputMaybe<Scalars['String']['input']>;
+  uid_in: InputMaybe<Array<Scalars['String']['input']>>;
   where: InputMaybe<WhereImageMask>;
 };
 
 
 export type QueryAllLandingPagesArgs = {
-  after: InputMaybe<Scalars['String']>;
-  before: InputMaybe<Scalars['String']>;
-  first: InputMaybe<Scalars['Int']>;
-  firstPublicationDate: InputMaybe<Scalars['DateTime']>;
-  firstPublicationDate_after: InputMaybe<Scalars['DateTime']>;
-  firstPublicationDate_before: InputMaybe<Scalars['DateTime']>;
-  fulltext: InputMaybe<Scalars['String']>;
-  id: InputMaybe<Scalars['String']>;
-  id_in: InputMaybe<Array<Scalars['String']>>;
-  lang: InputMaybe<Scalars['String']>;
-  last: InputMaybe<Scalars['Int']>;
-  lastPublicationDate: InputMaybe<Scalars['DateTime']>;
-  lastPublicationDate_after: InputMaybe<Scalars['DateTime']>;
-  lastPublicationDate_before: InputMaybe<Scalars['DateTime']>;
+  after: InputMaybe<Scalars['String']['input']>;
+  before: InputMaybe<Scalars['String']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  firstPublicationDate: InputMaybe<Scalars['DateTime']['input']>;
+  firstPublicationDate_after: InputMaybe<Scalars['DateTime']['input']>;
+  firstPublicationDate_before: InputMaybe<Scalars['DateTime']['input']>;
+  fulltext: InputMaybe<Scalars['String']['input']>;
+  id: InputMaybe<Scalars['String']['input']>;
+  id_in: InputMaybe<Array<Scalars['String']['input']>>;
+  lang: InputMaybe<Scalars['String']['input']>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  lastPublicationDate: InputMaybe<Scalars['DateTime']['input']>;
+  lastPublicationDate_after: InputMaybe<Scalars['DateTime']['input']>;
+  lastPublicationDate_before: InputMaybe<Scalars['DateTime']['input']>;
   similar: InputMaybe<Similar>;
   sortBy: InputMaybe<SortLandingPagey>;
-  tags: InputMaybe<Array<Scalars['String']>>;
-  tags_in: InputMaybe<Array<Scalars['String']>>;
-  uid: InputMaybe<Scalars['String']>;
-  uid_in: InputMaybe<Array<Scalars['String']>>;
+  tags: InputMaybe<Array<Scalars['String']['input']>>;
+  tags_in: InputMaybe<Array<Scalars['String']['input']>>;
+  uid: InputMaybe<Scalars['String']['input']>;
+  uid_in: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 
 export type QueryAllNavigationsArgs = {
-  after: InputMaybe<Scalars['String']>;
-  before: InputMaybe<Scalars['String']>;
-  first: InputMaybe<Scalars['Int']>;
-  firstPublicationDate: InputMaybe<Scalars['DateTime']>;
-  firstPublicationDate_after: InputMaybe<Scalars['DateTime']>;
-  firstPublicationDate_before: InputMaybe<Scalars['DateTime']>;
-  fulltext: InputMaybe<Scalars['String']>;
-  id: InputMaybe<Scalars['String']>;
-  id_in: InputMaybe<Array<Scalars['String']>>;
-  lang: InputMaybe<Scalars['String']>;
-  last: InputMaybe<Scalars['Int']>;
-  lastPublicationDate: InputMaybe<Scalars['DateTime']>;
-  lastPublicationDate_after: InputMaybe<Scalars['DateTime']>;
-  lastPublicationDate_before: InputMaybe<Scalars['DateTime']>;
+  after: InputMaybe<Scalars['String']['input']>;
+  before: InputMaybe<Scalars['String']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  firstPublicationDate: InputMaybe<Scalars['DateTime']['input']>;
+  firstPublicationDate_after: InputMaybe<Scalars['DateTime']['input']>;
+  firstPublicationDate_before: InputMaybe<Scalars['DateTime']['input']>;
+  fulltext: InputMaybe<Scalars['String']['input']>;
+  id: InputMaybe<Scalars['String']['input']>;
+  id_in: InputMaybe<Array<Scalars['String']['input']>>;
+  lang: InputMaybe<Scalars['String']['input']>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  lastPublicationDate: InputMaybe<Scalars['DateTime']['input']>;
+  lastPublicationDate_after: InputMaybe<Scalars['DateTime']['input']>;
+  lastPublicationDate_before: InputMaybe<Scalars['DateTime']['input']>;
   similar: InputMaybe<Similar>;
   sortBy: InputMaybe<SortNavigationy>;
-  tags: InputMaybe<Array<Scalars['String']>>;
-  tags_in: InputMaybe<Array<Scalars['String']>>;
-  uid: InputMaybe<Scalars['String']>;
-  uid_in: InputMaybe<Array<Scalars['String']>>;
+  tags: InputMaybe<Array<Scalars['String']['input']>>;
+  tags_in: InputMaybe<Array<Scalars['String']['input']>>;
+  uid: InputMaybe<Scalars['String']['input']>;
+  uid_in: InputMaybe<Array<Scalars['String']['input']>>;
   where: InputMaybe<WhereNavigation>;
 };
 
 
 export type QueryAllProjectsArgs = {
-  after: InputMaybe<Scalars['String']>;
-  before: InputMaybe<Scalars['String']>;
-  first: InputMaybe<Scalars['Int']>;
-  firstPublicationDate: InputMaybe<Scalars['DateTime']>;
-  firstPublicationDate_after: InputMaybe<Scalars['DateTime']>;
-  firstPublicationDate_before: InputMaybe<Scalars['DateTime']>;
-  fulltext: InputMaybe<Scalars['String']>;
-  id: InputMaybe<Scalars['String']>;
-  id_in: InputMaybe<Array<Scalars['String']>>;
-  lang: InputMaybe<Scalars['String']>;
-  last: InputMaybe<Scalars['Int']>;
-  lastPublicationDate: InputMaybe<Scalars['DateTime']>;
-  lastPublicationDate_after: InputMaybe<Scalars['DateTime']>;
-  lastPublicationDate_before: InputMaybe<Scalars['DateTime']>;
+  after: InputMaybe<Scalars['String']['input']>;
+  before: InputMaybe<Scalars['String']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  firstPublicationDate: InputMaybe<Scalars['DateTime']['input']>;
+  firstPublicationDate_after: InputMaybe<Scalars['DateTime']['input']>;
+  firstPublicationDate_before: InputMaybe<Scalars['DateTime']['input']>;
+  fulltext: InputMaybe<Scalars['String']['input']>;
+  id: InputMaybe<Scalars['String']['input']>;
+  id_in: InputMaybe<Array<Scalars['String']['input']>>;
+  lang: InputMaybe<Scalars['String']['input']>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  lastPublicationDate: InputMaybe<Scalars['DateTime']['input']>;
+  lastPublicationDate_after: InputMaybe<Scalars['DateTime']['input']>;
+  lastPublicationDate_before: InputMaybe<Scalars['DateTime']['input']>;
   similar: InputMaybe<Similar>;
   sortBy: InputMaybe<SortProjecty>;
-  tags: InputMaybe<Array<Scalars['String']>>;
-  tags_in: InputMaybe<Array<Scalars['String']>>;
-  uid: InputMaybe<Scalars['String']>;
-  uid_in: InputMaybe<Array<Scalars['String']>>;
+  tags: InputMaybe<Array<Scalars['String']['input']>>;
+  tags_in: InputMaybe<Array<Scalars['String']['input']>>;
+  uid: InputMaybe<Scalars['String']['input']>;
+  uid_in: InputMaybe<Array<Scalars['String']['input']>>;
   where: InputMaybe<WhereProject>;
 };
 
 
 export type QueryAllTheme_50sArgs = {
-  after: InputMaybe<Scalars['String']>;
-  before: InputMaybe<Scalars['String']>;
-  first: InputMaybe<Scalars['Int']>;
-  firstPublicationDate: InputMaybe<Scalars['DateTime']>;
-  firstPublicationDate_after: InputMaybe<Scalars['DateTime']>;
-  firstPublicationDate_before: InputMaybe<Scalars['DateTime']>;
-  fulltext: InputMaybe<Scalars['String']>;
-  id: InputMaybe<Scalars['String']>;
-  id_in: InputMaybe<Array<Scalars['String']>>;
-  lang: InputMaybe<Scalars['String']>;
-  last: InputMaybe<Scalars['Int']>;
-  lastPublicationDate: InputMaybe<Scalars['DateTime']>;
-  lastPublicationDate_after: InputMaybe<Scalars['DateTime']>;
-  lastPublicationDate_before: InputMaybe<Scalars['DateTime']>;
+  after: InputMaybe<Scalars['String']['input']>;
+  before: InputMaybe<Scalars['String']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  firstPublicationDate: InputMaybe<Scalars['DateTime']['input']>;
+  firstPublicationDate_after: InputMaybe<Scalars['DateTime']['input']>;
+  firstPublicationDate_before: InputMaybe<Scalars['DateTime']['input']>;
+  fulltext: InputMaybe<Scalars['String']['input']>;
+  id: InputMaybe<Scalars['String']['input']>;
+  id_in: InputMaybe<Array<Scalars['String']['input']>>;
+  lang: InputMaybe<Scalars['String']['input']>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  lastPublicationDate: InputMaybe<Scalars['DateTime']['input']>;
+  lastPublicationDate_after: InputMaybe<Scalars['DateTime']['input']>;
+  lastPublicationDate_before: InputMaybe<Scalars['DateTime']['input']>;
   similar: InputMaybe<Similar>;
   sortBy: InputMaybe<SortTheme_50y>;
-  tags: InputMaybe<Array<Scalars['String']>>;
-  tags_in: InputMaybe<Array<Scalars['String']>>;
-  uid: InputMaybe<Scalars['String']>;
-  uid_in: InputMaybe<Array<Scalars['String']>>;
+  tags: InputMaybe<Array<Scalars['String']['input']>>;
+  tags_in: InputMaybe<Array<Scalars['String']['input']>>;
+  uid: InputMaybe<Scalars['String']['input']>;
+  uid_in: InputMaybe<Array<Scalars['String']['input']>>;
   where: InputMaybe<WhereTheme_50>;
 };
 
 
 export type QueryAllTheme_100sArgs = {
-  after: InputMaybe<Scalars['String']>;
-  before: InputMaybe<Scalars['String']>;
-  first: InputMaybe<Scalars['Int']>;
-  firstPublicationDate: InputMaybe<Scalars['DateTime']>;
-  firstPublicationDate_after: InputMaybe<Scalars['DateTime']>;
-  firstPublicationDate_before: InputMaybe<Scalars['DateTime']>;
-  fulltext: InputMaybe<Scalars['String']>;
-  id: InputMaybe<Scalars['String']>;
-  id_in: InputMaybe<Array<Scalars['String']>>;
-  lang: InputMaybe<Scalars['String']>;
-  last: InputMaybe<Scalars['Int']>;
-  lastPublicationDate: InputMaybe<Scalars['DateTime']>;
-  lastPublicationDate_after: InputMaybe<Scalars['DateTime']>;
-  lastPublicationDate_before: InputMaybe<Scalars['DateTime']>;
+  after: InputMaybe<Scalars['String']['input']>;
+  before: InputMaybe<Scalars['String']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  firstPublicationDate: InputMaybe<Scalars['DateTime']['input']>;
+  firstPublicationDate_after: InputMaybe<Scalars['DateTime']['input']>;
+  firstPublicationDate_before: InputMaybe<Scalars['DateTime']['input']>;
+  fulltext: InputMaybe<Scalars['String']['input']>;
+  id: InputMaybe<Scalars['String']['input']>;
+  id_in: InputMaybe<Array<Scalars['String']['input']>>;
+  lang: InputMaybe<Scalars['String']['input']>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  lastPublicationDate: InputMaybe<Scalars['DateTime']['input']>;
+  lastPublicationDate_after: InputMaybe<Scalars['DateTime']['input']>;
+  lastPublicationDate_before: InputMaybe<Scalars['DateTime']['input']>;
   similar: InputMaybe<Similar>;
   sortBy: InputMaybe<SortTheme_100y>;
-  tags: InputMaybe<Array<Scalars['String']>>;
-  tags_in: InputMaybe<Array<Scalars['String']>>;
-  uid: InputMaybe<Scalars['String']>;
-  uid_in: InputMaybe<Array<Scalars['String']>>;
+  tags: InputMaybe<Array<Scalars['String']['input']>>;
+  tags_in: InputMaybe<Array<Scalars['String']['input']>>;
+  uid: InputMaybe<Scalars['String']['input']>;
+  uid_in: InputMaybe<Array<Scalars['String']['input']>>;
   where: InputMaybe<WhereTheme_100>;
 };
 
 
 export type QueryAllTheme_200sArgs = {
-  after: InputMaybe<Scalars['String']>;
-  before: InputMaybe<Scalars['String']>;
-  first: InputMaybe<Scalars['Int']>;
-  firstPublicationDate: InputMaybe<Scalars['DateTime']>;
-  firstPublicationDate_after: InputMaybe<Scalars['DateTime']>;
-  firstPublicationDate_before: InputMaybe<Scalars['DateTime']>;
-  fulltext: InputMaybe<Scalars['String']>;
-  id: InputMaybe<Scalars['String']>;
-  id_in: InputMaybe<Array<Scalars['String']>>;
-  lang: InputMaybe<Scalars['String']>;
-  last: InputMaybe<Scalars['Int']>;
-  lastPublicationDate: InputMaybe<Scalars['DateTime']>;
-  lastPublicationDate_after: InputMaybe<Scalars['DateTime']>;
-  lastPublicationDate_before: InputMaybe<Scalars['DateTime']>;
+  after: InputMaybe<Scalars['String']['input']>;
+  before: InputMaybe<Scalars['String']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  firstPublicationDate: InputMaybe<Scalars['DateTime']['input']>;
+  firstPublicationDate_after: InputMaybe<Scalars['DateTime']['input']>;
+  firstPublicationDate_before: InputMaybe<Scalars['DateTime']['input']>;
+  fulltext: InputMaybe<Scalars['String']['input']>;
+  id: InputMaybe<Scalars['String']['input']>;
+  id_in: InputMaybe<Array<Scalars['String']['input']>>;
+  lang: InputMaybe<Scalars['String']['input']>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  lastPublicationDate: InputMaybe<Scalars['DateTime']['input']>;
+  lastPublicationDate_after: InputMaybe<Scalars['DateTime']['input']>;
+  lastPublicationDate_before: InputMaybe<Scalars['DateTime']['input']>;
   similar: InputMaybe<Similar>;
   sortBy: InputMaybe<SortTheme_200y>;
-  tags: InputMaybe<Array<Scalars['String']>>;
-  tags_in: InputMaybe<Array<Scalars['String']>>;
-  uid: InputMaybe<Scalars['String']>;
-  uid_in: InputMaybe<Array<Scalars['String']>>;
+  tags: InputMaybe<Array<Scalars['String']['input']>>;
+  tags_in: InputMaybe<Array<Scalars['String']['input']>>;
+  uid: InputMaybe<Scalars['String']['input']>;
+  uid_in: InputMaybe<Array<Scalars['String']['input']>>;
   where: InputMaybe<WhereTheme_200>;
 };
 
 
 export type QueryAllTheme_300sArgs = {
-  after: InputMaybe<Scalars['String']>;
-  before: InputMaybe<Scalars['String']>;
-  first: InputMaybe<Scalars['Int']>;
-  firstPublicationDate: InputMaybe<Scalars['DateTime']>;
-  firstPublicationDate_after: InputMaybe<Scalars['DateTime']>;
-  firstPublicationDate_before: InputMaybe<Scalars['DateTime']>;
-  fulltext: InputMaybe<Scalars['String']>;
-  id: InputMaybe<Scalars['String']>;
-  id_in: InputMaybe<Array<Scalars['String']>>;
-  lang: InputMaybe<Scalars['String']>;
-  last: InputMaybe<Scalars['Int']>;
-  lastPublicationDate: InputMaybe<Scalars['DateTime']>;
-  lastPublicationDate_after: InputMaybe<Scalars['DateTime']>;
-  lastPublicationDate_before: InputMaybe<Scalars['DateTime']>;
+  after: InputMaybe<Scalars['String']['input']>;
+  before: InputMaybe<Scalars['String']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  firstPublicationDate: InputMaybe<Scalars['DateTime']['input']>;
+  firstPublicationDate_after: InputMaybe<Scalars['DateTime']['input']>;
+  firstPublicationDate_before: InputMaybe<Scalars['DateTime']['input']>;
+  fulltext: InputMaybe<Scalars['String']['input']>;
+  id: InputMaybe<Scalars['String']['input']>;
+  id_in: InputMaybe<Array<Scalars['String']['input']>>;
+  lang: InputMaybe<Scalars['String']['input']>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  lastPublicationDate: InputMaybe<Scalars['DateTime']['input']>;
+  lastPublicationDate_after: InputMaybe<Scalars['DateTime']['input']>;
+  lastPublicationDate_before: InputMaybe<Scalars['DateTime']['input']>;
   similar: InputMaybe<Similar>;
   sortBy: InputMaybe<SortTheme_300y>;
-  tags: InputMaybe<Array<Scalars['String']>>;
-  tags_in: InputMaybe<Array<Scalars['String']>>;
-  uid: InputMaybe<Scalars['String']>;
-  uid_in: InputMaybe<Array<Scalars['String']>>;
+  tags: InputMaybe<Array<Scalars['String']['input']>>;
+  tags_in: InputMaybe<Array<Scalars['String']['input']>>;
+  uid: InputMaybe<Scalars['String']['input']>;
+  uid_in: InputMaybe<Array<Scalars['String']['input']>>;
   where: InputMaybe<WhereTheme_300>;
 };
 
 
 export type QueryAllTheme_400sArgs = {
-  after: InputMaybe<Scalars['String']>;
-  before: InputMaybe<Scalars['String']>;
-  first: InputMaybe<Scalars['Int']>;
-  firstPublicationDate: InputMaybe<Scalars['DateTime']>;
-  firstPublicationDate_after: InputMaybe<Scalars['DateTime']>;
-  firstPublicationDate_before: InputMaybe<Scalars['DateTime']>;
-  fulltext: InputMaybe<Scalars['String']>;
-  id: InputMaybe<Scalars['String']>;
-  id_in: InputMaybe<Array<Scalars['String']>>;
-  lang: InputMaybe<Scalars['String']>;
-  last: InputMaybe<Scalars['Int']>;
-  lastPublicationDate: InputMaybe<Scalars['DateTime']>;
-  lastPublicationDate_after: InputMaybe<Scalars['DateTime']>;
-  lastPublicationDate_before: InputMaybe<Scalars['DateTime']>;
+  after: InputMaybe<Scalars['String']['input']>;
+  before: InputMaybe<Scalars['String']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  firstPublicationDate: InputMaybe<Scalars['DateTime']['input']>;
+  firstPublicationDate_after: InputMaybe<Scalars['DateTime']['input']>;
+  firstPublicationDate_before: InputMaybe<Scalars['DateTime']['input']>;
+  fulltext: InputMaybe<Scalars['String']['input']>;
+  id: InputMaybe<Scalars['String']['input']>;
+  id_in: InputMaybe<Array<Scalars['String']['input']>>;
+  lang: InputMaybe<Scalars['String']['input']>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  lastPublicationDate: InputMaybe<Scalars['DateTime']['input']>;
+  lastPublicationDate_after: InputMaybe<Scalars['DateTime']['input']>;
+  lastPublicationDate_before: InputMaybe<Scalars['DateTime']['input']>;
   similar: InputMaybe<Similar>;
   sortBy: InputMaybe<SortTheme_400y>;
-  tags: InputMaybe<Array<Scalars['String']>>;
-  tags_in: InputMaybe<Array<Scalars['String']>>;
-  uid: InputMaybe<Scalars['String']>;
-  uid_in: InputMaybe<Array<Scalars['String']>>;
+  tags: InputMaybe<Array<Scalars['String']['input']>>;
+  tags_in: InputMaybe<Array<Scalars['String']['input']>>;
+  uid: InputMaybe<Scalars['String']['input']>;
+  uid_in: InputMaybe<Array<Scalars['String']['input']>>;
   where: InputMaybe<WhereTheme_400>;
 };
 
 
 export type QueryAllTheme_500sArgs = {
-  after: InputMaybe<Scalars['String']>;
-  before: InputMaybe<Scalars['String']>;
-  first: InputMaybe<Scalars['Int']>;
-  firstPublicationDate: InputMaybe<Scalars['DateTime']>;
-  firstPublicationDate_after: InputMaybe<Scalars['DateTime']>;
-  firstPublicationDate_before: InputMaybe<Scalars['DateTime']>;
-  fulltext: InputMaybe<Scalars['String']>;
-  id: InputMaybe<Scalars['String']>;
-  id_in: InputMaybe<Array<Scalars['String']>>;
-  lang: InputMaybe<Scalars['String']>;
-  last: InputMaybe<Scalars['Int']>;
-  lastPublicationDate: InputMaybe<Scalars['DateTime']>;
-  lastPublicationDate_after: InputMaybe<Scalars['DateTime']>;
-  lastPublicationDate_before: InputMaybe<Scalars['DateTime']>;
+  after: InputMaybe<Scalars['String']['input']>;
+  before: InputMaybe<Scalars['String']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  firstPublicationDate: InputMaybe<Scalars['DateTime']['input']>;
+  firstPublicationDate_after: InputMaybe<Scalars['DateTime']['input']>;
+  firstPublicationDate_before: InputMaybe<Scalars['DateTime']['input']>;
+  fulltext: InputMaybe<Scalars['String']['input']>;
+  id: InputMaybe<Scalars['String']['input']>;
+  id_in: InputMaybe<Array<Scalars['String']['input']>>;
+  lang: InputMaybe<Scalars['String']['input']>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  lastPublicationDate: InputMaybe<Scalars['DateTime']['input']>;
+  lastPublicationDate_after: InputMaybe<Scalars['DateTime']['input']>;
+  lastPublicationDate_before: InputMaybe<Scalars['DateTime']['input']>;
   similar: InputMaybe<Similar>;
   sortBy: InputMaybe<SortTheme_500y>;
-  tags: InputMaybe<Array<Scalars['String']>>;
-  tags_in: InputMaybe<Array<Scalars['String']>>;
-  uid: InputMaybe<Scalars['String']>;
-  uid_in: InputMaybe<Array<Scalars['String']>>;
+  tags: InputMaybe<Array<Scalars['String']['input']>>;
+  tags_in: InputMaybe<Array<Scalars['String']['input']>>;
+  uid: InputMaybe<Scalars['String']['input']>;
+  uid_in: InputMaybe<Array<Scalars['String']['input']>>;
   where: InputMaybe<WhereTheme_500>;
 };
 
 
 export type QueryAllTheme_600sArgs = {
-  after: InputMaybe<Scalars['String']>;
-  before: InputMaybe<Scalars['String']>;
-  first: InputMaybe<Scalars['Int']>;
-  firstPublicationDate: InputMaybe<Scalars['DateTime']>;
-  firstPublicationDate_after: InputMaybe<Scalars['DateTime']>;
-  firstPublicationDate_before: InputMaybe<Scalars['DateTime']>;
-  fulltext: InputMaybe<Scalars['String']>;
-  id: InputMaybe<Scalars['String']>;
-  id_in: InputMaybe<Array<Scalars['String']>>;
-  lang: InputMaybe<Scalars['String']>;
-  last: InputMaybe<Scalars['Int']>;
-  lastPublicationDate: InputMaybe<Scalars['DateTime']>;
-  lastPublicationDate_after: InputMaybe<Scalars['DateTime']>;
-  lastPublicationDate_before: InputMaybe<Scalars['DateTime']>;
+  after: InputMaybe<Scalars['String']['input']>;
+  before: InputMaybe<Scalars['String']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  firstPublicationDate: InputMaybe<Scalars['DateTime']['input']>;
+  firstPublicationDate_after: InputMaybe<Scalars['DateTime']['input']>;
+  firstPublicationDate_before: InputMaybe<Scalars['DateTime']['input']>;
+  fulltext: InputMaybe<Scalars['String']['input']>;
+  id: InputMaybe<Scalars['String']['input']>;
+  id_in: InputMaybe<Array<Scalars['String']['input']>>;
+  lang: InputMaybe<Scalars['String']['input']>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  lastPublicationDate: InputMaybe<Scalars['DateTime']['input']>;
+  lastPublicationDate_after: InputMaybe<Scalars['DateTime']['input']>;
+  lastPublicationDate_before: InputMaybe<Scalars['DateTime']['input']>;
   similar: InputMaybe<Similar>;
   sortBy: InputMaybe<SortTheme_600y>;
-  tags: InputMaybe<Array<Scalars['String']>>;
-  tags_in: InputMaybe<Array<Scalars['String']>>;
-  uid: InputMaybe<Scalars['String']>;
-  uid_in: InputMaybe<Array<Scalars['String']>>;
+  tags: InputMaybe<Array<Scalars['String']['input']>>;
+  tags_in: InputMaybe<Array<Scalars['String']['input']>>;
+  uid: InputMaybe<Scalars['String']['input']>;
+  uid_in: InputMaybe<Array<Scalars['String']['input']>>;
   where: InputMaybe<WhereTheme_600>;
 };
 
 
 export type QueryAllTheme_700sArgs = {
-  after: InputMaybe<Scalars['String']>;
-  before: InputMaybe<Scalars['String']>;
-  first: InputMaybe<Scalars['Int']>;
-  firstPublicationDate: InputMaybe<Scalars['DateTime']>;
-  firstPublicationDate_after: InputMaybe<Scalars['DateTime']>;
-  firstPublicationDate_before: InputMaybe<Scalars['DateTime']>;
-  fulltext: InputMaybe<Scalars['String']>;
-  id: InputMaybe<Scalars['String']>;
-  id_in: InputMaybe<Array<Scalars['String']>>;
-  lang: InputMaybe<Scalars['String']>;
-  last: InputMaybe<Scalars['Int']>;
-  lastPublicationDate: InputMaybe<Scalars['DateTime']>;
-  lastPublicationDate_after: InputMaybe<Scalars['DateTime']>;
-  lastPublicationDate_before: InputMaybe<Scalars['DateTime']>;
+  after: InputMaybe<Scalars['String']['input']>;
+  before: InputMaybe<Scalars['String']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  firstPublicationDate: InputMaybe<Scalars['DateTime']['input']>;
+  firstPublicationDate_after: InputMaybe<Scalars['DateTime']['input']>;
+  firstPublicationDate_before: InputMaybe<Scalars['DateTime']['input']>;
+  fulltext: InputMaybe<Scalars['String']['input']>;
+  id: InputMaybe<Scalars['String']['input']>;
+  id_in: InputMaybe<Array<Scalars['String']['input']>>;
+  lang: InputMaybe<Scalars['String']['input']>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  lastPublicationDate: InputMaybe<Scalars['DateTime']['input']>;
+  lastPublicationDate_after: InputMaybe<Scalars['DateTime']['input']>;
+  lastPublicationDate_before: InputMaybe<Scalars['DateTime']['input']>;
   similar: InputMaybe<Similar>;
   sortBy: InputMaybe<SortTheme_700y>;
-  tags: InputMaybe<Array<Scalars['String']>>;
-  tags_in: InputMaybe<Array<Scalars['String']>>;
-  uid: InputMaybe<Scalars['String']>;
-  uid_in: InputMaybe<Array<Scalars['String']>>;
+  tags: InputMaybe<Array<Scalars['String']['input']>>;
+  tags_in: InputMaybe<Array<Scalars['String']['input']>>;
+  uid: InputMaybe<Scalars['String']['input']>;
+  uid_in: InputMaybe<Array<Scalars['String']['input']>>;
   where: InputMaybe<WhereTheme_700>;
 };
 
 
 export type QueryAllTheme_800sArgs = {
-  after: InputMaybe<Scalars['String']>;
-  before: InputMaybe<Scalars['String']>;
-  first: InputMaybe<Scalars['Int']>;
-  firstPublicationDate: InputMaybe<Scalars['DateTime']>;
-  firstPublicationDate_after: InputMaybe<Scalars['DateTime']>;
-  firstPublicationDate_before: InputMaybe<Scalars['DateTime']>;
-  fulltext: InputMaybe<Scalars['String']>;
-  id: InputMaybe<Scalars['String']>;
-  id_in: InputMaybe<Array<Scalars['String']>>;
-  lang: InputMaybe<Scalars['String']>;
-  last: InputMaybe<Scalars['Int']>;
-  lastPublicationDate: InputMaybe<Scalars['DateTime']>;
-  lastPublicationDate_after: InputMaybe<Scalars['DateTime']>;
-  lastPublicationDate_before: InputMaybe<Scalars['DateTime']>;
+  after: InputMaybe<Scalars['String']['input']>;
+  before: InputMaybe<Scalars['String']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  firstPublicationDate: InputMaybe<Scalars['DateTime']['input']>;
+  firstPublicationDate_after: InputMaybe<Scalars['DateTime']['input']>;
+  firstPublicationDate_before: InputMaybe<Scalars['DateTime']['input']>;
+  fulltext: InputMaybe<Scalars['String']['input']>;
+  id: InputMaybe<Scalars['String']['input']>;
+  id_in: InputMaybe<Array<Scalars['String']['input']>>;
+  lang: InputMaybe<Scalars['String']['input']>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  lastPublicationDate: InputMaybe<Scalars['DateTime']['input']>;
+  lastPublicationDate_after: InputMaybe<Scalars['DateTime']['input']>;
+  lastPublicationDate_before: InputMaybe<Scalars['DateTime']['input']>;
   similar: InputMaybe<Similar>;
   sortBy: InputMaybe<SortTheme_800y>;
-  tags: InputMaybe<Array<Scalars['String']>>;
-  tags_in: InputMaybe<Array<Scalars['String']>>;
-  uid: InputMaybe<Scalars['String']>;
-  uid_in: InputMaybe<Array<Scalars['String']>>;
+  tags: InputMaybe<Array<Scalars['String']['input']>>;
+  tags_in: InputMaybe<Array<Scalars['String']['input']>>;
+  uid: InputMaybe<Scalars['String']['input']>;
+  uid_in: InputMaybe<Array<Scalars['String']['input']>>;
   where: InputMaybe<WhereTheme_800>;
 };
 
 
 export type QueryAllTheme_900sArgs = {
-  after: InputMaybe<Scalars['String']>;
-  before: InputMaybe<Scalars['String']>;
-  first: InputMaybe<Scalars['Int']>;
-  firstPublicationDate: InputMaybe<Scalars['DateTime']>;
-  firstPublicationDate_after: InputMaybe<Scalars['DateTime']>;
-  firstPublicationDate_before: InputMaybe<Scalars['DateTime']>;
-  fulltext: InputMaybe<Scalars['String']>;
-  id: InputMaybe<Scalars['String']>;
-  id_in: InputMaybe<Array<Scalars['String']>>;
-  lang: InputMaybe<Scalars['String']>;
-  last: InputMaybe<Scalars['Int']>;
-  lastPublicationDate: InputMaybe<Scalars['DateTime']>;
-  lastPublicationDate_after: InputMaybe<Scalars['DateTime']>;
-  lastPublicationDate_before: InputMaybe<Scalars['DateTime']>;
+  after: InputMaybe<Scalars['String']['input']>;
+  before: InputMaybe<Scalars['String']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  firstPublicationDate: InputMaybe<Scalars['DateTime']['input']>;
+  firstPublicationDate_after: InputMaybe<Scalars['DateTime']['input']>;
+  firstPublicationDate_before: InputMaybe<Scalars['DateTime']['input']>;
+  fulltext: InputMaybe<Scalars['String']['input']>;
+  id: InputMaybe<Scalars['String']['input']>;
+  id_in: InputMaybe<Array<Scalars['String']['input']>>;
+  lang: InputMaybe<Scalars['String']['input']>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  lastPublicationDate: InputMaybe<Scalars['DateTime']['input']>;
+  lastPublicationDate_after: InputMaybe<Scalars['DateTime']['input']>;
+  lastPublicationDate_before: InputMaybe<Scalars['DateTime']['input']>;
   similar: InputMaybe<Similar>;
   sortBy: InputMaybe<SortTheme_900y>;
-  tags: InputMaybe<Array<Scalars['String']>>;
-  tags_in: InputMaybe<Array<Scalars['String']>>;
-  uid: InputMaybe<Scalars['String']>;
-  uid_in: InputMaybe<Array<Scalars['String']>>;
+  tags: InputMaybe<Array<Scalars['String']['input']>>;
+  tags_in: InputMaybe<Array<Scalars['String']['input']>>;
+  uid: InputMaybe<Scalars['String']['input']>;
+  uid_in: InputMaybe<Array<Scalars['String']['input']>>;
   where: InputMaybe<WhereTheme_900>;
 };
 
 
 export type QueryAllTheme_950sArgs = {
-  after: InputMaybe<Scalars['String']>;
-  before: InputMaybe<Scalars['String']>;
-  first: InputMaybe<Scalars['Int']>;
-  firstPublicationDate: InputMaybe<Scalars['DateTime']>;
-  firstPublicationDate_after: InputMaybe<Scalars['DateTime']>;
-  firstPublicationDate_before: InputMaybe<Scalars['DateTime']>;
-  fulltext: InputMaybe<Scalars['String']>;
-  id: InputMaybe<Scalars['String']>;
-  id_in: InputMaybe<Array<Scalars['String']>>;
-  lang: InputMaybe<Scalars['String']>;
-  last: InputMaybe<Scalars['Int']>;
-  lastPublicationDate: InputMaybe<Scalars['DateTime']>;
-  lastPublicationDate_after: InputMaybe<Scalars['DateTime']>;
-  lastPublicationDate_before: InputMaybe<Scalars['DateTime']>;
+  after: InputMaybe<Scalars['String']['input']>;
+  before: InputMaybe<Scalars['String']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  firstPublicationDate: InputMaybe<Scalars['DateTime']['input']>;
+  firstPublicationDate_after: InputMaybe<Scalars['DateTime']['input']>;
+  firstPublicationDate_before: InputMaybe<Scalars['DateTime']['input']>;
+  fulltext: InputMaybe<Scalars['String']['input']>;
+  id: InputMaybe<Scalars['String']['input']>;
+  id_in: InputMaybe<Array<Scalars['String']['input']>>;
+  lang: InputMaybe<Scalars['String']['input']>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  lastPublicationDate: InputMaybe<Scalars['DateTime']['input']>;
+  lastPublicationDate_after: InputMaybe<Scalars['DateTime']['input']>;
+  lastPublicationDate_before: InputMaybe<Scalars['DateTime']['input']>;
   similar: InputMaybe<Similar>;
   sortBy: InputMaybe<SortTheme_950y>;
-  tags: InputMaybe<Array<Scalars['String']>>;
-  tags_in: InputMaybe<Array<Scalars['String']>>;
-  uid: InputMaybe<Scalars['String']>;
-  uid_in: InputMaybe<Array<Scalars['String']>>;
+  tags: InputMaybe<Array<Scalars['String']['input']>>;
+  tags_in: InputMaybe<Array<Scalars['String']['input']>>;
+  uid: InputMaybe<Scalars['String']['input']>;
+  uid_in: InputMaybe<Array<Scalars['String']['input']>>;
   where: InputMaybe<WhereTheme_950>;
 };
 
 
 export type QueryButtonArgs = {
-  lang: Scalars['String'];
-  uid: Scalars['String'];
+  lang: Scalars['String']['input'];
+  uid: Scalars['String']['input'];
 };
 
 
 export type QueryHeroiconArgs = {
-  lang: Scalars['String'];
-  uid: Scalars['String'];
+  lang: Scalars['String']['input'];
+  uid: Scalars['String']['input'];
 };
 
 
 export type QueryIconsListArgs = {
-  lang: Scalars['String'];
-  uid: Scalars['String'];
+  lang: Scalars['String']['input'];
+  uid: Scalars['String']['input'];
 };
 
 
 export type QueryImageGalleryArgs = {
-  lang: Scalars['String'];
-  uid: Scalars['String'];
+  lang: Scalars['String']['input'];
+  uid: Scalars['String']['input'];
 };
 
 
 export type QueryImageMaskArgs = {
-  lang: Scalars['String'];
-  uid: Scalars['String'];
+  lang: Scalars['String']['input'];
+  uid: Scalars['String']['input'];
 };
 
 
 export type QueryLandingPageArgs = {
-  lang: Scalars['String'];
-  uid: Scalars['String'];
+  lang: Scalars['String']['input'];
+  uid: Scalars['String']['input'];
 };
 
 
 export type QueryProjectArgs = {
-  lang: Scalars['String'];
-  uid: Scalars['String'];
+  lang: Scalars['String']['input'];
+  uid: Scalars['String']['input'];
 };
 
 export type RelatedDocument = {
   __typename?: 'RelatedDocument';
   /** The id of the document. */
-  id: Scalars['String'];
+  id: Scalars['String']['output'];
   /** The language of the document. */
-  lang: Scalars['String'];
+  lang: Scalars['String']['output'];
   /** The type of the document. */
-  type: Scalars['String'];
+  type: Scalars['String']['output'];
   /** The uid of the document. */
-  uid: Maybe<Scalars['String']>;
+  uid: Maybe<Scalars['String']['output']>;
 };
 
 export enum SortButtony {
@@ -1282,7 +1284,7 @@ export enum SortTheme_950y {
 
 export type Theme_50 = Document & Linkable & {
   __typename?: 'Theme_50';
-  _linkType: Maybe<Scalars['String']>;
+  _linkType: Maybe<Scalars['String']['output']>;
   _meta: Meta;
   light: Maybe<Array<Theme_50Light>>;
 };
@@ -1294,27 +1296,27 @@ export type Theme_50ConnectionConnection = {
   edges: Maybe<Array<Maybe<Theme_50ConnectionEdge>>>;
   /** Information to aid in pagination. */
   pageInfo: PageInfo;
-  totalCount: Scalars['Long'];
+  totalCount: Scalars['Long']['output'];
 };
 
 /** An edge in a connection. */
 export type Theme_50ConnectionEdge = {
   __typename?: 'Theme_50ConnectionEdge';
   /** A cursor for use in pagination. */
-  cursor: Scalars['String'];
+  cursor: Scalars['String']['output'];
   /** The item at the end of the edge. */
   node: Theme_50;
 };
 
 export type Theme_50Light = {
   __typename?: 'Theme_50Light';
-  code: Maybe<Scalars['String']>;
-  name: Maybe<Scalars['String']>;
+  code: Maybe<Scalars['String']['output']>;
+  name: Maybe<Scalars['String']['output']>;
 };
 
 export type Theme_100 = Document & Linkable & {
   __typename?: 'Theme_100';
-  _linkType: Maybe<Scalars['String']>;
+  _linkType: Maybe<Scalars['String']['output']>;
   _meta: Meta;
   light: Maybe<Array<Theme_100Light>>;
 };
@@ -1326,27 +1328,27 @@ export type Theme_100ConnectionConnection = {
   edges: Maybe<Array<Maybe<Theme_100ConnectionEdge>>>;
   /** Information to aid in pagination. */
   pageInfo: PageInfo;
-  totalCount: Scalars['Long'];
+  totalCount: Scalars['Long']['output'];
 };
 
 /** An edge in a connection. */
 export type Theme_100ConnectionEdge = {
   __typename?: 'Theme_100ConnectionEdge';
   /** A cursor for use in pagination. */
-  cursor: Scalars['String'];
+  cursor: Scalars['String']['output'];
   /** The item at the end of the edge. */
   node: Theme_100;
 };
 
 export type Theme_100Light = {
   __typename?: 'Theme_100Light';
-  code: Maybe<Scalars['String']>;
-  name: Maybe<Scalars['String']>;
+  code: Maybe<Scalars['String']['output']>;
+  name: Maybe<Scalars['String']['output']>;
 };
 
 export type Theme_200 = Document & Linkable & {
   __typename?: 'Theme_200';
-  _linkType: Maybe<Scalars['String']>;
+  _linkType: Maybe<Scalars['String']['output']>;
   _meta: Meta;
   light: Maybe<Array<Theme_200Light>>;
 };
@@ -1358,27 +1360,27 @@ export type Theme_200ConnectionConnection = {
   edges: Maybe<Array<Maybe<Theme_200ConnectionEdge>>>;
   /** Information to aid in pagination. */
   pageInfo: PageInfo;
-  totalCount: Scalars['Long'];
+  totalCount: Scalars['Long']['output'];
 };
 
 /** An edge in a connection. */
 export type Theme_200ConnectionEdge = {
   __typename?: 'Theme_200ConnectionEdge';
   /** A cursor for use in pagination. */
-  cursor: Scalars['String'];
+  cursor: Scalars['String']['output'];
   /** The item at the end of the edge. */
   node: Theme_200;
 };
 
 export type Theme_200Light = {
   __typename?: 'Theme_200Light';
-  code: Maybe<Scalars['String']>;
-  name: Maybe<Scalars['String']>;
+  code: Maybe<Scalars['String']['output']>;
+  name: Maybe<Scalars['String']['output']>;
 };
 
 export type Theme_300 = Document & Linkable & {
   __typename?: 'Theme_300';
-  _linkType: Maybe<Scalars['String']>;
+  _linkType: Maybe<Scalars['String']['output']>;
   _meta: Meta;
   light: Maybe<Array<Theme_300Light>>;
 };
@@ -1390,27 +1392,27 @@ export type Theme_300ConnectionConnection = {
   edges: Maybe<Array<Maybe<Theme_300ConnectionEdge>>>;
   /** Information to aid in pagination. */
   pageInfo: PageInfo;
-  totalCount: Scalars['Long'];
+  totalCount: Scalars['Long']['output'];
 };
 
 /** An edge in a connection. */
 export type Theme_300ConnectionEdge = {
   __typename?: 'Theme_300ConnectionEdge';
   /** A cursor for use in pagination. */
-  cursor: Scalars['String'];
+  cursor: Scalars['String']['output'];
   /** The item at the end of the edge. */
   node: Theme_300;
 };
 
 export type Theme_300Light = {
   __typename?: 'Theme_300Light';
-  code: Maybe<Scalars['String']>;
-  name: Maybe<Scalars['String']>;
+  code: Maybe<Scalars['String']['output']>;
+  name: Maybe<Scalars['String']['output']>;
 };
 
 export type Theme_400 = Document & Linkable & {
   __typename?: 'Theme_400';
-  _linkType: Maybe<Scalars['String']>;
+  _linkType: Maybe<Scalars['String']['output']>;
   _meta: Meta;
   light: Maybe<Array<Theme_400Light>>;
 };
@@ -1422,27 +1424,27 @@ export type Theme_400ConnectionConnection = {
   edges: Maybe<Array<Maybe<Theme_400ConnectionEdge>>>;
   /** Information to aid in pagination. */
   pageInfo: PageInfo;
-  totalCount: Scalars['Long'];
+  totalCount: Scalars['Long']['output'];
 };
 
 /** An edge in a connection. */
 export type Theme_400ConnectionEdge = {
   __typename?: 'Theme_400ConnectionEdge';
   /** A cursor for use in pagination. */
-  cursor: Scalars['String'];
+  cursor: Scalars['String']['output'];
   /** The item at the end of the edge. */
   node: Theme_400;
 };
 
 export type Theme_400Light = {
   __typename?: 'Theme_400Light';
-  code: Maybe<Scalars['String']>;
-  name: Maybe<Scalars['String']>;
+  code: Maybe<Scalars['String']['output']>;
+  name: Maybe<Scalars['String']['output']>;
 };
 
 export type Theme_500 = Document & Linkable & {
   __typename?: 'Theme_500';
-  _linkType: Maybe<Scalars['String']>;
+  _linkType: Maybe<Scalars['String']['output']>;
   _meta: Meta;
   light: Maybe<Array<Theme_500Light>>;
 };
@@ -1454,27 +1456,27 @@ export type Theme_500ConnectionConnection = {
   edges: Maybe<Array<Maybe<Theme_500ConnectionEdge>>>;
   /** Information to aid in pagination. */
   pageInfo: PageInfo;
-  totalCount: Scalars['Long'];
+  totalCount: Scalars['Long']['output'];
 };
 
 /** An edge in a connection. */
 export type Theme_500ConnectionEdge = {
   __typename?: 'Theme_500ConnectionEdge';
   /** A cursor for use in pagination. */
-  cursor: Scalars['String'];
+  cursor: Scalars['String']['output'];
   /** The item at the end of the edge. */
   node: Theme_500;
 };
 
 export type Theme_500Light = {
   __typename?: 'Theme_500Light';
-  code: Maybe<Scalars['String']>;
-  name: Maybe<Scalars['String']>;
+  code: Maybe<Scalars['String']['output']>;
+  name: Maybe<Scalars['String']['output']>;
 };
 
 export type Theme_600 = Document & Linkable & {
   __typename?: 'Theme_600';
-  _linkType: Maybe<Scalars['String']>;
+  _linkType: Maybe<Scalars['String']['output']>;
   _meta: Meta;
   light: Maybe<Array<Theme_600Light>>;
 };
@@ -1486,27 +1488,27 @@ export type Theme_600ConnectionConnection = {
   edges: Maybe<Array<Maybe<Theme_600ConnectionEdge>>>;
   /** Information to aid in pagination. */
   pageInfo: PageInfo;
-  totalCount: Scalars['Long'];
+  totalCount: Scalars['Long']['output'];
 };
 
 /** An edge in a connection. */
 export type Theme_600ConnectionEdge = {
   __typename?: 'Theme_600ConnectionEdge';
   /** A cursor for use in pagination. */
-  cursor: Scalars['String'];
+  cursor: Scalars['String']['output'];
   /** The item at the end of the edge. */
   node: Theme_600;
 };
 
 export type Theme_600Light = {
   __typename?: 'Theme_600Light';
-  code: Maybe<Scalars['String']>;
-  name: Maybe<Scalars['String']>;
+  code: Maybe<Scalars['String']['output']>;
+  name: Maybe<Scalars['String']['output']>;
 };
 
 export type Theme_700 = Document & Linkable & {
   __typename?: 'Theme_700';
-  _linkType: Maybe<Scalars['String']>;
+  _linkType: Maybe<Scalars['String']['output']>;
   _meta: Meta;
   light: Maybe<Array<Theme_700Light>>;
 };
@@ -1518,27 +1520,27 @@ export type Theme_700ConnectionConnection = {
   edges: Maybe<Array<Maybe<Theme_700ConnectionEdge>>>;
   /** Information to aid in pagination. */
   pageInfo: PageInfo;
-  totalCount: Scalars['Long'];
+  totalCount: Scalars['Long']['output'];
 };
 
 /** An edge in a connection. */
 export type Theme_700ConnectionEdge = {
   __typename?: 'Theme_700ConnectionEdge';
   /** A cursor for use in pagination. */
-  cursor: Scalars['String'];
+  cursor: Scalars['String']['output'];
   /** The item at the end of the edge. */
   node: Theme_700;
 };
 
 export type Theme_700Light = {
   __typename?: 'Theme_700Light';
-  code: Maybe<Scalars['String']>;
-  name: Maybe<Scalars['String']>;
+  code: Maybe<Scalars['String']['output']>;
+  name: Maybe<Scalars['String']['output']>;
 };
 
 export type Theme_800 = Document & Linkable & {
   __typename?: 'Theme_800';
-  _linkType: Maybe<Scalars['String']>;
+  _linkType: Maybe<Scalars['String']['output']>;
   _meta: Meta;
   light: Maybe<Array<Theme_800Light>>;
 };
@@ -1550,27 +1552,27 @@ export type Theme_800ConnectionConnection = {
   edges: Maybe<Array<Maybe<Theme_800ConnectionEdge>>>;
   /** Information to aid in pagination. */
   pageInfo: PageInfo;
-  totalCount: Scalars['Long'];
+  totalCount: Scalars['Long']['output'];
 };
 
 /** An edge in a connection. */
 export type Theme_800ConnectionEdge = {
   __typename?: 'Theme_800ConnectionEdge';
   /** A cursor for use in pagination. */
-  cursor: Scalars['String'];
+  cursor: Scalars['String']['output'];
   /** The item at the end of the edge. */
   node: Theme_800;
 };
 
 export type Theme_800Light = {
   __typename?: 'Theme_800Light';
-  code: Maybe<Scalars['String']>;
-  name: Maybe<Scalars['String']>;
+  code: Maybe<Scalars['String']['output']>;
+  name: Maybe<Scalars['String']['output']>;
 };
 
 export type Theme_900 = Document & Linkable & {
   __typename?: 'Theme_900';
-  _linkType: Maybe<Scalars['String']>;
+  _linkType: Maybe<Scalars['String']['output']>;
   _meta: Meta;
   light: Maybe<Array<Theme_900Light>>;
 };
@@ -1582,27 +1584,27 @@ export type Theme_900ConnectionConnection = {
   edges: Maybe<Array<Maybe<Theme_900ConnectionEdge>>>;
   /** Information to aid in pagination. */
   pageInfo: PageInfo;
-  totalCount: Scalars['Long'];
+  totalCount: Scalars['Long']['output'];
 };
 
 /** An edge in a connection. */
 export type Theme_900ConnectionEdge = {
   __typename?: 'Theme_900ConnectionEdge';
   /** A cursor for use in pagination. */
-  cursor: Scalars['String'];
+  cursor: Scalars['String']['output'];
   /** The item at the end of the edge. */
   node: Theme_900;
 };
 
 export type Theme_900Light = {
   __typename?: 'Theme_900Light';
-  code: Maybe<Scalars['String']>;
-  name: Maybe<Scalars['String']>;
+  code: Maybe<Scalars['String']['output']>;
+  name: Maybe<Scalars['String']['output']>;
 };
 
 export type Theme_950 = Document & Linkable & {
   __typename?: 'Theme_950';
-  _linkType: Maybe<Scalars['String']>;
+  _linkType: Maybe<Scalars['String']['output']>;
   _meta: Meta;
   light: Maybe<Array<Theme_950Light>>;
 };
@@ -1614,92 +1616,92 @@ export type Theme_950ConnectionConnection = {
   edges: Maybe<Array<Maybe<Theme_950ConnectionEdge>>>;
   /** Information to aid in pagination. */
   pageInfo: PageInfo;
-  totalCount: Scalars['Long'];
+  totalCount: Scalars['Long']['output'];
 };
 
 /** An edge in a connection. */
 export type Theme_950ConnectionEdge = {
   __typename?: 'Theme_950ConnectionEdge';
   /** A cursor for use in pagination. */
-  cursor: Scalars['String'];
+  cursor: Scalars['String']['output'];
   /** The item at the end of the edge. */
   node: Theme_950;
 };
 
 export type Theme_950Light = {
   __typename?: 'Theme_950Light';
-  code: Maybe<Scalars['String']>;
-  name: Maybe<Scalars['String']>;
+  code: Maybe<Scalars['String']['output']>;
+  name: Maybe<Scalars['String']['output']>;
 };
 
 export type WhereButton = {
-  full_width: InputMaybe<Scalars['Boolean']>;
-  size: InputMaybe<Scalars['String']>;
-  size_fulltext: InputMaybe<Scalars['String']>;
-  variant: InputMaybe<Scalars['String']>;
-  variant_fulltext: InputMaybe<Scalars['String']>;
+  full_width: InputMaybe<Scalars['Boolean']['input']>;
+  size: InputMaybe<Scalars['String']['input']>;
+  size_fulltext: InputMaybe<Scalars['String']['input']>;
+  variant: InputMaybe<Scalars['String']['input']>;
+  variant_fulltext: InputMaybe<Scalars['String']['input']>;
 };
 
 export type WhereFooter = {
   /** slogan */
-  slogan_fulltext: InputMaybe<Scalars['String']>;
+  slogan_fulltext: InputMaybe<Scalars['String']['input']>;
   slogan_keys: InputMaybe<WhereFooterSloganKeys>;
   /** social_icons */
-  social_icons: InputMaybe<Scalars['String']>;
+  social_icons: InputMaybe<Scalars['String']['input']>;
 };
 
 export type WhereFooterSloganKeys = {
   /** word */
-  word_fulltext: InputMaybe<Scalars['String']>;
+  word_fulltext: InputMaybe<Scalars['String']['input']>;
 };
 
 export type WhereHeroicon = {
-  name: InputMaybe<Scalars['String']>;
-  name_fulltext: InputMaybe<Scalars['String']>;
-  variant: InputMaybe<Scalars['String']>;
-  variant_fulltext: InputMaybe<Scalars['String']>;
+  name: InputMaybe<Scalars['String']['input']>;
+  name_fulltext: InputMaybe<Scalars['String']['input']>;
+  variant: InputMaybe<Scalars['String']['input']>;
+  variant_fulltext: InputMaybe<Scalars['String']['input']>;
 };
 
 export type WhereIconsList = {
   collection: InputMaybe<WhereIconsListCollection>;
-  show_icons: InputMaybe<Scalars['Boolean']>;
+  show_icons: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type WhereIconsListCollection = {
   /** href */
-  href: InputMaybe<Scalars['String']>;
-  icon: InputMaybe<Scalars['String']>;
-  icon_fulltext: InputMaybe<Scalars['String']>;
-  name: InputMaybe<Scalars['String']>;
-  name_fulltext: InputMaybe<Scalars['String']>;
+  href: InputMaybe<Scalars['String']['input']>;
+  icon: InputMaybe<Scalars['String']['input']>;
+  icon_fulltext: InputMaybe<Scalars['String']['input']>;
+  name: InputMaybe<Scalars['String']['input']>;
+  name_fulltext: InputMaybe<Scalars['String']['input']>;
 };
 
 export type WhereImageMask = {
-  variant: InputMaybe<Scalars['String']>;
-  variant_fulltext: InputMaybe<Scalars['String']>;
+  variant: InputMaybe<Scalars['String']['input']>;
+  variant_fulltext: InputMaybe<Scalars['String']['input']>;
 };
 
 export type WhereNavigation = {
   /** color */
-  color: InputMaybe<Scalars['String']>;
+  color: InputMaybe<Scalars['String']['input']>;
   navigation_links: InputMaybe<WhereNavigationNavigationLinks>;
-  navigation_title: InputMaybe<Scalars['String']>;
-  navigation_title_fulltext: InputMaybe<Scalars['String']>;
-  position: InputMaybe<Scalars['Boolean']>;
+  navigation_title: InputMaybe<Scalars['String']['input']>;
+  navigation_title_fulltext: InputMaybe<Scalars['String']['input']>;
+  position: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type WhereNavigationNavigationLinks = {
   /** link_href */
-  link_href: InputMaybe<Scalars['String']>;
-  link_name: InputMaybe<Scalars['String']>;
-  link_name_fulltext: InputMaybe<Scalars['String']>;
+  link_href: InputMaybe<Scalars['String']['input']>;
+  link_name: InputMaybe<Scalars['String']['input']>;
+  link_name_fulltext: InputMaybe<Scalars['String']['input']>;
 };
 
 export type WhereProject = {
-  meta_description: InputMaybe<Scalars['String']>;
-  meta_description_fulltext: InputMaybe<Scalars['String']>;
-  meta_title: InputMaybe<Scalars['String']>;
-  meta_title_fulltext: InputMaybe<Scalars['String']>;
+  meta_description: InputMaybe<Scalars['String']['input']>;
+  meta_description_fulltext: InputMaybe<Scalars['String']['input']>;
+  meta_title: InputMaybe<Scalars['String']['input']>;
+  meta_title_fulltext: InputMaybe<Scalars['String']['input']>;
 };
 
 export type WhereTheme_50 = {
@@ -1707,10 +1709,10 @@ export type WhereTheme_50 = {
 };
 
 export type WhereTheme_50Light = {
-  code: InputMaybe<Scalars['String']>;
-  code_fulltext: InputMaybe<Scalars['String']>;
-  name: InputMaybe<Scalars['String']>;
-  name_fulltext: InputMaybe<Scalars['String']>;
+  code: InputMaybe<Scalars['String']['input']>;
+  code_fulltext: InputMaybe<Scalars['String']['input']>;
+  name: InputMaybe<Scalars['String']['input']>;
+  name_fulltext: InputMaybe<Scalars['String']['input']>;
 };
 
 export type WhereTheme_100 = {
@@ -1718,10 +1720,10 @@ export type WhereTheme_100 = {
 };
 
 export type WhereTheme_100Light = {
-  code: InputMaybe<Scalars['String']>;
-  code_fulltext: InputMaybe<Scalars['String']>;
-  name: InputMaybe<Scalars['String']>;
-  name_fulltext: InputMaybe<Scalars['String']>;
+  code: InputMaybe<Scalars['String']['input']>;
+  code_fulltext: InputMaybe<Scalars['String']['input']>;
+  name: InputMaybe<Scalars['String']['input']>;
+  name_fulltext: InputMaybe<Scalars['String']['input']>;
 };
 
 export type WhereTheme_200 = {
@@ -1729,10 +1731,10 @@ export type WhereTheme_200 = {
 };
 
 export type WhereTheme_200Light = {
-  code: InputMaybe<Scalars['String']>;
-  code_fulltext: InputMaybe<Scalars['String']>;
-  name: InputMaybe<Scalars['String']>;
-  name_fulltext: InputMaybe<Scalars['String']>;
+  code: InputMaybe<Scalars['String']['input']>;
+  code_fulltext: InputMaybe<Scalars['String']['input']>;
+  name: InputMaybe<Scalars['String']['input']>;
+  name_fulltext: InputMaybe<Scalars['String']['input']>;
 };
 
 export type WhereTheme_300 = {
@@ -1740,10 +1742,10 @@ export type WhereTheme_300 = {
 };
 
 export type WhereTheme_300Light = {
-  code: InputMaybe<Scalars['String']>;
-  code_fulltext: InputMaybe<Scalars['String']>;
-  name: InputMaybe<Scalars['String']>;
-  name_fulltext: InputMaybe<Scalars['String']>;
+  code: InputMaybe<Scalars['String']['input']>;
+  code_fulltext: InputMaybe<Scalars['String']['input']>;
+  name: InputMaybe<Scalars['String']['input']>;
+  name_fulltext: InputMaybe<Scalars['String']['input']>;
 };
 
 export type WhereTheme_400 = {
@@ -1751,10 +1753,10 @@ export type WhereTheme_400 = {
 };
 
 export type WhereTheme_400Light = {
-  code: InputMaybe<Scalars['String']>;
-  code_fulltext: InputMaybe<Scalars['String']>;
-  name: InputMaybe<Scalars['String']>;
-  name_fulltext: InputMaybe<Scalars['String']>;
+  code: InputMaybe<Scalars['String']['input']>;
+  code_fulltext: InputMaybe<Scalars['String']['input']>;
+  name: InputMaybe<Scalars['String']['input']>;
+  name_fulltext: InputMaybe<Scalars['String']['input']>;
 };
 
 export type WhereTheme_500 = {
@@ -1762,10 +1764,10 @@ export type WhereTheme_500 = {
 };
 
 export type WhereTheme_500Light = {
-  code: InputMaybe<Scalars['String']>;
-  code_fulltext: InputMaybe<Scalars['String']>;
-  name: InputMaybe<Scalars['String']>;
-  name_fulltext: InputMaybe<Scalars['String']>;
+  code: InputMaybe<Scalars['String']['input']>;
+  code_fulltext: InputMaybe<Scalars['String']['input']>;
+  name: InputMaybe<Scalars['String']['input']>;
+  name_fulltext: InputMaybe<Scalars['String']['input']>;
 };
 
 export type WhereTheme_600 = {
@@ -1773,10 +1775,10 @@ export type WhereTheme_600 = {
 };
 
 export type WhereTheme_600Light = {
-  code: InputMaybe<Scalars['String']>;
-  code_fulltext: InputMaybe<Scalars['String']>;
-  name: InputMaybe<Scalars['String']>;
-  name_fulltext: InputMaybe<Scalars['String']>;
+  code: InputMaybe<Scalars['String']['input']>;
+  code_fulltext: InputMaybe<Scalars['String']['input']>;
+  name: InputMaybe<Scalars['String']['input']>;
+  name_fulltext: InputMaybe<Scalars['String']['input']>;
 };
 
 export type WhereTheme_700 = {
@@ -1784,10 +1786,10 @@ export type WhereTheme_700 = {
 };
 
 export type WhereTheme_700Light = {
-  code: InputMaybe<Scalars['String']>;
-  code_fulltext: InputMaybe<Scalars['String']>;
-  name: InputMaybe<Scalars['String']>;
-  name_fulltext: InputMaybe<Scalars['String']>;
+  code: InputMaybe<Scalars['String']['input']>;
+  code_fulltext: InputMaybe<Scalars['String']['input']>;
+  name: InputMaybe<Scalars['String']['input']>;
+  name_fulltext: InputMaybe<Scalars['String']['input']>;
 };
 
 export type WhereTheme_800 = {
@@ -1795,10 +1797,10 @@ export type WhereTheme_800 = {
 };
 
 export type WhereTheme_800Light = {
-  code: InputMaybe<Scalars['String']>;
-  code_fulltext: InputMaybe<Scalars['String']>;
-  name: InputMaybe<Scalars['String']>;
-  name_fulltext: InputMaybe<Scalars['String']>;
+  code: InputMaybe<Scalars['String']['input']>;
+  code_fulltext: InputMaybe<Scalars['String']['input']>;
+  name: InputMaybe<Scalars['String']['input']>;
+  name_fulltext: InputMaybe<Scalars['String']['input']>;
 };
 
 export type WhereTheme_900 = {
@@ -1806,10 +1808,10 @@ export type WhereTheme_900 = {
 };
 
 export type WhereTheme_900Light = {
-  code: InputMaybe<Scalars['String']>;
-  code_fulltext: InputMaybe<Scalars['String']>;
-  name: InputMaybe<Scalars['String']>;
-  name_fulltext: InputMaybe<Scalars['String']>;
+  code: InputMaybe<Scalars['String']['input']>;
+  code_fulltext: InputMaybe<Scalars['String']['input']>;
+  name: InputMaybe<Scalars['String']['input']>;
+  name_fulltext: InputMaybe<Scalars['String']['input']>;
 };
 
 export type WhereTheme_950 = {
@@ -1817,10 +1819,10 @@ export type WhereTheme_950 = {
 };
 
 export type WhereTheme_950Light = {
-  code: InputMaybe<Scalars['String']>;
-  code_fulltext: InputMaybe<Scalars['String']>;
-  name: InputMaybe<Scalars['String']>;
-  name_fulltext: InputMaybe<Scalars['String']>;
+  code: InputMaybe<Scalars['String']['input']>;
+  code_fulltext: InputMaybe<Scalars['String']['input']>;
+  name: InputMaybe<Scalars['String']['input']>;
+  name_fulltext: InputMaybe<Scalars['String']['input']>;
 };
 
 /** A prismic document */
@@ -1835,14 +1837,14 @@ export type DocumentConnection = {
   edges: Maybe<Array<Maybe<DocumentEdge>>>;
   /** Information to aid in pagination. */
   pageInfo: PageInfo;
-  totalCount: Scalars['Long'];
+  totalCount: Scalars['Long']['output'];
 };
 
 /** An edge in a connection. */
 export type DocumentEdge = {
   __typename?: '_DocumentEdge';
   /** A cursor for use in pagination. */
-  cursor: Scalars['String'];
+  cursor: Scalars['String']['output'];
   /** The item at the end of the edge. */
   node: Document;
 };
@@ -1850,39 +1852,39 @@ export type DocumentEdge = {
 /** An external link */
 export type ExternalLink = Linkable & {
   __typename?: '_ExternalLink';
-  _linkType: Maybe<Scalars['String']>;
-  target: Maybe<Scalars['String']>;
-  url: Scalars['String'];
+  _linkType: Maybe<Scalars['String']['output']>;
+  target: Maybe<Scalars['String']['output']>;
+  url: Scalars['String']['output'];
 };
 
 /** A linked file */
 export type FileLink = Linkable & {
   __typename?: '_FileLink';
-  _linkType: Maybe<Scalars['String']>;
-  name: Scalars['String'];
-  size: Scalars['Long'];
-  url: Scalars['String'];
+  _linkType: Maybe<Scalars['String']['output']>;
+  name: Scalars['String']['output'];
+  size: Scalars['Long']['output'];
+  url: Scalars['String']['output'];
 };
 
 /** A linked image */
 export type ImageLink = Linkable & {
   __typename?: '_ImageLink';
-  _linkType: Maybe<Scalars['String']>;
-  height: Scalars['Int'];
-  name: Scalars['String'];
-  size: Scalars['Long'];
-  url: Scalars['String'];
-  width: Scalars['Int'];
+  _linkType: Maybe<Scalars['String']['output']>;
+  height: Scalars['Int']['output'];
+  name: Scalars['String']['output'];
+  size: Scalars['Long']['output'];
+  url: Scalars['String']['output'];
+  width: Scalars['Int']['output'];
 };
 
 /** A prismic link */
 export type Linkable = {
-  _linkType: Maybe<Scalars['String']>;
+  _linkType: Maybe<Scalars['String']['output']>;
 };
 
 export type Similar = {
-  documentId: Scalars['String'];
-  max: Scalars['Int'];
+  documentId: Scalars['String']['input'];
+  max: Scalars['Int']['input'];
 };
 
 type LinkDocumentMetaButtonFragment = { __typename: 'Button', _meta: { __typename?: 'Meta', id: string, uid: string | null, type: string, tags: Array<string>, lang: string, firstPublicationDate: any | null, lastPublicationDate: any | null } } & { ' $fragmentName'?: 'LinkDocumentMetaButtonFragment' };
@@ -2352,22 +2354,22 @@ export type GetCurrentFooterQuery = { __typename?: 'Query', allFooters: { __type
         ) | { __typename: 'Image_gallery' } | { __typename: 'Image_mask' } | { __typename: 'Landing_page' } | { __typename: 'Navigation' } | { __typename: 'Project' } | { __typename: 'Theme_50' } | { __typename: 'Theme_100' } | { __typename: 'Theme_200' } | { __typename: 'Theme_300' } | { __typename: 'Theme_400' } | { __typename: 'Theme_500' } | { __typename: 'Theme_600' } | { __typename: 'Theme_700' } | { __typename: 'Theme_800' } | { __typename: 'Theme_900' } | { __typename: 'Theme_950' } | { __typename: '_ExternalLink' } | { __typename: '_FileLink' } | { __typename: '_ImageLink' } | null } } | null> | null } };
 
 export type GetAllLandingPagesMetaQueryVariables = Exact<{
-  getByID: InputMaybe<Array<Scalars['String']> | Scalars['String']>;
+  getByID: InputMaybe<Array<Scalars['String']['input']> | Scalars['String']['input']>;
 }>;
 
 
 export type GetAllLandingPagesMetaQuery = { __typename?: 'Query', allLanding_pages: { __typename?: 'Landing_pageConnectionConnection', edges: Array<{ __typename?: 'Landing_pageConnectionEdge', node: { __typename?: 'Landing_page', _linkType: string | null, _meta: { __typename?: 'Meta', id: string, uid: string | null, type: string, tags: Array<string>, lang: string, firstPublicationDate: any | null, lastPublicationDate: any | null } } } | null> | null } };
 
 export type GetAllProjectsMetaQueryVariables = Exact<{
-  getByID: InputMaybe<Array<Scalars['String']> | Scalars['String']>;
+  getByID: InputMaybe<Array<Scalars['String']['input']> | Scalars['String']['input']>;
 }>;
 
 
 export type GetAllProjectsMetaQuery = { __typename?: 'Query', allProjects: { __typename?: 'ProjectConnectionConnection', edges: Array<{ __typename?: 'ProjectConnectionEdge', node: { __typename?: 'Project', _linkType: string | null, _meta: { __typename?: 'Meta', id: string, uid: string | null, type: string, tags: Array<string>, lang: string, firstPublicationDate: any | null, lastPublicationDate: any | null } } } | null> | null } };
 
 export type GetCurrentLandingPageQueryVariables = Exact<{
-  slug: Scalars['String'];
-  defaultLocale: Scalars['String'];
+  slug: Scalars['String']['input'];
+  defaultLocale: Scalars['String']['input'];
 }>;
 
 
@@ -2380,8 +2382,8 @@ export type GetCurrentLandingPageQuery = { __typename?: 'Query', landing_page: {
     )> | null } | null };
 
 export type GetCurrentProjectQueryVariables = Exact<{
-  slug: Scalars['String'];
-  defaultLocale: Scalars['String'];
+  slug: Scalars['String']['input'];
+  defaultLocale: Scalars['String']['input'];
 }>;
 
 
