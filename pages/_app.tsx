@@ -44,7 +44,7 @@ const caveatFont = Caveat({
 const App = ({ Component, pageProps }: CustomAppProps) => {
   return (
     <PrismicProvider internalLinkComponent={(props) => <Link {...props} />}>
-      <PrismicPreview repositoryName={prismicRepositoryName}>
+      <PrismicPreview repositoryName="aarnipavlidi">
         <Layout fontVariable={`${fontPierSans.variable} ${caveatFont.variable}`}>
           <Component {...pageProps} />
         </Layout>
