@@ -1,4 +1,4 @@
-import type { PrismicHeadingTags, PrismicTypographTags, PrismicTextOnlyProps, PrismicTextWithLabel, PrismicTextWithSpanLabels } from '@/types/prismic';
+import type { PrismicHeadingTags, PrismicTypographTags, PrismicTextWithLabel, PrismicTextWithSpanLabels } from '@/types/prismic';
 import { asHTML, HTMLFunctionSerializer } from '@prismicio/helpers';
 import parse from 'html-react-parser';
 

@@ -1,7 +1,4 @@
 import type { AppProps } from 'next/app';
-import Link from 'next/link';
-
-import { PrismicProvider } from '@prismicio/react';
 import { PrismicPreview } from '@prismicio/next';
 import { prismicRepositoryName } from '@/utils/prismic';
 
@@ -43,13 +40,11 @@ const caveatFont = Caveat({
 
 const App = ({ Component, pageProps }: CustomAppProps) => {
   return (
-    <PrismicProvider internalLinkComponent={(props) => <Link {...props} />}>
-      <PrismicPreview repositoryName="aarnipavlidi">
-        <Layout fontVariable={`${fontPierSans.variable} ${caveatFont.variable}`}>
-          <Component {...pageProps} />
-        </Layout>
-      </PrismicPreview>
-    </PrismicProvider>
+    <PrismicPreview repositoryName={prismicRepositoryName}>
+      <Layout fontVariable={`${fontPierSans.variable} ${caveatFont.variable}`}>
+        <Component {...pageProps} />
+      </Layout>
+    </PrismicPreview>
   );
 };
 
