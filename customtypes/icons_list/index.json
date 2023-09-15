@@ -7,7 +7,10 @@
   "json": {
     "Main": {
       "uid": {
-        "config": { "label": "Entry Name", "placeholder": "" },
+        "config": {
+          "label": "Entry Name",
+          "placeholder": ""
+        },
         "type": "UID"
       },
       "show_icons": {
@@ -26,7 +29,10 @@
           "fields": {
             "name": {
               "type": "Text",
-              "config": { "label": "name", "placeholder": "" }
+              "config": {
+                "label": "name",
+                "placeholder": ""
+              }
             },
             "icon": {
               "type": "Select",

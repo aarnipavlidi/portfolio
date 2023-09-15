@@ -1,5 +1,4 @@
-import type { PrismicRichTextProps } from '@prismicio/react';
-import type { PrismicHeadingTags, PrismicTypographTags, PrismicTextOnlyProps, PrismicTextWithLabel, PrismicTextWithSpanLabels } from '@/types/prismic';
+import type { PrismicHeadingTags, PrismicTypographTags, PrismicTextWithLabel, PrismicTextWithSpanLabels } from '@/types/prismic';
 import { asHTML, HTMLFunctionSerializer } from '@prismicio/helpers';
 import parse from 'html-react-parser';
 
@@ -11,6 +10,12 @@ export interface TypographyProps {
   size?: 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl' | '7xl' | '8xl' | '9xl';
   align?: 'left' | 'center' | 'right' | 'justify' | 'start' | 'end';
   content: JSX.Element | string;
+}
+
+interface CustomPrismicRichTextProps {
+  type: PrismicTypographTags;
+  text: string;
+  span: [];
 }
 
 const Typography: React.FC<TypographyProps> = ({ className, tag = 'p', size = 'base', align, content }) => {
@@ -51,10 +56,10 @@ const Typography: React.FC<TypographyProps> = ({ className, tag = 'p', size = 'b
       return null;
     };
 
-    const getPrismicRichText = content.props.field as PrismicRichTextProps['field'];
+    const getPrismicRichText: CustomPrismicRichTextProps[] = content.props.field;
 
-    if (getPrismicRichText && getPrismicRichText.some(value => prismicTypographOptions.includes(value.type as PrismicTypographTags))) {
-      const checkContentValue = getPrismicRichText.filter(value => (value as PrismicTextOnlyProps).text) as PrismicRichTextProps['field'];
+    if (getPrismicRichText && getPrismicRichText.some(value => prismicTypographOptions.includes(value.type))) {
+      const checkContentValue: any = getPrismicRichText.filter(value => value.text);
       const formatRichText = asHTML(checkContentValue, null, htmlSerializer);
 
       return (

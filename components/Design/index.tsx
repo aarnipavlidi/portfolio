@@ -39,7 +39,7 @@ const Design: React.FC<DesignProps> = ({ variant = 'prismic', ...props }) => {
     <>
       <picture className={wrapperContainer} style={props.mask ? maskContainer : undefined}>
         {
-          variant === 'prismic' && <PrismicNextImage
+          variant === 'prismic' && props.content && props.content.url && <PrismicNextImage
             field={props.content}
             className={imageContainer}
             imgixParams={props.params}

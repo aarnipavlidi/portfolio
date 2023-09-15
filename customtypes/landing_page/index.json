@@ -8,15 +8,22 @@
     "Main": {
       "uid": {
         "type": "UID",
-        "config": { "label": "Entry Name", "placeholder": "" }
+        "config": {
+          "label": "Entry Name",
+          "placeholder": ""
+        }
       },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "hero_slice": { "type": "SharedSlice" },
-            "card_slice": { "type": "SharedSlice" }
+            "hero_slice": {
+              "type": "SharedSlice"
+            },
+            "card_slice": {
+              "type": "SharedSlice"
+            }
           }
         }
       }

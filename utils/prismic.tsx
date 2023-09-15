@@ -2,8 +2,9 @@
 import type { FilledLinkToDocumentField } from '@prismicio/types';
 import type { Route } from '@prismicio/client';
 import type { LinkDocumentMetaFragment } from '@/types/prismic/graphql/graphql';
+import sliceMachineConfig from 'slicemachine.config.json';
 
-export const prismicRepositoryName = process.env.PRISMIC_REPOSITORY_NAME || '';
+export const prismicRepositoryName = process.env.PRISMIC_REPOSITORY_NAME || sliceMachineConfig.repositoryName;
 export const prismicAccessToken = process.env.PRISMIC_ACCESS_TOKEN || '';
 
 export const prismicRoutes: Route | Route[] = [

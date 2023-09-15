@@ -6,15 +6,26 @@
   "status": true,
   "json": {
     "Main": {
-      "uid": { "config": { "label": "UID" }, "type": "UID" },
+      "uid": {
+        "config": {
+          "label": "UID"
+        },
+        "type": "UID"
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "content_block_slice": { "type": "SharedSlice" },
-            "hero_slice": { "type": "SharedSlice" },
-            "stats_block_slice": { "type": "SharedSlice" }
+            "content_block_slice": {
+              "type": "SharedSlice"
+            },
+            "hero_slice": {
+              "type": "SharedSlice"
+            },
+            "stats_block_slice": {
+              "type": "SharedSlice"
+            }
           }
         }
       }
@@ -29,7 +40,10 @@
       },
       "meta_image": {
         "config": {
-          "constraint": { "height": 1260, "width": 2400 },
+          "constraint": {
+            "height": 1260,
+            "width": 2400
+          },
           "label": "Meta Image",
           "thumbnails": []
         },
