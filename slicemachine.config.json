@@ -1,0 +1,7 @@
+{
+  "apiEndPoint": "http://aarnipavlidi.cdn.prismic.io/graphql",
+  "repositoryName": "aarnipavlidi",
+  "adapter": "@slicemachine/adapter-next",
+  "libraries": ["./slices"],
+  "localSliceSimulatorURL": "http://localhost:3000/slicePreviewPage"
+}

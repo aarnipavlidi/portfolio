@@ -1,4 +1,5 @@
 import type { AppProps } from 'next/app';
+import { Analytics } from '@vercel/analytics/react';
 import { PrismicPreview } from '@prismicio/next';
 import { prismicRepositoryName } from '@/utils/prismic';
 
@@ -43,6 +44,7 @@ const App = ({ Component, pageProps }: CustomAppProps) => {
     <PrismicPreview repositoryName={prismicRepositoryName}>
       <Layout fontVariable={`${fontPierSans.variable} ${caveatFont.variable}`}>
         <Component {...pageProps} />
+        <Analytics />
       </Layout>
     </PrismicPreview>
   );

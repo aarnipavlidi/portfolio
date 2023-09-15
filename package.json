@@ -21,6 +21,7 @@
     "@types/node": "^20.6.1",
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
+    "@vercel/analytics": "^1.0.2",
     "apollo-link": "^1.2.14",
     "apollo-link-http": "^1.5.17",
     "classnames": "^2.3.2",
