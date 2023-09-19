@@ -2,10 +2,15 @@
   "possibleTypes": {
     "Landing_pageSlices": [
       "Landing_pageSlicesCard_slice",
+      "Landing_pageSlicesContent_block_slice",
       "Landing_pageSlicesHero_slice"
     ],
     "Landing_pageSlicesCard_sliceVariation": [
       "Landing_pageSlicesCard_sliceDefault"
+    ],
+    "Landing_pageSlicesContent_block_sliceVariation": [
+      "Landing_pageSlicesContent_block_sliceDefault",
+      "Landing_pageSlicesContent_block_sliceTextonly"
     ],
     "Landing_pageSlicesHero_sliceVariation": [
       "Landing_pageSlicesHero_sliceDefault",
@@ -18,7 +23,8 @@
       "ProjectSlicesStats_block_slice"
     ],
     "ProjectSlicesContent_block_sliceVariation": [
-      "ProjectSlicesContent_block_sliceDefault"
+      "ProjectSlicesContent_block_sliceDefault",
+      "ProjectSlicesContent_block_sliceTextonly"
     ],
     "ProjectSlicesHero_sliceVariation": [
       "ProjectSlicesHero_sliceDefault",

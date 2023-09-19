@@ -35,7 +35,9 @@
           "config": {
             "label": "Hashtag",
             "select": "document",
-            "customtypes": ["icons_list"]
+            "customtypes": [
+              "icons_list"
+            ]
           }
         },
         "stack": {
@@ -43,7 +45,9 @@
           "config": {
             "label": "Stack",
             "select": "document",
-            "customtypes": ["icons_list"]
+            "customtypes": [
+              "icons_list"
+            ]
           }
         },
         "content": {
@@ -60,7 +64,29 @@
           "config": {
             "label": "Images",
             "select": "document",
-            "customtypes": ["image_gallery"]
+            "customtypes": [
+              "image_gallery"
+            ]
+          }
+        }
+      },
+      "items": {}
+    },
+    {
+      "id": "textOnly",
+      "name": "Text Only",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "content": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Content",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,heading1,heading2,heading3,heading4,heading5,heading6,strong,em"
           }
         }
       },
