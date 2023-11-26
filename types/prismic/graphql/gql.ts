@@ -28,31 +28,20 @@ const documents = {
     "\n   fragment ProjectHeroSliceGoBack on ProjectSlicesHero_sliceGoback {\n    goBack: primary {\n      title\n      hero_image\n      image_mask {\n        __typename\n        ...ImageMask\n      }\n    }\n   }\n": types.ProjectHeroSliceGoBackFragmentDoc,
     "\n  fragment ProjectHeroSliceField on ProjectSlicesHero_slice {\n    type\n    label\n    variation {\n      __typename\n      ...ProjectHeroSlicePrimary\n      ...ProjectHeroSliceFullWidth\n      ...ProjectHeroSliceGoBack\n    }\n  }\n": types.ProjectHeroSliceFieldFragmentDoc,
     "\n  fragment ProjectContentBlockSlicePrimary on ProjectSlicesContent_block_sliceDefault {\n    primary {\n      title\n      subtitle\n      hashtag {\n        __typename\n        ...IconsList\n      }\n      stack {\n        __typename\n        ...IconsList\n      }\n      content\n      images {\n        __typename\n        ...ImageGallery\n      }\n    }\n   }\n": types.ProjectContentBlockSlicePrimaryFragmentDoc,
-    "\n   fragment ProjectContentBlockSliceTextOnly on ProjectSlicesContent_block_sliceTextonly {\n    primary {\n      content\n    }\n   }\n": types.ProjectContentBlockSliceTextOnlyFragmentDoc,
+    "\n   fragment ProjectContentBlockSliceTextOnly on ProjectSlicesContent_block_sliceTextonly {\n    textOnly: primary {\n      content\n    }\n   }\n": types.ProjectContentBlockSliceTextOnlyFragmentDoc,
     "\n  fragment ProjectContentBlockSliceField on ProjectSlicesContent_block_slice {\n    type\n    label\n    variation {\n      __typename\n      ...ProjectContentBlockSlicePrimary\n      ...ProjectContentBlockSliceTextOnly\n    }\n  }\n": types.ProjectContentBlockSliceFieldFragmentDoc,
     "\n  fragment ProjectStatsBlockSlicePrimary on ProjectSlicesStats_block_sliceDefault {\n    items {\n      name\n      href {\n        __typename\n        ...ExternalLinkMeta\n      }\n      icon {\n        __typename\n        ...HeroIcon\n      }\n      value\n    }\n  }\n": types.ProjectStatsBlockSlicePrimaryFragmentDoc,
     "\n  fragment ProjectStatsBlockSliceField on ProjectSlicesStats_block_slice {\n    type\n    label\n    variation {\n      __typename\n      ...ProjectStatsBlockSlicePrimary\n    }\n  }\n": types.ProjectStatsBlockSliceFieldFragmentDoc,
-    "\n  fragment Theme50Fields on Theme_50 {\n    light {\n      name\n      code\n    }\n  }\n": types.Theme50FieldsFragmentDoc,
-    "\n  fragment Theme100Fields on Theme_100 {\n    light {\n      name\n      code\n    }\n  }\n": types.Theme100FieldsFragmentDoc,
-    "\n  fragment Theme200Fields on Theme_200 {\n    light {\n      name\n      code\n    }\n  }\n": types.Theme200FieldsFragmentDoc,
-    "\n  fragment Theme300Fields on Theme_300 {\n    light {\n      name\n      code\n    }\n  }\n": types.Theme300FieldsFragmentDoc,
-    "\n  fragment Theme400Fields on Theme_400 {\n    light {\n      name\n      code\n    }\n  }\n": types.Theme400FieldsFragmentDoc,
-    "\n  fragment Theme500Fields on Theme_500 {\n    light {\n      name\n      code\n    }\n  }\n": types.Theme500FieldsFragmentDoc,
-    "\n  fragment Theme600Fields on Theme_600 {\n    light {\n      name\n      code\n    }\n  }\n": types.Theme600FieldsFragmentDoc,
-    "\n  fragment Theme700Fields on Theme_700 {\n    light {\n      name\n      code\n    }\n  }\n": types.Theme700FieldsFragmentDoc,
-    "\n  fragment Theme800Fields on Theme_800 {\n    light {\n      name\n      code\n    }\n  }\n": types.Theme800FieldsFragmentDoc,
-    "\n  fragment Theme900Fields on Theme_900 {\n    light {\n      name\n      code\n    }\n  }\n": types.Theme900FieldsFragmentDoc,
-    "\n  fragment Theme950Fields on Theme_950 {\n    light {\n      name\n      code\n    }\n  }\n": types.Theme950FieldsFragmentDoc,
     "\n  fragment ImageGallery on Image_gallery {\n    _meta {\n      uid\n    }\n    gallery {\n      image\n    }\n  }\n": types.ImageGalleryFragmentDoc,
     "\n  fragment ImageMask on Image_mask {\n    _meta {\n      uid\n    }\n    variant\n  }\n": types.ImageMaskFragmentDoc,
     "\n  fragment Button on Button {\n    _meta {\n      uid\n    }\n    variant\n    size\n    full_width\n  }\n": types.ButtonFragmentDoc,
     "\n  fragment HeroIcon on Heroicon {\n    _meta {\n      uid\n    }\n    variant\n    name\n  }\n": types.HeroIconFragmentDoc,
     "\n  fragment IconsList on Icons_list {\n    _meta {\n      uid\n    }\n    show_icons\n    collection {\n      name\n      icon\n      href {\n        ...ExternalLinkMeta\n      }\n    }\n  }\n": types.IconsListFragmentDoc,
-    "\n  query getCurrentNavigation {\n    allNavigations {\n      edges {\n        node {\n          position\n          navigation_title\n          navigation_links {\n            link_name\n            link_href {\n              _linkType\n              __typename\n              ...LinkDocumentMeta\n            }\n          }\n          color {\n            ...Theme50Fields\n            ...Theme100Fields\n            ...Theme200Fields\n            ...Theme300Fields\n            ...Theme400Fields\n            ...Theme500Fields\n            ...Theme600Fields\n            ...Theme700Fields\n            ...Theme800Fields\n            ...Theme900Fields\n            ...Theme950Fields\n          }\n        }\n      }\n    }\n  }\n": types.GetCurrentNavigationDocument,
+    "\n  query getCurrentNavigation {\n    allNavigations {\n      edges {\n        node {\n          position\n          navigation_title\n          navigation_links {\n            link_name\n            link_href {\n              _linkType\n              __typename\n              ...LinkDocumentMeta\n            }\n          }\n        }\n      }\n    }\n  }\n": types.GetCurrentNavigationDocument,
     "\n  query getCurrentFooter {\n    allFooters {\n      edges {\n        node {\n          slogan\n          slogan_keys {\n            word\n          }\n          social_icons {\n            __typename\n            ...IconsList\n          }\n        }\n      }\n    }\n  }\n": types.GetCurrentFooterDocument,
     "\n  query getAllLandingPagesMeta($getByID: [String!]) {\n    allLanding_pages(id_in: $getByID) {\n      edges {\n        node {\n          _linkType\n          _meta {\n            id\n            uid\n            type\n            tags\n            lang\n            firstPublicationDate\n            lastPublicationDate\n          }\n        }\n      }\n    }\n  }\n": types.GetAllLandingPagesMetaDocument,
     "\n  query getAllProjectsMeta($getByID: [String!]) {\n    allProjects(id_in: $getByID) {\n      edges {\n        node {\n          _linkType\n          _meta {\n            id\n            uid\n            type\n            tags\n            lang\n            firstPublicationDate\n            lastPublicationDate\n          }\n        }\n      }\n    }\n  }\n": types.GetAllProjectsMetaDocument,
-    "\n  query getCurrentLandingPage($slug: String!, $defaultLocale: String!) {\n    landing_page(uid: $slug, lang: $defaultLocale) {\n      slices {\n        ...HeroSliceField\n        ...CardSliceField\n      }\n    }\n  }\n": types.GetCurrentLandingPageDocument,
+    "\n  query getCurrentLandingPage($slug: String!, $defaultLocale: String!) {\n    landing_page(uid: $slug, lang: $defaultLocale) {\n      slices {\n        ...HeroSliceField\n        ...CardSliceField\n        ...ContentBlockSliceField\n      }\n    }\n  }\n": types.GetCurrentLandingPageDocument,
     "\n  query getCurrentProject($slug: String!, $defaultLocale: String!) {\n    project(uid: $slug, lang: $defaultLocale) {\n      slices {\n        ...ProjectHeroSliceField\n        ...ProjectContentBlockSliceField\n        ...ProjectStatsBlockSliceField\n      }\n    }\n  }\n": types.GetCurrentProjectDocument,
 };
 
@@ -133,7 +122,7 @@ export function graphql(source: "\n  fragment ProjectContentBlockSlicePrimary on
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n   fragment ProjectContentBlockSliceTextOnly on ProjectSlicesContent_block_sliceTextonly {\n    primary {\n      content\n    }\n   }\n"): (typeof documents)["\n   fragment ProjectContentBlockSliceTextOnly on ProjectSlicesContent_block_sliceTextonly {\n    primary {\n      content\n    }\n   }\n"];
+export function graphql(source: "\n   fragment ProjectContentBlockSliceTextOnly on ProjectSlicesContent_block_sliceTextonly {\n    textOnly: primary {\n      content\n    }\n   }\n"): (typeof documents)["\n   fragment ProjectContentBlockSliceTextOnly on ProjectSlicesContent_block_sliceTextonly {\n    textOnly: primary {\n      content\n    }\n   }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -146,50 +135,6 @@ export function graphql(source: "\n  fragment ProjectStatsBlockSlicePrimary on P
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n  fragment ProjectStatsBlockSliceField on ProjectSlicesStats_block_slice {\n    type\n    label\n    variation {\n      __typename\n      ...ProjectStatsBlockSlicePrimary\n    }\n  }\n"): (typeof documents)["\n  fragment ProjectStatsBlockSliceField on ProjectSlicesStats_block_slice {\n    type\n    label\n    variation {\n      __typename\n      ...ProjectStatsBlockSlicePrimary\n    }\n  }\n"];
-/**
- * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function graphql(source: "\n  fragment Theme50Fields on Theme_50 {\n    light {\n      name\n      code\n    }\n  }\n"): (typeof documents)["\n  fragment Theme50Fields on Theme_50 {\n    light {\n      name\n      code\n    }\n  }\n"];
-/**
- * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function graphql(source: "\n  fragment Theme100Fields on Theme_100 {\n    light {\n      name\n      code\n    }\n  }\n"): (typeof documents)["\n  fragment Theme100Fields on Theme_100 {\n    light {\n      name\n      code\n    }\n  }\n"];
-/**
- * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function graphql(source: "\n  fragment Theme200Fields on Theme_200 {\n    light {\n      name\n      code\n    }\n  }\n"): (typeof documents)["\n  fragment Theme200Fields on Theme_200 {\n    light {\n      name\n      code\n    }\n  }\n"];
-/**
- * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function graphql(source: "\n  fragment Theme300Fields on Theme_300 {\n    light {\n      name\n      code\n    }\n  }\n"): (typeof documents)["\n  fragment Theme300Fields on Theme_300 {\n    light {\n      name\n      code\n    }\n  }\n"];
-/**
- * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function graphql(source: "\n  fragment Theme400Fields on Theme_400 {\n    light {\n      name\n      code\n    }\n  }\n"): (typeof documents)["\n  fragment Theme400Fields on Theme_400 {\n    light {\n      name\n      code\n    }\n  }\n"];
-/**
- * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function graphql(source: "\n  fragment Theme500Fields on Theme_500 {\n    light {\n      name\n      code\n    }\n  }\n"): (typeof documents)["\n  fragment Theme500Fields on Theme_500 {\n    light {\n      name\n      code\n    }\n  }\n"];
-/**
- * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function graphql(source: "\n  fragment Theme600Fields on Theme_600 {\n    light {\n      name\n      code\n    }\n  }\n"): (typeof documents)["\n  fragment Theme600Fields on Theme_600 {\n    light {\n      name\n      code\n    }\n  }\n"];
-/**
- * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function graphql(source: "\n  fragment Theme700Fields on Theme_700 {\n    light {\n      name\n      code\n    }\n  }\n"): (typeof documents)["\n  fragment Theme700Fields on Theme_700 {\n    light {\n      name\n      code\n    }\n  }\n"];
-/**
- * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function graphql(source: "\n  fragment Theme800Fields on Theme_800 {\n    light {\n      name\n      code\n    }\n  }\n"): (typeof documents)["\n  fragment Theme800Fields on Theme_800 {\n    light {\n      name\n      code\n    }\n  }\n"];
-/**
- * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function graphql(source: "\n  fragment Theme900Fields on Theme_900 {\n    light {\n      name\n      code\n    }\n  }\n"): (typeof documents)["\n  fragment Theme900Fields on Theme_900 {\n    light {\n      name\n      code\n    }\n  }\n"];
-/**
- * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function graphql(source: "\n  fragment Theme950Fields on Theme_950 {\n    light {\n      name\n      code\n    }\n  }\n"): (typeof documents)["\n  fragment Theme950Fields on Theme_950 {\n    light {\n      name\n      code\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -213,7 +158,7 @@ export function graphql(source: "\n  fragment IconsList on Icons_list {\n    _me
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  query getCurrentNavigation {\n    allNavigations {\n      edges {\n        node {\n          position\n          navigation_title\n          navigation_links {\n            link_name\n            link_href {\n              _linkType\n              __typename\n              ...LinkDocumentMeta\n            }\n          }\n          color {\n            ...Theme50Fields\n            ...Theme100Fields\n            ...Theme200Fields\n            ...Theme300Fields\n            ...Theme400Fields\n            ...Theme500Fields\n            ...Theme600Fields\n            ...Theme700Fields\n            ...Theme800Fields\n            ...Theme900Fields\n            ...Theme950Fields\n          }\n        }\n      }\n    }\n  }\n"): (typeof documents)["\n  query getCurrentNavigation {\n    allNavigations {\n      edges {\n        node {\n          position\n          navigation_title\n          navigation_links {\n            link_name\n            link_href {\n              _linkType\n              __typename\n              ...LinkDocumentMeta\n            }\n          }\n          color {\n            ...Theme50Fields\n            ...Theme100Fields\n            ...Theme200Fields\n            ...Theme300Fields\n            ...Theme400Fields\n            ...Theme500Fields\n            ...Theme600Fields\n            ...Theme700Fields\n            ...Theme800Fields\n            ...Theme900Fields\n            ...Theme950Fields\n          }\n        }\n      }\n    }\n  }\n"];
+export function graphql(source: "\n  query getCurrentNavigation {\n    allNavigations {\n      edges {\n        node {\n          position\n          navigation_title\n          navigation_links {\n            link_name\n            link_href {\n              _linkType\n              __typename\n              ...LinkDocumentMeta\n            }\n          }\n        }\n      }\n    }\n  }\n"): (typeof documents)["\n  query getCurrentNavigation {\n    allNavigations {\n      edges {\n        node {\n          position\n          navigation_title\n          navigation_links {\n            link_name\n            link_href {\n              _linkType\n              __typename\n              ...LinkDocumentMeta\n            }\n          }\n        }\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -229,7 +174,7 @@ export function graphql(source: "\n  query getAllProjectsMeta($getByID: [String!
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  query getCurrentLandingPage($slug: String!, $defaultLocale: String!) {\n    landing_page(uid: $slug, lang: $defaultLocale) {\n      slices {\n        ...HeroSliceField\n        ...CardSliceField\n      }\n    }\n  }\n"): (typeof documents)["\n  query getCurrentLandingPage($slug: String!, $defaultLocale: String!) {\n    landing_page(uid: $slug, lang: $defaultLocale) {\n      slices {\n        ...HeroSliceField\n        ...CardSliceField\n      }\n    }\n  }\n"];
+export function graphql(source: "\n  query getCurrentLandingPage($slug: String!, $defaultLocale: String!) {\n    landing_page(uid: $slug, lang: $defaultLocale) {\n      slices {\n        ...HeroSliceField\n        ...CardSliceField\n        ...ContentBlockSliceField\n      }\n    }\n  }\n"): (typeof documents)["\n  query getCurrentLandingPage($slug: String!, $defaultLocale: String!) {\n    landing_page(uid: $slug, lang: $defaultLocale) {\n      slices {\n        ...HeroSliceField\n        ...CardSliceField\n        ...ContentBlockSliceField\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

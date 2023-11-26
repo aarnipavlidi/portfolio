@@ -94,7 +94,7 @@ export const PROJECT_CONTENT_BLOCK_SLICE_PRIMARY = graphql(`
 
 export const PROJECT_CONTENT_BLOCK_SLICE_TEXT_ONLY = graphql(`
    fragment ProjectContentBlockSliceTextOnly on ProjectSlicesContent_block_sliceTextonly {
-    primary {
+    textOnly: primary {
       content
     }
    }

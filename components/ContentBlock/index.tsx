@@ -9,13 +9,13 @@ import Icons from '@/components/Icons';
 import IconsList from '@/components/IconsList';
 
 interface ContentBlockProps {
-  variant: 'primary';
+  variant: 'primary' | 'textOnly';
   title?: ContentBlockSliceSliceDefaultPrimary['title'];
   subtitle?: ContentBlockSliceSliceDefaultPrimary['subtitle'];
   content?: ContentBlockSliceSliceDefaultPrimary['content'];
-  hashtag: IconsListFragment | null;
-  stack: IconsListFragment | null;
-  images: ImageGalleryFragment | null;
+  hashtag?: IconsListFragment | null;
+  stack?: IconsListFragment | null;
+  images?: ImageGalleryFragment | null;
 };
 
 const ContentBlock: React.FC<ContentBlockProps> = (props) => {
@@ -51,6 +51,18 @@ const ContentBlock: React.FC<ContentBlockProps> = (props) => {
   return (
     <>
       <article className="text-neutral-900 dark:text-neutral-200 py-8">
+        {
+          props.variant === 'textOnly' && <div className="flex flex-col">
+            {
+              props.content && <Typography
+                content={<PrismicRichText field={props.content}/> }
+                tag="p"
+                size="lg"
+                className="font-pier-sans 2xl:text-xl"
+              />
+            }
+          </div>
+        }
         {
           props.variant === 'primary' && <div className="flex flex-col">
             <div className={upperBlockContainer}>
