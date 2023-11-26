@@ -18,8 +18,6 @@ interface ContentBlockProps {
   images?: ImageGalleryFragment | null;
 };
 
-// TODO DELETE LATER
-// SMALL TEST
 const ContentBlock: React.FC<ContentBlockProps> = (props) => {
 
   const validateContentBlockTitle = props.title && props.title
