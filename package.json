@@ -6,6 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "start-docker-dev": "./scripts/docker-development.sh",
+    "start-docker-prod": "./scripts/docker-production.sh",
     "lint": "next lint",
     "lint:fix": "npm run lint -- --fix",
     "prismic-types": "ts-node-script --skip-project scripts/codegen.ts",

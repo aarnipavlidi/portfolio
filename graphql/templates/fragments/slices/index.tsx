@@ -96,3 +96,46 @@ export const CARD_SLICE_FIELDS = graphql(`
     }
   }
 `);
+
+// CONTENT BLOCK SLICE
+export const CONTENT_BLOCK_SLICE_PRIMARY = graphql(`
+  fragment ContentBlockSlicePrimary on Landing_pageSlicesContent_block_sliceDefault {
+    primary {
+      title
+      subtitle
+      hashtag {
+        __typename
+        ...IconsList
+      }
+      stack {
+        __typename
+        ...IconsList
+      }
+      content
+      images {
+        __typename
+        ...ImageGallery
+      }
+    }
+   }
+`);
+
+export const CONTENT_BLOCK_SLICE_TEXT_ONLY = graphql(`
+   fragment ContentBlockSliceTextOnly on Landing_pageSlicesContent_block_sliceTextonly {
+    textOnly: primary {
+      content
+    }
+   }
+`);
+
+export const CONTENT_BLOCK_SLICE_FIELDS = graphql(`
+  fragment ContentBlockSliceField on Landing_pageSlicesContent_block_slice {
+    type
+    label
+    variation {
+      __typename
+      ...ContentBlockSlicePrimary
+      ...ContentBlockSliceTextOnly
+    }
+  }
+`);

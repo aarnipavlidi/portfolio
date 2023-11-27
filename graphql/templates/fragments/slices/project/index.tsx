@@ -92,6 +92,14 @@ export const PROJECT_CONTENT_BLOCK_SLICE_PRIMARY = graphql(`
    }
 `);
 
+export const PROJECT_CONTENT_BLOCK_SLICE_TEXT_ONLY = graphql(`
+   fragment ProjectContentBlockSliceTextOnly on ProjectSlicesContent_block_sliceTextonly {
+    textOnly: primary {
+      content
+    }
+   }
+`);
+
 export const PROJECT_CONTENT_BLOCK_SLICE_FIELDS = graphql(`
   fragment ProjectContentBlockSliceField on ProjectSlicesContent_block_slice {
     type
@@ -99,6 +107,7 @@ export const PROJECT_CONTENT_BLOCK_SLICE_FIELDS = graphql(`
     variation {
       __typename
       ...ProjectContentBlockSlicePrimary
+      ...ProjectContentBlockSliceTextOnly
     }
   }
 `);

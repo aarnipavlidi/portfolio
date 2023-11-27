@@ -2,10 +2,15 @@
   "possibleTypes": {
     "Landing_pageSlices": [
       "Landing_pageSlicesCard_slice",
+      "Landing_pageSlicesContent_block_slice",
       "Landing_pageSlicesHero_slice"
     ],
     "Landing_pageSlicesCard_sliceVariation": [
       "Landing_pageSlicesCard_sliceDefault"
+    ],
+    "Landing_pageSlicesContent_block_sliceVariation": [
+      "Landing_pageSlicesContent_block_sliceDefault",
+      "Landing_pageSlicesContent_block_sliceTextonly"
     ],
     "Landing_pageSlicesHero_sliceVariation": [
       "Landing_pageSlicesHero_sliceDefault",
@@ -18,7 +23,8 @@
       "ProjectSlicesStats_block_slice"
     ],
     "ProjectSlicesContent_block_sliceVariation": [
-      "ProjectSlicesContent_block_sliceDefault"
+      "ProjectSlicesContent_block_sliceDefault",
+      "ProjectSlicesContent_block_sliceTextonly"
     ],
     "ProjectSlicesHero_sliceVariation": [
       "ProjectSlicesHero_sliceDefault",
@@ -37,18 +43,7 @@
       "Image_mask",
       "Landing_page",
       "Navigation",
-      "Project",
-      "Theme_50",
-      "Theme_100",
-      "Theme_200",
-      "Theme_300",
-      "Theme_400",
-      "Theme_500",
-      "Theme_600",
-      "Theme_700",
-      "Theme_800",
-      "Theme_900",
-      "Theme_950"
+      "Project"
     ],
     "_Linkable": [
       "Button",
@@ -60,17 +55,6 @@
       "Landing_page",
       "Navigation",
       "Project",
-      "Theme_50",
-      "Theme_100",
-      "Theme_200",
-      "Theme_300",
-      "Theme_400",
-      "Theme_500",
-      "Theme_600",
-      "Theme_700",
-      "Theme_800",
-      "Theme_900",
-      "Theme_950",
       "_ExternalLink",
       "_FileLink",
       "_ImageLink"
