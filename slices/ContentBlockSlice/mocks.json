@@ -59,5 +59,28 @@
 			}
 		},
 		"items": []
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "textOnly",
+		"primary": {
+			"content": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Labore amet et minim magna voluptate non nisi excepteur reprehenderit dolor nostrud veniam. Sint ipsum exercitation consectetur enim ipsum ex fugiat dolor. Velit esse ipsum in do."
+						}
+					}
+				]
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
 	}
 ]

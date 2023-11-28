@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  next-app:
+    container_name: portfolio-development
+    build:
+      context: ../../
+      dockerfile: ./docker/development/Dockerfile
+
+    # Set envrionment variables based on the .env file
+    env_file:
+      - ../../.env.local
+    volumes:
+      - ../..:/app
+      - ../../public:/app/public
+    restart: always
+    ports:
+      - 3000:3000
+    networks:
+      - personal-portfolio
+
+  # Add more containers below (nginx, postgres, etc.)
+
+# Define a network, which allows containers to communicate
+# with each other, by using their container name as a hostname
+networks:
+  personal-portfolio:
+    external: true

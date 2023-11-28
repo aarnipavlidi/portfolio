@@ -48,6 +48,7 @@ export const GET_CURRENT_LANDING_PAGE = graphql(`
       slices {
         ...HeroSliceField
         ...CardSliceField
+        ...ContentBlockSliceField
       }
     }
   }

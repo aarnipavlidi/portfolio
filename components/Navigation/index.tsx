@@ -1,5 +1,4 @@
 /* eslint-disable no-underscore-dangle */
-import type { ChosenColorProps } from '@/types/prismic';
 import type { LayoutFetchProps } from '@/types/prismic';
 import { getFragmentData } from '@/types/prismic/graphql';
 import { Dispatch, SetStateAction } from 'react';
@@ -7,7 +6,6 @@ import Link from 'next/link';
 import { LINK_DOCUMENT_META } from '@/graphql/templates/fragments/documents';
 
 import classNames from 'classnames';
-import fallBackColors from '@/fallback/colors';
 import Icons from '@/components/Icons';
 import Typography from '@/components/Typography';
 
@@ -20,13 +18,10 @@ interface NavigationProps {
 const Navigation: React.FC<NavigationProps> = ({ navigation, mobileMenuScreen, setMobileMenuScreen }) => {
   const getNavigationData = navigation?.allNavigations.edges && navigation.allNavigations.edges[0] ? navigation.allNavigations?.edges[0].node : null;
 
-  const getFallBackLightColor = fallBackColors.component.navigation.element.default.light.name;
-  const getCurrentLightColor = ((getNavigationData?.color as ChosenColorProps)?.light?.slice(0, 1)[0].name) || getFallBackLightColor;
-
   const headerContainer = classNames({
     ['w-screen mx-auto px-4 md:container bg-inherit']: true,
-    [`text-${getCurrentLightColor} pb-4`]: !mobileMenuScreen,
-    [`bg-neutral-600 md:bg-inherit text-neutral-50 md:text-${getCurrentLightColor}`]: mobileMenuScreen,
+    'text-neutral-900 dark:text-neutral-200 pb-4': !mobileMenuScreen,
+    'bg-neutral-600 md:bg-inherit text-neutral-50': mobileMenuScreen,
   });
 
   const navContainer = classNames({
