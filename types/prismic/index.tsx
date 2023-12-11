@@ -1,3 +1,6 @@
+// Slice Machine Types
+import type { LandingPageDocument, ProjectDocument } from 'prismicio-types';
+
 // Slices
 import type {
   LandingPageSlicesCardSliceVariation,
@@ -10,7 +13,7 @@ import type {
 // Navigation
 import type { GetCurrentNavigationQuery, GetCurrentFooterQuery } from '@/types/prismic/graphql/graphql';
 // Landing Pages
-import { GetAllLandingPagesMetaQuery, GetAllLandingPagesMetaQueryVariables, GetCurrentLandingPageQuery, GetCurrentLandingPageQueryVariables, LandingPageSlicesHeroSliceDefault } from '@/types/prismic/graphql/graphql';
+import { GetCurrentLandingPageQuery, GetCurrentLandingPageQueryVariables, LandingPageSlicesHeroSliceDefault } from '@/types/prismic/graphql/graphql';
 // Project Pages
 import { GetCurrentProjectQuery, GetCurrentProjectQueryVariables } from '@/types/prismic/graphql/graphql';
 // Theme related
@@ -47,11 +50,6 @@ export type LayoutFetchProps = {
   footer: GetCurrentFooterQuery;
 }
 
-export type allLandingPagesMetaProps = {
-  query: GetAllLandingPagesMetaQuery;
-  variables: GetAllLandingPagesMetaQueryVariables;
-}
-
 export type landingPageProps = {
   query: GetCurrentLandingPageQuery;
   variables: GetCurrentLandingPageQueryVariables;
@@ -61,3 +59,35 @@ export type projectPageProps = {
   query: GetCurrentProjectQuery;
   variables: GetCurrentProjectQueryVariables;
 };
+
+interface PrismicPayloadReleasesProps {
+  id: string;
+  ref: string;
+  label: string;
+  scheduledAt?: number;
+  documents: string[];
+}
+
+// More information regarding payload can be found from
+// following link: https://prismic.io/docs/webhooks
+export interface PrismicPayloadProps {
+  type: 'api-update';
+  masterRef: string;
+  releases: {
+    [key in 'update' | 'deletion']: PrismicPayloadReleasesProps[];
+  };
+  masks: {};
+  tags: {};
+  experiments: {};
+  documents: string[];
+  domain: string;
+  apiUrl: string;
+  secret: null | string;
+};
+
+export type currentPageTypesForRevalidate = LandingPageDocument['type'] | ProjectDocument['type'];
+export interface getAllPagesMetaProps {
+  currentDocumentsID: string[] | null;
+  filterDocuments: currentPageTypesForRevalidate[];
+  latestReference?: string;
+}

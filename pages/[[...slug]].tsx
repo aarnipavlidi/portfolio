@@ -2,8 +2,8 @@
 import type { GetStaticProps } from 'next';
 import type { landingPageProps } from '@/types/prismic';
 import type { LandingPageSlices, LandingPage } from '@/types/prismic/graphql/graphql';
-import type { getAllPagesMetaProps } from '@/graphql/queries';
-import { getAllLandingPagesMeta, getCurrentLandingPage } from '@/graphql/queries';
+import type { getAllPagesMetaProps } from '@/types/prismic';
+import { getAllPagesMeta, getCurrentLandingPage } from '@/graphql/queries';
 import { SliceZone, SliceZoneLike } from '@prismicio/react';
 import * as prismicH from '@prismicio/helpers';
 import { prismicLinkResolver } from '@/utils/prismic';
@@ -53,10 +53,13 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 export const getStaticPaths = async () => {
   // When building app, will get all current landing pages from Prismic.
-  const getCurrentLandingPageID: getAllPagesMetaProps['currentID'] = null;
-  const getLandingPagesMeta = await getAllLandingPagesMeta({ currentID: getCurrentLandingPageID });
+  const getCurrentLandingPageID: getAllPagesMetaProps['currentDocumentsID'] = null;
+  const getLandingPagesMeta = await getAllPagesMeta({
+    currentDocumentsID: getCurrentLandingPageID,
+    filterDocuments: ['landing_page'],
+  });
 
-  const getCurrentPagesData = getLandingPagesMeta.data.allLanding_pages?.edges?.map((value) => value?.node._meta);
+  const getCurrentPagesData = getLandingPagesMeta.data._allDocuments?.edges?.map((document) => document?.node._meta);
 
   // TODO CHECK RIGHT TYPE FOR "getMeta" variable.
   const getEachLandingPageMeta = getCurrentPagesData?.map((getMeta) => prismicH.asLink(getMeta as any, prismicLinkResolver));
