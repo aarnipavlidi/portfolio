@@ -1,40 +1,14 @@
 import { graphql } from '@/types/prismic/graphql';
 
-export const GET_ALL_LANDING_PAGES_META = graphql(`
-  query getAllLandingPagesMeta($getByID: [String!]) {
-    allLanding_pages(id_in: $getByID) {
+export const GET_ALL_PAGES_META = graphql(`
+  query getAllPagesMeta($getCurrentDocumentsID: [String!], $filterDocuments: [String!]) {
+    _allDocuments(id_in: $getCurrentDocumentsID, type_in: $filterDocuments) {
       edges {
         node {
-          _linkType
           _meta {
             id
             uid
             type
-            tags
-            lang
-            firstPublicationDate
-            lastPublicationDate
-          }
-        }
-      }
-    }
-  }
-`);
-
-export const GET_ALL_PROJECTS_META = graphql(`
-  query getAllProjectsMeta($getByID: [String!]) {
-    allProjects(id_in: $getByID) {
-      edges {
-        node {
-          _linkType
-          _meta {
-            id
-            uid
-            type
-            tags
-            lang
-            firstPublicationDate
-            lastPublicationDate
           }
         }
       }
