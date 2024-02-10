@@ -1,5 +1,6 @@
 import type { AppProps } from 'next/app';
 import { Analytics } from '@vercel/analytics/react';
+import { AxiomWebVitals } from 'next-axiom';
 import { PrismicPreview } from '@prismicio/next';
 import { prismicRepositoryName } from '@/utils/prismic';
 
@@ -45,6 +46,7 @@ const App = ({ Component, pageProps }: CustomAppProps) => {
       <Layout fontVariable={`${fontPierSans.variable} ${caveatFont.variable}`}>
         <Component {...pageProps} />
         <Analytics />
+        <AxiomWebVitals />
       </Layout>
     </PrismicPreview>
   );

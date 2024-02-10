@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "node scripts/prebuild.ts",
     "build": "next build",
     "start": "next start",
     "start-docker-dev": "./scripts/docker-development.sh",
@@ -24,6 +25,7 @@
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
     "@vercel/analytics": "^1.0.2",
+    "@vercel/postgres": "^0.5.1",
     "apollo-link": "^1.2.14",
     "apollo-link-http": "^1.5.17",
     "classnames": "^2.3.2",
@@ -33,6 +35,7 @@
     "html-react-parser": "^4.2.2",
     "init": "^0.1.2",
     "next": "^13.4.12",
+    "next-axiom": "^1.1.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "swr": "^2.2.2",

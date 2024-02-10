@@ -1,10 +1,10 @@
 import type { GetStaticProps } from 'next';
-import type { projectPageProps } from '@/types/prismic';
-import type { ProjectSlices, Project } from '@/types/prismic/graphql/graphql';
-import type { getAllPagesMetaProps } from '@/types/prismic';
+import type { projectPageProps, getAllPagesMetaProps } from '@/types/prismic';
+import type { DocumentConnection, ProjectSlices, Project } from '@/types/prismic/graphql/graphql';
+import { log } from 'next-axiom';
+import { sql } from '@vercel/postgres';
+import { getAllCurrentProjectPagePaths, insertEmptyPathsTable, updateCurrentPathsTable, formatEachRowsPath, formatEachPagesMeta } from '@/utils/storage';
 import { getAllPagesMeta, getCurrentProject } from '@/graphql/queries';
-import * as prismicH from '@prismicio/helpers';
-import { prismicLinkResolver } from '@/utils/prismic';
 import { SliceZone, SliceZoneLike } from '@prismicio/react';
 import { components } from '@/slices/index';
 
@@ -57,13 +57,55 @@ export const getStaticPaths = async () => {
     filterDocuments: ['project'],
   });
 
-  const getCurrentProjectsMeta = getProjectsMeta.data._allDocuments?.edges?.map((document) => document?.node._meta);
-  const getEachProjectPath = getCurrentProjectsMeta?.map((getMeta) => prismicH.asLink(getMeta as any, prismicLinkResolver));
+  const getCurrentPagesMetaFromPrismic = getProjectsMeta.data._allDocuments.edges as DocumentConnection['edges'];
+  const formatCurrentProjectsMeta = formatEachPagesMeta({ getCurrentPagesMetaFromPrismic });
 
-  return {
-    paths: getEachProjectPath,
-    fallback: 'blocking',
-  };
+  const getFilteredProjectsPaths = formatCurrentProjectsMeta.filter(document => document);
+  const client = await sql.connect();
+
+  try {
+    await client.query('BEGIN');
+    const { rowCount: getCurrentProjectRowsAmount } = await client.query(getAllCurrentProjectPagePaths);
+
+    if (!getCurrentProjectRowsAmount) {
+      const { rows: getCurrentRowsFromDB } = await client.query(insertEmptyPathsTable, [JSON.stringify(getFilteredProjectsPaths)]);
+      await client.query('COMMIT');
+      log.info('Have successfully inserted "project" type slugs into empty database:', getCurrentRowsFromDB);
+
+      const getRowsPath = formatEachRowsPath({ getCurrentRowsFromDB });
+      client.release();
+
+      return {
+        paths: getRowsPath || [],
+        fallback: 'blocking',
+      };
+    }
+
+    const { rows: getCurrentProjectPageRows, rowCount } = await client.query(updateCurrentPathsTable, [JSON.stringify(getFilteredProjectsPaths), 'project']);
+
+    if (getCurrentProjectPageRows) {
+      await client.query('COMMIT');
+      log.info(`Have successfully retrieved total of ${rowCount} "project" type slugs. Database has currently following slugs:`, getCurrentProjectPageRows);
+    }
+
+    const getRowsPath = formatEachRowsPath({ getCurrentRowsFromDB: getCurrentProjectPageRows });
+    client.release();
+
+    return {
+      paths: getRowsPath || [],
+      fallback: 'blocking',
+    };
+  } catch (error) {
+    await client.query('ROLLBACK');
+    log.error('There was a problem during generation of static pages for "project" type. Error was following:', error as any);
+
+    client.release();
+
+    return {
+      paths: [],
+      fallback: 'blocking',
+    };
+  }
 };
 
 export default ProjectSlug;

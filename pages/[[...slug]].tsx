@@ -1,12 +1,13 @@
 /* eslint-disable no-underscore-dangle */
 import type { GetStaticProps } from 'next';
 import type { landingPageProps } from '@/types/prismic';
-import type { LandingPageSlices, LandingPage } from '@/types/prismic/graphql/graphql';
+import type { DocumentConnection, LandingPageSlices, LandingPage } from '@/types/prismic/graphql/graphql';
 import type { getAllPagesMetaProps } from '@/types/prismic';
+import { log } from 'next-axiom';
+import { sql } from '@vercel/postgres';
+import { getAllCurrentLandingPagePaths, insertEmptyPathsTable, formatEachRowsPath, formatEachPagesMeta, updateCurrentPathsTable } from '@/utils/storage';
 import { getAllPagesMeta, getCurrentLandingPage } from '@/graphql/queries';
 import { SliceZone, SliceZoneLike } from '@prismicio/react';
-import * as prismicH from '@prismicio/helpers';
-import { prismicLinkResolver } from '@/utils/prismic';
 import { components } from '@/slices/index';
 
 type LandingPageSliceZoneProps = SliceZoneLike<LandingPageSlices & { type: string }>;
@@ -52,22 +53,61 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 export const getStaticPaths = async () => {
-  // When building app, will get all current landing pages from Prismic.
   const getCurrentLandingPageID: getAllPagesMetaProps['currentDocumentsID'] = null;
   const getLandingPagesMeta = await getAllPagesMeta({
     currentDocumentsID: getCurrentLandingPageID,
     filterDocuments: ['landing_page'],
   });
 
-  const getCurrentPagesData = getLandingPagesMeta.data._allDocuments?.edges?.map((document) => document?.node._meta);
+  const getCurrentPagesMetaFromPrismic = getLandingPagesMeta.data._allDocuments.edges as DocumentConnection['edges'];
+  const formatCurrentLandingPagesMeta = formatEachPagesMeta({ getCurrentPagesMetaFromPrismic });
 
-  // TODO CHECK RIGHT TYPE FOR "getMeta" variable.
-  const getEachLandingPageMeta = getCurrentPagesData?.map((getMeta) => prismicH.asLink(getMeta as any, prismicLinkResolver));
+  const getFilteredLandingPagesPaths = formatCurrentLandingPagesMeta.filter(document => document);
+  const client = await sql.connect();
 
-  return {
-    paths: getEachLandingPageMeta,
-    fallback: 'blocking',
-  };
+  try {
+    await client.query('BEGIN');
+    const { rowCount: getCurrentLandingPageRowsAmount } = await client.query(getAllCurrentLandingPagePaths);
+
+    if (!getCurrentLandingPageRowsAmount) {
+      const { rows: getCurrentRowsFromDB } = await client.query(insertEmptyPathsTable, [JSON.stringify(getFilteredLandingPagesPaths)]);
+      await client.query('COMMIT');
+      log.info('Have successfully inserted "landing_page" type slugs into empty database:', getCurrentRowsFromDB);
+
+      const getRowsPath = formatEachRowsPath({ getCurrentRowsFromDB, catchAllSegments: true });
+      client.release();
+
+      return {
+        paths: getRowsPath || [],
+        fallback: 'blocking',
+      };
+    }
+
+    const { rows: getCurrentLandingPageRows, rowCount } = await client.query(updateCurrentPathsTable, [JSON.stringify(getFilteredLandingPagesPaths), 'landing_page']);
+
+    if (getCurrentLandingPageRows) {
+      await client.query('COMMIT');
+      log.info(`Have successfully retrieved total of ${rowCount} "landing_page" type slugs. Database has currently following slugs:`, getCurrentLandingPageRows);
+    }
+
+    const getRowsPath = formatEachRowsPath({ getCurrentRowsFromDB: getCurrentLandingPageRows, catchAllSegments: true });
+    client.release();
+
+    return {
+      paths: getRowsPath || [],
+      fallback: 'blocking',
+    };
+  } catch (error) {
+    await client.query('ROLLBACK');
+    log.error('There was a problem during generation of static pages for "landing_page" type. Error was following:', error as any);
+
+    client.release();
+
+    return {
+      paths: [],
+      fallback: 'blocking',
+    };
+  }
 };
 
 export default LandingPageSlug;

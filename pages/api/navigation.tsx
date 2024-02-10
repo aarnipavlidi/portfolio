@@ -4,7 +4,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { getCurrentNavigation, getCurrentFooter } from '@/graphql/queries/';
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse<LayoutFetchProps[] | (string | string[])>) {
+async function handler(req: NextApiRequest, res: NextApiResponse<LayoutFetchProps[] | (string | string[])>) {
   const [navigationResponse, footerResponse] = await Promise.all([
     getCurrentNavigation(),
     getCurrentFooter(),
@@ -53,3 +53,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     ]
   );
 };
+
+export default handler;

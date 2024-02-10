@@ -1,3 +1,5 @@
+const { withAxiom } = require('next-axiom');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -6,4 +8,4 @@ const nextConfig = {
   output: process.env.BUILD_STANDALONE === 'true' ? 'standalone' : undefined,
 };
 
-module.exports = nextConfig;
+module.exports = withAxiom(nextConfig);
