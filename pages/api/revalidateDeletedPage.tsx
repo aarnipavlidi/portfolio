@@ -11,10 +11,6 @@ interface NextApiResponseRevalidateProps {
   revalidated?: boolean;
 }
 
-// TODO DELETE LATER
-// Needs following testing more
-// 1) Testing how Prismic with Vercel db handles deleting one document
-// 2) Same thing as first one but testing with multiple documents.
 async function handler(req: NextApiRequest, res: NextApiResponse<NextApiResponseRevalidateProps>) {
 
   if (req.body.secret !== process.env.PRISMIC_WEBHOOK_TOKEN) {
@@ -62,8 +58,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse<NextApiResponse
   const client = await sql.connect();
 
   try {
-
-    const { rows: getSelectedPagesPaths, rowCount: getSelectedPagesPathsAmount } = await client.query(getCurrentPagePaths, getDeletedDocumentsID);
+    const { rows: getSelectedPagesPaths, rowCount: getSelectedPagesPathsAmount } = await client.query(getCurrentPagePaths, [getDeletedDocumentsID]);
 
     if (!getSelectedPagesPaths || !getSelectedPagesPathsAmount) {
       res.status(200).json({
@@ -84,7 +79,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse<NextApiResponse
     }));
 
     await client.query('BEGIN');
-    const { rows: getDeletedPagesPaths, rowCount: getDeletedPagesPathsAmount } = await client.query(deleteCurrentPagePaths, getDeletedDocumentsID);
+    const { rows: getDeletedPagesPaths, rowCount: getDeletedPagesPathsAmount } = await client.query(deleteCurrentPagePaths, [getDeletedDocumentsID]);
 
     if (getDeletedPagesPathsAmount !== getSelectedPagesPathsAmount) {
       throw new Error('There was a different amounts of rows between selected paths and paths for deletion. Cancelling revalidation and database changes!');

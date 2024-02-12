@@ -19,13 +19,13 @@ interface formatEachPagesMetaProps {
 
 export const getCurrentPagePaths = `
   SELECT destination FROM paths
-  WHERE id IN ($1)
+  WHERE id = ANY($1)
   AND (type = 'landing_page' OR type = 'project')
 `;
 
 export const deleteCurrentPagePaths = `
   DELETE FROM paths
-  WHERE id IN ($1)
+  WHERE id = ANY($1)
   AND (type = 'landing_page' OR type = 'project')
   RETURNING destination
 `;
