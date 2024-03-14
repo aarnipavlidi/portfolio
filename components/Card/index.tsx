@@ -106,10 +106,11 @@ const Card: React.FC<CardProps> = (props) => {
                 label={value.label}
                 href={getCardButtonHref}
               />
-              <CustomDivide
-                wrapperClass="pt-8 flex gap-2 justify-center"
-                className="w-6"
-              />
+              <div className='flex pt-8 justify-center'>
+                <CustomDivide
+                  variant='SquareDot'
+                />
+              </div>
             </Fragment>
           );
         })

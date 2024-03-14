@@ -62,7 +62,7 @@
 	},
 	{
 		"__TYPE__": "SharedSliceContent",
-		"variation": "textOnly",
+		"variation": "richText",
 		"primary": {
 			"content": {
 				"__TYPE__": "StructuredTextContent",
@@ -70,7 +70,57 @@
 					{
 						"type": "paragraph",
 						"content": {
-							"text": "Labore amet et minim magna voluptate non nisi excepteur reprehenderit dolor nostrud veniam. Sint ipsum exercitation consectetur enim ipsum ex fugiat dolor. Velit esse ipsum in do."
+							"text": "Aute amet do veniam nulla aliqua qui."
+						}
+					}
+				]
+			},
+			"header_icons": {
+				"__TYPE__": "FieldContent",
+				"value": "SquareTriangle",
+				"type": "Select"
+			},
+			"image": {
+				"origin": {
+					"id": "main",
+					"url": "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5",
+					"width": 5848,
+					"height": 3899
+				},
+				"url": "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5",
+				"width": 5848,
+				"height": 3899,
+				"edit": {
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					},
+					"background": "transparent"
+				},
+				"credits": null,
+				"alt": null,
+				"__TYPE__": "ImageContent",
+				"thumbnails": {}
+			},
+			"image_mask": {
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "DocumentLink",
+					"id": "mock_document_id"
+				}
+			},
+			"image_position": {
+				"__TYPE__": "BooleanContent",
+				"value": false
+			},
+			"header_title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading1",
+						"content": {
+							"text": "Lesson"
 						}
 					}
 				]

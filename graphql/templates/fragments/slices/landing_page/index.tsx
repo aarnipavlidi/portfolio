@@ -120,10 +120,18 @@ export const CONTENT_BLOCK_SLICE_PRIMARY = graphql(`
    }
 `);
 
-export const CONTENT_BLOCK_SLICE_TEXT_ONLY = graphql(`
-   fragment ContentBlockSliceTextOnly on Landing_pageSlicesContent_block_sliceTextonly {
-    textOnly: primary {
+export const CONTENT_BLOCK_SLICE_RICH_TEXT = graphql(`
+   fragment ContentBlockSliceRichText on Landing_pageSlicesContent_block_sliceRichtext {
+    RichText: primary {
+      header_icons
+      header_title
       content
+      image
+      image_position
+      image_mask {
+        __typename
+        ...ImageMask
+      }
     }
    }
 `);
@@ -135,7 +143,7 @@ export const CONTENT_BLOCK_SLICE_FIELDS = graphql(`
     variation {
       __typename
       ...ContentBlockSlicePrimary
-      ...ContentBlockSliceTextOnly
+      ...ContentBlockSliceRichText
     }
   }
 `);

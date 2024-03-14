@@ -2,12 +2,13 @@ import type { Content } from '@prismicio/client';
 import type { IconsListDocumentDataCollectionItem } from 'prismicio-types';
 import { SVGProps } from 'react';
 
+export type CustomDivideIconNameType = 'SquareDot' | 'SquareTriangle';
 type CustomIsometricIconNameType = 'SquareMetric';
-type CustomIconNameType = 'FooterBlock' | 'HamburgerMenu' | 'OverlayBlock' | 'PrimaryFormation' | 'SquareDot' | 'StackingBlock' | 'TerminalTag';
+type CustomIconNameType = 'FooterBlock' | 'HamburgerMenu' | 'OverlayBlock' | 'PrimaryFormation' | 'StackingBlock' | 'TerminalTag';
 type HeroIconNameType = 'bars-3' | 'x-mark';
 
 export interface CustomIconsProps extends SVGProps<SVGSVGElement> {
-  name: CustomIsometricIconNameType | CustomIconNameType | HeroIconNameType | Content.HeroiconDocumentData['name'] | IconsListDocumentDataCollectionItem['icon'];
+  name: CustomDivideIconNameType | CustomIsometricIconNameType | CustomIconNameType | HeroIconNameType | Content.HeroiconDocumentData['name'] | IconsListDocumentDataCollectionItem['icon'];
   variant?: Content.HeroiconDocumentData['variant'];
   color: 'current' | 'inherit';
   className?: string;

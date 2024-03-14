@@ -92,10 +92,18 @@ export const PROJECT_CONTENT_BLOCK_SLICE_PRIMARY = graphql(`
    }
 `);
 
-export const PROJECT_CONTENT_BLOCK_SLICE_TEXT_ONLY = graphql(`
-   fragment ProjectContentBlockSliceTextOnly on ProjectSlicesContent_block_sliceTextonly {
-    textOnly: primary {
+export const PROJECT_CONTENT_BLOCK_SLICE_RICH_TEXT = graphql(`
+   fragment ProjectContentBlockSliceRichText on ProjectSlicesContent_block_sliceRichtext {
+    RichText: primary {
+      header_icons
+      header_title
       content
+      image
+      image_position
+      image_mask {
+        __typename
+        ...ImageMask
+      }
     }
    }
 `);
@@ -107,7 +115,7 @@ export const PROJECT_CONTENT_BLOCK_SLICE_FIELDS = graphql(`
     variation {
       __typename
       ...ProjectContentBlockSlicePrimary
-      ...ProjectContentBlockSliceTextOnly
+      ...ProjectContentBlockSliceRichText
     }
   }
 `);

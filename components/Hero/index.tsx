@@ -115,14 +115,13 @@ const Hero: React.FC<HeroProps> = (props) => {
               </div>
             }
             <div className={heroImageContainer}>
-              <div className='flex grayscale'>
-                <Design
-                  content={props.image}
-                  mask={props.mask}
-                  className={props.variant === 'primary' ? 'rounded-3xl' : ''}
-                  params={fullWidthImageParams}
-                />
-              </div>
+              <Design
+                content={props.image}
+                mask={props.mask}
+                wrapperClass='flex grayscale'
+                className={props.variant === 'primary' ? 'rounded-3xl' : ''}
+                params={fullWidthImageParams}
+              />
               {
                 props.variant === 'fullWidth' && validateHeroTitle && <div className={heroFullWidthContainer}>
                   <div className="flex flex-col gap-2">

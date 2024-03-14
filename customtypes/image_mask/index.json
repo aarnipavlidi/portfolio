@@ -18,7 +18,7 @@
         "config": {
           "label": "variant",
           "placeholder": "Choose mask variant (default is \"avatar\")",
-          "options": ["avatar", "fullWidth"],
+          "options": ["avatar", "fullWidth", "avatarBlob"],
           "default_value": "avatar"
         }
       }

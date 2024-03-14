@@ -1,4 +1,5 @@
 import type { ContentBlockSliceSliceDefaultPrimary } from 'prismicio-types';
+import type { ContentBlockRichTextProps } from '@/components/ContentBlock/variant/RichText';
 import type { IconsListFragment, ImageGalleryFragment } from '@/types/prismic/graphql/graphql';
 import { PrismicRichText } from '@prismicio/react';
 import classNames from 'classnames';
@@ -7,9 +8,10 @@ import Typography from '@/components/Typography';
 import ImageGallery from '@/components/DesignGallery';
 import Icons from '@/components/Icons';
 import IconsList from '@/components/IconsList';
+import ContentBlockRichText from '@/components/ContentBlock/variant/RichText';
 
-interface ContentBlockProps {
-  variant: 'primary' | 'textOnly';
+export interface ContentBlockProps {
+  variant: 'primary';
   title?: ContentBlockSliceSliceDefaultPrimary['title'];
   subtitle?: ContentBlockSliceSliceDefaultPrimary['subtitle'];
   content?: ContentBlockSliceSliceDefaultPrimary['content'];
@@ -18,13 +20,13 @@ interface ContentBlockProps {
   images?: ImageGalleryFragment | null;
 };
 
-const ContentBlock: React.FC<ContentBlockProps> = (props) => {
+const ContentBlock: React.FC<ContentBlockProps | ContentBlockRichTextProps> = (props) => {
 
-  const validateContentBlockTitle = props.title && props.title
+  const validateContentBlockTitle = props.variant === 'primary' && props.title && props.title
     .map(value => value.text.length !== 0)
     .some(value => value !== false);
 
-  const validateContentBlockSubtitle = props.subtitle && props.subtitle
+  const validateContentBlockSubtitle = props.variant === 'primary' && props.subtitle && props.subtitle
     .map(value => value.type === 'paragraph' && value.text.length !== 0)
     .some(value => value !== false);
 
@@ -40,7 +42,7 @@ const ContentBlock: React.FC<ContentBlockProps> = (props) => {
   });
 
   const contentImageMainContainer = classNames({
-    'flex flex-col gap-y-8 xl:flex-row': props.images && props.images.gallery && props.images.gallery?.length > 0,
+    'flex flex-col gap-y-8 xl:flex-row': props.variant === 'primary' && props.images && props.images.gallery && props.images.gallery?.length > 0,
   });
 
   const contentBlockContainer = classNames({
@@ -50,18 +52,9 @@ const ContentBlock: React.FC<ContentBlockProps> = (props) => {
 
   return (
     <>
-      <article className="text-neutral-900 dark:text-neutral-200 py-8">
+      <article className={`text-neutral-900 dark:text-neutral-200 py-8 ${props.variant === 'RichText' ? 'relative overflow-hidden' : ''}`}>
         {
-          props.variant === 'textOnly' && <div className="flex flex-col">
-            {
-              props.content && <Typography
-                content={<PrismicRichText field={props.content}/> }
-                tag="p"
-                size="lg"
-                className="font-pier-sans 2xl:text-xl"
-              />
-            }
-          </div>
+          props.variant === 'RichText' && <ContentBlockRichText {...props} />
         }
         {
           props.variant === 'primary' && <div className="flex flex-col">

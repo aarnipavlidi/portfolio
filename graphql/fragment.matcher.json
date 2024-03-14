@@ -10,7 +10,7 @@
     ],
     "Landing_pageSlicesContent_block_sliceVariation": [
       "Landing_pageSlicesContent_block_sliceDefault",
-      "Landing_pageSlicesContent_block_sliceTextonly"
+      "Landing_pageSlicesContent_block_sliceRichtext"
     ],
     "Landing_pageSlicesHero_sliceVariation": [
       "Landing_pageSlicesHero_sliceDefault",
@@ -24,7 +24,7 @@
     ],
     "ProjectSlicesContent_block_sliceVariation": [
       "ProjectSlicesContent_block_sliceDefault",
-      "ProjectSlicesContent_block_sliceTextonly"
+      "ProjectSlicesContent_block_sliceRichtext"
     ],
     "ProjectSlicesHero_sliceVariation": [
       "ProjectSlicesHero_sliceDefault",

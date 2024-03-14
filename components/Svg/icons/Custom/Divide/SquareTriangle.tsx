@@ -1,6 +1,6 @@
 import { CustomIconsProps } from '@/types/icons';
 
-const SquareDot: React.FC<CustomIconsProps> = ({ variant = 'solid', color, className, ...props }) => {
+const SquareTriangle: React.FC<CustomIconsProps> = ({ color, className, ...props }) => {
   return (
     <svg
       id={props.name}
@@ -10,13 +10,13 @@ const SquareDot: React.FC<CustomIconsProps> = ({ variant = 'solid', color, class
       className={`${className} text-${color}`}
       {...props}
     >
-      {
-        variant === 'solid' && <>
-          <path d="M7 7h10v10H7V7Z" />
-        </>
-      }
+      <path
+        fillRule="evenodd"
+        d="M12 20H4V4h16v8h-8v8Zm12 4H0V0h24v24Z"
+        clipRule="evenodd"
+      />
     </svg>
   );
 };
 
-export default SquareDot;
+export default SquareTriangle;

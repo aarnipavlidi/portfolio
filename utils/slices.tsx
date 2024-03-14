@@ -3,13 +3,13 @@ import { getFragmentData } from '@/types/prismic/graphql';
 import {
   CARD_SLICE_PRIMARY,
   CONTENT_BLOCK_SLICE_PRIMARY,
-  CONTENT_BLOCK_SLICE_TEXT_ONLY,
+  CONTENT_BLOCK_SLICE_RICH_TEXT,
   HERO_SLICE_PRIMARY,
   HERO_SLICE_FULL_WIDTH,
-} from '@/graphql/templates/fragments/slices';
+} from '@/graphql/templates/fragments/slices/landing_page';
 import {
   PROJECT_CONTENT_BLOCK_SLICE_PRIMARY,
-  PROJECT_CONTENT_BLOCK_SLICE_TEXT_ONLY,
+  PROJECT_CONTENT_BLOCK_SLICE_RICH_TEXT,
   PROJECT_HERO_SLICE_PRIMARY,
   PROJECT_HERO_SLICE_FULL_WIDTH,
   PROJECT_HERO_SLICE_GO_BACK,
@@ -29,12 +29,12 @@ export const getContentBlockSliceFragment = (typename: SliceVariationTypenamesPr
   switch (typename) {
     case 'ProjectSlicesContent_block_sliceDefault':
       return getFragmentData(PROJECT_CONTENT_BLOCK_SLICE_PRIMARY, variation);
-    case 'ProjectSlicesContent_block_sliceTextonly':
-      return getFragmentData(PROJECT_CONTENT_BLOCK_SLICE_TEXT_ONLY, variation);
+    case 'ProjectSlicesContent_block_sliceRichtext':
+      return getFragmentData(PROJECT_CONTENT_BLOCK_SLICE_RICH_TEXT, variation);
     case 'Landing_pageSlicesContent_block_sliceDefault':
       return getFragmentData(CONTENT_BLOCK_SLICE_PRIMARY, variation);
-    case 'Landing_pageSlicesContent_block_sliceTextonly':
-      return getFragmentData(CONTENT_BLOCK_SLICE_TEXT_ONLY, variation);
+    case 'Landing_pageSlicesContent_block_sliceRichtext':
+      return getFragmentData(CONTENT_BLOCK_SLICE_RICH_TEXT, variation);
     default:
       return null;
   }

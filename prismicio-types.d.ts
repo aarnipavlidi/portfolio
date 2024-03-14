@@ -327,7 +327,7 @@ interface ImageMaskDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#select
    */
-  variant: prismic.SelectField<"avatar" | "fullWidth", "filled">;
+  variant: prismic.SelectField<"avatar" | "fullWidth" | "avatarBlob", "filled">;
 }
 
 /**
@@ -766,28 +766,80 @@ export type ContentBlockSliceSliceDefault = prismic.SharedSliceVariation<
 /**
  * Primary content in *ContentBlockSlice → Primary*
  */
-export interface ContentBlockSliceSliceTextOnlyPrimary {
+export interface ContentBlockSliceSliceRichTextPrimary {
+  /**
+   * Header Icons field in *ContentBlockSlice → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: By default "SquareTriangle" icons (4) in a row and top of the main content.
+   * - **Default Value**: SquareTriangle
+   * - **API ID Path**: content_block_slice.primary.header_icons
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  header_icons: prismic.SelectField<"SquareTriangle" | "SquareDot", "filled">;
+
+  /**
+   * Header Title field in *ContentBlockSlice → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: Enter content title for your header.
+   * - **API ID Path**: content_block_slice.primary.header_title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  header_title: prismic.TitleField;
+
   /**
    * Content field in *ContentBlockSlice → Primary*
    *
    * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
+   * - **Placeholder**: Enter your main content. Will be under header & shown either at left/right position.
    * - **API ID Path**: content_block_slice.primary.content
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   content: prismic.RichTextField;
+
+  /**
+   * Image field in *ContentBlockSlice → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_block_slice.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Image Position field in *ContentBlockSlice → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: true
+   * - **API ID Path**: content_block_slice.primary.image_position
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  image_position: prismic.BooleanField;
+
+  /**
+   * Image Mask field in *ContentBlockSlice → Primary*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_block_slice.primary.image_mask
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  image_mask: prismic.ContentRelationshipField<"image_mask">;
 }
 
 /**
- * Text Only variation for ContentBlockSlice Slice
+ * RichText variation for ContentBlockSlice Slice
  *
- * - **API ID**: `textOnly`
+ * - **API ID**: `richText`
  * - **Description**: Default
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type ContentBlockSliceSliceTextOnly = prismic.SharedSliceVariation<
-  "textOnly",
-  Simplify<ContentBlockSliceSliceTextOnlyPrimary>,
+export type ContentBlockSliceSliceRichText = prismic.SharedSliceVariation<
+  "richText",
+  Simplify<ContentBlockSliceSliceRichTextPrimary>,
   never
 >;
 
@@ -796,7 +848,7 @@ export type ContentBlockSliceSliceTextOnly = prismic.SharedSliceVariation<
  */
 type ContentBlockSliceSliceVariation =
   | ContentBlockSliceSliceDefault
-  | ContentBlockSliceSliceTextOnly;
+  | ContentBlockSliceSliceRichText;
 
 /**
  * ContentBlockSlice Shared Slice
@@ -1151,10 +1203,10 @@ declare module "@prismicio/client" {
       CardSliceSliceDefault,
       ContentBlockSliceSlice,
       ContentBlockSliceSliceDefaultPrimary,
-      ContentBlockSliceSliceTextOnlyPrimary,
+      ContentBlockSliceSliceRichTextPrimary,
       ContentBlockSliceSliceVariation,
       ContentBlockSliceSliceDefault,
-      ContentBlockSliceSliceTextOnly,
+      ContentBlockSliceSliceRichText,
       HeroSliceSlice,
       HeroSliceSliceDefaultPrimary,
       HeroSliceSliceFullWidthPrimary,

@@ -73,20 +73,71 @@
       "items": {}
     },
     {
-      "id": "textOnly",
-      "name": "Text Only",
+      "id": "richText",
+      "name": "RichText",
       "docURL": "...",
       "version": "initial",
       "description": "Default",
       "imageUrl": "",
       "primary": {
+        "header_icons": {
+          "type": "Select",
+          "config": {
+            "label": "Header Icons",
+            "placeholder": "By default \"SquareTriangle\" icons (4) in a row and top of the main content.",
+            "options": [
+              "SquareTriangle",
+              "SquareDot"
+            ],
+            "default_value": "SquareTriangle"
+          }
+        },
+        "header_title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Header Title",
+            "placeholder": "Enter content title for your header.",
+            "allowTargetBlank": false,
+            "single": "heading1,heading2,heading3"
+          }
+        },
         "content": {
           "type": "StructuredText",
           "config": {
             "label": "Content",
-            "placeholder": "",
+            "placeholder": "Enter your main content. Will be under header & shown either at left/right position.",
             "allowTargetBlank": true,
-            "multi": "paragraph,heading1,heading2,heading3,heading4,heading5,heading6,strong,em"
+            "multi": "paragraph,strong,em"
+          }
+        },
+        "image": {
+          "type": "Image",
+          "config": {
+            "label": "Image",
+            "constraint": {
+              "width": null,
+              "height": null
+            },
+            "thumbnails": []
+          }
+        },
+        "image_position": {
+          "type": "Boolean",
+          "config": {
+            "label": "Image Position",
+            "placeholder_false": "Left",
+            "placeholder_true": "Right",
+            "default_value": true
+          }
+        },
+        "image_mask": {
+          "type": "Link",
+          "config": {
+            "label": "Image Mask",
+            "select": "document",
+            "customtypes": [
+              "image_mask"
+            ]
           }
         }
       },

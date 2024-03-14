@@ -1,5 +1,9 @@
 import { CustomIconsProps, CustomIconsArrayProps } from '@/types/icons';
 
+// Custom Divide Icons
+import SquareDot from '@/components/Svg/icons/Custom/Divide/SquareDot';
+import SquareTriangle from '@/components/Svg/icons/Custom/Divide/SquareTriangle';
+
 // Custom Isometric Icons
 import SquareMetric from '@/components/Svg/icons/Custom/Isometric/SquareMetric';
 
@@ -8,7 +12,6 @@ import FooterBlock from '@/components/Svg/icons/Custom/FooterBlock';
 import HamburgerMenu from '@/components/Svg/icons/Custom/HamburgerMenu';
 import OverlayBlock from '@/components/Svg/icons/Custom/OverlayBlock';
 import PrimaryFormation from '@/components/Svg/icons/Custom/PrimaryFormation';
-import SquareDot from '@/components/Svg/icons/Custom/SquareDot';
 import StackingBlock from '@/components/Svg/icons/Custom/StackingBlock';
 import TerminalTag from '@/components/Svg/icons/Custom/TerminalTag';
 
@@ -34,6 +37,7 @@ import XMark from '@/components/Svg/icons/Hero/x-mark';
 const Icons: React.FC<CustomIconsProps> = ({ name, variant = 'solid', ...props }) => {
 
   const IconsArray: CustomIconsArrayProps = {
+    'SquareTriangle': SquareTriangle,
     'SquareMetric': SquareMetric,
     'graphql': GraphQL,
     'tailwindcss': Tailwindcss,

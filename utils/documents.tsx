@@ -6,6 +6,8 @@ import type {
   ProjectHeroSlicePrimaryFragment,
   ContentBlockSlicePrimaryFragment,
   ProjectContentBlockSlicePrimaryFragment,
+  ContentBlockSliceRichTextFragment,
+  ProjectContentBlockSliceRichTextFragment,
 } from '@/types/prismic/graphql/graphql';
 import { getFragmentData } from '@/types/prismic/graphql';
 import { BUTTON, HERO_ICON, ICONS_LIST, IMAGE_GALLERY, IMAGE_MASK } from '@/graphql/templates/fragments/themes';
@@ -22,7 +24,7 @@ interface DocumentImageGalleryProps {
 }
 
 interface DocumentVariationProps {
-  ImageMask: HeroSlicePrimaryFragment | HeroSliceFullWidthFragment | ProjectHeroSlicePrimaryFragment | ProjectHeroSliceFullWidthFragment | ProjectHeroSliceGoBackFragment
+  ImageMask: HeroSlicePrimaryFragment | HeroSliceFullWidthFragment | ProjectHeroSlicePrimaryFragment | ProjectHeroSliceFullWidthFragment | ProjectHeroSliceGoBackFragment | ContentBlockSliceRichTextFragment | ProjectContentBlockSliceRichTextFragment;
   HeroIcon: HeroSlicePrimaryFragment | ProjectHeroSlicePrimaryFragment;
   Button: HeroSlicePrimaryFragment | ProjectHeroSlicePrimaryFragment;
   Href: HeroSlicePrimaryFragment | ProjectHeroSlicePrimaryFragment;
@@ -52,6 +54,14 @@ export const getImageMaskFragment = (variation: DocumentVariationProps['ImageMas
       return getGoBackImageMask?.__typename === 'Image_mask'
         ? getFragmentData(IMAGE_MASK, getGoBackImageMask)
         : null;
+    case 'Landing_pageSlicesContent_block_sliceRichtext':
+    case 'ProjectSlicesContent_block_sliceRichtext':
+      const getRichTextImageMask = variation.RichText?.image_mask;
+
+      return getRichTextImageMask?.__typename === 'Image_mask'
+        ? getFragmentData(IMAGE_MASK, getRichTextImageMask)
+        : null;
+
     default:
       return null;
   }

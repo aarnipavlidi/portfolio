@@ -1,6 +1,7 @@
 import type { ContentBlockSliceProps } from '.';
+import type { ContentBlockRichTextProps } from '@/components/ContentBlock/variant/RichText';
 import { getContentBlockSliceFragment } from '@/utils/slices';
-import { getIconsListFragment, getImageGalleryFragment } from '@/utils/documents';
+import { getIconsListFragment, getImageGalleryFragment, getImageMaskFragment } from '@/utils/documents';
 import ContentBlock from '@/components/ContentBlock';
 
 const ContentBlockSlice = ({ slice }: ContentBlockSliceProps): JSX.Element => {
@@ -22,6 +23,10 @@ const ContentBlockSlice = ({ slice }: ContentBlockSliceProps): JSX.Element => {
     ? getImageGalleryFragment('images', getCurrentVariant)
     : null;
 
+  const getCurrentImageMask = getCurrentVariant && (getCurrentVariant.__typename === 'Landing_pageSlicesContent_block_sliceRichtext' || getCurrentVariant.__typename === 'ProjectSlicesContent_block_sliceRichtext')
+    ? getImageMaskFragment(getCurrentVariant)
+    : null;
+
   return (
     <>
       {
@@ -36,9 +41,14 @@ const ContentBlockSlice = ({ slice }: ContentBlockSliceProps): JSX.Element => {
         />
       }
       {
-        getCurrentVariant && (getCurrentVariant.__typename === 'ProjectSlicesContent_block_sliceTextonly' || getCurrentVariant.__typename === 'Landing_pageSlicesContent_block_sliceTextonly') && <ContentBlock
-          variant='textOnly'
-          content={getCurrentVariant.textOnly?.content}
+        getCurrentVariant && (getCurrentVariant.__typename === 'ProjectSlicesContent_block_sliceRichtext' || getCurrentVariant.__typename === 'Landing_pageSlicesContent_block_sliceRichtext') && <ContentBlock
+          variant='RichText'
+          headerIcons={getCurrentVariant.RichText?.header_icons as ContentBlockRichTextProps['headerIcons']}
+          headerTitle={getCurrentVariant.RichText?.header_title}
+          content={getCurrentVariant.RichText?.content}
+          image={getCurrentVariant.RichText?.image}
+          imagePosition={getCurrentVariant.RichText?.image_position}
+          imageMask={getCurrentImageMask}
         />
       }
     </>

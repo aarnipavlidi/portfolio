@@ -31,12 +31,11 @@ const CardItem: React.FC<CardItemProps> = (props) => {
     <>
       {
         props.card_image && <div className="pt-8 flex flex-col md:flex-row md:gap-8 xl:gap-24">
-          <div className="shrink-0 flex justify-center items-center grayscale hover:grayscale-0 transition-all ease-in-out duration-700">
-            <Design
-              content={props.card_image}
-              className="border-8 border-neutral-500 border-double shadow shadow-neutral-900/50"
-            />
-          </div>
+          <Design
+            content={props.card_image}
+            className="border-8 border-neutral-500 border-double shadow shadow-neutral-900/50"
+            wrapperClass='shrink-0 flex justify-center items-center grayscale hover:grayscale-0 transition-all ease-in-out duration-700'
+          />
           {
             (props.name || props.description) && <div className="pt-8 md:pt-0 flex flex-1 flex-col justify-between">
               <div className="max-w-prose">

@@ -18,9 +18,10 @@ interface DesignProps extends DesignPrismicProps {
   position?: 'static' | 'fixed' | 'absolute' | 'relative' | 'sticky';
   wrapperClass?: string;
   className?: string;
+  responsive?: boolean;
 }
 
-const Design: React.FC<DesignProps> = ({ variant = 'prismic', ...props }) => {
+const Design: React.FC<DesignProps> = ({ variant = 'prismic', responsive = false, ...props }) => {
   const wrapperContainer = classNames({
     [`${props.wrapperClass}`]: props.wrapperClass,
     [`${props.position}`]: props.position,
@@ -37,23 +38,31 @@ const Design: React.FC<DesignProps> = ({ variant = 'prismic', ...props }) => {
 
   return (
     <>
-      <picture className={wrapperContainer} style={props.mask ? maskContainer : undefined}>
-        {
-          variant === 'prismic' && props.content && props.content.url && <PrismicNextImage
-            field={props.content}
-            className={imageContainer}
-            imgixParams={props.params}
-            sizes="100vw"
-          />
-        }
-        {
-          props.mask && <Masks
-            id={generateRandomID}
-            uid={props.mask._meta.uid}
-            variant={props.mask.variant}
-          />
-        }
-      </picture>
+      <div className={wrapperContainer}>
+        <picture style={props.mask ? maskContainer : undefined}>
+          {
+            variant === 'prismic' && props.content && props.content.url && <PrismicNextImage
+              field={props.content}
+              className={imageContainer}
+              imgixParams={props.params}
+              sizes="100vw"
+              style={
+                responsive ? {
+                  width: '100%',
+                  height: 'auto',
+                } : {}
+              }
+            />
+          }
+          {
+            props.mask && <Masks
+              id={generateRandomID}
+              uid={props.mask._meta.uid}
+              variant={props.mask.variant}
+            />
+          }
+        </picture>
+      </div>
     </>
   );
 };
