@@ -97,6 +97,40 @@ export const CARD_SLICE_FIELDS = graphql(`
   }
 `);
 
+// LIST BLOCK SLICE
+export const LIST_BLOCK_SLICE_PRIMARY = graphql(`
+  fragment ListBlockSlicePrimary on Landing_pageSlicesList_block_sliceDefault {
+    primary {
+      rounded_background
+      header_position
+      header_title
+      title_icon {
+        __typename
+        ...HeroIcon
+      }
+    }
+    items {
+      title
+      label_stack {
+        __typename
+        ...IconsList
+      }
+      experience
+    }
+  }
+`);
+
+export const LIST_BLOCK_SLICE_FIELDS = graphql(`
+  fragment ListBlockSliceField on Landing_pageSlicesList_block_slice {
+    type
+    label
+    variation {
+      __typename
+      ...ListBlockSlicePrimary
+    }
+  }
+`);
+
 // CONTENT BLOCK SLICE
 export const CONTENT_BLOCK_SLICE_PRIMARY = graphql(`
   fragment ContentBlockSlicePrimary on Landing_pageSlicesContent_block_sliceDefault {

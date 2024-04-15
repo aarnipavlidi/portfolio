@@ -69,6 +69,40 @@ export const PROJECT_HERO_SLICE_FIELDS = graphql(`
   }
 `);
 
+// LIST BLOCK SLICE
+export const PROJECT_LIST_BLOCK_SLICE_PRIMARY = graphql(`
+  fragment ProjectListBlockSlicePrimary on ProjectSlicesList_block_sliceDefault {
+    primary {
+      rounded_background
+      header_position
+      header_title
+      title_icon {
+        __typename
+        ...HeroIcon
+      }
+    }
+    items {
+      title
+      label_stack {
+        __typename
+        ...IconsList
+      }
+      experience
+    }
+  }
+`);
+
+export const PROJECT_LIST_BLOCK_SLICE_FIELDS = graphql(`
+  fragment ProjectListBlockSliceField on ProjectSlicesList_block_slice {
+    type
+    label
+    variation {
+      __typename
+      ...ProjectListBlockSlicePrimary
+    }
+  }
+`);
+
 // CONTENT BLOCK SLICE
 export const PROJECT_CONTENT_BLOCK_SLICE_PRIMARY = graphql(`
   fragment ProjectContentBlockSlicePrimary on ProjectSlicesContent_block_sliceDefault {

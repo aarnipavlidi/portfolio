@@ -12,6 +12,8 @@ import FooterBlock from '@/components/Svg/icons/Custom/FooterBlock';
 import HamburgerMenu from '@/components/Svg/icons/Custom/HamburgerMenu';
 import OverlayBlock from '@/components/Svg/icons/Custom/OverlayBlock';
 import PrimaryFormation from '@/components/Svg/icons/Custom/PrimaryFormation';
+import SquareOutline from '@/components/Svg/icons/Custom/SquareOutline';
+import SquareOutlineDot from '@/components/Svg/icons/Custom/SquareOutlineDot';
 import StackingBlock from '@/components/Svg/icons/Custom/StackingBlock';
 import TerminalTag from '@/components/Svg/icons/Custom/TerminalTag';
 
@@ -27,6 +29,7 @@ import React from '@/components/Svg/icons/Custom/Stack/React';
 import Tailwindcss from '@/components/Svg/icons/Custom/Stack/Tailwindcss';
 
 // Hero Icons
+import ArrowDownRight from '@/components/Svg/icons/Hero/arrow-down-right';
 import ArrowSmallDown from '@/components/Svg/icons/Hero/arrow-small-down';
 import ArrowSmallRight from '@/components/Svg/icons/Hero/arrow-small-right';
 import ArrowSmallUp from '@/components/Svg/icons/Hero/arrow-small-up';
@@ -50,9 +53,12 @@ const Icons: React.FC<CustomIconsProps> = ({ name, variant = 'solid', ...props }
     'HamburgerMenu': HamburgerMenu,
     'OverlayBlock': OverlayBlock,
     'PrimaryFormation': PrimaryFormation,
+    'SquareOutline': SquareOutline,
+    'SquareOutlineDot': SquareOutlineDot,
     'SquareDot': SquareDot,
     'StackingBlock': StackingBlock,
     'TerminalTag': TerminalTag,
+    'arrow-down-right': ArrowDownRight,
     'arrow-small-down': ArrowSmallDown,
     'arrow-small-right': ArrowSmallRight,
     'arrow-small-up': ArrowSmallUp,

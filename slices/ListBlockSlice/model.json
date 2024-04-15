@@ -1,0 +1,95 @@
+{
+  "id": "list_block_slice",
+  "type": "SharedSlice",
+  "name": "ListBlockSlice",
+  "description": "ListBlockSlice",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "rounded_background": {
+          "type": "Boolean",
+          "config": {
+            "label": "Rounded Background",
+            "placeholder_false": "Don't show background",
+            "placeholder_true": "Show background",
+            "default_value": true
+          }
+        },
+        "header_position": {
+          "type": "Select",
+          "config": {
+            "label": "Header Position",
+            "placeholder": "",
+            "options": [
+              "left",
+              "right"
+            ],
+            "default_value": "left"
+          }
+        },
+        "header_title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Header Title",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "single": "heading1,heading2,heading3"
+          }
+        },
+        "title_icon": {
+          "type": "Link",
+          "config": {
+            "label": "Title Icon",
+            "select": "document",
+            "customtypes": [
+              "heroicon"
+            ]
+          }
+        }
+      },
+      "items": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Title",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "single": "paragraph"
+          }
+        },
+        "label_stack": {
+          "type": "Link",
+          "config": {
+            "label": "Label Stack",
+            "select": "document",
+            "customtypes": [
+              "icons_list"
+            ]
+          }
+        },
+        "experience": {
+          "type": "Select",
+          "config": {
+            "label": "Experience",
+            "placeholder": "",
+            "options": [
+              "0",
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ],
+            "default_value": "0"
+          }
+        }
+      }
+    }
+  ]
+}

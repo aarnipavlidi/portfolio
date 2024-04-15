@@ -156,7 +156,8 @@ interface HeroiconDocumentData {
     | "arrow-small-down"
     | "arrow-small-up"
     | "arrow-small-right"
-    | "arrow-up-right",
+    | "arrow-up-right"
+    | "arrow-down-right",
     "filled"
   >;
 }
@@ -347,6 +348,7 @@ export type ImageMaskDocument<Lang extends string = string> =
   >;
 
 type LandingPageDocumentDataSlicesSlice =
+  | ListBlockSliceSlice
   | ContentBlockSliceSlice
   | HeroSliceSlice
   | CardSliceSlice;
@@ -466,6 +468,7 @@ export type NavigationDocument<Lang extends string = string> =
   >;
 
 type ProjectDocumentDataSlicesSlice =
+  | ListBlockSliceSlice
   | ContentBlockSliceSlice
   | HeroSliceSlice
   | StatsBlockSliceSlice;
@@ -1087,6 +1090,119 @@ export type HeroSliceSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Primary content in *ListBlockSlice → Primary*
+ */
+export interface ListBlockSliceSliceDefaultPrimary {
+  /**
+   * Rounded Background field in *ListBlockSlice → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: true
+   * - **API ID Path**: list_block_slice.primary.rounded_background
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  rounded_background: prismic.BooleanField;
+
+  /**
+   * Header Position field in *ListBlockSlice → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: left
+   * - **API ID Path**: list_block_slice.primary.header_position
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  header_position: prismic.SelectField<"left" | "right", "filled">;
+
+  /**
+   * Header Title field in *ListBlockSlice → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: list_block_slice.primary.header_title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  header_title: prismic.TitleField;
+
+  /**
+   * Title Icon field in *ListBlockSlice → Primary*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: list_block_slice.primary.title_icon
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  title_icon: prismic.ContentRelationshipField<"heroicon">;
+}
+
+/**
+ * Primary content in *ListBlockSlice → Items*
+ */
+export interface ListBlockSliceSliceDefaultItem {
+  /**
+   * Title field in *ListBlockSlice → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: list_block_slice.items[].title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * Label Stack field in *ListBlockSlice → Items*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: list_block_slice.items[].label_stack
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  label_stack: prismic.ContentRelationshipField<"icons_list">;
+
+  /**
+   * Experience field in *ListBlockSlice → Items*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: 0
+   * - **API ID Path**: list_block_slice.items[].experience
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  experience: prismic.SelectField<"0" | "1" | "2" | "3" | "4" | "5", "filled">;
+}
+
+/**
+ * Default variation for ListBlockSlice Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ListBlockSliceSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ListBlockSliceSliceDefaultPrimary>,
+  Simplify<ListBlockSliceSliceDefaultItem>
+>;
+
+/**
+ * Slice variation for *ListBlockSlice*
+ */
+type ListBlockSliceSliceVariation = ListBlockSliceSliceDefault;
+
+/**
+ * ListBlockSlice Shared Slice
+ *
+ * - **API ID**: `list_block_slice`
+ * - **Description**: ListBlockSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ListBlockSliceSlice = prismic.SharedSlice<
+  "list_block_slice",
+  ListBlockSliceSliceVariation
+>;
+
+/**
  * Primary content in *StatsBlockSlice → Items*
  */
 export interface StatsBlockSliceSliceDefaultItem {
@@ -1215,6 +1331,11 @@ declare module "@prismicio/client" {
       HeroSliceSliceDefault,
       HeroSliceSliceFullWidth,
       HeroSliceSliceGoBack,
+      ListBlockSliceSlice,
+      ListBlockSliceSliceDefaultPrimary,
+      ListBlockSliceSliceDefaultItem,
+      ListBlockSliceSliceVariation,
+      ListBlockSliceSliceDefault,
       StatsBlockSliceSlice,
       StatsBlockSliceSliceDefaultItem,
       StatsBlockSliceSliceVariation,

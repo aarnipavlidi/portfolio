@@ -3,7 +3,8 @@
     "Landing_pageSlices": [
       "Landing_pageSlicesCard_slice",
       "Landing_pageSlicesContent_block_slice",
-      "Landing_pageSlicesHero_slice"
+      "Landing_pageSlicesHero_slice",
+      "Landing_pageSlicesList_block_slice"
     ],
     "Landing_pageSlicesCard_sliceVariation": [
       "Landing_pageSlicesCard_sliceDefault"
@@ -17,9 +18,13 @@
       "Landing_pageSlicesHero_sliceFullwidth",
       "Landing_pageSlicesHero_sliceGoback"
     ],
+    "Landing_pageSlicesList_block_sliceVariation": [
+      "Landing_pageSlicesList_block_sliceDefault"
+    ],
     "ProjectSlices": [
       "ProjectSlicesContent_block_slice",
       "ProjectSlicesHero_slice",
+      "ProjectSlicesList_block_slice",
       "ProjectSlicesStats_block_slice"
     ],
     "ProjectSlicesContent_block_sliceVariation": [
@@ -30,6 +35,9 @@
       "ProjectSlicesHero_sliceDefault",
       "ProjectSlicesHero_sliceFullwidth",
       "ProjectSlicesHero_sliceGoback"
+    ],
+    "ProjectSlicesList_block_sliceVariation": [
+      "ProjectSlicesList_block_sliceDefault"
     ],
     "ProjectSlicesStats_block_sliceVariation": [
       "ProjectSlicesStats_block_sliceDefault"

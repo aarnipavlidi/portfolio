@@ -9,6 +9,8 @@ import type {
   LandingPageSlicesHeroSliceVariation,
   ProjectSlicesHeroSliceVariation,
   ProjectSlicesStatsBlockSliceVariation,
+  LandingPageSlicesListBlockSliceVariation,
+  ProjectSlicesListBlockSliceVariation,
 } from '@/types/prismic/graphql/graphql';
 // Navigation
 import type { GetCurrentNavigationQuery, GetCurrentFooterQuery } from '@/types/prismic/graphql/graphql';
@@ -23,6 +25,7 @@ export interface SliceVariationTypenamesProps {
   CardSlice: (LandingPageSlicesCardSliceVariation)['__typename']
   ContentBlockSlice: (LandingPageSlicesContentBlockSliceVariation | ProjectSlicesContentBlockSliceVariation)['__typename'];
   HeroSlice: (LandingPageSlicesHeroSliceVariation | ProjectSlicesHeroSliceVariation);
+  ListBlockSlice: (LandingPageSlicesListBlockSliceVariation | ProjectSlicesListBlockSliceVariation)['__typename'];
   StatsBlockSlice: (ProjectSlicesStatsBlockSliceVariation)['__typename'];
 }
 

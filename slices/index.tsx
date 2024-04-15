@@ -5,6 +5,7 @@ export const components = {
   hero_slice: dynamic(() => import('./HeroSlice/slice')),
   card_slice: dynamic(() => import('./CardSlice')),
   content_block_slice: dynamic(() => import('./ContentBlockSlice')),
+  list_block_slice: dynamic(() => import('./ListBlockSlice')),
   stats_block_slice: dynamic(() => import('./StatsBlockSlice/slice')),
   // Add more slices here as needed
 };

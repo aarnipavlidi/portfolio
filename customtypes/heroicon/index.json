@@ -31,7 +31,8 @@
             "arrow-small-down",
             "arrow-small-up",
             "arrow-small-right",
-            "arrow-up-right"
+            "arrow-up-right",
+            "arrow-down-right"
           ],
           "default_value": "arrow-small-down"
         }

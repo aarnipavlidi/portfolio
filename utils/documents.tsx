@@ -8,6 +8,8 @@ import type {
   ProjectContentBlockSlicePrimaryFragment,
   ContentBlockSliceRichTextFragment,
   ProjectContentBlockSliceRichTextFragment,
+  ListBlockSlicePrimaryFragment,
+  ProjectListBlockSlicePrimaryFragment,
 } from '@/types/prismic/graphql/graphql';
 import { getFragmentData } from '@/types/prismic/graphql';
 import { BUTTON, HERO_ICON, ICONS_LIST, IMAGE_GALLERY, IMAGE_MASK } from '@/graphql/templates/fragments/themes';
@@ -25,7 +27,7 @@ interface DocumentImageGalleryProps {
 
 interface DocumentVariationProps {
   ImageMask: HeroSlicePrimaryFragment | HeroSliceFullWidthFragment | ProjectHeroSlicePrimaryFragment | ProjectHeroSliceFullWidthFragment | ProjectHeroSliceGoBackFragment | ContentBlockSliceRichTextFragment | ProjectContentBlockSliceRichTextFragment;
-  HeroIcon: HeroSlicePrimaryFragment | ProjectHeroSlicePrimaryFragment;
+  HeroIcon: HeroSlicePrimaryFragment | ProjectHeroSlicePrimaryFragment | ListBlockSlicePrimaryFragment | ProjectListBlockSlicePrimaryFragment;
   Button: HeroSlicePrimaryFragment | ProjectHeroSlicePrimaryFragment;
   Href: HeroSlicePrimaryFragment | ProjectHeroSlicePrimaryFragment;
   IconsList: DocumentIconsListProps;
@@ -75,6 +77,14 @@ export const getHeroIconFragment = (variation: DocumentVariationProps['HeroIcon'
 
       return getPrimaryHeroIcon?.__typename === 'Heroicon'
         ? getFragmentData(HERO_ICON, getPrimaryHeroIcon)
+        : null;
+
+    case 'Landing_pageSlicesList_block_sliceDefault':
+    case 'ProjectSlicesList_block_sliceDefault':
+      const getTitleHeroIcon = variation.primary?.title_icon;
+
+      return getTitleHeroIcon?.__typename === 'Heroicon'
+        ? getFragmentData(HERO_ICON, getTitleHeroIcon)
         : null;
     default:
       return null;

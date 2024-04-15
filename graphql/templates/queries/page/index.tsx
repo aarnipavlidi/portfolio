@@ -20,9 +20,10 @@ export const GET_CURRENT_LANDING_PAGE = graphql(`
   query getCurrentLandingPage($slug: String!, $defaultLocale: String!) {
     landing_page(uid: $slug, lang: $defaultLocale) {
       slices {
+        ...ContentBlockSliceField
+        ...ListBlockSliceField
         ...HeroSliceField
         ...CardSliceField
-        ...ContentBlockSliceField
       }
     }
   }
@@ -32,8 +33,9 @@ export const GET_CURRENT_PROJECT = graphql(`
   query getCurrentProject($slug: String!, $defaultLocale: String!) {
     project(uid: $slug, lang: $defaultLocale) {
       slices {
-        ...ProjectHeroSliceField
         ...ProjectContentBlockSliceField
+        ...ProjectListBlockSliceField
+        ...ProjectHeroSliceField
         ...ProjectStatsBlockSliceField
       }
     }

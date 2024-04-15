@@ -4,7 +4,7 @@ import { SVGProps } from 'react';
 
 export type CustomDivideIconNameType = 'SquareDot' | 'SquareTriangle';
 type CustomIsometricIconNameType = 'SquareMetric';
-type CustomIconNameType = 'FooterBlock' | 'HamburgerMenu' | 'OverlayBlock' | 'PrimaryFormation' | 'StackingBlock' | 'TerminalTag';
+type CustomIconNameType = 'FooterBlock' | 'HamburgerMenu' | 'OverlayBlock' | 'PrimaryFormation' | 'SquareOutline' | 'SquareOutlineDot' | 'StackingBlock' | 'TerminalTag';
 type HeroIconNameType = 'bars-3' | 'x-mark';
 
 export interface CustomIconsProps extends SVGProps<SVGSVGElement> {
