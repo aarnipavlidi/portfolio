@@ -7,6 +7,7 @@ import {
   HERO_SLICE_PRIMARY,
   HERO_SLICE_FULL_WIDTH,
   LIST_BLOCK_SLICE_PRIMARY,
+  LIST_BLOCK_SLICE_EXTENDED,
 } from '@/graphql/templates/fragments/slices/landing_page';
 import {
   PROJECT_CONTENT_BLOCK_SLICE_PRIMARY,
@@ -16,6 +17,7 @@ import {
   PROJECT_HERO_SLICE_GO_BACK,
   PROJECT_STATS_BLOCK_SLICE_PRIMARY,
   PROJECT_LIST_BLOCK_SLICE_PRIMARY,
+  PROJECT_LIST_BLOCK_SLICE_EXTENDED,
 } from '@/graphql/templates/fragments/slices/project';
 
 export const getCardBlockSliceFragment = (typename: SliceVariationTypenamesProps['CardSlice'], variation: any) => {
@@ -63,8 +65,12 @@ export const getListBlocksSliceFragment = (typename: SliceVariationTypenamesProp
   switch (typename) {
     case 'Landing_pageSlicesList_block_sliceDefault':
       return getFragmentData(LIST_BLOCK_SLICE_PRIMARY, variation);
+    case 'Landing_pageSlicesList_block_sliceExtended':
+      return getFragmentData(LIST_BLOCK_SLICE_EXTENDED, variation);
     case 'ProjectSlicesList_block_sliceDefault':
       return getFragmentData(PROJECT_LIST_BLOCK_SLICE_PRIMARY, variation);
+    case 'ProjectSlicesList_block_sliceExtended':
+      return getFragmentData(PROJECT_LIST_BLOCK_SLICE_EXTENDED, variation);
     default:
       return null;
   }

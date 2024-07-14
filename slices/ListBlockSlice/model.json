@@ -90,6 +90,96 @@
           }
         }
       }
+    },
+    {
+      "id": "extended",
+      "name": "Extended",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "header_position": {
+          "type": "Select",
+          "config": {
+            "label": "Header Position",
+            "placeholder": "",
+            "options": [
+              "left",
+              "right"
+            ],
+            "default_value": "left"
+          }
+        },
+        "header_title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Header Title",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "single": "heading1,heading2,heading3"
+          }
+        },
+        "title_icon": {
+          "type": "Link",
+          "config": {
+            "label": "Title Icon",
+            "select": "document",
+            "customtypes": [
+              "heroicon"
+            ]
+          }
+        }
+      },
+      "items": {
+        "primary_title": {
+          "type": "Text",
+          "config": {
+            "label": "Primary Title",
+            "placeholder": ""
+          }
+        },
+        "primary_subtitle": {
+          "type": "Text",
+          "config": {
+            "label": "Primary Subtitle",
+            "placeholder": "For example \"Jan. 2022 - May 2024\" as subtitle."
+          }
+        },
+        "secondary_title": {
+          "type": "Text",
+          "config": {
+            "label": "Secondary Title",
+            "placeholder": ""
+          }
+        },
+        "secondary_subtitle": {
+          "type": "Text",
+          "config": {
+            "label": "Secondary Subtitle",
+            "placeholder": "For Example \"Helsinki, Finland\" as subtitle."
+          }
+        },
+        "label_stack": {
+          "type": "Link",
+          "config": {
+            "label": "Label Stack",
+            "select": "document",
+            "customtypes": [
+              "icons_list"
+            ]
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Description",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph"
+          }
+        }
+      }
     }
   ]
 }

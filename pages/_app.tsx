@@ -3,7 +3,6 @@ import { Analytics } from '@vercel/analytics/react';
 import { AxiomWebVitals } from 'next-axiom';
 import { PrismicPreview } from '@prismicio/next';
 import { prismicRepositoryName } from '@/utils/prismic';
-
 import Layout from '@/components/Layout';
 
 import '../styles/globals.css';

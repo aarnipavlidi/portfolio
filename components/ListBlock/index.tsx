@@ -1,16 +1,18 @@
 import type { ListBlockSliceSliceDefaultPrimary, HeroiconDocumentData, ListBlockSliceSliceDefaultItem } from 'prismicio-types';
+import type { ListBlockExtendedProps } from '@/components/ListBlock/variant/Extended';
 import type { HeroIconFragment, ListBlockSlicePrimaryFragment } from '@/types/prismic/graphql/graphql';
 import { getFragmentData } from '@/types/prismic/graphql';
-import { Fragment } from 'react';
+import { Fragment, useId } from 'react';
 import { PrismicRichText } from '@prismicio/react';
 
 import RoundedBackground from '@/components/RoundedBackground';
 import Typography from '@/components/Typography';
 import ListBlockItem from '@/components/ListBlock/item';
 import Icons from '@/components/Icons';
+import ListBlockExtended from '@/components/ListBlock/variant/Extended';
 import { ICONS_LIST } from '@/graphql/templates/fragments/themes';
 
-interface ListBlockProps {
+export interface ListBlockProps {
   variant:'primary';
   roundedBackground?: ListBlockSliceSliceDefaultPrimary['rounded_background'] | null;
   headerPosition: ListBlockSliceSliceDefaultPrimary['header_position'];
@@ -19,7 +21,9 @@ interface ListBlockProps {
   items: ListBlockSlicePrimaryFragment['items'];
 };
 
-const ListBlock: React.FC<ListBlockProps> = (props) => {
+const ListBlock: React.FC<ListBlockProps | ListBlockExtendedProps> = (props) => {
+  const generateUniqueID = useId();
+
   return (
     <>
       <section className='text-neutral-900 dark:text-neutral-200 py-8'>
@@ -52,13 +56,16 @@ const ListBlock: React.FC<ListBlockProps> = (props) => {
                     props.items.map((value, index) => {
                       // TODO DELETE LATER
                       // Refactor later into utils icons list fragment?
-                      const getCurrentLabelStack = value.label_stack && value.label_stack.__typename === 'Icons_list'
-                        ? getFragmentData(ICONS_LIST, value.label_stack)
+                      const getCurrentUniqueID = `${generateUniqueID}-${index}`;
+                      const getCurrentLabelStack = value.labelStack && value.labelStack.__typename === 'Icons_list'
+                        ? getFragmentData(ICONS_LIST, value.labelStack)
                         : null;
 
                       return (
-                        <Fragment key={`ListBlockItem-${index}`}>
+                        <Fragment key={getCurrentUniqueID}>
                           <ListBlockItem
+                            id={getCurrentUniqueID}
+                            variant={props.variant}
                             title={value.title}
                             labelStack={getCurrentLabelStack}
                             experience={value.experience as ListBlockSliceSliceDefaultItem['experience']}
@@ -71,6 +78,15 @@ const ListBlock: React.FC<ListBlockProps> = (props) => {
               </RoundedBackground>
             }
           </div>
+        }
+        {
+          props.variant === 'Extended' && <ListBlockExtended
+            variant={props.variant}
+            headerPosition={props.headerPosition}
+            headerTitle={props.headerTitle}
+            titleIcon={props.titleIcon as any}
+            items={props.items}
+          />
         }
       </section>
     </>

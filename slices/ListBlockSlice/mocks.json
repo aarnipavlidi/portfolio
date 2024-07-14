@@ -70,5 +70,97 @@
 				]
 			}
 		]
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "extended",
+		"primary": {
+			"header_position": {
+				"__TYPE__": "FieldContent",
+				"value": "left",
+				"type": "Select"
+			},
+			"header_title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading1",
+						"content": {
+							"text": "Feature"
+						}
+					}
+				]
+			},
+			"title_icon": {
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "DocumentLink",
+					"id": "mock_document_id"
+				}
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": [
+					[
+						"label_stack",
+						{
+							"__TYPE__": "LinkContent",
+							"value": {
+								"__TYPE__": "DocumentLink",
+								"id": "mock_document_id"
+							}
+						}
+					],
+					[
+						"description",
+						{
+							"__TYPE__": "StructuredTextContent",
+							"value": [
+								{
+									"type": "paragraph",
+									"content": {
+										"text": "Qui nostrud ex labore incididunt eiusmod deserunt officia dolor magna do dolor ad eiusmod. Cupidatat officia ex nulla sit est dolor esse anim in ea incididunt consequat proident. Commodo esse in aliqua ea nostrud quis ex mollit adipisicing."
+									}
+								}
+							]
+						}
+					],
+					[
+						"primary_title",
+						{
+							"__TYPE__": "FieldContent",
+							"value": "cattle",
+							"type": "Text"
+						}
+					],
+					[
+						"primary_subtitle",
+						{
+							"__TYPE__": "FieldContent",
+							"value": "fear",
+							"type": "Text"
+						}
+					],
+					[
+						"secondary_title",
+						{
+							"__TYPE__": "FieldContent",
+							"value": "discover",
+							"type": "Text"
+						}
+					],
+					[
+						"secondary_subtitle",
+						{
+							"__TYPE__": "FieldContent",
+							"value": "nearly",
+							"type": "Text"
+						}
+					]
+				]
+			}
+		]
 	}
 ]

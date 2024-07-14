@@ -111,11 +111,35 @@ export const LIST_BLOCK_SLICE_PRIMARY = graphql(`
     }
     items {
       title
-      label_stack {
+      labelStack: label_stack {
         __typename
         ...IconsList
       }
       experience
+    }
+  }
+`);
+
+export const LIST_BLOCK_SLICE_EXTENDED = graphql(`
+  fragment ListBlockSliceExtended on Landing_pageSlicesList_block_sliceExtended {
+    Extended: primary {
+      header_position
+      header_title
+      title_icon {
+        __typename
+        ...HeroIcon
+      }
+    }
+    items {
+      primaryTitle: primary_title
+      primarySubtitle: primary_subtitle
+      secondaryTitle: secondary_title
+      secondarySubtitle: secondary_subtitle
+      labelStack: label_stack {
+        __typename
+        ...IconsList
+      }
+      description
     }
   }
 `);
@@ -127,6 +151,7 @@ export const LIST_BLOCK_SLICE_FIELDS = graphql(`
     variation {
       __typename
       ...ListBlockSlicePrimary
+      ...ListBlockSliceExtended
     }
   }
 `);

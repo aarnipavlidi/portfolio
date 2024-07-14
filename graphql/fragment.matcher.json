@@ -19,7 +19,8 @@
       "Landing_pageSlicesHero_sliceGoback"
     ],
     "Landing_pageSlicesList_block_sliceVariation": [
-      "Landing_pageSlicesList_block_sliceDefault"
+      "Landing_pageSlicesList_block_sliceDefault",
+      "Landing_pageSlicesList_block_sliceExtended"
     ],
     "ProjectSlices": [
       "ProjectSlicesContent_block_slice",
@@ -37,7 +38,8 @@
       "ProjectSlicesHero_sliceGoback"
     ],
     "ProjectSlicesList_block_sliceVariation": [
-      "ProjectSlicesList_block_sliceDefault"
+      "ProjectSlicesList_block_sliceDefault",
+      "ProjectSlicesList_block_sliceExtended"
     ],
     "ProjectSlicesStats_block_sliceVariation": [
       "ProjectSlicesStats_block_sliceDefault"

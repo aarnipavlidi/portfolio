@@ -4,6 +4,7 @@
     "paths": {
       "@/components/*": ["components/*"],
       "@/graphql/*": ["graphql/*"],
+      "@/providers/*": ["providers/*"],
       "@/fallback/*": ["fallback/*"],
       "@/scripts/*": ["scripts/*"],
       "@/slices/*": ["slices/*"],
@@ -11,7 +12,6 @@
       "@/types/*": ["types/*"],
       "@/utils/*": ["utils/*"],
     },
-    "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,

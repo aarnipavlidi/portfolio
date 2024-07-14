@@ -1186,9 +1186,125 @@ export type ListBlockSliceSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *ListBlockSlice → Primary*
+ */
+export interface ListBlockSliceSliceExtendedPrimary {
+  /**
+   * Header Position field in *ListBlockSlice → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: left
+   * - **API ID Path**: list_block_slice.primary.header_position
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  header_position: prismic.SelectField<"left" | "right", "filled">;
+
+  /**
+   * Header Title field in *ListBlockSlice → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: list_block_slice.primary.header_title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  header_title: prismic.TitleField;
+
+  /**
+   * Title Icon field in *ListBlockSlice → Primary*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: list_block_slice.primary.title_icon
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  title_icon: prismic.ContentRelationshipField<"heroicon">;
+}
+
+/**
+ * Primary content in *ListBlockSlice → Items*
+ */
+export interface ListBlockSliceSliceExtendedItem {
+  /**
+   * Primary Title field in *ListBlockSlice → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: list_block_slice.items[].primary_title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  primary_title: prismic.KeyTextField;
+
+  /**
+   * Primary Subtitle field in *ListBlockSlice → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: For example "Jan. 2022 - May 2024" as subtitle.
+   * - **API ID Path**: list_block_slice.items[].primary_subtitle
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  primary_subtitle: prismic.KeyTextField;
+
+  /**
+   * Secondary Title field in *ListBlockSlice → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: list_block_slice.items[].secondary_title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  secondary_title: prismic.KeyTextField;
+
+  /**
+   * Secondary Subtitle field in *ListBlockSlice → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: For Example "Helsinki, Finland" as subtitle.
+   * - **API ID Path**: list_block_slice.items[].secondary_subtitle
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  secondary_subtitle: prismic.KeyTextField;
+
+  /**
+   * Label Stack field in *ListBlockSlice → Items*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: list_block_slice.items[].label_stack
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  label_stack: prismic.ContentRelationshipField<"icons_list">;
+
+  /**
+   * Description field in *ListBlockSlice → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: list_block_slice.items[].description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+}
+
+/**
+ * Extended variation for ListBlockSlice Slice
+ *
+ * - **API ID**: `extended`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ListBlockSliceSliceExtended = prismic.SharedSliceVariation<
+  "extended",
+  Simplify<ListBlockSliceSliceExtendedPrimary>,
+  Simplify<ListBlockSliceSliceExtendedItem>
+>;
+
+/**
  * Slice variation for *ListBlockSlice*
  */
-type ListBlockSliceSliceVariation = ListBlockSliceSliceDefault;
+type ListBlockSliceSliceVariation =
+  | ListBlockSliceSliceDefault
+  | ListBlockSliceSliceExtended;
 
 /**
  * ListBlockSlice Shared Slice
@@ -1334,8 +1450,11 @@ declare module "@prismicio/client" {
       ListBlockSliceSlice,
       ListBlockSliceSliceDefaultPrimary,
       ListBlockSliceSliceDefaultItem,
+      ListBlockSliceSliceExtendedPrimary,
+      ListBlockSliceSliceExtendedItem,
       ListBlockSliceSliceVariation,
       ListBlockSliceSliceDefault,
+      ListBlockSliceSliceExtended,
       StatsBlockSliceSlice,
       StatsBlockSliceSliceDefaultItem,
       StatsBlockSliceSliceVariation,

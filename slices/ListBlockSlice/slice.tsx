@@ -1,4 +1,4 @@
-import type { ListBlockSliceSliceDefaultPrimary } from 'prismicio-types';
+import type { ListBlockSliceSliceDefaultPrimary, ListBlockSliceSliceExtendedPrimary } from 'prismicio-types';
 import type { ListBlockSliceProps } from '.';
 import { getListBlocksSliceFragment } from '@/utils/slices';
 import { getHeroIconFragment } from '@/utils/documents';
@@ -13,7 +13,10 @@ const ListBlockSlice = ({ slice }: ListBlockSliceProps): JSX.Element => {
     ? getListBlocksSliceFragment(getSliceData.variation.__typename, getSliceData.variation)
     : null;
 
-  const getTitleIcon = getCurrentVariant && (getCurrentVariant.__typename === 'Landing_pageSlicesList_block_sliceDefault' || getCurrentVariant.__typename === 'ProjectSlicesList_block_sliceDefault')
+  const titleIconLandingPageVariants = getCurrentVariant?.__typename === 'Landing_pageSlicesList_block_sliceDefault' || getCurrentVariant?.__typename === 'Landing_pageSlicesList_block_sliceExtended';
+  const titleIconProjectPageVariants = getCurrentVariant?.__typename === 'ProjectSlicesList_block_sliceDefault' || getCurrentVariant?.__typename === 'ProjectSlicesList_block_sliceExtended';
+
+  const getTitleIcon = getCurrentVariant && (titleIconLandingPageVariants || titleIconProjectPageVariants)
     ? getHeroIconFragment(getCurrentVariant)
     : null;
 
@@ -25,6 +28,15 @@ const ListBlockSlice = ({ slice }: ListBlockSliceProps): JSX.Element => {
           roundedBackground={getCurrentVariant.primary?.rounded_background}
           headerPosition={getCurrentVariant.primary?.header_position as ListBlockSliceSliceDefaultPrimary['header_position']}
           headerTitle={getCurrentVariant.primary?.header_title}
+          titleIcon={getTitleIcon}
+          items={getCurrentVariant.items}
+        />
+      }
+      {
+        getCurrentVariant && (getCurrentVariant.__typename === 'Landing_pageSlicesList_block_sliceExtended') && <ListBlock
+          variant='Extended'
+          headerPosition={getCurrentVariant.Extended?.header_position as ListBlockSliceSliceExtendedPrimary['header_position']}
+          headerTitle={getCurrentVariant.Extended?.header_title}
           titleIcon={getTitleIcon}
           items={getCurrentVariant.items}
         />
