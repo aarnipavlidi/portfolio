@@ -2,17 +2,39 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/components/*": ["components/*"],
-      "@/graphql/*": ["graphql/*"],
-      "@/providers/*": ["providers/*"],
-      "@/fallback/*": ["fallback/*"],
-      "@/scripts/*": ["scripts/*"],
-      "@/slices/*": ["slices/*"],
-      "@/styles/*": ["styles/*"],
-      "@/types/*": ["types/*"],
-      "@/utils/*": ["utils/*"],
+      "@/components/*": [
+        "components/*"
+      ],
+      "@/graphql/*": [
+        "graphql/*"
+      ],
+      "@/providers/*": [
+        "providers/*"
+      ],
+      "@/fallback/*": [
+        "fallback/*"
+      ],
+      "@/scripts/*": [
+        "scripts/*"
+      ],
+      "@/slices/*": [
+        "slices/*"
+      ],
+      "@/styles/*": [
+        "styles/*"
+      ],
+      "@/types/*": [
+        "types/*"
+      ],
+      "@/utils/*": [
+        "utils/*"
+      ]
     },
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -24,8 +46,21 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "./.slicemachine/prismicio.d.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "./.slicemachine/prismicio.d.ts",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
