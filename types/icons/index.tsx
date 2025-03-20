@@ -1,5 +1,6 @@
 import type { Content } from '@prismicio/client';
 import type { IconsListDocumentDataCollectionItem } from 'prismicio-types';
+import type { Icon as HygraphIcons } from '@/types/hygraph/graphql';
 import { SVGProps } from 'react';
 
 export type CustomDivideIconNameType = 'SquareDot' | 'SquareTriangle';
@@ -8,7 +9,7 @@ type CustomIconNameType = 'FooterBlock' | 'HamburgerMenu' | 'OverlayBlock' | 'Pr
 type HeroIconNameType = 'bars-3' | 'x-mark';
 
 export interface CustomIconsProps extends SVGProps<SVGSVGElement> {
-  name: CustomDivideIconNameType | CustomIsometricIconNameType | CustomIconNameType | HeroIconNameType | Content.HeroiconDocumentData['name'] | IconsListDocumentDataCollectionItem['icon'];
+  name: HygraphIcons | CustomDivideIconNameType | CustomIsometricIconNameType | CustomIconNameType | HeroIconNameType | Content.HeroiconDocumentData['name'] | IconsListDocumentDataCollectionItem['icon'];
   variant?: Content.HeroiconDocumentData['variant'];
   color: 'current' | 'inherit';
   className?: string;

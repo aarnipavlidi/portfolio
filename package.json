@@ -12,6 +12,7 @@
     "lint": "next lint",
     "lint:fix": "npm run lint -- --fix",
     "prismic-types": "ts-node-script --skip-project scripts/codegen.ts",
+    "hygraph-types": "ts-node-script --skip-project scripts/codegenNEW.ts",
     "slicemachine": "start-slicemachine"
   },
   "dependencies": {
@@ -45,6 +46,7 @@
     "@graphql-codegen/fragment-matcher": "^5.0.2",
     "@prismicio/types": "^0.2.9",
     "@slicemachine/adapter-next": "^0.3.42",
+    "@tailwindcss/typography": "^0.5.15",
     "@types/node-fetch": "^2.6.11",
     "autoprefixer": "^10.4.19",
     "dotenv": "^16.4.5",

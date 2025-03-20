@@ -1,4 +1,4 @@
-import type { LayoutFetchProps } from '@/types/prismic';
+import type { GetNavigationQuery } from '@/types/hygraph/graphql';
 import useSWR, { Fetcher } from 'swr';
 import { useState } from 'react';
 
@@ -13,7 +13,7 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = (props) => {
   const [mobileMenuScreen, setMobileMenuScreen] = useState<boolean>(false);
 
-  const fetchData: Fetcher<LayoutFetchProps[], string> = async (url) => {
+  const fetchData: Fetcher<GetNavigationQuery, string> = async (url) => {
     const response = await fetch(url);
 
     if (!response.ok) {
@@ -39,8 +39,7 @@ const Layout: React.FC<LayoutProps> = (props) => {
     );
   }
 
-  const getNavigationData = data && data[0].navigation;
-  const getFooterData = data && data[0].footer;
+  const getNavigationData = data && data.navigations;
 
   return (
     <div className={`${props.fontVariable} flex flex-col min-h-screen`}>
@@ -54,7 +53,7 @@ const Layout: React.FC<LayoutProps> = (props) => {
       </main>
       <NavigationFooter
         navigation={getNavigationData}
-        content={getFooterData}
+        // content={getFooterData}
         mobileMenuScreen={mobileMenuScreen}
       />
     </div>

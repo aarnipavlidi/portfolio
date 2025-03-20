@@ -1,22 +1,19 @@
-/* eslint-disable no-underscore-dangle */
-import type { LayoutFetchProps } from '@/types/prismic';
-import { getFragmentData } from '@/types/prismic/graphql';
+import type { GetNavigationQuery } from '@/types/hygraph/graphql';
 import { Dispatch, SetStateAction } from 'react';
 import Link from 'next/link';
-import { LINK_DOCUMENT_META } from '@/graphql/templates/fragments/documents';
 
 import classNames from 'classnames';
 import Icons from '@/components/Icons';
 import Typography from '@/components/Typography';
 
 interface NavigationProps {
-  navigation?: LayoutFetchProps['navigation'];
+  navigation?: GetNavigationQuery['navigations'];
   mobileMenuScreen: boolean;
   setMobileMenuScreen: Dispatch<SetStateAction<boolean>>;
 }
 
 const Navigation: React.FC<NavigationProps> = ({ navigation, mobileMenuScreen, setMobileMenuScreen }) => {
-  const getNavigationData = navigation?.allNavigations.edges && navigation.allNavigations.edges[0] ? navigation.allNavigations?.edges[0].node : null;
+  const getNavigationData = navigation && navigation[0] ? navigation[0] : null;
 
   const headerContainer = classNames({
     ['w-screen mx-auto px-4 md:container bg-inherit']: true,
@@ -39,7 +36,7 @@ const Navigation: React.FC<NavigationProps> = ({ navigation, mobileMenuScreen, s
     <header className={headerContainer}>
       <nav className={navContainer}>
         {
-          getNavigationData && getNavigationData?.navigation_title && <>
+          getNavigationData?.navigationTitle && <>
             <div className="flex md:grow-0 flex-row py-4 items-center">
               <div className="flex grow md:grow-0 flex-row">
                 <Icons
@@ -48,7 +45,7 @@ const Navigation: React.FC<NavigationProps> = ({ navigation, mobileMenuScreen, s
                   color="current"
                 />
                 <Typography
-                  content={getNavigationData.navigation_title}
+                  content={getNavigationData.navigationTitle}
                   tag="h2"
                   size="3xl"
                   className="px-2 font-caveat 2xl:text-4xl"
@@ -75,22 +72,15 @@ const Navigation: React.FC<NavigationProps> = ({ navigation, mobileMenuScreen, s
         }
         <div className={navLinksContainer}>
           {
-            getNavigationData?.navigation_links && getNavigationData.navigation_links.length > 0 && getNavigationData.navigation_links.map((link, index) => {
-
-              const getLinkHrefFragment = link.link_href && link.link_href.__typename === 'Landing_page'
-                ? getFragmentData(LINK_DOCUMENT_META, link.link_href)
-                : null;
-
-              const getCurrentLinkPath = getLinkHrefFragment && getLinkHrefFragment?._meta.uid === 'home'
-                ? ''
-                : getLinkHrefFragment?._meta.uid;
+            getNavigationData?.navigationLinks && getNavigationData.navigationLinks.map((link, index) => {
+              const getCurrentLinkPath = link.destination === '/home'
+                ? '/'
+                : link.destination;
 
               return (
-                <div key={`${link.link_name}-${index}`} className="uppercase md:normal-case">
-                  <Link legacyBehavior={true} href={`/${getCurrentLinkPath}`}>
-                    <a className='font-pier-sans font-normal text-lg 2xl:text-xl'>{link.link_name}</a>
-                  </Link>
-                </div>
+                <Link key={`${link.slug}-${index}`} legacyBehavior={true} href={getCurrentLinkPath}>
+                  <a className='font-pier-sans uppercase font-normal text-lg md:normal-case 2xl:text-xl'>{link.title}</a>
+                </Link>
               );
             })
           }

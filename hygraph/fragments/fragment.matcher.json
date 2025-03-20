@@ -1,0 +1,32 @@
+{
+  "possibleTypes": {
+    "Entity": [
+      "Asset",
+      "LandingPage",
+      "NameIcon",
+      "Navigation",
+      "ScheduledOperation",
+      "ScheduledRelease",
+      "User"
+    ],
+    "NameIconParent": [
+      "Navigation"
+    ],
+    "Node": [
+      "Asset",
+      "LandingPage",
+      "Navigation",
+      "ScheduledOperation",
+      "ScheduledRelease",
+      "User"
+    ],
+    "ScheduledOperationAffectedDocument": [
+      "Asset",
+      "LandingPage",
+      "Navigation"
+    ],
+    "navigationNavigationLinks": [
+      "LandingPage"
+    ]
+  }
+}
