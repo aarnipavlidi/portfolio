@@ -325,104 +325,139 @@ If a shadcn component needs styling changes or new behaviour → **create a Cust
 
 #### Tier 2 — Custom Components (`app/components/Custom*/` and `app/components/Section/`)
 
-All project-specific components live here in their own folder, each containing:
-- **`[variant].vue`** — one dedicated file per variant (e.g., `primary.vue`, `ghost.vue`), same pattern as `Section` components
-- **`index.ts`** — creates the dot-notation namespace and exports types
+All project-specific components live here. Each `Custom*` folder contains **exactly two files**:
+- **`component.vue`** — single SFC with CVA handling all variant × theme combinations
+- **`index.ts`** — functional wrappers for dot-notation API, plus type exports
 
 ```
 app/components/CustomButton/
-├── primary.vue     ← primary variant (standalone)
-├── ghost.vue       ← ghost variant (standalone)
-├── aarni.vue       ← aarni variant (standalone)
-└── index.ts        ← Exports: CustomButton = { Primary, Ghost, Aarni }
+├── component.vue   ← single SFC, CVA-driven (variant + theme)
+└── index.ts        ← Exports: CustomButton = { Solid, Ghost, Outline, Link }
 ```
 
-### 4.2 Separate-File + Dot-Notation Pattern
+### 4.2 CVA + Dot-Notation Pattern
 
-**This is the primary component pattern for ALL custom components in this project** — the same pattern used by `Section` components.
+**This is the pattern for ALL `Custom*` components.** Two files only — never more.
 
-Each variant gets its **own dedicated `.vue` file**. There is no monolithic `component.vue` with all variants inside.
+#### Separation of concerns
 
-#### Variant file — one file per variant
+| | Controls | Set via |
+|---|---|---|
+| **Dot-notation** (`.Solid`, `.Ghost`, `.Outline`) | Visual structure — shape, border, fill | Import name |
+| **`theme` prop** | Color tokens — which palette pair to use | Prop, defaults to `'primary'` |
+
+#### `component.vue` — CVA-driven single SFC
 
 ```vue
-<!-- app/components/CustomButton/primary.vue -->
+<!-- app/components/CustomButton/component.vue -->
 <script setup lang="ts">
-import { cn } from '~/lib/utils'
+import { cva, type VariantProps } from 'class-variance-authority'
 import { Button } from '~/components/ui/button'
+import { cn } from '~/lib/utils'
 
-const props = defineProps<{
-  size?: 'sm' | 'default' | 'lg'
-  class?: string
-}>()
+const buttonVariants = cva('font-mono', {
+  variants: {
+    variant: { solid: '', outline: '', ghost: '', link: '' },
+    theme:   { primary: '', secondary: '', muted: '', destructive: '' },
+  },
+  compoundVariants: [
+    { variant: 'solid',   theme: 'primary',     class: 'bg-primary text-primary-foreground hover:bg-primary/90' },
+    { variant: 'ghost',   theme: 'primary',     class: 'text-foreground hover:bg-accent hover:text-accent-foreground' },
+    // ... all combinations
+  ],
+  defaultVariants: { variant: 'solid', theme: 'primary' },
+})
+
+type ButtonVariants = VariantProps<typeof buttonVariants>
+
+const props = withDefaults(defineProps<{
+  variant?: ButtonVariants['variant']
+  theme?:   ButtonVariants['theme']
+  size?:    'sm' | 'default' | 'lg'
+  class?:   string
+}>(), { variant: 'solid', theme: 'primary', size: 'default' })
 </script>
 
 <template>
   <Button
-    :class="cn(
-      'bg-primary text-primary-foreground',
-      props.class
-    )"
+    :variant="SHADCN_VARIANT_MAP[variant ?? 'solid']"
+    :size="size"
+    :class="cn(buttonVariants({ variant, theme }), props.class)"
   >
     <slot />
   </Button>
 </template>
 ```
 
-#### `index.ts` — Namespace export (enables dot notation)
+#### `index.ts` — Functional wrappers + type exports
 
 ```ts
-import Primary from './primary.vue'
-import Ghost from './ghost.vue'
-import Aarni from './aarni.vue'
+import { h, type Slots, type VNode } from 'vue'
+import Component from './component.vue'
 
-export const CustomButton = { Primary, Ghost, Aarni }
+export type CustomButtonTheme = 'primary' | 'secondary' | 'muted' | 'destructive'
 
 export interface CustomButtonProps {
-  size?: 'sm' | 'default' | 'lg'
+  theme?: CustomButtonTheme
+  size?:  'sm' | 'default' | 'lg'
   class?: string
 }
+
+// Each function is a Vue functional component: (props, ctx) => VNode.
+// The variant is baked in; theme + all other props pass through freely.
+
+function Solid(props: Record<string, unknown>, { slots }: { slots: Slots }): VNode {
+  return h(Component, { ...props, variant: 'solid' }, slots)
+}
+
+function Ghost(props: Record<string, unknown>, { slots }: { slots: Slots }): VNode {
+  return h(Component, { ...props, variant: 'ghost' }, slots)
+}
+
+export const CustomButton = { Solid, Ghost, /* Outline, Link */ }
 ```
 
-#### Usage — always via dot notation import
+#### Usage — dot-notation for structure, `theme` prop for color
 
 ```vue
 <script setup lang="ts">
 import { CustomButton } from '~/components/CustomButton'
-import { Section } from '~/components/Section'
 </script>
 
 <template>
-  <CustomButton.Primary>View Work</CustomButton.Primary>
-  <CustomButton.Aarni>Special CTA</CustomButton.Aarni>
-  <Section.Hero id="hero" />
-  <Section.Skills id="skills" />
+  <!-- variant via dot-notation, theme defaults to primary -->
+  <CustomButton.Solid>Save</CustomButton.Solid>
+
+  <!-- override theme for color -->
+  <CustomButton.Solid theme="destructive">Delete</CustomButton.Solid>
+
+  <CustomButton.Ghost>Cancel</CustomButton.Ghost>
+  <CustomButton.Outline theme="secondary">View Details</CustomButton.Outline>
 </template>
 ```
 
 ### 4.3 Naming Convention
 
 ```
-✅ Custom wrappers (shadcn base):     Custom prefix + dot notation, one file per variant
-   CustomButton/primary.vue          → CustomButton.Primary
-   CustomButton/ghost.vue            → CustomButton.Ghost
-   CustomBadge/default.vue           → CustomBadge.Default
-   CustomBadge/tech.vue              → CustomBadge.Tech
-   CustomCard/project.vue            → CustomCard.Project
-   CustomCard/experience.vue         → CustomCard.Experience
-   CustomSheet/contact.vue           → CustomSheet.Contact
-   CustomInput/default.vue           → CustomInput.Default
+✅ Custom wrappers (shadcn base):     Custom prefix + dot notation
+   CustomButton  → CustomButton.Solid / .Ghost / .Outline / .Link
+   CustomBadge   → CustomBadge.Default / .Tech
+   CustomCard    → CustomCard.Project / .Experience
+   CustomSheet   → CustomSheet.Contact
+   CustomInput   → CustomInput.Default
 
-✅ Standalone components (no shadcn): Descriptive name + dot notation, one file per entry
-   Section/Hero.vue + index.ts       → Section.Hero
-   Section/Skills.vue + index.ts     → Section.Skills
-   Typography/Typography.vue         → <Typography /> (single, variant prop — no dot notation needed)
-   layout/AppNav.vue                 → <AppNav /> (single, no variants)
+   Folder always contains: component.vue + index.ts (two files, no more)
+
+✅ Standalone sections (no shadcn):   Descriptive name + dot notation, one file per entry
+   Section/Hero.vue + index.ts        → Section.Hero
+   Section/Skills.vue + index.ts      → Section.Skills
+   Typography/Typography.vue          → <Typography /> (variant prop, no dot-notation needed)
+   AppNav.vue                         → <AppNav /> (single layout component)
 
 ❌ NEVER:
-   Modifying any file in ui/                     (shadcn primitives are read-only)
-   components/ui/CustomButton.vue                (custom code in ui/ folder)
-   Single component.vue with all variants inside (use separate files per variant instead)
+   Modifying any file in ui/                      (shadcn primitives are read-only)
+   components/ui/CustomButton.vue                 (custom code in ui/ folder)
+   Multiple [variant].vue files per Custom* folder (use component.vue + CVA instead)
 ```
 
 ### 4.4 File Locations
@@ -433,16 +468,18 @@ import { Section } from '~/components/Section'
 | Custom wrappers around shadcn primitives | `app/components/Custom[Name]/` |
 | Standalone sections namespace | `app/components/Section/` |
 | Typography (variant-prop, no namespace) | `app/components/Typography/` |
-| Layout components (`AppNav`, `AppFooter`) | `app/components/` (root, alongside other components) |
+| Layout components (`AppNav`, `AppFooter`) | `app/components/` (root) |
 | Composables | `app/composables/` |
 | Server API routes | `server/api/` |
 | Shared types (client + server) | `shared/types/` |
 
 ### 4.5 Component Variants
 
-Variant dispatch is handled by **file structure** — each variant is its own `.vue` file, imported directly in `index.ts`. Do NOT use a single `component.vue` with CVA to dispatch variants.
+For `Custom*` components, **CVA handles all variant + theme dispatch** inside a single `component.vue`. Do NOT create separate `.vue` files per variant.
 
-`class-variance-authority` (CVA) may still be used **within** a single variant file for prop-based sub-state styling (e.g., `size` variants: `sm`, `default`, `lg`). Do NOT use `v-if`/ternary chains for any styling logic.
+- `variant` — visual structure (solid, outline, ghost…). Set by the dot-notation wrapper in `index.ts`.
+- `theme` — color token pair (primary, secondary, muted, destructive…). Passed as a prop by the consumer. Defaults to `'primary'`.
+- `size` — sub-state (sm, default, lg). CVA within `component.vue`. Do NOT use `v-if`/ternary chains for any styling logic.
 
 ### 4.6 `cn()` Utility
 

@@ -23,13 +23,19 @@ const scrollToExperience = () => {
         <a href="https://linkedin.com/in/aarnipavlidi" target="_blank" rel="noopener noreferrer">
           <CustomButton.Ghost>LinkedIn</CustomButton.Ghost>
         </a>
-        <CustomButton.Primary @click="openContact">Contact Me</CustomButton.Primary>
+        <CustomButton.Solid @click="openContact">Contact Me</CustomButton.Solid>
       </div>
 
       <!-- Desktop CTAs -->
       <div class="hidden md:flex gap-4 mt-8">
-        <CustomButton.Primary @click="scrollToExperience">View Experience</CustomButton.Primary>
-        <CustomButton.Ghost @click="openContact">Contact Me</CustomButton.Ghost>
+        <CustomButton.Solid @click="scrollToExperience">View Experience</CustomButton.Solid>
+        <CustomButton.Outline
+          @click="openContact"
+          theme="secondary"
+          transition
+        >
+          Contact Me
+        </CustomButton.Outline>
       </div>
     </div>
   </section>

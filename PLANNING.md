@@ -446,63 +446,78 @@ All project-specific components live here. Two sub-types:
 1. **Custom shadcn wrappers** — prefixed with `Custom`: `CustomButton`, `CustomBadge`, `CustomCard`, etc.
 2. **Standalone components** — descriptive name: `Section`, `Typography`, `AppNav`, etc.
 
-### Separate File Per Variant
+### CVA + Dot-Notation Pattern (all `Custom*` components)
 
-Each variant for a custom component lives in its **own dedicated `.vue` file** — the same pattern used by `Section` components. There is no monolithic `component.vue` with all variants inside.
+Every `Custom*` folder contains **exactly two files** — no more, no less:
 
 ```
 app/components/CustomButton/
-├── primary.vue     ← primary variant (standalone)
-├── ghost.vue       ← ghost variant (standalone)
-├── aarni.vue       ← aarni variant (standalone)
-└── index.ts        ← namespace export: CustomButton = { Primary, Ghost, Aarni }
+├── component.vue   ← single SFC, CVA-driven (variant + theme)
+└── index.ts        ← functional wrappers + type exports
 ```
 
-**Variant file — one file per variant:**
+#### Separation of concerns
+
+| | Controls | How |
+|---|---|---|
+| **Dot-notation** (`.Solid`, `.Ghost`) | Visual structure — shape, border, fill | Import name (pre-sets `variant` internally) |
+| **`theme` prop** | Color tokens — which palette pair | Optional prop, defaults to `'primary'` |
+
+#### `component.vue` — CVA-driven single SFC
+
+All variant × theme combinations are declared as CVA compound variants. The component receives `variant`, `theme`, `size`, and `class` props.
 
 ```vue
-<!-- app/components/CustomButton/primary.vue -->
 <script setup lang="ts">
+import { cva, type VariantProps } from 'class-variance-authority'
+import { Button } from '~/components/ui/button'
 import { cn } from '~/lib/utils'
-import { Button } from '~/components/ui/button'  // shadcn base
 
-const props = defineProps<{
-  size?: 'sm' | 'default' | 'lg'
-  class?: string
-}>()
+const buttonVariants = cva('font-mono', {
+  variants: {
+    variant: { solid: '', outline: '', ghost: '', link: '' },
+    theme:   { primary: '', secondary: '', muted: '', destructive: '' },
+  },
+  compoundVariants: [
+    { variant: 'solid', theme: 'primary', class: 'bg-primary text-primary-foreground hover:bg-primary/90' },
+    // ... all combinations
+  ],
+  defaultVariants: { variant: 'solid', theme: 'primary' },
+})
 </script>
+```
 
-<template>
-  <Button
-    :class="cn(
-      'bg-primary text-primary-foreground',
-      props.class
-    )"
-  >
-    <slot />
-  </Button>
-</template>
+#### `index.ts` — Functional wrappers + type exports
+
+Each named export pre-sets the `variant`. The `theme` prop and all other attributes pass through freely.
+
+```ts
+import { h, type Slots } from 'vue'
+import Component from './component.vue'
+
+export type CustomButtonTheme = 'primary' | 'secondary' | 'muted' | 'destructive'
+
+export interface CustomButtonProps {
+  theme?: CustomButtonTheme
+  size?:  'sm' | 'default' | 'lg'
+  class?: string
+}
+
+const wrap = (variant: 'solid' | 'outline' | 'ghost' | 'link') =>
+  (props: Record<string, unknown>, { slots }: { slots: Slots }) =>
+    h(Component, { ...props, variant }, slots)
+
+export const CustomButton = {
+  Solid:   wrap('solid'),
+  Outline: wrap('outline'),
+  Ghost:   wrap('ghost'),
+  Link:    wrap('link'),
+}
 ```
 
 ### Dot Notation — The PRIMARY Usage Pattern
 
-The `index.ts` imports each variant file directly and exports a namespace object. **This is the primary way all custom components are used** — always via the dot notation import.
-
-```ts
-// app/components/CustomButton/index.ts
-import Primary from './primary.vue'
-import Ghost from './ghost.vue'
-import Aarni from './aarni.vue'
-
-export const CustomButton = { Primary, Ghost, Aarni }
-
-export interface CustomButtonProps {
-  size?: 'sm' | 'default' | 'lg'
-  class?: string
-}
-```
-
-**Usage in any component:**
+**This is the primary way all custom components are used** — always via the dot notation import.
 
 ```vue
 <script setup lang="ts">
@@ -510,9 +525,14 @@ import { CustomButton } from '~/components/CustomButton'
 </script>
 
 <template>
-  <CustomButton.Primary size="lg">View Work</CustomButton.Primary>
-  <CustomButton.Aarni>Special CTA</CustomButton.Aarni>
+  <!-- variant via dot-notation, theme defaults to primary -->
+  <CustomButton.Solid>Save</CustomButton.Solid>
+
+  <!-- override theme for color only -->
+  <CustomButton.Solid theme="destructive">Delete</CustomButton.Solid>
+
   <CustomButton.Ghost>Cancel</CustomButton.Ghost>
+  <CustomButton.Outline theme="secondary">View Details</CustomButton.Outline>
 </template>
 ```
 
