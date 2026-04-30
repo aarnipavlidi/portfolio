@@ -13,7 +13,7 @@ const allSkills = computed(() =>
 
 <template>
   <section id="skills" class="py-8 px-4 md:px-8">
-    <Typography variant="h2" class="mb-4">
+    <Typography variant="h2" class="mb-4 text-secondary">
       Skills &amp; Technologies
     </Typography>
     <Separator class="mb-8" />

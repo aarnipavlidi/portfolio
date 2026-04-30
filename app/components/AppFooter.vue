@@ -4,7 +4,7 @@ import { Separator } from "@/components/ui/separator";
 </script>
 
 <template>
-  <footer class="py-4 md:px-8">
+  <footer class="p-4 md:px-8">
     <Separator class="mb-8" />
 
     <div class="flex flex-col gap-4">
@@ -14,7 +14,7 @@ import { Separator } from "@/components/ui/separator";
           href="https://www.linkedin.com/in/aarnipavlidi"
           target="_blank"
           rel="noopener noreferrer"
-          class="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+          class="flex items-center gap-2 text-secondary hover:text-secondary/80 transition-colors"
           aria-label="Aarni Pavlidi on LinkedIn"
         >
           <Linkedin :size="16" aria-hidden="true" />
@@ -24,7 +24,7 @@ import { Separator } from "@/components/ui/separator";
           href="https://github.com/aarnipavlidi"
           target="_blank"
           rel="noopener noreferrer"
-          class="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+          class="flex items-center gap-2 text-secondary hover:text-secondary/80 transition-colors"
           aria-label="Aarni Pavlidi on GitHub"
         >
           <Github :size="16" aria-hidden="true" />

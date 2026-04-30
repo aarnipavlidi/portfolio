@@ -11,8 +11,8 @@ const scrollToExperience = () => {
 <template>
   <section id="about" class="py-8 px-4 md:pt-16 md:pb-16 md:px-8">
     <div>
-      <Typography variant="h1">Hi, I'm Aarni Pavlidi</Typography>
-      <Typography variant="h1" class="md:text-primary">Software Engineer.</Typography>
+      <Typography variant="h1">Hi, I'm <span class="text-primary">Aarni Pavlidi</span></Typography>
+      <Typography variant="h1">Software Engineer.</Typography>
 
       <Typography variant="body-lg" class="text-muted-foreground mt-8 max-w-lg">
         Passionate software developer with a background in circular economy studies, which led me to discover my love for programming. Highly skilled in frontend development, building scalable applications from scratch.

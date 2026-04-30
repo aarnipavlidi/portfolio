@@ -9,7 +9,7 @@ const { data: projects } = await useAsyncData("projects", () =>
 
 <template>
   <section id="projects" class="py-8 px-4 md:px-8">
-    <Typography variant="h2" class="mb-4">Projects</Typography>
+    <Typography variant="h2" class="mb-4 text-muted-foreground">Personal Projects</Typography>
     <Separator class="mb-8" />
 
     <div class="flex flex-col gap-8">

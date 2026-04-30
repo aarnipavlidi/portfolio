@@ -109,7 +109,7 @@ const scrollToTop = () => {
           href="https://linkedin.com/in/aarnipavlidi"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-muted-foreground hover:text-foreground transition-colors duration-200"
+          class="text-secondary hover:text-secondary/80 transition-colors duration-200"
           aria-label="LinkedIn"
         >
           <Linkedin :size="16" aria-hidden="true" />
@@ -118,7 +118,7 @@ const scrollToTop = () => {
           href="https://github.com/AarniPavlidi"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-muted-foreground hover:text-foreground transition-colors duration-200"
+          class="text-secondary hover:text-secondary/80 transition-colors duration-200"
           aria-label="GitHub"
         >
           <Github :size="16" aria-hidden="true" />
