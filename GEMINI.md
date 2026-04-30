@@ -389,32 +389,53 @@ const props = withDefaults(defineProps<{
 </template>
 ```
 
-#### `index.ts` — Functional wrappers + type exports
+#### `index.ts` — `defineComponent` wrappers + type exports
 
 ```ts
-import { h, type Slots, type VNode } from 'vue'
+import { defineComponent, h, type PropType } from 'vue'
 import Component from './component.vue'
 
 export type CustomButtonTheme = 'primary' | 'secondary' | 'muted' | 'destructive'
 
 export interface CustomButtonProps {
-  theme?: CustomButtonTheme
-  size?:  'sm' | 'default' | 'lg'
-  class?: string
+  theme?:      CustomButtonTheme
+  size?:       'sm' | 'default' | 'lg'
+  class?:      string
 }
 
-// Each function is a Vue functional component: (props, ctx) => VNode.
-// The variant is baked in; theme + all other props pass through freely.
+// Runtime props object — named `{componentName}BaseProps`.
+// Object format (not string array) is required so Vue knows the runtime type
+// of each prop. `Boolean` needs no `as`; string unions need `String as PropType<T>`.
+const customButtonBaseProps = {
+  theme: {
+    type: String as PropType<CustomButtonTheme>
+  },
+  size: {
+    type: String as PropType<'sm' | 'default' | 'lg'>
+  },
+  class: {
+    type: String
+  },
+};
 
-function Solid(props: Record<string, unknown>, { slots }: { slots: Slots }): VNode {
-  return h(Component, { ...props, variant: 'solid' }, slots)
-}
+const Solid = defineComponent({
+  name: 'CustomButtonSolid',
+  props: customButtonBaseProps,
+  setup(props, { slots }) {
+    return () => h(Component, { ...props, variant: 'solid' }, slots)
+  },
+})
 
-function Ghost(props: Record<string, unknown>, { slots }: { slots: Slots }): VNode {
-  return h(Component, { ...props, variant: 'ghost' }, slots)
-}
+const Ghost = defineComponent({
+  name: 'CustomButtonGhost',
+  props: customButtonBaseProps,
+  setup(props, { slots }) {
+    return () => h(Component, { ...props, variant: 'ghost' }, slots)
+  },
+})
 
 export const CustomButton = { Solid, Ghost, /* Outline, Link */ }
+export default CustomButton
 ```
 
 #### Usage — dot-notation for structure, `theme` prop for color

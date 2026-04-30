@@ -19,9 +19,13 @@ const allSkills = computed(() =>
     <Separator class="mb-8" />
 
     <div class="flex flex-wrap gap-2">
-      <CustomBadge.Tech v-for="skill in allSkills" :key="skill">
+      <CustomBadge.Solid
+        v-for="skill in allSkills"
+        :key="skill"
+        theme="secondary"
+      >
         {{ skill }}
-      </CustomBadge.Tech>
+      </CustomBadge.Solid>
     </div>
   </section>
 </template>

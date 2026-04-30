@@ -1,6 +1,7 @@
 import Default from './default.vue'
 
 export const CustomInput = { Default }
+export default CustomInput
 
 export interface CustomInputProps {
   id: string

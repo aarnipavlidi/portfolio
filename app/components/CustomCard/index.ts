@@ -2,14 +2,16 @@ import Project from './project.vue'
 import Experience from './experience.vue'
 
 export const CustomCard = { Project, Experience }
+export default CustomCard
 
 export interface CustomCardProjectProps {
-  title: string
+  title:        string
   description?: string
-  liveUrl?: string
-  githubUrl?: string
-  image?: string
-  class?: string
+  techStack?:   string[]
+  liveUrl?:     string
+  githubUrl?:   string
+  image?:       string
+  class?:       string
 }
 
 export interface CustomCardExperienceProps {
