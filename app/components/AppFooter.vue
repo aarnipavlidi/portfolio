@@ -4,7 +4,7 @@ import { Separator } from "@/components/ui/separator";
 </script>
 
 <template>
-  <footer class="py-8 px-4 md:px-8">
+  <footer class="py-4 md:px-8">
     <Separator class="mb-8" />
 
     <div class="flex flex-col gap-4">

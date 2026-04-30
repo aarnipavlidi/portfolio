@@ -9,7 +9,7 @@ const scrollToExperience = () => {
 </script>
 
 <template>
-  <section id="about" class="py-16 px-4 md:pt-16 md:pb-16 md:px-8">
+  <section id="about" class="py-8 px-4 md:pt-16 md:pb-16 md:px-8">
     <div>
       <Typography variant="h1">Hi, I'm Aarni Pavlidi</Typography>
       <Typography variant="h1" class="md:text-primary">Software Engineer.</Typography>

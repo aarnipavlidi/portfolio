@@ -8,7 +8,7 @@ const { data: experience } = await useAsyncData('experience', () =>
 </script>
 
 <template>
-  <section id="experience" class="py-16 px-4 md:px-8">
+  <section id="experience" class="py-8 px-4 md:px-8">
     <Typography variant="h2" class="mb-4">
       Experience
     </Typography>

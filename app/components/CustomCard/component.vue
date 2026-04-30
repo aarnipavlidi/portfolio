@@ -19,7 +19,7 @@ const props = defineProps<CustomCardProjectProps | CustomCardExperienceProps>();
         :src="props.image"
         class="w-full aspect-video object-cover"
       />
-      <div class="flex flex-col gap-4 p-4 md:p-8">
+      <div class="flex flex-col gap-4 p-4 md:px-8">
         <div class="flex flex-col gap-2">
           <Typography variant="h4" class="group-hover:text-primary transition-colors">
             {{ props.title }}
