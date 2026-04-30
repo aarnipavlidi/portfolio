@@ -1,3 +1,22 @@
 {
-  "extends": "./.nuxt/tsconfig.json"
+  // TypeScript solution file — references all Nuxt 4 project contexts.
+  // Each context gets its own tsconfig with the right compilerOptions:
+  //   tsconfig.app.json    → app/  (Vue components, pages, composables)
+  //   tsconfig.server.json → server/  (API routes, middleware)
+  //   tsconfig.shared.json → shared/  (types shared between app + server)
+  //   tsconfig.node.json   → nuxt.config.ts, build tooling
+  //
+  // "files: []" is required — the orchestrator itself compiles nothing directly.
+  // IDEs (VSCode + Volar) use project references to apply the right tsconfig
+  // per file automatically.
+  //
+  // To change compilerOptions or vueCompilerOptions, use typescript.tsConfig
+  // in nuxt.config.ts — NOT here. Nuxt re-generates these files on `nuxi prepare`.
+  "files": [],
+  "references": [
+    { "path": "./.nuxt/tsconfig.app.json" },
+    { "path": "./.nuxt/tsconfig.server.json" },
+    { "path": "./.nuxt/tsconfig.shared.json" },
+    { "path": "./.nuxt/tsconfig.node.json" }
+  ]
 }

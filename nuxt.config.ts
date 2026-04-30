@@ -20,7 +20,16 @@ export default defineNuxtConfig({
   routeRules: {
     '/': { prerender: true },
   },
-
+  typescript: {
+    tsConfig: {
+      vueCompilerOptions: {
+        // Enforce strict prop checking in templates.
+        // Without this, passing unknown props (e.g. company="" on
+        // <CustomCard.Project>) produces no error.
+        strictTemplates: true,
+      },
+    },
+  },
   modules: [
     'shadcn-nuxt',
     '@nuxt/content',
