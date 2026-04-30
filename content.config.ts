@@ -10,8 +10,9 @@ export default defineContentConfig({
         company: z.string(),
         startDate: z.string(),
         endDate: z.string().optional(),
-        location: z.string(),
+        location: z.string().optional(),
         techStack: z.array(z.string()),
+        description: z.string().optional(),
       }),
     }),
     projects: defineCollection({
@@ -24,6 +25,7 @@ export default defineContentConfig({
         githubUrl: z.string().url().optional(),
         featured: z.boolean().default(false),
         image: z.string().optional(),
+        description: z.string().optional(),
       }),
     }),
     skills: defineCollection({

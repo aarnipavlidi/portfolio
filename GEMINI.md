@@ -433,7 +433,7 @@ import { Section } from '~/components/Section'
 | Custom wrappers around shadcn primitives | `app/components/Custom[Name]/` |
 | Standalone sections namespace | `app/components/Section/` |
 | Typography (variant-prop, no namespace) | `app/components/Typography/` |
-| Layout components | `app/components/layout/` |
+| Layout components (`AppNav`, `AppFooter`) | `app/components/` (root, alongside other components) |
 | Composables | `app/composables/` |
 | Server API routes | `server/api/` |
 | Shared types (client + server) | `shared/types/` |
@@ -491,10 +491,25 @@ Do not use `<hr>` elements for visual separation. Use vertical whitespace (`mt-1
 
 ### 5.4 Spacing
 
-Spacing values must align to the typographic scale (based on multiples of `0.25rem`):
-- Prefer: `0.5rem`, `1rem`, `1.5rem`, `2rem`, `2.5rem`, `4rem` etc.
-- Between section list items: minimum `2.5rem` vertical space
-- Section padding: minimum `4rem` vertical
+Spacing uses a strict **binary-doubling scale**. Only the following six values are permitted for `padding`, `margin`, and `gap` — no exceptions:
+
+| px value | Tailwind class suffix | Example classes |
+|---|---|---|
+| `0px` | `0` | `p-0`, `m-0`, `gap-0` |
+| `4px` | `1` | `p-1`, `mt-1`, `gap-1` |
+| `8px` | `2` | `p-2`, `mx-2`, `gap-2` |
+| `16px` | `4` | `p-4`, `px-4`, `gap-4` |
+| `32px` | `8` | `p-8`, `py-8`, `gap-8` |
+| `64px` | `16` | `p-16`, `py-16`, `gap-16` |
+
+**Forbidden values:** `p-3` (12px), `p-5` (20px), `p-6` (24px), `p-10` (40px), `p-12` (48px), `p-14` (56px), `p-20` (80px), etc.
+
+This same rule applies to `gap-*`, `space-*`, `top-*`, `left-*`, `right-*`, `bottom-*`, and `inset-*` when used for layout spacing (not precise pixel-perfect sub-element positioning).
+
+#### Canonical section spacing
+- **Section vertical padding:** `py-16` (64px)
+- **Section horizontal padding:** `px-4` (16px) mobile, `lg:px-8` (32px) desktop
+- **Between section list items (e.g., experience entries):** `gap-8` (32px)
 
 ### 5.5 Shadows
 

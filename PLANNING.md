@@ -1017,51 +1017,56 @@ CONTACT_EMAIL_FROM      = noreply@aarni.dev
 - [x] Add `app/plugins/ssr-width.ts` (prevents hydration errors on mobile)
 - [x] Install + configure Nuxt Content v3: `npm install @nuxt/content`
 - [x] Create `content.config.ts` with collection schemas
-- [x] Install + configure Storybook: `npm install -D @nuxtjs/storybook`
+- [ ] ⏸️ Install + configure Storybook — **POSTPONED**
 - [x] Set up `@nuxtjs/color-mode`: `npm install @nuxtjs/color-mode`
 - [x] Create `.env.example`
 - [ ] ⚠️ ESLint/Prettier: DO NOT install unless Nuxt wizard suggests it AND user confirms
 - [x] Add `.nvmrc` with Node 24.14.0
 
-### Phase 2: Design System & Base Components
+### Phase 2: Design System & Base Components ✅
 - [x] Implement `Typography.vue` component with all variants
 - [x] Implement `Button.Default.vue`, `Button.Ghost.vue`, `Button.Link.vue`
 - [x] Implement `Badge.Default.vue`, `Badge.Tech.vue`
 - [x] Implement `Card.Project.vue`, `Card.Experience.vue`
 - [x] Implement `Input.Default.vue`, `Textarea.Default.vue`
 - [x] Implement `Sheet.Contact.vue`
-- [x] Write Storybook stories for all base components
-- [x] Verify dark/light mode switching works correctly
+- [ ] ⏸️ Write Storybook stories for all base components — **POSTPONED**
+- [ ] ⏸️ Verify dark/light mode switching works correctly — **POSTPONED (do during Phase 7)**
 
-### Phase 3: Layout & Navigation
-- [ ] Implement `AppNav.vue` (desktop sidebar + mobile top bar)
-- [ ] Implement `AppFooter.vue`
-- [ ] Implement `default.vue` layout
-- [ ] Implement smooth scroll navigation
-- [ ] Implement active section detection (IntersectionObserver)
-- [ ] Implement `<SheetContact />` trigger from nav
+### Phase 3: Layout & Navigation ✅
+- [x] Implement `AppNav.vue` (desktop sidebar + mobile top bar)
+- [x] Implement `AppFooter.vue`
+- [x] Implement `default.vue` layout
+- [x] Implement smooth scroll navigation
+- [x] Implement active section detection (IntersectionObserver)
+- [x] Implement `<SheetContact />` trigger from nav
 
-### Phase 4: Sections (Using Stitch Designs as Reference)
-- [ ] Implement `HeroSection.vue` (with placeholder avatar)
-- [ ] Implement `SkillsSection.vue`
-- [ ] Implement `ExperienceSection.vue`
-- [ ] Implement `ProjectsSection.vue`
-- [ ] Wire all sections to Nuxt Content data
-- [ ] Wire up `index.vue` page
+### Phase 4: Sections (Using Stitch Designs as Reference) ✅
+- [x] Implement `Section/Hero.vue` — mobile/desktop CTAs, subtitle colour (`lg:text-primary`)
+- [x] Implement `Section/Skills.vue` — wired to Nuxt Content, flattens categories into badge list
+- [x] Implement `Section/Experience.vue` — wired to Nuxt Content, company colour `lg:text-primary`
+- [x] Implement `Section/Projects.vue` — wired to Nuxt Content, no trailing dot, conditional links
+- [x] Create content files: `content/skills.md`, `content/experience/1–3.*.md`, `content/projects/1.*.md`
+- [x] Update `content.config.ts` — added `description` field to experience & projects, `location` optional
+- [x] Wire up `index.vue` page — all sections composed via `Section.*` dot notation, uses `<AppFooter />`
 
-### Phase 5: Contact Form & Email
+### Phase 5: Contact Form & Email ⏸️ SKIPPED (for now)
 - [ ] Implement `server/api/contact.post.ts`
 - [ ] Implement `useContact.ts` composable
 - [ ] Connect form in `Sheet.Contact.vue` to server route
 - [ ] Add loading, success, and error states
 - [ ] Test email delivery via Resend
 
-### Phase 6: Content & Real Data
-- [ ] Replace placeholder avatar with real optimised photo
-- [ ] Fill in real experience data (YAML files)
-- [ ] Fill in real projects data (YAML files)
-- [ ] Fill in real skills data (YAML file)
-- [ ] Add Open Graph image
+### Phase 6: Content & Real Data ✅
+- [x] Real experience data — filled in during Phase 4 (`content/experience/1–3.*.md`)
+- [x] Real skills data — filled in during Phase 4 (`content/skills.md`)
+- [x] Real projects data — filled in during Phase 4 (`content/projects/1.affiliate-platform.md`)
+- [x] Avatar optimised — `public/avatar.jpg` (3.1 MB) → `public/avatar.webp` (8 KB, 600×600 face-crop via sharp)
+- [x] OG image created — `public/og.jpg` (23 KB, 1200×630, top-crop of avatar photo)
+- [x] SEO meta tags — `useSeoMeta` in `index.vue` (title, description, OG, Twitter Card)
+- [x] Global `app.head` in `nuxt.config.ts` (charset, viewport, favicon, Google Fonts preconnect)
+- [x] Homepage prerender — `routeRules: { '/': { prerender: true } }` in `nuxt.config.ts`
+- [ ] Add real Open Graph designed image (1200×630 branded) — **deferred to Phase 8**
 
 ### Phase 7: Responsive Iteration
 - [ ] Review all sections on mobile (390px)
