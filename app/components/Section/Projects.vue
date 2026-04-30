@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { CustomCard } from '@/components/CustomCard'
-import { Separator } from '@/components/ui/separator'
+import { CustomCard } from "@/components/CustomCard";
+import { Separator } from "@/components/ui/separator";
 
-const { data: projects } = await useAsyncData('projects', () =>
-  queryCollection('projects').all()
-)
+const { data: projects } = await useAsyncData("projects", () =>
+  queryCollection("projects").all()
+);
 </script>
 
 <template>

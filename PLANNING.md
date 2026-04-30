@@ -463,19 +463,18 @@ app/components/CustomButton/
 | **Dot-notation** (`.Solid`, `.Ghost`) | Visual structure — shape, border, fill | Import name (pre-sets `variant` internally) |
 | **`theme` prop** | Color tokens — which palette pair | Optional prop, defaults to `'primary'` |
 
-#### `component.vue` — CVA-driven single SFC
+#### `index.ts` — CVA + types + functional wrappers
 
-All variant × theme combinations are declared as CVA compound variants. The component receives `variant`, `theme`, `size`, and `class` props.
+The `index.ts` owns **all** CVA logic, exported types, and the thin functional wrappers that pre-set `variant` via dot-notation. No `defineComponent` — just plain `h()` arrow functions.
 
-```vue
-<script setup lang="ts">
+```ts
+import { h, type SetupContext } from 'vue'
 import { cva, type VariantProps } from 'class-variance-authority'
-import { Button } from '~/components/ui/button'
-import { cn } from '~/lib/utils'
+import Component from './component.vue'
 
-const buttonVariants = cva('font-mono', {
+export const customButtonVariants = cva('font-mono', {
   variants: {
-    variant: { solid: '', outline: '', ghost: '', link: '' },
+    variant: { solid: '', outline: '', ghost: '', link: 'p-0 h-auto underline-offset-4' },
     theme:   { primary: '', secondary: '', muted: '', destructive: '' },
   },
   compoundVariants: [
@@ -484,35 +483,56 @@ const buttonVariants = cva('font-mono', {
   ],
   defaultVariants: { variant: 'solid', theme: 'primary' },
 })
-</script>
-```
 
-#### `index.ts` — Functional wrappers + type exports
-
-Each named export pre-sets the `variant`. The `theme` prop and all other attributes pass through freely.
-
-```ts
-import { h, type Slots } from 'vue'
-import Component from './component.vue'
-
-export type CustomButtonTheme = 'primary' | 'secondary' | 'muted' | 'destructive'
+export type CustomButtonVariant = NonNullable<VariantProps<typeof customButtonVariants>['variant']>
+export type CustomButtonTheme   = NonNullable<VariantProps<typeof customButtonVariants>['theme']>
 
 export interface CustomButtonProps {
-  theme?: CustomButtonTheme
-  size?:  'sm' | 'default' | 'lg'
-  class?: string
+  variant?:    CustomButtonVariant
+  theme?:      CustomButtonTheme
+  size?:       'sm' | 'default' | 'lg'
+  class?:      string
 }
 
-const wrap = (variant: 'solid' | 'outline' | 'ghost' | 'link') =>
-  (props: Record<string, unknown>, { slots }: { slots: Slots }) =>
-    h(Component, { ...props, variant }, slots)
+const Solid = (props: Omit<CustomButtonProps, 'variant'>, { slots }: SetupContext) =>
+  h(Component, { ...props, variant: 'solid' } as CustomButtonProps, slots)
 
-export const CustomButton = {
-  Solid:   wrap('solid'),
-  Outline: wrap('outline'),
-  Ghost:   wrap('ghost'),
-  Link:    wrap('link'),
-}
+const Ghost = (props: Omit<CustomButtonProps, 'variant'>, { slots }: SetupContext) =>
+  h(Component, { ...props, variant: 'ghost' } as CustomButtonProps, slots)
+
+export const CustomButton = { Solid, Ghost, /* Outline, Link */ }
+export default CustomButton
+```
+
+#### `component.vue` — rendering only
+
+Imports CVA variants and prop types from `index.ts`. Contains **zero** CVA logic — purely the template + shadcn wiring.
+
+```vue
+<script setup lang="ts">
+import type { CustomButtonProps } from '@/components/CustomButton'
+import { customButtonVariants } from '@/components/CustomButton'
+import { Button } from '~/components/ui/button'
+import { cn } from '~/lib/utils'
+
+const SHADCN_VARIANT_MAP = {
+  solid: 'default', outline: 'outline', ghost: 'ghost', link: 'link',
+} as const
+
+const props = withDefaults(defineProps<CustomButtonProps>(), {
+  variant: 'solid', theme: 'primary', size: 'default',
+})
+</script>
+
+<template>
+  <Button
+    :variant="SHADCN_VARIANT_MAP[props.variant ?? 'solid']"
+    :size="props.size"
+    :class="cn(customButtonVariants({ variant: props.variant, theme: props.theme }), props.class)"
+  >
+    <slot />
+  </Button>
+</template>
 ```
 
 ### Dot Notation — The PRIMARY Usage Pattern

@@ -1,29 +1,27 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useWindowSize } from '@vueuse/core'
-import { cn } from '~/lib/utils'
+import { computed } from "vue";
+import { useWindowSize } from "@vueuse/core";
+import type { CustomSheetProps } from "@/components/CustomSheet";
+import { cn } from "@/lib/utils";
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetDescription,
-} from '~/components/ui/sheet'
+} from "@/components/ui/sheet";
 
-const props = defineProps<{
-  open?: boolean
-  class?: string
-}>()
+const props = defineProps<CustomSheetProps>();
 
 const emit = defineEmits<{
-  'update:open': [value: boolean]
-}>()
+  "update:open": [value: boolean];
+}>();
 
 // On mobile: slide up from bottom (full screen)
 // On desktop lg+: slide in from right (partial width)
-const { width } = useWindowSize()
-const isDesktop = computed(() => width.value >= 1024)
-const side = computed(() => isDesktop.value ? 'right' : 'bottom')
+const { width } = useWindowSize();
+const isDesktop = computed(() => width.value >= 1024);
+const side = computed(() => isDesktop.value ? "right" : "bottom");
 </script>
 
 <template>

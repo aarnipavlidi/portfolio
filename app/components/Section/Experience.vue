@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { cn } from '~/lib/utils'
-import { Separator } from '~/components/ui/separator'
+import { cn } from "@/lib/utils";
+import { Separator } from "@/components/ui/separator";
 
 const { data: experience } = await useAsyncData('experience', () =>
   queryCollection('experience').all()

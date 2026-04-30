@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { CustomButton } from '~/components/CustomButton'
+import { CustomButton } from "@/components/CustomButton";
 
-const { open: openContact } = useContactSheet()
+const { open: openContact } = useContactSheet();
 
 const scrollToExperience = () => {
-  document.getElementById('experience')?.scrollIntoView({ behavior: 'smooth' })
-}
+  document.getElementById("experience")?.scrollIntoView({ behavior: "smooth" })
+};
 </script>
 
 <template>

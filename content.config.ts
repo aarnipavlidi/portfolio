@@ -1,10 +1,10 @@
-import { defineCollection, defineContentConfig, z } from '@nuxt/content'
+import { defineCollection, defineContentConfig, z } from "@nuxt/content"
 
 export default defineContentConfig({
   collections: {
     experience: defineCollection({
-      type: 'page',
-      source: 'experience/*.md',
+      type: "page",
+      source: "experience/*.md",
       schema: z.object({
         role: z.string(),
         company: z.string(),
@@ -16,8 +16,8 @@ export default defineContentConfig({
       }),
     }),
     projects: defineCollection({
-      type: 'page',
-      source: 'projects/*.md',
+      type: "page",
+      source: "projects/*.md",
       schema: z.object({
         title: z.string(),
         techStack: z.array(z.string()),
@@ -29,8 +29,8 @@ export default defineContentConfig({
       }),
     }),
     skills: defineCollection({
-      type: 'page',
-      source: 'skills.md',
+      type: "page",
+      source: "skills.md",
       schema: z.object({
         categories: z.array(
           z.object({
@@ -41,4 +41,4 @@ export default defineContentConfig({
       }),
     }),
   },
-})
+});

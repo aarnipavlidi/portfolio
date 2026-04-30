@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Section } from '~/components/Section'
+import { Section } from '@/components/Section';
 
 useSeoMeta({
   title: 'Aarni Pavlidi — Software Engineer',

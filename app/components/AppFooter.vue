@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { Linkedin, Github } from 'lucide-vue-next'
-import { Separator } from '~/components/ui/separator'
+import { Linkedin, Github } from "lucide-vue-next";
+import { Separator } from "@/components/ui/separator";
 </script>
 
 <template>
@@ -34,7 +34,7 @@ import { Separator } from '~/components/ui/separator'
 
       <!-- Copyright -->
       <Typography variant="label" class="text-muted-foreground">
-        © 2026 Aarni Pavlidi. Designed with minimalistic intent.
+        © 2026 Aarni Pavlidi.
       </Typography>
     </div>
   </footer>

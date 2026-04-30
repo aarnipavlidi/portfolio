@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { CustomCardProjectProps, CustomCardExperienceProps } from '@/components/CustomCard'
-import { customCardVariants } from '@/components/CustomCard'
-import { cn } from '@/lib/utils'
-import { Card } from '@/components/ui/card'
-import { CustomBadge } from '@/components/CustomBadge'
-import { ExternalLink, Github } from 'lucide-vue-next'
+import type { CustomCardProjectProps, CustomCardExperienceProps } from "@/components/CustomCard";
+import { customCardVariants } from "@/components/CustomCard";
+import { cn } from "@/lib/utils";
+import { Card } from "@/components/ui/card";
+import { CustomBadge } from "@/components/CustomBadge";
+import { ExternalLink, Github } from "lucide-vue-next";
 
-const props = defineProps<CustomCardProjectProps | CustomCardExperienceProps>()
+const props = defineProps<CustomCardProjectProps | CustomCardExperienceProps>();
 </script>
 
 <template>
@@ -31,7 +31,6 @@ const props = defineProps<CustomCardProjectProps | CustomCardExperienceProps>()
         <div v-if="props.techStack?.length" class="flex flex-wrap gap-2">
           <CustomBadge.Soft
             v-for="tech in props.techStack"
-            :key="tech"
             theme="secondary"
           >
             {{ tech }}
@@ -71,7 +70,7 @@ const props = defineProps<CustomCardProjectProps | CustomCardExperienceProps>()
             {{ props.company }}
           </Typography>
           <Typography variant="label" class="text-muted-foreground">
-            {{ props.startDate }} – {{ props.endDate ?? 'Present' }}
+            {{ props.startDate }} – {{ props.endDate ?? "Present" }}
             <span v-if="props.location"> · {{ props.location }}</span>
           </Typography>
         </div>

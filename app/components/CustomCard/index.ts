@@ -1,24 +1,27 @@
-import { h, type SetupContext } from 'vue'
-import { cva, type VariantProps } from 'class-variance-authority'
-import Component from './component.vue'
+import { h, type FunctionalComponent } from "vue"
+import { cva, type VariantProps } from "class-variance-authority"
+import Component from "@/components/CustomCard/component.vue"
 
-export type CustomCardVariant = NonNullable<VariantProps<typeof customCardVariants>['variant']>
+type CustomCardVariant = NonNullable<VariantProps<typeof customCardVariants>["variant"]>;
+
 export const customCardVariants = cva(
-  'border-border shadow-sm overflow-hidden transition-colors',
+  "border-border shadow-sm overflow-hidden transition-colors",
   {
     variants: {
       variant: {
-        project: 'group flex flex-col bg-card hover:border-primary',
-        experience: 'bg-card',
+        project: "group flex flex-col bg-card hover:border-primary",
+        experience: "bg-card",
       },
     },
-    defaultVariants: { variant: 'project' },
+    defaultVariants: { variant: "project" },
   },
 );
 
 interface CustomCardBaseProps {
-  class?: string
-}
+  class?: string;
+  variant: CustomCardVariant;
+};
+
 export interface CustomCardProjectProps extends CustomCardBaseProps {
   variant: "project";
   title: string;
@@ -38,11 +41,13 @@ export interface CustomCardExperienceProps extends CustomCardBaseProps {
   location?: string;
 };
 
-const Project = (props: Omit<CustomCardProjectProps, 'variant'>, { slots }: SetupContext) =>
-  h(Component, { ...props, variant: 'project' } as CustomCardProjectProps, slots)
+const Project: FunctionalComponent<Omit<CustomCardProjectProps, "variant"> & Record<string, unknown>> =
+  (props, { slots }) =>
+    h(Component, { ...props, variant: "project" } as CustomCardProjectProps, slots)
 
-const Experience = (props: Omit<CustomCardExperienceProps, 'variant'>, { slots }: SetupContext) =>
-  h(Component, { ...props, variant: 'experience' } as CustomCardExperienceProps, slots)
+const Experience: FunctionalComponent<Omit<CustomCardExperienceProps, "variant"> & Record<string, unknown>> =
+  (props, { slots }) =>
+    h(Component, { ...props, variant: "experience" } as CustomCardExperienceProps, slots)
 
-export const CustomCard = { Project, Experience }
-export default CustomCard
+export const CustomCard = { Project, Experience };
+export default CustomCard;

@@ -1,23 +1,23 @@
 <script setup lang="ts">
-import { Github, Linkedin } from 'lucide-vue-next'
-import { cn } from '~/lib/utils'
+import { Github, Linkedin } from "lucide-vue-next";
+import { cn } from "@/lib/utils";
 
-const { activeSection } = useActiveSection()
+const { activeSection } = useActiveSection();
 
 const navItems = [
-  { id: 'skills', label: 'Skills' },
-  { id: 'experience', label: 'Experience' },
-  { id: 'projects', label: 'Projects' },
+  { id: "skills", label: "Skills" },
+  { id: "experience", label: "Experience" },
+  { id: "projects", label: "Projects" },
 ]
 
 const scrollTo = (id: string) => {
   const el = document.getElementById(id)
   if (!el) return
-  window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY, behavior: 'smooth' })
+  window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY, behavior: "smooth" })
 }
 
 const scrollToTop = () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' })
+  window.scrollTo({ top: 0, behavior: "smooth" })
 }
 </script>
 
@@ -49,12 +49,12 @@ const scrollToTop = () => {
         v-for="item in navItems"
         :key="item.id"
         @click="scrollTo(item.id)"
-        :class="cn(
-          'font-mono text-xs tracking-widest uppercase whitespace-nowrap transition-colors duration-200',
+        :class='cn(
+          "font-mono text-xs tracking-widest uppercase whitespace-nowrap transition-colors duration-200",
           activeSection === item.id
-            ? 'text-primary font-semibold'
-            : 'text-muted-foreground hover:text-primary'
-        )"
+            ? "text-primary font-semibold"
+            : "text-muted-foreground hover:text-primary"
+        )'
       >
         {{ item.label }}
       </button>
@@ -92,12 +92,12 @@ const scrollToTop = () => {
           v-for="item in navItems"
           :key="item.id"
           @click="scrollTo(item.id)"
-          :class="cn(
-            'text-left font-mono text-xs tracking-widest uppercase transition-colors duration-200',
+          :class='cn(
+            "text-left font-mono text-xs tracking-widest uppercase transition-colors duration-200",
             activeSection === item.id
-              ? 'text-primary font-semibold'
-              : 'text-muted-foreground hover:text-primary'
-          )"
+              ? "text-primary font-semibold"
+              : "text-muted-foreground hover:text-primary"
+          )'
         >
           {{ item.label }}
         </button>

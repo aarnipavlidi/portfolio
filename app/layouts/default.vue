@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { CustomSheet } from '~/components/CustomSheet'
+import { CustomSheet } from "@/components/CustomSheet";
 
-const { isOpen, close } = useContactSheet()
+const { isOpen, close } = useContactSheet();
 </script>
 
 <template>
