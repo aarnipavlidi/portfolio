@@ -1,4 +1,4 @@
-import { defineCollection, defineContentConfig, z } from "@nuxt/content"
+import { defineCollection, defineContentConfig, z } from "@nuxt/content";
 
 export default defineContentConfig({
   collections: {
@@ -21,8 +21,10 @@ export default defineContentConfig({
       schema: z.object({
         title: z.string(),
         techStack: z.array(z.string()),
-        liveUrl: z.string().url().optional(),
-        githubUrl: z.string().url().optional(),
+        liveUrl: z.string().url()
+          .optional(),
+        githubUrl: z.string().url()
+          .optional(),
         featured: z.boolean().default(false),
         image: z.string().optional(),
         description: z.string().optional(),
@@ -36,7 +38,7 @@ export default defineContentConfig({
           z.object({
             name: z.string(),
             skills: z.array(z.string()),
-          })
+          }),
         ),
       }),
     }),

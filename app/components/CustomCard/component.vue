@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { Card } from "@/components/ui/card";
 import { CustomBadge } from "@/components/CustomBadge";
 import { ExternalLink, Github } from "lucide-vue-next";
+import Typography from "@/components/Typography/component.vue";
 
 const props = defineProps<CustomCardProjectProps | CustomCardExperienceProps>();
 </script>
@@ -31,6 +32,7 @@ const props = defineProps<CustomCardProjectProps | CustomCardExperienceProps>();
         <div v-if="props.techStack?.length" class="flex flex-wrap gap-2">
           <CustomBadge.Soft
             v-for="tech in props.techStack"
+            :key="tech"
             theme="secondary"
           >
             {{ tech }}

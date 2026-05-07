@@ -15,6 +15,8 @@ const { isOpen, close } = useContactSheet();
         <AppFooter />
       </div>
     </div>
-    <CustomSheet.Contact :open="isOpen" @update:open="(v) => !v && close()" />
+    <CustomSheet.Contact :open="isOpen" @update:open="(v) => !v && close()">
+      <ContactForm />
+    </CustomSheet.Contact>
   </div>
 </template>

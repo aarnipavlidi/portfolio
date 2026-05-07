@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Linkedin, Github } from "lucide-vue-next";
 import { Separator } from "@/components/ui/separator";
+import Typography from "@/components/Typography/component.vue";
 </script>
 
 <template>

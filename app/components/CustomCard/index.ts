@@ -1,6 +1,6 @@
-import { h, type FunctionalComponent } from "vue"
-import { cva, type VariantProps } from "class-variance-authority"
-import Component from "@/components/CustomCard/component.vue"
+import { h, type FunctionalComponent } from "vue";
+import { cva, type VariantProps } from "class-variance-authority";
+import Component from "@/components/CustomCard/component.vue";
 
 type CustomCardVariant = NonNullable<VariantProps<typeof customCardVariants>["variant"]>;
 
@@ -41,13 +41,11 @@ export interface CustomCardExperienceProps extends CustomCardBaseProps {
   location?: string;
 };
 
-const Project: FunctionalComponent<Omit<CustomCardProjectProps, "variant"> & Record<string, unknown>> =
-  (props, { slots }) =>
-    h(Component, { ...props, variant: "project" } as CustomCardProjectProps, slots)
+const Project: FunctionalComponent<Omit<CustomCardProjectProps, "variant"> & Record<string, unknown>>
+  = (props, { slots }) => h(Component, { ...props, variant: "project" } as CustomCardProjectProps, slots);
 
-const Experience: FunctionalComponent<Omit<CustomCardExperienceProps, "variant"> & Record<string, unknown>> =
-  (props, { slots }) =>
-    h(Component, { ...props, variant: "experience" } as CustomCardExperienceProps, slots)
+const Experience: FunctionalComponent<Omit<CustomCardExperienceProps, "variant"> & Record<string, unknown>>
+  = (props, { slots }) => h(Component, { ...props, variant: "experience" } as CustomCardExperienceProps, slots);
 
 export const CustomCard = { Project, Experience };
 export default CustomCard;

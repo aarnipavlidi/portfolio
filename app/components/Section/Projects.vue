@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { CustomCard } from "@/components/CustomCard";
 import { Separator } from "@/components/ui/separator";
+import Typography from "@/components/Typography/component.vue";
 
 const { data: projects } = await useAsyncData("projects", () =>
-  queryCollection("projects").all()
+  queryCollection("projects").all(),
 );
 </script>
 
@@ -15,6 +16,7 @@ const { data: projects } = await useAsyncData("projects", () =>
     <div class="flex flex-col gap-8">
       <CustomCard.Project
         v-for="project in (projects ?? [])"
+        :key="project.id"
         :title="project.title"
         :description="project.description"
         :tech-stack="project.techStack"

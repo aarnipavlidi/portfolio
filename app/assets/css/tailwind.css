@@ -1,8 +1,5 @@
-
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
-
 @import "tailwindcss";
-
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
@@ -180,8 +177,20 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
     letter-spacing: var(--tracking-normal);
+  }
+
+  /* Override Chrome autofill styles to match our theme */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px var(--background) inset !important;
+    -webkit-text-fill-color: var(--popover-foreground) !important;
+    caret-color: var(--foreground) !important;
+    transition: background-color 5000s ease-in-out 0s;
   }
 }

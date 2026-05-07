@@ -8,17 +8,17 @@ const navItems = [
   { id: "skills", label: "Skills" },
   { id: "experience", label: "Experience" },
   { id: "projects", label: "Projects" },
-]
+];
 
 const scrollTo = (id: string) => {
-  const el = document.getElementById(id)
-  if (!el) return
-  window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY, behavior: "smooth" })
-}
+  const el = document.getElementById(id);
+  if (!el) return;
+  window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY, behavior: "smooth" });
+};
 
 const scrollToTop = () => {
-  window.scrollTo({ top: 0, behavior: "smooth" })
-}
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
 </script>
 
 <template>
@@ -28,9 +28,9 @@ const scrollToTop = () => {
     <!-- Row 1: AP. + Avatar -->
     <div class="flex items-center justify-between mb-4">
       <button
-        @click="scrollToTop"
         class="font-mono font-bold text-primary text-lg leading-none"
         aria-label="Back to top"
+        @click="scrollToTop"
       >
         AP.
       </button>
@@ -40,7 +40,7 @@ const scrollToTop = () => {
         width="48"
         height="48"
         class="w-12 h-12 rounded-full object-cover object-top"
-      />
+      >
     </div>
 
     <!-- Row 2: Nav links horizontal -->
@@ -48,13 +48,13 @@ const scrollToTop = () => {
       <button
         v-for="item in navItems"
         :key="item.id"
-        @click="scrollTo(item.id)"
         :class='cn(
           "font-mono text-xs tracking-widest uppercase whitespace-nowrap transition-colors duration-200",
           activeSection === item.id
             ? "text-primary font-semibold"
             : "text-muted-foreground hover:text-primary"
         )'
+        @click="scrollTo(item.id)"
       >
         {{ item.label }}
       </button>
@@ -70,9 +70,9 @@ const scrollToTop = () => {
     <!-- AP. + Avatar group -->
     <div class="mb-8">
       <button
-        @click="scrollToTop"
         class="font-mono font-bold text-primary text-lg block mb-8 leading-none"
         aria-label="Back to top"
+        @click="scrollToTop"
       >
         AP.
       </button>
@@ -82,7 +82,7 @@ const scrollToTop = () => {
         width="96"
         height="96"
         class="w-24 h-24 rounded-full object-cover object-top"
-      />
+      >
     </div>
 
     <!-- Nav links + social icons -->
@@ -91,13 +91,13 @@ const scrollToTop = () => {
         <button
           v-for="item in navItems"
           :key="item.id"
-          @click="scrollTo(item.id)"
           :class='cn(
             "text-left font-mono text-xs tracking-widest uppercase transition-colors duration-200",
             activeSection === item.id
               ? "text-primary font-semibold"
               : "text-muted-foreground hover:text-primary"
           )'
+          @click="scrollTo(item.id)"
         >
           {{ item.label }}
         </button>

@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { CustomButton } from "@/components/CustomButton";
+import Typography from "@/components/Typography/component.vue";
 
 const { open: openContact } = useContactSheet();
 
 const scrollToExperience = () => {
-  document.getElementById("experience")?.scrollIntoView({ behavior: "smooth" })
+  document.getElementById("experience")?.scrollIntoView({ behavior: "smooth" });
 };
 </script>
 
@@ -13,7 +14,6 @@ const scrollToExperience = () => {
     <div>
       <Typography variant="h1">Hi, I'm <span class="text-primary">Aarni Pavlidi</span></Typography>
       <Typography variant="h1">Software Engineer.</Typography>
-
       <Typography variant="body-lg" class="text-muted-foreground mt-8 max-w-lg">
         Passionate software developer with a background in circular economy studies, which led me to discover my love for programming. Highly skilled in frontend development, building scalable applications from scratch.
       </Typography>
@@ -21,18 +21,33 @@ const scrollToExperience = () => {
       <!-- Mobile CTAs -->
       <div class="flex gap-4 mt-8 md:hidden">
         <a href="https://linkedin.com/in/aarnipavlidi" target="_blank" rel="noopener noreferrer">
-          <CustomButton.Ghost>LinkedIn</CustomButton.Ghost>
+          <CustomButton.Ghost
+            type="button"
+          >
+            LinkedIn
+          </CustomButton.Ghost>
         </a>
-        <CustomButton.Solid @click="openContact">Contact Me</CustomButton.Solid>
+        <CustomButton.Solid
+          type="button"
+          @click="openContact"
+        >
+          Contact Me
+        </CustomButton.Solid>
       </div>
 
       <!-- Desktop CTAs -->
       <div class="hidden md:flex gap-4 mt-8">
-        <CustomButton.Solid @click="scrollToExperience">View Experience</CustomButton.Solid>
+        <CustomButton.Solid
+          type="button"
+          @click="scrollToExperience"
+        >
+          View Experience
+        </CustomButton.Solid>
         <CustomButton.Outline
-          @click="openContact"
+          type="button"
           theme="secondary"
           transition
+          @click="openContact"
         >
           Contact Me
         </CustomButton.Outline>

@@ -9,6 +9,8 @@ const props = withDefaults(defineProps<{
   class?: string
 }>(), {
   variant: "body",
+  as: undefined,
+  class: undefined,
 });
 
 const variantTagMap: Record<string, string> = {
@@ -44,7 +46,7 @@ const typographyVariants = cva("", {
   defaultVariants: {
     variant: "body",
   },
-})
+});
 
 // cn(typographyVariants({ variant: variant ?? "body" }), props.class)
 </script>

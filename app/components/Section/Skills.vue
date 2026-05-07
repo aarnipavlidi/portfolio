@@ -1,14 +1,15 @@
 <script setup lang="ts">
-import { CustomBadge } from '~/components/CustomBadge'
-import { Separator } from '~/components/ui/separator'
+import { CustomBadge } from "@/components/CustomBadge";
+import { Separator } from "@/components/ui/separator";
+import Typography from "@/components/Typography/component.vue";
 
-const { data: skillsData } = await useAsyncData('skills', () =>
-  queryCollection('skills').first()
-)
+const { data: skillsData } = await useAsyncData("skills", () =>
+  queryCollection("skills").first(),
+);
 
 const allSkills = computed(() =>
-  skillsData.value?.categories?.flatMap(cat => cat.skills) ?? []
-)
+  skillsData.value?.categories?.flatMap(cat => cat.skills) ?? [],
+);
 </script>
 
 <template>

@@ -1,0 +1,143 @@
+import withNuxt from './.nuxt/eslint.config.mjs';
+
+export default withNuxt(
+  // your custom flat configs go here, for example:
+  // {
+  //   files: ['**/*.ts', '**/*.tsx'],
+  //   rules: {
+  //     'no-console': 'off' // allow console.log in TypeScript files
+  //   }
+  // },
+  // {
+  //   ...
+  // }
+  {
+    ignores: [
+      'node_modules/',
+      'eslint.config.mjs'
+    ],
+  },
+  {
+    'rules': {
+      'import/namespace': [
+        'error',
+        {
+          'allowComputed': true,
+        },
+      ],
+      'import/extensions': [
+        'off',
+        'always',
+        {
+          'js': 'never',
+        },
+      ],
+      'no-empty-function': 'error',
+      'array-callback-return': 'error',
+      'arrow-parens': 'off',
+      'block-scoped-var': 'error',
+      'block-spacing': 'error',
+      'brace-style': [
+        'error',
+        '1tbs',
+      ],
+      'callback-return': 'error',
+      'camelcase': 'warn',
+      'comma-dangle': [
+        'error',
+        'always-multiline',
+      ],
+      'comma-spacing': 'error',
+      'dot-location': [
+        'error',
+        'property',
+      ],
+      'eol-last': 'error',
+      'eqeqeq': 'error',
+      'func-call-spacing': 'error',
+      'indent': [
+        'error',
+        2,
+        {
+          'SwitchCase': 1,
+        },
+      ],
+      'key-spacing': 'error',
+      'keyword-spacing': 'error',
+      'max-statements-per-line': 'error',
+      'new-cap': 'warn',
+      'newline-per-chained-call': 'error',
+      'no-console': [
+        'warn',
+        {
+          'allow': [
+            'warn',
+            'error',
+          ],
+        },
+      ],
+      'no-else-return': 'error',
+      'no-implicit-globals': 'error',
+      'no-magic-numbers': [
+        'warn',
+        {
+          'ignore': [
+            401,
+            404
+          ],
+          'enforceConst': true,
+        },
+      ],
+      'no-multi-spaces': 'error',
+      'no-multiple-empty-lines': 'error',
+      'no-param-reassign': 'error',
+      'no-return-await': 'error',
+      'no-throw-literal': 'error',
+      'no-trailing-spaces': 'error',
+      'no-underscore-dangle': 'off',
+      'no-unneeded-ternary': 'error',
+      'no-use-before-define': [
+        'error',
+        {
+          'functions': false,
+        },
+      ],
+      'no-useless-return': 'error',
+      'no-warning-comments': 'warn',
+      'no-whitespace-before-property': 'error',
+      'object-curly-spacing': [
+        'error',
+        'always',
+      ],
+      'operator-linebreak': [
+        'error',
+        'before',
+      ],
+      'padding-line-between-statements': [
+        'error',
+        {
+          'blankLine': 'always',
+          'prev': '*',
+          'next': 'return',
+        },
+      ],
+      'prefer-destructuring': 'error',
+      'prefer-promise-reject-errors': 'error',
+      'prefer-rest-params': 'error',
+      'prefer-spread': 'error',
+      'prefer-template': 'error',
+      'quotes': [
+        'error',
+        'double',
+      ],
+      'semi': [
+        2,
+        'always',
+      ],
+      'space-before-function-paren': 'off',
+      'spaced-comment': 'error',
+      'template-curly-spacing': 'error',
+      'strict': 'error',
+    },
+  },
+);
