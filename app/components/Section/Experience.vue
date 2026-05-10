@@ -39,7 +39,7 @@ const { data: experience } = await useAsyncData("experience", () =>
 
         <!-- Role + Date row -->
         <div class="flex justify-between items-baseline mb-2">
-          <Typography variant="h4">{{ item.role }}</Typography>
+          <Typography variant="h4" as="h3">{{ item.role }}</Typography>
           <Typography variant="label" class="text-muted-foreground shrink-0 ml-4">
             {{ item.startDate }} – {{ item.endDate ?? 'Present' }}
           </Typography>

@@ -76,13 +76,13 @@ const scrollToTop = () => {
       >
         AP.
       </button>
-      <img
+      <NuxtImg
         src="/avatar.webp"
         alt="Aarni Pavlidi"
         width="96"
         height="96"
         class="w-24 h-24 rounded-full object-cover object-top"
-      >
+      />
     </div>
 
     <!-- Nav links + social icons -->

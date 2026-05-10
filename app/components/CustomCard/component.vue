@@ -22,7 +22,7 @@ const props = defineProps<CustomCardProjectProps | CustomCardExperienceProps>();
       />
       <div class="flex flex-col gap-4 p-4 md:px-8">
         <div class="flex flex-col gap-2">
-          <Typography variant="h4" class="group-hover:text-primary transition-colors">
+          <Typography variant="h4" as="h3" class="group-hover:text-primary transition-colors">
             {{ props.title }}
           </Typography>
           <Typography v-if="props.description" variant="body-sm" class="text-muted-foreground">
