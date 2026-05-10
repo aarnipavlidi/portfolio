@@ -200,3 +200,17 @@
     transition: background-color 5000s ease-in-out 0s;
   }
 }
+
+/* Custom Sheet Close Button Overrides
+   Since SheetContent uses a Teleport (Portal), the DOM elements are placed outside
+   the component's scope. We must style it globally. */
+.custom-sheet-content>button {
+  opacity: 1 !important;
+  color: var(--color-muted-foreground) !important;
+  top: 1.5rem !important;
+  right: 1.5rem !important;
+}
+
+.custom-sheet-content>button:hover {
+  color: var(--color-primary) !important;
+}

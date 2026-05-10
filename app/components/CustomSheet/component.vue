@@ -31,7 +31,7 @@ const side = computed(() => (isDesktop.value ? "right" : "bottom"));
     <SheetContent
       :side="side"
       :class="cn(
-        'dark bg-background flex flex-col gap-0 p-0',
+        'dark bg-background text-foreground flex flex-col gap-0 p-0 custom-sheet-content',
         isDesktop ? 'w-[480px] h-full' : 'w-full h-full rounded-t-xl',
         props.class
       )"
