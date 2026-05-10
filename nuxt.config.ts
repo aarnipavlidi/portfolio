@@ -1,12 +1,22 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import tailwindcss from "@tailwindcss/vite";
+import { envSchema } from "./shared/schemas/env";
+
+const validateEnv = envSchema.safeParse(process.env);
+
+if (!validateEnv.success) {
+  console.error("❌ Invalid environment variables:", validateEnv.error.issues);
+  throw new Error("Invalid environment variables. Please check your .env file or Vercel project settings.");
+};
 
 export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
   devtools: { enabled: true },
-
   app: {
     head: {
+      htmlAttrs: {
+        lang: "en",
+      },
       charset: "utf-8",
       viewport: "width=device-width, initial-scale=1",
       link: [
@@ -21,13 +31,23 @@ export default defineNuxtConfig({
     resendApiKey: "",
     contactEmailTo: "",
     contactEmailFrom: "",
+    turnstile: {
+      secretKey: "",
+    },
+    public: {
+      turnstile: {
+        siteKey: "",
+      },
+    },
   },
-
   routeRules: {
     "/": { prerender: true },
   },
   typescript: {
     tsConfig: {
+      compilerOptions: {
+        types: ["@types/cloudflare-turnstile"],
+      },
       vueCompilerOptions: {
         // Enforce strict prop checking in templates.
         // Without this, passing unknown props (e.g. company="" on
@@ -42,6 +62,7 @@ export default defineNuxtConfig({
     "@nuxtjs/color-mode",
     "@nuxt/image",
     "@nuxt/eslint",
+    "@nuxtjs/turnstile",
   ],
 
   colorMode: {

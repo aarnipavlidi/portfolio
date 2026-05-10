@@ -106,7 +106,7 @@ const scrollToTop = () => {
       <!-- Social icons sit just below nav links -->
       <div class="flex items-center gap-4 pt-8">
         <a
-          href="https://linkedin.com/in/aarnipavlidi"
+          href="https://www.linkedin.com/in/aarni-pavlidi/"
           target="_blank"
           rel="noopener noreferrer"
           class="text-secondary hover:text-secondary/80 transition-colors duration-200"
@@ -115,7 +115,7 @@ const scrollToTop = () => {
           <Linkedin :size="16" aria-hidden="true" />
         </a>
         <a
-          href="https://github.com/AarniPavlidi"
+          href="https://github.com/aarnipavlidi"
           target="_blank"
           rel="noopener noreferrer"
           class="text-secondary hover:text-secondary/80 transition-colors duration-200"

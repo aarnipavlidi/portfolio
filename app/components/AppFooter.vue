@@ -12,7 +12,7 @@ import Typography from "@/components/Typography/component.vue";
       <!-- Social links -->
       <div class="flex items-center gap-4">
         <a
-          href="https://www.linkedin.com/in/aarnipavlidi"
+          href="https://www.linkedin.com/in/aarni-pavlidi"
           target="_blank"
           rel="noopener noreferrer"
           class="flex items-center gap-2 text-secondary hover:text-secondary/80 transition-colors"
