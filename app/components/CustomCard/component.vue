@@ -21,10 +21,27 @@ const props = defineProps<CustomCardProjectProps | CustomCardExperienceProps>();
         class="w-full aspect-video object-cover"
       />
       <div class="flex flex-col gap-4 p-4 md:px-8">
-        <div class="flex flex-col gap-2">
-          <Typography variant="h4" as="h3" class="group-hover:text-primary transition-colors">
-            {{ props.title }}
-          </Typography>
+        <div class="flex flex-col gap-4">
+          <div class="flex justify-between items-start gap-4">
+            <Typography variant="h4" as="h3" class="group-hover:text-primary transition-colors">
+              {{ props.title }}
+            </Typography>
+            <CustomBadge.Indicator
+              v-if="props.inProgress"
+              theme="primary"
+              pulse
+              class="shrink-0"
+            >
+              In progress
+            </CustomBadge.Indicator>
+            <CustomBadge.Indicator
+              v-else-if="props.finished"
+              theme="success"
+              class="shrink-0"
+            >
+              Done
+            </CustomBadge.Indicator>
+          </div>
           <Typography v-if="props.description" variant="body-sm" class="text-muted-foreground">
             {{ props.description }}
           </Typography>

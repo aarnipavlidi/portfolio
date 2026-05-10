@@ -17,26 +17,7 @@ const scrollToExperience = () => {
       <Typography variant="body-lg" class="text-muted-foreground mt-8 max-w-lg">
         Passionate software developer with a background in circular economy studies, which led me to discover my love for programming. Highly skilled in frontend development, building scalable applications from scratch.
       </Typography>
-
-      <!-- Mobile CTAs -->
-      <div class="flex gap-4 mt-8 md:hidden">
-        <a href="https://linkedin.com/in/aarnipavlidi" target="_blank" rel="noopener noreferrer">
-          <CustomButton.Ghost
-            type="button"
-          >
-            LinkedIn
-          </CustomButton.Ghost>
-        </a>
-        <CustomButton.Solid
-          type="button"
-          @click="openContact"
-        >
-          Contact Me
-        </CustomButton.Solid>
-      </div>
-
-      <!-- Desktop CTAs -->
-      <div class="hidden md:flex gap-4 mt-8">
+      <div class="flex gap-4 mt-8">
         <CustomButton.Solid
           type="button"
           @click="scrollToExperience"

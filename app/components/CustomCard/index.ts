@@ -30,6 +30,8 @@ export interface CustomCardProjectProps extends CustomCardBaseProps {
   liveUrl?: string;
   githubUrl?: string;
   image?: string;
+  inProgress?: boolean;
+  finished?: boolean;
 };
 
 export interface CustomCardExperienceProps extends CustomCardBaseProps {

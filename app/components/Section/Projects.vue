@@ -23,6 +23,8 @@ const { data: projects } = await useAsyncData("projects", () =>
         :live-url="project.liveUrl"
         :github-url="project.githubUrl"
         :image="project.image"
+        :in-progress="project.inProgress"
+        :finished="project.finished"
       />
     </div>
   </section>

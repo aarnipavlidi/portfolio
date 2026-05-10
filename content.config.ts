@@ -21,11 +21,15 @@ export default defineContentConfig({
       schema: z.object({
         title: z.string(),
         techStack: z.array(z.string()),
-        liveUrl: z.string().url()
+        liveUrl: z.url()
           .optional(),
-        githubUrl: z.string().url()
+        githubUrl: z.url()
           .optional(),
         featured: z.boolean().default(false),
+        inProgress: z.boolean().default(false)
+          .optional(),
+        finished: z.boolean().default(false)
+          .optional(),
         image: z.string().optional(),
         description: z.string().optional(),
       }),
